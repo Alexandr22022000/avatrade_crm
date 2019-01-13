@@ -5,6 +5,7 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
+    "neuronex-login-backend": "^1.0.0",
     "neuronex-pg": "^1.0.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
