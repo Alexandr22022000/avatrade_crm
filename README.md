@@ -72,13 +72,13 @@ Runs production server. Can be used for test API.
 
 ### Statuses
 
-200 - Ok
+- 200 - Ok
 
-401 - Unauthorized (incorrect or outdated token)
+- 401 - Unauthorized (incorrect or outdated token)
 
-404 - Not found
+- 404 - Not found
 
-500 - Internal server error 
+- 500 - Internal server error 
 
 #### `POST: /api/v0.0/login`
 
@@ -109,3 +109,12 @@ Response body:
 ```$xslt
 permissions: integer[]
 ```
+
+## Constants
+
+### Permissions list
+
+- Owner: 0
+- Store manager: 1
+- warehouse manager: 2
+- Top manager: 3
