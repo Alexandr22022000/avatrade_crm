@@ -58,15 +58,15 @@ Done! You connected database to this project and you can change database data in
 
 #### `npm run start`
 
-Runs the app frontend on development server.
+Runs app frontend on development server.
 
 #### `npm run build`
 
-Create production build in `build` folder.
+Creates production build in `build` folder.
 
 #### `node server`
 
-Create production server. Can be used for test API.
+Runs production server. Can be used for test API.
 
 ## API
 
