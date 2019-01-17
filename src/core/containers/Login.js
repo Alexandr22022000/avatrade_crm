@@ -1,4 +1,4 @@
-import Login from '../components/login';
+import Login from '../components/Login';
 import {connect} from 'react-redux';
 import loginPost from '../async-actions/loginPost';
 

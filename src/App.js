@@ -1,17 +1,23 @@
 import React, { Component } from 'react';
-import { Provider } from 'react-redux';
-import logo from './logo.svg';
 import './App.css';
-import {Router} from 'react-router';
-import Login from './containers/login'
-import store from "./store/store";
+import Login from './core/containers/Login'
+import {Switch, Route} from 'react-router-dom';
+import Test from "./core/components/Test";
+
+
 
 class App extends Component {
     render() {
         return (
-            <Provider store={store}>
-                <Login/>
-            </Provider>
+            <div className={"App"}>
+                <div>
+                    <Switch>
+                        <Route exact path={'/'} children={<div>aaa</div>}/>
+                        <Route excact path={'/login'} children={<Login/>}/>
+                        <Route excact path={'/test'} children={<Test/>}/>
+                    </Switch>
+                </div>
+            </div>
         );
     }
 }
