@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import getToken from "../cookie/getToken";
 
 class Login extends Component {
     render() {
@@ -21,6 +22,14 @@ class Login extends Component {
             return false;
         }
         return true;
+    }
+
+    componentWillMount() {
+        let token = getToken();
+        if(token !== 'none') {
+
+        }
+
     }
 
     login() {

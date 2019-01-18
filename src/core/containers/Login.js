@@ -5,7 +5,7 @@ import loginPost from '../async-actions/loginPost';
 
 export default connect(
     state => ({
-        loginInfo: state.login
+        loginInfo: state.status
     }),
     dispatch => ({
         onLogin: (login, password) => {

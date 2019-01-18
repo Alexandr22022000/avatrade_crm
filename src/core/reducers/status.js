@@ -1,4 +1,4 @@
-import {LOGIN_ERROR, LOGIN_SUCCESS, REQUEST_ERROR} from "../actions/types";
+import {LOGIN_ERROR, LOGIN_SUCCESS, REQUEST_ERROR, TOKEN_FOUND, TOKEN_NOT_FOUND} from "../actions/types";
 
 const defaultTokenState = {
     token: '',
@@ -8,9 +8,19 @@ const defaultTokenState = {
     errorStatusText: null
 };
 
-const login = (state = defaultTokenState, action) =>{
+const status = (state = defaultTokenState, action) =>{
     console.log(action);
     switch (action.type) {
+        case TOKEN_FOUND:
+            return {
+                ...state,
+                token: action.payload.token
+            };
+        case TOKEN_NOT_FOUND:
+            return{
+                ...state,
+                loginSuccessful: false,
+            };
         case LOGIN_SUCCESS:
             return {
                 ...state,
@@ -35,4 +45,4 @@ const login = (state = defaultTokenState, action) =>{
     }
 };
 
-export default login;
+export default status;

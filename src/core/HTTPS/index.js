@@ -3,6 +3,7 @@ import getCleanUrl from "./getCleanUrl";
 import {GET, POST} from "../actions/types";
 import {loginError} from "../actions/loginError";
 import {requestError} from "../actions/requestError";
+import {SERVER_STATUS} from "../constants";
 
 const HTTP = axios.create({
     baseURL: getCleanUrl()
@@ -26,14 +27,14 @@ export const HTTPS = (url, method, data, dispatch, callback) => {
     requestHandler.catch((error) => {
         try {
             switch (error.response.status) {
-                case 401:
+                case SERVER_STATUS.UNAUTHORIZED:
                     dispatch(loginError(error.response.statusText));
                     break;
-                case 404:
-                    dispatch(requestError(404, error.response.statusText));
+                case SERVER_STATUS.NOT_FOUND:
+                    dispatch(requestError(SERVER_STATUS.NOT_FOUND, error.response.statusText));
                     break;
-                case 500:
-                    dispatch(requestError(500, error.response.statusText));
+                case SERVER_STATUS.INTERNAL_SERVER_ERROR:
+                    dispatch(requestError(SERVER_STATUS.INTERNAL_SERVER_ERROR, error.response.statusText));
                     break;
                 default:
                     dispatch(requestError(error.response.status, error.response.statusText));
@@ -42,7 +43,7 @@ export const HTTPS = (url, method, data, dispatch, callback) => {
         }
         catch (e) {
             console.log(error.response);
-            dispatch(requestError(0, 'Connection Error'));
+            dispatch(requestError(SERVER_STATUS.NO_CONNECTION, 'Connection Error'));
         }
     });
 };
