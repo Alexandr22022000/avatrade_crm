@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import getToken from "../cookie/getToken";
+import setToken from "../cookie/setToken";
 
 class Login extends Component {
     render() {
@@ -16,20 +16,14 @@ class Login extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState, nextContext) {
-        console.log(nextProps.loginInfo);
-        if(nextProps.loginInfo.loginSuccessful === false) {
-            this.context.router.history.push('/test');
+        console.log('shouldComponentUpdate login' ,nextProps.loginInfo.loginRequestSuccessful);
+        if(nextProps.loginInfo.loginRequestSuccessful === true) {
+            setToken(nextProps.loginInfo.token);
+            console.log(`cookies: ${document.cookie}`);
+            this.context.router.history.push('/');
             return false;
         }
         return true;
-    }
-
-    componentWillMount() {
-        let token = getToken();
-        if(token !== 'none') {
-
-        }
-
     }
 
     login() {

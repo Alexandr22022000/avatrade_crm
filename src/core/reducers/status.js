@@ -1,44 +1,50 @@
-import {LOGIN_ERROR, LOGIN_SUCCESS, REQUEST_ERROR, TOKEN_FOUND, TOKEN_NOT_FOUND} from "../actions/types";
+import {LOGIN_ERROR, LOGIN_SUCCESS, PERMISSIONS_SUCCESS, REQUEST_ERROR, TOKEN_FOUND} from "../actions/types";
 
 const defaultTokenState = {
-    token: '',
-    permissions: [],
-    loginSuccessful: true,
+    token: 'none',
+    permissions: null,
+    tokenExists: false,
+    loginRequestSuccessful: false,
     errorStatus: null,
     errorStatusText: null
 };
 
 const status = (state = defaultTokenState, action) =>{
-    console.log(action);
     switch (action.type) {
         case TOKEN_FOUND:
-            return {
-                ...state,
-                token: action.payload.token
-            };
-        case TOKEN_NOT_FOUND:
             return{
                 ...state,
-                loginSuccessful: false,
+                token: action.token,
             };
         case LOGIN_SUCCESS:
             return {
                 ...state,
                 token: action.payload.token,
                 permissions: action.payload.permissions,
-                loginSuccessful: true
+                tokenExists: true,
+                loginRequestSuccessful: true
             };
         case LOGIN_ERROR:
             return {
                 ...state,
-                loginSuccessful: false
+                token: 'none',
+                tokenExists: false,
+                loginRequestSuccessful: false
             };
         case REQUEST_ERROR:
             return {
                 ...state,
-                loginSuccessful:false,
+                tokenExists: false,
+                loginRequestSuccessful: false,
                 errorStatus: action.error.errorStatus,
-                errorStatusText: action.error.errorStatusText
+                errorStatusText: action.error.errorText
+            };
+        case PERMISSIONS_SUCCESS:
+            return {
+                ...state,
+                tokenExists: true,
+                loginRequestSuccessful: true,
+                permissions: action.payload
             };
         default:
             return state;

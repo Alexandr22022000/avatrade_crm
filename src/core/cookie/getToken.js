@@ -3,18 +3,18 @@ const getToken = () => {
     const name = 'token';
 
     if(cookie.indexOf(name,0) === -1) {
-        return {token: 'none'};
+        return 'none';
     } else {
         let start = cookie.indexOf(name, 0);
         let end = cookie.indexOf(';', start);
         let token;
         if(end === -1) {
-            token = cookie.substring(start, cookie.length);
+            token = cookie.substring(start + name.length + 1, cookie.length);
         } else {
             token = cookie.substring(start, end);
         }
 
-        return {token: token};
+        return token;
     }
 };
 

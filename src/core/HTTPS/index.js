@@ -1,6 +1,6 @@
 import axios from 'axios';
 import getCleanUrl from "./getCleanUrl";
-import {GET, POST} from "../actions/types";
+import {GET, /*POST*/} from "../actions/types";
 import {loginError} from "../actions/loginError";
 import {requestError} from "../actions/requestError";
 import {SERVER_STATUS} from "../constants";
@@ -10,22 +10,14 @@ const HTTP = axios.create({
 });
 
 export const HTTPS = (url, method, data, dispatch, callback) => {
-    let requestHandler;
-    switch (method) {
-        case POST:
-            requestHandler = HTTP.post(url, data);
-            break;
-        case GET:
-            requestHandler = HTTP.get(url, data);
-            break;
-        default:
-            break;
-    }
-    requestHandler.then((response) => {
+    console.log(url + data);
+    (method === GET? HTTP.get(url + data) : HTTP.post(url, data))
+        .then((response) => {
         callback(response.data);
-    });
-    requestHandler.catch((error) => {
-        try {
+        return response;
+        })
+        .catch((error) => {
+        //try {
             switch (error.response.status) {
                 case SERVER_STATUS.UNAUTHORIZED:
                     dispatch(loginError(error.response.statusText));
@@ -40,10 +32,11 @@ export const HTTPS = (url, method, data, dispatch, callback) => {
                     dispatch(requestError(error.response.status, error.response.statusText));
                     break;
             }
-        }
+            //return Promise.reject(error.response.status);
+        /*}
         catch (e) {
             console.log(error.response);
             dispatch(requestError(SERVER_STATUS.NO_CONNECTION, 'Connection Error'));
-        }
+        }*/
     });
 };
