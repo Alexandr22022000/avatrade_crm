@@ -19,6 +19,7 @@ class MainPage extends Component{
         return true;
     }
 
+
     componentDidMount() {
         console.log(`componentDidMount mainpg ${this.props.tokenInfo.permissions}`);
         if(this.props.tokenInfo.permissions === null) {
