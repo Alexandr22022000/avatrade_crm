@@ -21,12 +21,12 @@ class MainPage extends Component{
 
 
     componentDidMount() {
-        console.log(`componentDidMount mainpg ${this.props.tokenInfo.permissions}`);
+        console.log(`document.cookie ${document.cookie}`);
         if(this.props.tokenInfo.permissions === null) {
             console.log(this.props.tokenInfo);
             let token = getToken();
-           this.props.onTokenDispatch(token);
-            this.props.onPermissionsGet('?token=' + token);
+            this.props.onTokenDispatch(token);
+            this.props.onPermissionsGet(token);
         }
     }
 }

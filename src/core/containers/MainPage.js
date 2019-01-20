@@ -1,6 +1,6 @@
 import MainPage from '../components/MainPage';
 import {connect} from "react-redux";
-import permissionsPost from "../async-actions/permissionsPost";
+import permissionsGet from "../async-actions/permissionsGet";
 import {tokenFound} from "../actions/tokenFound";
 
 export default connect(
@@ -9,7 +9,7 @@ export default connect(
     }),
     dispatch => ({
         onPermissionsGet: (token) => {
-            dispatch(permissionsPost(token));
+            dispatch(permissionsGet(token));
         },
         onTokenDispatch: (token) => {
             dispatch(tokenFound(token));
