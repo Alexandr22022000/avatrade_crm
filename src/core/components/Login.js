@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import setToken from "../cookie/setToken";
 
 class Login extends Component {
+    dataValid = true;
     render() {
         return (
             <div>
@@ -11,6 +12,7 @@ class Login extends Component {
                 <input type={'text'} ref={input => {this.passInput = input}}/>
                 <br/>
                 <button onClick={this.login.bind(this)}>Login</button>
+                {this.dataValid === false? <div>Invalid login or password!</div>: <div></div>}
             </div>
         )
     }
@@ -18,10 +20,13 @@ class Login extends Component {
     shouldComponentUpdate(nextProps, nextState, nextContext) {
         console.log('shouldComponentUpdate login' ,nextProps.loginInfo.loginRequestSuccessful);
         if(nextProps.loginInfo.loginRequestSuccessful === true) {
+            this.dataValid = true;
             setToken(nextProps.loginInfo.token);
             console.log(`cookies: ${document.cookie}`);
             this.context.router.history.push('/');
             return false;
+        } else {
+            this.dataValid = false;
         }
         return true;
     }

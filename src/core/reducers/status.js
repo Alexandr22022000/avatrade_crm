@@ -1,7 +1,7 @@
 import {LOGIN_ERROR, LOGIN_SUCCESS, PERMISSIONS_SUCCESS, REQUEST_ERROR, TOKEN_FOUND} from "../actions/types";
 
 const defaultTokenState = {
-    token: 'none',
+    token: null,
     permissions: null,
     tokenExists: false,
     loginRequestSuccessful: false,
@@ -27,7 +27,7 @@ const status = (state = defaultTokenState, action) =>{
         case LOGIN_ERROR:
             return {
                 ...state,
-                token: 'none',
+                token: null,
                 tokenExists: false,
                 loginRequestSuccessful: false
             };

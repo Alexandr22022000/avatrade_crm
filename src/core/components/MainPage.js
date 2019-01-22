@@ -12,7 +12,7 @@ class MainPage extends Component{
     }
 
     shouldComponentUpdate(nextProps, nextState, nextContext) {
-        if(nextProps.tokenInfo.tokenExists !== true && nextProps.tokenInfo.token === 'none'){
+        if(nextProps.tokenInfo.tokenExists !== true && nextProps.tokenInfo.token === null){
             this.context.router.history.push('/login');
             return false;
         }
@@ -21,10 +21,12 @@ class MainPage extends Component{
 
 
     componentDidMount() {
-        console.log(`document.cookie ${document.cookie}`);
         if(this.props.tokenInfo.permissions === null) {
             console.log(this.props.tokenInfo);
             let token = getToken();
+            if(token === null) {
+                this.context.router.history.push('/login');
+            }
             this.props.onTokenDispatch(token);
             this.props.onPermissionsGet(token);
         }

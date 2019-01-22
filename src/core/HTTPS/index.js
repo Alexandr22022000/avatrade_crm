@@ -96,31 +96,26 @@ const catchCallback = (error, dispatch) => {
     }
 };
 
-const HTTPS = new class {
+const HTTPS = {
 
-    constructor(){
-        this.props.HTTP = axios.create({
-            baseURL: getCleanUrl()
-        });
-    }
-    props = {
-        HTTP: null,
-        dispatch: null
-    };
-    setDispatch(dispatch) {
-        this.props.dispatch = dispatch;
-    }
-    post(url, body, callback) {
-        this.props.HTTP.post(url, body)
+    HTTP: null,
+    dispatch: null,
+
+    post (url, body, callback){
+        this.HTTP.post(url, body)
             .then((response) => thenCallback(response, callback))
-            .catch((reason => catchCallback(reason.response, this.props.dispatch)));
-    }
+            .catch((reason => catchCallback(reason.response, this.dispatch)));
+    },
 
     get(url, params, callback) {
-        this.props.HTTP.get(url, {params:params})
+        this.HTTP.get(url, {params:params})
             .then((response)=>thenCallback(response,callback))
-            .catch(reason => catchCallback(reason.response, this.props.dispatch));
+            .catch(reason => catchCallback(reason.response, this.dispatch));
     }
-}();
+};
+
+HTTPS.HTTP = axios.create({
+    baseURL: getCleanUrl()
+});
 
 export default HTTPS;

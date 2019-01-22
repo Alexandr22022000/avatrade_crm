@@ -3,7 +3,7 @@ const getToken = () => {
     const name = 'token';
 
     if(cookie.indexOf(name,0) === -1) {
-        return 'none';
+        return null;
     } else {
         let start = cookie.indexOf(name, 0);
         let end = cookie.indexOf(';', start);
@@ -13,7 +13,9 @@ const getToken = () => {
         } else {
             token = cookie.substring(start, end);
         }
-
+        if(token === 'none'){
+            return null;
+        }
         return token;
     }
 };
