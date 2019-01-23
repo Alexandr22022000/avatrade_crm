@@ -6,6 +6,7 @@ const express = require('express'),
     path = require('path'),
 
     coreApi = require('./server/core/api'),
+    usersApi = require('./server/users/api'),
     checkUser = require('./server/core/users/login'),
     CONFIG = require('./server/core/config'),
 
@@ -16,7 +17,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 n_login.setConfig(checkUser);
 n_pg.setConfig(CONFIG.DATABASE_URL);
-
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -24,7 +24,9 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Credentials', true);
     next();
 });
+
 coreApi(app);
+usersApi(app);
 
 app.use(express.static('build'));
 
