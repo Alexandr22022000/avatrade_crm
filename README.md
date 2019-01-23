@@ -78,9 +78,13 @@ Runs production server. Can be used for test API.
 
 - 401 - Unauthorized (incorrect or outdated token)
 
+- 403 - Forbidden (not enough permissions)
+
 - 404 - Not found
 
 - 500 - Internal server error 
+
+### Core:
 
 #### `POST: /api/v0.0/login`
 
@@ -112,6 +116,119 @@ Response body:
 permissions: integer[]
 ```
 
+### Users:
+
+#### `GET: /api/v0.0/users`
+
+Request headers:
+
+```$xslt
+token: string,
+is_all: bool (optional)
+```
+
+Response body:
+
+```$xslt
+users: [
+    {
+        id: bigint,
+        name: text,
+        rank: text,
+        phone: text
+    }
+]
+```
+
+#### `GET: /api/v0.0/user`
+
+Request headers:
+
+```$xslt
+token: string,
+id: bigint
+```
+
+Response body:
+
+```$xslt
+user: {
+    email: text,
+    name: text,
+    rank: bigint,
+    phone: text,
+    permissions: integer[],
+    address: text,
+    vk: text,
+    docs: text[]
+},
+ranks: [
+    id: bigint,
+    name: text
+]
+```
+
+#### `POST: /api/v0.0/user`
+
+Request body:
+
+```$xslt
+token: string,
+id: bigint,
+email: text,
+name: text,
+rank: bigint,
+phone: text,
+permissions: integer[],
+address: text,
+vk: text,
+docs: text[]
+```
+
+Response body:
+
+```$xslt
+
+```
+
+#### `POST: /api/v0.0/add_user`
+
+Request body:
+
+```$xslt
+token: string,
+email: text,
+name: text,
+rank: bigint,
+phone: text,
+permissions: integer[],
+address: text,
+vk: text,
+docs: text[]
+```
+
+Response body:
+
+```$xslt
+
+```
+
+#### `POST: /api/v0.0/user_status`
+
+Request body:
+
+```$xslt
+token: string,
+id: bigint,
+status: integer
+```
+
+Response body:
+
+```$xslt
+
+```
+
 ## Constants
 
 ### Permissions list
@@ -120,3 +237,8 @@ permissions: integer[]
 - Store manager: 1
 - warehouse manager: 2
 - Top manager: 3
+
+### User statuses
+
+- Active: 0
+- Fired: 1
