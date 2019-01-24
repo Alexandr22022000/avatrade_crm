@@ -1,25 +1,56 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import setToken from "../cookie/setToken";
+import '../styles/LoginPage.css';
+import {Link} from "react-router-dom";
 
 class Login extends Component {
     dataValid = true;
+
     render() {
+        const style = window.navigator.userAgent.toLocaleLowerCase().indexOf("android") === -1 ?
+            {form: 'LoginForm-d LoginFormColors', logoHolder: 'logoHolder logoHolder-d'} :
+            {form: 'LoginForm-t LoginFormColors', logoHolder: 'logoHolder-t logoHolder'};
         return (
             <div>
-                <input type={'text'} ref={input => {this.loginInput = input}}/>
-                <br/>
-                <input type={'text'} ref={input => {this.passInput = input}}/>
-                <br/>
-                <button onClick={this.login.bind(this)}>Login</button>
-                {this.dataValid === false? <div>Invalid login or password!</div>: <div></div>}
+                <div className={style.logoHolder}>
+                </div>
+                <div className={style.form}>
+                    <div style={{textAlign: 'center'}}>
+                        Вход
+                    </div>
+                    <div className={'inputHolder'}>
+                        <label>Email</label>
+                        <br/>
+                        <div><input onChange={(input) => {this.loginInput = input}} placeholder={'email'}/></div>
+
+                    </div>
+                    <div className={'inputHolder'}>
+                        <label>Password</label>
+                        <br/>
+                        <div><input onChange={(input) => {this.passInput = input}} placeholder={'password'}/></div>
+                    </div>
+                    <div id={'func-holder'}
+                         className={'LoginForm-func'}
+                    >
+                        <button className={'btn-m'}
+                                onClick={this.login.bind(this)}
+                        >
+                            Войти
+                        </button>
+                        <br/>
+                        <Link to={'/login'}>
+                            <span>Забыли пароль?</span>
+                        </Link>
+                    </div>
+                </div>
             </div>
         )
     }
 
     shouldComponentUpdate(nextProps, nextState, nextContext) {
-        console.log('shouldComponentUpdate login' ,nextProps.loginInfo.loginRequestSuccessful);
-        if(nextProps.loginInfo.loginRequestSuccessful === true) {
+        console.log('shouldComponentUpdate login', nextProps.loginInfo.loginRequestSuccessful);
+        if (nextProps.loginInfo.loginRequestSuccessful === true) {
             this.dataValid = true;
             setToken(nextProps.loginInfo.token);
             console.log(`cookies: ${document.cookie}`);
@@ -32,7 +63,7 @@ class Login extends Component {
     }
 
     login() {
-        if(this.loginInput.value !== '' && this.passInput.value !== '') {
+        if (this.loginInput.value !== '' && this.passInput.value !== '') {
             this.props.onLogin(this.loginInput.value, this.passInput.value);
         }
     }

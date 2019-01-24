@@ -6,7 +6,6 @@ import Test from "./core/components/Test";
 import MainPage from "./core/containers/MainPage";
 
 
-
 class App extends Component {
     render() {
         return (
