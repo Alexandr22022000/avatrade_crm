@@ -42,24 +42,6 @@
     margin: 0 auto;
 }
 
-.btn-m{
-    display: inline-block;
-    -webkit-box-sizing: content-box;
-    -moz-box-sizing: content-box;
-    box-sizing: content-box;
-    cursor: pointer;
-    padding: 5px 10px;
-    -webkit-border-radius: 3px;
-    border-radius: 4px;
-    font: normal 16px/normal "Calibri", "Calibri Light", serif;
-    -webkit-box-shadow: 0 0 9px 0 rgba(90,90,90,1) ;
-    box-shadow: 0 0 9px 0 rgba(90,90,90,1) ;
-    -webkit-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
-    -moz-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
-    -o-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
-    transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
-}
-
 #func-holder {
     margin-top: 8px;
 }
@@ -81,20 +63,20 @@
 
 #func-holder button {
     color: #fff;
-    background-color: #8f00c8;
-    text-shadow: -1px 1px #9c00b8;
+    background-color: #41A7BB;
+    text-shadow: -1px 1px #376C80;
     border: none;
 }
 
 #func-holder button:hover,
 #func-holder button.hover {
-    background-color: #620092;
+    background-color: #1E4964;
     text-shadow: -1px 1px #44006d;
 }
 
 #func-holder button:active,
 #func-holder button.active {
-    background-color: #27032e;
+    background-color: #05012E;
     text-shadow: -1px 1px #160047;
 }
 

@@ -1,0 +1,49 @@
+.MainPageHolder-d {
+    background-color: #1f1f1f;
+}
+
+.MainPageHolder-d #buttons {
+    margin-left: 5%;
+    display: inline-block;
+}
+
+.MainPageHolder-d #buttons button {
+    padding-top: 10px;
+}
+
+.imgHolder {
+    background-image: url("../../images/ava-logo-s.png");
+    width: 25px;
+    height: 30px;
+    display: inline-block;
+    position: absolute;
+    top: 2%;
+    left: 2%;
+}
+
+.MainPageHolder-t button,
+.MainPageHolder-d button {
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+    background-color: #1f1f1f;
+    color: #D5D9DE;
+    padding: 10px;
+}
+
+
+.MainPageHolder-d button:hover,
+.MainPageHolder-t button:hover,
+.MainPageHolder-d button.hover{
+    background-color: #424242;
+}
+
+.MainPageHolder-t button.checked,
+.MainPageHolder-d button.checked {
+
+}
+
+.MainPageHolder-t {
+    text-align: center;
+
+}
