@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import Login from './core/containers/Login'
 import {Switch, Route} from 'react-router-dom';
-import Test from "./core/components/Test";
-import MainPage from "./core/containers/MainPage";
+import NavBar from "./core/containers/NavBar";
+import Stuff from "./personal/containers/Stuff";
 
 
 class App extends Component {
@@ -12,9 +12,10 @@ class App extends Component {
             <div className={"App"}>
                 <div>
                     <Switch>
-                        <Route exact path={'/'} children={<MainPage/>}/>
-                        <Route excact path={'/login'} children={<Login/>}/>
-                        <Route excact path={'/test'} children={<Test/>}/>
+                        <Route exact path={'/'} children={<NavBar/>}/>
+                        <Route exact path={'/stuff'} children={<NavBar><Stuff/></NavBar>}/>
+                        <Route exact path={'/test'} children={<div>tested</div>}/>
+                        <Route path={'/login'} children={<Login/>}/>
                     </Switch>
                 </div>
             </div>
