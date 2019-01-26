@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-//import getToken from "../cookie/getToken";
+import getToken from "../cookie/getToken";
 import PropTypes from "prop-types";
 import '../styles/NavBar.css';
 import '../styles/buttons.css';
@@ -8,7 +8,6 @@ import {PERMISSIONS} from '../constants';
 
 class NavBar extends Component{
     render() {
-        console.log('render()');
         const style = {
             holder: '',
             imgHolder: 'imgHolder',
@@ -20,9 +19,8 @@ class NavBar extends Component{
 
         let buttons = {};
         if(this.props.tokenInfo.permissions !== null){
-
-            for(let perm of this.props.tokenInfo.permissions){
-                switch(perm){
+            for(let perm in this.props.tokenInfo.permissions){
+                switch(this.props.tokenInfo.permissions[perm]){
                     case PERMISSIONS.OWNER:
                     case PERMISSIONS.TOP_MANAGER:
                         buttons['planning'] = {name:'планнинг', isActive: false, route:'planning'};
@@ -53,7 +51,6 @@ class NavBar extends Component{
             }
         }
         let buttonsArray = [];
-        console.log(this.context.router.history.location.pathname);
         for(let key in buttons){
             if('/' + buttons[key].route ===
                 this.context.router.history.location.pathname) {
@@ -65,22 +62,22 @@ class NavBar extends Component{
             <div>
                 <div className={style.holder}>
                     <div className={style.imgHolder}/>
-                    <div id={'buttons'}>{buttonsArray.map(value => {
+                    <div id={'buttons'}>{buttonsArray.map((value, index) => {
                         if(!value.isActive) {
-                            return <button
+                            return <button key={index}
                                 className={`${style.buttons} ${value.isActive ? 'checked' : ''}`}
                                 onClick={(e) => {
-                                    this.context.router.history.push('/nav-bar/' + value.route);
+                                    this.context.router.history.push(value.route);
                                 }}
                                 style={{paddingBottom: '17px',paddingTop: '15px'}}
                             >
                                 {value.name}
                             </button>
                         } else {
-                            return <button
+                            return <button key={index}
                                 className={`${style.buttons} ${value.isActive ? 'checked' : ''}`}
                                 onClick={(e) => {
-                                    this.context.router.history.push('/nav-bar/' + value.route);
+                                    this.context.router.history.push(value.route);
                                 }}
                                 style={{paddingBottom: '0px',paddingTop: '15px'}}
                             >
@@ -91,15 +88,13 @@ class NavBar extends Component{
                     })}</div>
 
                 </div>
-                <div id={'children'}>
-                    {this.props.children}
-                </div>
+                {this.props.tokenInfo.token === null ? <div/> : <div id={'children'}>{this.props.children}</div>}
+
             </div>
         )
     }
 
     shouldComponentUpdate(nextProps, nextState, nextContext) {
-        console.log(nextProps.tokenInfo);
         if(nextProps.tokenInfo.tokenExists !== true && nextProps.tokenInfo.token === null){
             this.context.router.history.push('/login');
             return false;
@@ -109,17 +104,14 @@ class NavBar extends Component{
 
 
     componentDidMount() {
-        console.log('componentDidMount()');
-        this.props.onLoginInfoFakeDispatch();
-        /*if(this.props.tokenInfo.permissions === null) {
-            console.log(this.props.tokenInfo);
+        if(this.props.tokenInfo.permissions === null) {
             let token = getToken();
             if(token === null) {
                 this.context.router.history.push('/login');
             }
             this.props.onTokenDispatch(token);
             this.props.onPermissionsGet(token);
-        }*/
+        }
     }
 }
 

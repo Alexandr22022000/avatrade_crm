@@ -22,13 +22,13 @@ class Login extends Component {
                     <div className={'inputHolder'}>
                         <label>Email</label>
                         <br/>
-                        <div><input onChange={(input) => {this.loginInput = input}} placeholder={'email'}/></div>
+                        <div><input ref={(input) => {this.loginInput = input}} placeholder={'email'}/></div>
 
                     </div>
                     <div className={'inputHolder'}>
                         <label>Password</label>
                         <br/>
-                        <div><input onChange={(input) => {this.passInput = input}} placeholder={'password'}/></div>
+                        <div><input ref={(input) => {this.passInput = input}} placeholder={'password'}/></div>
                     </div>
                     <div id={'func-holder'}
                          className={'LoginForm-func'}
@@ -49,8 +49,8 @@ class Login extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState, nextContext) {
-        console.log('shouldComponentUpdate login', nextProps.loginInfo.loginRequestSuccessful);
-        if (nextProps.loginInfo.loginRequestSuccessful === true) {
+        console.log('shouldComponentUpdate login', nextProps.loginInfo.requestSuccessful);
+        if (nextProps.loginInfo.requestSuccessful === true) {
             this.dataValid = true;
             setToken(nextProps.loginInfo.token);
             console.log(`cookies: ${document.cookie}`);
@@ -63,6 +63,7 @@ class Login extends Component {
     }
 
     login() {
+        console.log({val:this.loginInput, val1:this.passInput});
         if (this.loginInput.value !== '' && this.passInput.value !== '') {
             this.props.onLogin(this.loginInput.value, this.passInput.value);
         }

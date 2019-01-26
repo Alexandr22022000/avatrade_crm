@@ -1,34 +1,85 @@
 .stuffHolder {
+    border-radius: 10px;
     margin-left: 10%;
     margin-top: 4%;
-    width: 15%;
+    width: 25%;
     text-align: center;
     background-color: #1f1f1f;
+    border: #555555 solid 1px;
+    box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);
+}
+
+.stuffHolder #stuffList-holder {
 }
 
 .stuffHolder #stuffHolder {
+    margin-top: 20px;
     width: inherit;
-    height: 400px;
+    height: 380px;
     overflow: auto;
     overflow-y: scroll;
+    border-radius: 10px;
 }
 
 ::-webkit-scrollbar {
     width: 8px;
-    background-color: #1f1f1f;
+    background-color: rgba(0,0,0,0);
 }
 ::-webkit-scrollbar:hover {
     width: 6px;
 }
-
 ::-webkit-scrollbar-thumb {
     background-color: #1f1f1f;
 }
-
 ::-webkit-scrollbar-thumb:hover {
     background-color: #9c00b8;
 }
 
+::-webkit-scrollbar-corner {
+    border-radius: 10px;
+}
+
 .stuffHolder #stuffHolder div {
     border-bottom: #555555 solid 1px;
+}
+
+.modalHolder {
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255,255,255,0.3);
+}
+
+.modalHolder #cross {
+    text-align: right;
+}
+
+.modalHolder #cross div {
+    width: 30px;
+    height: 30px;
+}
+
+.modal {
+    height: 340px;
+    overflow: auto;
+    overflow-y: scroll;
+    text-align: left;
+    padding-left: 2%;
+    padding-bottom: 10px;
+}
+
+.modal h2 {
+    margin-top: 10px;
+    margin-bottom: 3px;
+}
+
+.borders {
+    width: 40%;
+    height: 400px;
+    margin-left: 30%;
+    margin-top: 10%;
+    background-color: #1f1f1f;
+    border-radius: 6px;
 }
