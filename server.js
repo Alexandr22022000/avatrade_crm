@@ -2,6 +2,7 @@ const express = require('express'),
     bodyParser = require('body-parser'),
     n_login = require('neuronex-login-backend'),
     n_pg = require('neuronex-pg'),
+    n_mailer = require('neuronex_mailer'),
     fs = require('fs'),
     path = require('path'),
 
@@ -17,6 +18,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 n_login.setConfig(checkUser);
 n_pg.setConfig(CONFIG.DATABASE_URL);
+n_mailer.setConfig(CONFIG.EMAIL_SERVER);
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
