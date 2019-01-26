@@ -229,6 +229,35 @@ Response body:
 
 ```
 
+#### `POST: /api/v0.0/start_recover_password`
+
+Request body:
+
+```$xslt
+email: string
+```
+
+Response body:
+
+```$xslt
+
+```
+
+#### `POST: /api/v0.0/recover_password`
+
+Request body:
+
+```$xslt
+token: string,
+password: string
+```
+
+Response body:
+
+```$xslt
+
+```
+
 ## Constants
 
 ### Permissions list
