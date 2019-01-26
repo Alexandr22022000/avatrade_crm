@@ -21,7 +21,7 @@ module.exports = (app) => {
         if (!checkPermissions(user, [PERMISSIONS.OWNER, PERMISSIONS.OWNER])) return res.status(403).end();
 
         const id = Date.now();
-        query(QUERYES.ADD_USER, [id, req.body.email, "0000", req.body.permissions, req.body.name, req.body.phone, req.body.vk, req.body.address, req.body.rank, req.body.docs])
+        query(QUERYES.ADD_USER, [id, req.body.email, null, req.body.permissions, req.body.name, req.body.phone, req.body.vk, req.body.address, req.body.rank, req.body.docs])
             .then(() => {
                 const token = tokenGenerator.createToken({
                     uid: 'eb61e19f-d2a2-466e-a2b5-f759258a1166',
