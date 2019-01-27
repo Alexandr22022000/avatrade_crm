@@ -1,9 +1,17 @@
-import {CLOSE_PERSON_MODAL, OPEN_PERSON_MODAL, SET_CURRENT_USER, SET_STUFF} from "../actions/types";
+import {
+    CHANGE_BLOCK_STATUS,
+    CLOSE_PERSON_MODAL,
+    OPEN_PERSON_MODAL,
+    SET_CURRENT_USER,
+    SET_STUFF
+} from "../actions/types";
+import {FETCHING_USER_DATA} from "../../core/actions/types";
 
 const defaultStuffState = {
     modalIsOpen: false,
     stuff: [],
-    currentUser: null
+    currentUser: null,
+    blockStatuses: [false,false,false,false]
 };
 
 const stuff = (state = defaultStuffState, action) => {
@@ -28,6 +36,19 @@ const stuff = (state = defaultStuffState, action) => {
             return {
                 ...state,
                 currentUser: action.person
+            };
+        case CHANGE_BLOCK_STATUS:
+            let tempArray = [false, false, false,false];
+            if(action.index !== -1)
+                tempArray[action.index] = true;
+            return {
+                ...state,
+                blockStatuses: [...tempArray],
+            };
+        case FETCHING_USER_DATA:
+            return{
+                ...state,
+                currentUser:action.data
             };
         default:
             return state;

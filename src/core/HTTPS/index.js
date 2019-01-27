@@ -11,7 +11,6 @@ const thenCallback = (response, callback) => {
 };
 
 const catchCallback = (error, dispatch) => {
-    console.log(error);
     switch (error.status) {
         case SERVER_STATUS.UNAUTHORIZED:
             dispatch(loginError(error.statusText));
@@ -35,7 +34,7 @@ const HTTPS = {
 
     post (url, body, callback){
         let token = this.token;
-        this.HTTP.post(url,{body:{...body,token} })
+        this.HTTP.post(url,{...body,token })
             .then((response) => thenCallback(response, callback))
             .catch((reason => catchCallback(reason.response, this.dispatch)));
     },
@@ -44,7 +43,7 @@ const HTTPS = {
         let token = this.token;
         this.HTTP.get(url, {params:{...params, token}})
             .then((response)=>thenCallback(response,callback))
-            .catch(reason => catchCallback(reason/*.response*/, this.dispatch));
+            .catch(reason => catchCallback(reason.response, this.dispatch));
     }
 };
 

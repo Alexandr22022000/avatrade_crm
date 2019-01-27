@@ -3,3 +3,5 @@ export const OPEN_PERSON_MODAL = 'OPEN_PERSON_MODAL';
 
 export const SET_STUFF = 'SET_STUFF';
 export const SET_CURRENT_USER  = 'SET_CURRENT_USER';
+
+export const CHANGE_BLOCK_STATUS = 'CHANGE_BLOCK_STATUS';

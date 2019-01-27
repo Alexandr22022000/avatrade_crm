@@ -9,6 +9,7 @@ export default connect(
     }),
     dispatch => ({
         onLogin: (login, password) => {
+            console.log(`login: ${login}, pass: ${password}`);
             dispatch(loginPost(login, password))
         }
     })

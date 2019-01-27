@@ -6,6 +6,13 @@ import cross from '../../images/cross-icon.png';
 
 class Stuff extends  Component {
     getModal() {
+        let userTempData = {user:null, ranks: null};
+        if(this.props.currentPerson !== null) {
+            userTempData.user = Object.assign({}, this.props.currentPerson.user);
+            userTempData.ranks = Object.assign({}, this.props.currentPerson.ranks);
+        }
+        console.log('USER_TEMP_DATA');
+        console.log(userTempData);
         return(
             <div className={'modalHolder'} onClick={() => {this.props.onCloseModal()}}>
                 <div className={'borders'} onClick={(e) => {e.stopPropagation()}}>
@@ -14,12 +21,17 @@ class Stuff extends  Component {
                     </div>
                     <div className={'modal'}>
                         {this.props.currentPerson !== null? <div>
-                                {this.props.personDataList.map(value => {
-                                    return <div>
-                                        <h2>{value.name}</h2>
-                                        <div>{value.data}</div>
+                                <h2>ФИО:</h2>
+                                {this.props.blockStatuses[0] === true?
+                                    <input
+                                        onChange={e => userTempData.user.name = e.target.value}
+                                        defaultValue={userTempData.user.name}
+                                        onBlurCapture={() => {this.props.onChangeBlockStatus(-1); this.props.onFetchUserData(userTempData)}}
+                                    />:
+                                    <div onClick={() => this.props.onChangeBlockStatus(0)}>
+                                        {userTempData.user.name}
                                     </div>
-                                })}
+                                }
                         </div>:
                         <div/>}
                     </div>
@@ -50,6 +62,43 @@ class Stuff extends  Component {
                                 {value.name} | {value.phone} | {value.rank}
                             </div>
                         })}
+                        <div>aaa</div>
+                        <div>aaa</div>
+                        <div>aaa</div>
+                        <div>aaa</div>
+                        <div>aaa</div>
+                        <div>aaa</div>
+                        <div>aaa</div>
+                        <div>aaa</div>
+                        <div>aaa</div>
+                        <div>aaa</div>
+                        <div>aaa</div>
+                        <div>aaa</div>
+                        <div>aaa</div>
+                        <div>aaa</div>
+                        <div>aaa</div>
+                        <div>aaa</div>
+                        <div>aaa</div>
+                        <div>aaa</div>
+                        <div>aaa</div>
+                        <div>aaa</div>
+                        <div>aaa</div>
+                        <div>aaa</div>
+                        <div>aaa</div>
+                        <div>aaa</div>
+                        <div>aaa</div>
+                        <div>aaa</div>
+                        <div>aaa</div>
+                        <div>aaa</div>
+                        <div>aaa</div>
+                        <div>aaa</div>
+                        <div>aaa</div>
+                        <div>aaa</div>
+                        <div>aaa</div>
+                        <div>aaa</div>
+                        <div>aaa</div>
+                        <div>aaa</div>
+                        <div>aaa</div>
                     </div>
                 </div>
                 <hr color={'#1f1f1f'}/>
