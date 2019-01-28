@@ -5,7 +5,8 @@ import {closePersonModal} from "../actions/closePersonModal";
 import {getStuff} from "../async-actions/getStuff";
 import {getPerson} from "../async-actions/getPerson";
 import {changeBlockStatus} from "../actions/changeBlockStatus";
-import {fetchUserData} from "../../core/actions/fetchUserData";
+import {fetchUserData} from "../actions/fetchUserData";
+import {updateUserData} from "../async-actions/updateUserData";
 
 export default connect(
     state => ({
@@ -13,11 +14,12 @@ export default connect(
         reqStatus: state.status.requestSuccessful,
         modalStatus: state.stuff.modalIsOpen,
         currentPerson: state.stuff.currentUser,
-        blockStatuses: state.stuff.blockStatuses
+        currentPersonId: state.stuff.currentUserId,
+        blockStatuses: state.stuff.blockStatuses,
     }),
     dispatch => ({
-        onOpenModal: () => {
-            dispatch(openPersonModal());
+        onOpenModal: (id) => {
+            dispatch(openPersonModal(id));
         },
         onCloseModal: () => {
             dispatch(closePersonModal());
@@ -33,6 +35,9 @@ export default connect(
         },
         onFetchUserData: (data) => {
             dispatch(fetchUserData(data));
+        },
+        onUpdateUserData: (data) => {
+            dispatch(updateUserData(data))
         }
     })
 )(Stuff);

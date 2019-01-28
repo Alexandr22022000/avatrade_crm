@@ -2,7 +2,7 @@ import NavBar from '../components/NavBar';
 import {connect} from "react-redux";
 import permissionsGet from "../async-actions/permissionsGet";
 import {tokenFound} from "../actions/tokenFound";
-import {loginSuccess} from "../actions/loginSuccess";
+
 
 export default connect(
     state => ({
@@ -15,8 +15,5 @@ export default connect(
         onTokenDispatch: (token) => {
             dispatch(tokenFound(token));
         },
-        onLoginInfoFakeDispatch: () => {
-            dispatch(loginSuccess({token:'abc', permissions: [2,3]}));
-        }
     })
 )(NavBar);

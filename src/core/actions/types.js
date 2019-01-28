@@ -8,4 +8,3 @@ export const TOKEN_FOUND = 'TOKEN_FOUND';
 export const TOKEN_NOT_FOUND = 'TOKEN_NOT_FOUND';
 export const REQUEST_ERROR = 'REQUEST_ERROR';
 
-export const FETCHING_USER_DATA = 'FETCHING_USER_DATA';

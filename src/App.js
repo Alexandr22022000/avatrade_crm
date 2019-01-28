@@ -4,6 +4,7 @@ import Login from './core/containers/Login'
 import {Switch, Route} from 'react-router-dom';
 import NavBar from "./core/containers/NavBar";
 import Stuff from "./personal/containers/Stuff";
+import InDev from "./core/components/InDev";
 
 
 class App extends Component {
@@ -14,7 +15,14 @@ class App extends Component {
                     <Switch>
                         <Route exact path={'/'} children={<NavBar/>}/>
                         <Route exact path={'/stuff'} children={<NavBar><Stuff/></NavBar>}/>
-                        <Route exact path={'/test'} children={<div>tested</div>}/>
+                        <Route exact path={'/cash'} children={<NavBar><InDev/></NavBar>}/>
+                        <Route exact path={'/planning'} children={<NavBar><InDev/></NavBar>}/>
+                        <Route exact path={'/warehouse'} children={<NavBar><InDev/></NavBar>}/>
+                        <Route exact path={'/prices'} children={<NavBar><InDev/></NavBar>}/>
+                        <Route exact path={'/turnovers'} children={<NavBar><InDev/></NavBar>}/>
+                        <Route exact path={'/events'} children={<NavBar><InDev/></NavBar>}/>
+                        <Route exact path={'/cabinet'} children={<NavBar><InDev/></NavBar>}/>
+                        <Route exact path={'/contacts'} children={<NavBar><InDev/></NavBar>}/>
                         <Route path={'/login'} children={<Login/>}/>
                     </Switch>
                 </div>

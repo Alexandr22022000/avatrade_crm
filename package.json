@@ -5,7 +5,6 @@
   "dependencies": {
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
-    "displacejs": "^1.2.4",
     "express": "^4.16.4",
     "firebase-token-generator": "^2.0.0",
     "neuronex-login-backend": "^1.0.2",
@@ -16,6 +15,8 @@
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-draggable": "^3.1.1",
+    "react-dropdown": "^1.6.4",
+    "react-dropdown-select": "^1.6.0",
     "react-redux": "latest",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",

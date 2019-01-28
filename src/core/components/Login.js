@@ -16,7 +16,7 @@ class Login extends Component {
                 <div className={style.logoHolder}>
                 </div>
                 <div className={style.form}>
-                    <div style={{textAlign: 'center'}}>
+                    <div style={{textAlign: 'center', fontSize: '30px', marginBottom: '0'}}>
                         Вход
                     </div>
                     <div className={'inputHolder'}>
@@ -53,7 +53,6 @@ class Login extends Component {
         if (nextProps.loginInfo.requestSuccessful === true) {
             this.dataValid = true;
             setToken(nextProps.loginInfo.token);
-            console.log(`cookies: ${document.cookie}`);
             this.context.router.history.push('/');
             return false;
         } else {

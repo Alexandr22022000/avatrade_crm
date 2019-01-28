@@ -62,7 +62,7 @@ class NavBar extends Component{
             <div>
                 <div className={style.holder}>
                     <div className={style.imgHolder}/>
-                    <div id={'buttons'}>{buttonsArray.map((value, index) => {
+                    <div id={'buttons'} style={{display:'inline-block'}}>{buttonsArray.map((value, index) => {
                         if(!value.isActive) {
                             return <button key={index}
                                 className={`${style.buttons} ${value.isActive ? 'checked' : ''}`}
@@ -86,7 +86,12 @@ class NavBar extends Component{
                             </button>
                         }
                     })}</div>
-
+                    <button className={'btn-m ' + style.buttons}
+                            id={'exitButton'}
+                            onClick={() => {this.clearCookies(); this.context.router.history.push('/login');}}
+                    >
+                        Выйти
+                    </button>
                 </div>
                 {this.props.tokenInfo.token === null ? <div/> : <div id={'children'}>{this.props.children}</div>}
 
@@ -102,6 +107,16 @@ class NavBar extends Component{
         return true;
     }
 
+    clearCookies() {
+        let cookies = document.cookie.split(";");
+
+        for (let i = 0; i < cookies.length; i++) {
+            let cookie = cookies[i];
+            let eqPos = cookie.indexOf("=");
+            let name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+            document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+        }
+    }
 
     componentDidMount() {
         if(this.props.tokenInfo.permissions === null) {
