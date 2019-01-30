@@ -175,6 +175,7 @@
   border: none;
   outline: 0;
   outline-offset: 0;
+  border-bottom: #44006d solid 2px;
 }
 .modal input:focus,
 .modal input:hover,
