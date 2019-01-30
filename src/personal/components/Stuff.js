@@ -90,7 +90,7 @@ class Stuff extends Component {
       this.props.onGetCurrentUser(personId);
     } else {
       this.props.onSetEmptyUser();
-      //GET RANKS!!!
+      this.props.getRanks();
     }
     this.setState({ showEditor: true });
   }
