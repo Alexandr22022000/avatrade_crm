@@ -1,120 +1,74 @@
-import React, { Component } from "react";
-import "../styles/LoginPage.css";
-import getCleanUrl from "../HTTPS/getCleanUrl";
+import React, {Component} from 'react';
+import '../styles/LoginPage.css';
+import {Link} from "react-router-dom";
 
 class EmailSender extends Component {
-  state = {
-    dataValid: null
-  };
+    render() {
+        const style = window.navigator.userAgent.toLocaleLowerCase().indexOf("android") === -1 ?
+            {form: 'LoginForm-d LoginFormColors', logoHolder: 'logoHolder logoHolder-d'} :
+            {form: 'LoginForm-t LoginFormColors', logoHolder: 'logoHolder-t logoHolder'};
 
-  emailInputMsg() {
-    const style =
-      window.navigator.userAgent.toLocaleLowerCase().indexOf("android") === -1
-        ? {
-            form: "LoginForm-d LoginFormColors",
-            logoHolder: "logoHolder logoHolder-d"
-          }
-        : {
-            form: "LoginForm-t LoginFormColors",
-            logoHolder: "logoHolder-t logoHolder"
-          };
-    return (
-      <div>
-        <div className={style.logoHolder} />
-        <div className={style.form}>
-          <div
-            style={{ textAlign: "center", fontSize: "30px", marginBottom: "0" }}
-          >
-            Смена пароля
-          </div>
-          <div className={"inputHolder"}>
-            <label>Email</label>
-            <br />
+        if (this.props.requestSuccess) {
+            return (
+                <div>
+                    <div className={style.logoHolder}>
+                    </div>
+                    <div className={style.form}>
+                        <div style={{textAlign: 'center', fontSize: '30px', marginBottom: '0'}}>
+                            Перейдите по ссылке, отправленной на почту
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        return (
             <div>
-              <input
-                type={"email"}
-                ref={input => {
-                  this.emailInput = input;
-                }}
-                placeholder={"password"}
-              />
+                <div className={style.logoHolder}>
+                </div>
+                <div className={style.form}>
+                    <div style={{textAlign: 'center', fontSize: '30px', marginBottom: '0'}}>
+                        Востоновить пароль
+                    </div>
+                    <div className={'inputHolder'}>
+                        <label>Email</label>
+                        <br/>
+                        <div>
+                            <input
+                                value={this.state.email}
+                                onChange={(e) => this.setState({email: e.target.value})}
+                                placeholder={'email'}
+                                onKeyDown={this.onEnter.bind(this)}/>
+                        </div>
+                    </div>
+                    <div style={{fontSize: '18px', textAlign: 'center', color:'#FF0000', height:'30px'}}>
+                        {this.props.loginError}
+                    </div>
+                    <div id={'func-holder'} className={'LoginForm-func'}>
+                        <button className={'btn-m'} onClick={this.sendEmail.bind(this)}>Востоновить</button>
+                        <br/>
+                        <Link onClick={() => this.props.cleanErrors()} to={'/login'}><span>Вход</span></Link>
+                    </div>
+                </div>
             </div>
-          </div>
-          {this.state.dataValid === false ? (
-            <div style={{ height: "30px" }} />
-          ) : (
-            <div
-              style={{
-                fontSize: "22px",
-                textAlign: "center",
-                color: "#FF0000"
-              }}
-            >
-              Неверный email
-            </div>
-          )}
-          <div id={"func-holder"} className={"LoginForm-func"}>
-            <button
-              className={"btn-m"}
-              onClick={() => {
-                this.sendEmail();
-              }}
-            >
-              Отправить
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  emailSentMsg() {
-    const style =
-      window.navigator.userAgent.toLocaleLowerCase().indexOf("android") === -1
-        ? {
-            form: "LoginForm-d LoginFormColors",
-            logoHolder: "logoHolder logoHolder-d"
-          }
-        : {
-            form: "LoginForm-t LoginFormColors",
-            logoHolder: "logoHolder-t logoHolder"
-          };
-    return (
-      <div>
-        <div className={style.logoHolder} />
-        <div className={style.form}>
-          Перейдите по ссылке, отправленной на почту
-        </div>
-      </div>
-    );
-  }
-
-  render() {
-    return (
-      <div>
-        {this.state.dataValid === null
-          ? this.emailInputMsg()
-          : this.emailSentMsg()}
-      </div>
-    );
-  }
-
-  sendEmail() {
-    if (this.emailInput.value || /[^\s]+/.test(this.emailInput.value)) {
-      this.props.onSendEmail(this.emailInput.value);
+        )
     }
-  }
 
-  shouldComponentUpdate(nextProps, nextState, nextContext) {
-    if (nextProps.reqStatus) {
-      this.setState({ dataValid: true });
-      document.location.href = "http://localhost:3000/login";
-    } else if (nextProps.errorStatus !== null) {
-      console.log(nextProps.errorStatus);
-      this.setState({ dataValid: false });
+    componentWillMount () {
+        this.setState({
+            email: "",
+        });
     }
-    return true;
-  }
+
+    sendEmail() {
+        this.props.onSendEmail(this.state.email);
+    }
+
+    onEnter (e) {
+        if (e.keyCode === 13) {
+            this.sendEmail();
+        }
+    }
 }
 
 export default EmailSender;

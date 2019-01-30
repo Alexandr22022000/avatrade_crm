@@ -1,21 +1,20 @@
 import HTTPS from "../HTTPS";
-import {loginSuccess} from "../actions/loginSuccess";
 import {SERVER_STATUS} from "../HTTPS/serverStatuses";
 import {requestError} from "../actions/requestError";
 import goodLoginError from "../actions/goodLoginError";
+import requestSuccess from "../actions/requestSuccess";
 
 
-const loginPost = (login, password) => (dispatch, getState) => {
+const startRecoverPassword = (email) => (dispatch, getState) => {
     HTTPS.dispatch = dispatch;
-    HTTPS.HTTP.post('/api/v0.0/login', {login, password})
+    HTTPS.HTTP.post('/api/v0.0/start_recover_password', {email})
         .then(response => {
-            HTTPS.token = response.data.token;
-            dispatch(loginSuccess(response.data));
+            dispatch(requestSuccess());
         })
         .catch((reason) => {
             switch (reason.response.status) {
                 case SERVER_STATUS.UNAUTHORIZED:
-                    dispatch(goodLoginError("Не верный логин или пароль"));
+                    dispatch(goodLoginError("Не верный email"));
                     break;
                 case SERVER_STATUS.NOT_FOUND:
                     dispatch(requestError(SERVER_STATUS.NOT_FOUND, reason.response.statusText));
@@ -30,4 +29,4 @@ const loginPost = (login, password) => (dispatch, getState) => {
         });
 };
 
-export default loginPost;
+export default startRecoverPassword;
