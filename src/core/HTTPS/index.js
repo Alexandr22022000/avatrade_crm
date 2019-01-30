@@ -40,6 +40,7 @@ const HTTPS = {
 
   post(url, body, callback) {
     let token = this.token;
+    console.log({ ...body, token });
     this.HTTP.post(url, { ...body, token })
       .then(response => thenCallback(response, callback))
       .catch(reason => catchCallback(reason.response, this.dispatch));

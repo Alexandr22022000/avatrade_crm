@@ -108,7 +108,7 @@ class EmailSender extends Component {
   shouldComponentUpdate(nextProps, nextState, nextContext) {
     if (nextProps.reqStatus) {
       this.setState({ dataValid: true });
-      document.location.href = getCleanUrl() + "/login";
+      document.location.href = "http://localhost:3000/login";
     } else if (nextProps.errorStatus !== null) {
       console.log(nextProps.errorStatus);
       this.setState({ dataValid: false });
