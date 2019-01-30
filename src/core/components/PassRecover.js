@@ -63,7 +63,7 @@ class PassRecover extends Component{
                             {this.props.loginError}
                         </div>
                         <div id={'func-holder'} className={'LoginForm-func'}>
-                            <button className={'btn-m'} onClick={this.sendPass.bind(this)}>
+                            <button className={'btn-m blue-button'} onClick={this.sendPass.bind(this)}>
                                 Задать
                             </button>
                         </div>

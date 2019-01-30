@@ -7,7 +7,7 @@
 }
 
 .LoginFormColors {
-    color: white;
+    color: #D5D9DE;
     border: #555555 solid 1px;
     box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);
 }
@@ -45,7 +45,9 @@
 #func-holder {
     margin-top: 10px;
 }
-
+#func-holder a {
+    text-decoration: none;
+}
 
 
 .inputHolder div input {
