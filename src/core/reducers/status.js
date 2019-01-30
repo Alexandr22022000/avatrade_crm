@@ -17,7 +17,6 @@ const status = (state = defaultStatus, action) =>{
                 token: action.token,
             };
         case LOGIN_SUCCESS:
-            console.log(action.payload);
             return {
                 ...state,
                 token: action.payload.token,

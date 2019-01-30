@@ -13,7 +13,7 @@ const defaultStuffState = {
   stuff: [],
   currentUser: null,
   currentUserId: -1,
-  blockStatuses: [false, false, false, false, false],
+  blockStatuses: [false, false, false, false, false, false],
   selectedRank: null
 };
 
@@ -41,7 +41,7 @@ const stuff = (state = defaultStuffState, action) => {
         currentUser: action.person
       };
     case CHANGE_BLOCK_STATUS:
-      let tempArray = [false, false, false, false, false];
+      let tempArray = [false, false, false, false, false, false];
       if (action.index !== -1) tempArray[action.index] = true;
       return {
         ...state,

@@ -82,6 +82,27 @@ class Stuff extends  Component {
                             {this.props.blockStatuses[1] === true ?
                                 <div>
                                     <input
+                                        onChange={e => userTempData.user.address = e.target.value}
+                                        defaultValue={userTempData.user.address}
+                                        onBlurCapture={() => {this.props.onChangeBlockStatus(-1); this.props.onFetchUserData(userTempData)}}
+                                        autoFocus
+                                        className={'inline fixed'}
+                                    />
+                                    <div className={'write-icon'} />
+                                </div>:
+                                <div>
+                                    <div className={'inline fixed'}>
+                                        {userTempData.user.address}
+                                    </div>
+                                    <div className={'write-icon'} onClick={() => this.props.onChangeBlockStatus(1)}/>
+                                </div>
+                            }
+                        </div>
+                        <div className={'header-m'}>Email:</div>
+                        <div className={'body-m'}>
+                            {this.props.blockStatuses[2] === true ?
+                                <div>
+                                    <input
                                         onChange={e => userTempData.user.email = e.target.value}
                                         defaultValue={userTempData.user.email}
                                         onBlurCapture={() => {this.props.onChangeBlockStatus(-1); this.props.onFetchUserData(userTempData)}}
@@ -94,13 +115,13 @@ class Stuff extends  Component {
                                     <div className={'inline fixed'}>
                                         {userTempData.user.email}
                                     </div>
-                                    <div className={'write-icon'} onClick={() => this.props.onChangeBlockStatus(1)}/>
+                                    <div className={'write-icon'} onClick={() => this.props.onChangeBlockStatus(2)}/>
                                 </div>
                             }
                         </div>
                         <div className={'header-m'}>Телефон:</div>
                         <div className={'body-m'}>
-                            {this.props.blockStatuses[2] === true?
+                            {this.props.blockStatuses[3] === true?
                                 <div>
                                     <input
                                         onChange={e => userTempData.user.phone = e.target.value}
@@ -115,13 +136,13 @@ class Stuff extends  Component {
                                     <div className={'inline fixed'}>
                                         {userTempData.user.phone}
                                     </div>
-                                    <div className={'write-icon'} onClick={() => this.props.onChangeBlockStatus(2)}/>
+                                    <div className={'write-icon'} onClick={() => this.props.onChangeBlockStatus(3)}/>
                                 </div>
                             }
                         </div>
                         <div className={'header-m'}>VK:</div>
                         <div className={'body-m'}>
-                            {this.props.blockStatuses[3] === true?
+                            {this.props.blockStatuses[4] === true?
                                 <div>
                                     <input
                                         onChange={e => userTempData.user.vk = e.target.value}
@@ -136,7 +157,7 @@ class Stuff extends  Component {
                                     <div className={'inline fixed'}>
                                         {userTempData.user.vk}
                                     </div>
-                                    <div className={'write-icon'} onClick={() => this.props.onChangeBlockStatus(3)}/>
+                                    <div className={'write-icon'} onClick={() => this.props.onChangeBlockStatus(4)}/>
                                 </div>
                             }
                         </div>
@@ -174,11 +195,11 @@ class Stuff extends  Component {
                         })}
                         </div>
                         <button className={'addDocButton'}
-                                onClick={() => this.props.onChangeBlockStatus(4)}
+                                onClick={() => this.props.onChangeBlockStatus(5)}
                         >
                             Добавить
                         </button>
-                        {this.props.blockStatuses[4] === true?
+                        {this.props.blockStatuses[5] === true?
                             <div><input
                                 onChange={e => newDocName = e.target.value}
                                 onBlurCapture={() => {

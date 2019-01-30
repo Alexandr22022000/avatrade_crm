@@ -5,6 +5,7 @@ import {Switch, Route} from 'react-router-dom';
 import NavBar from "./core/containers/NavBar";
 import Stuff from "./personal/containers/Stuff";
 import InDev from "./core/components/InDev";
+import PassRecover from "./core/containers/PassRecover";
 
 
 class App extends Component {
@@ -23,6 +24,7 @@ class App extends Component {
                         <Route exact path={'/events'} children={<NavBar><InDev/></NavBar>}/>
                         <Route exact path={'/cabinet'} children={<NavBar><InDev/></NavBar>}/>
                         <Route exact path={'/contacts'} children={<NavBar><InDev/></NavBar>}/>
+                        <Route exact path={'/recover_password'} children={<PassRecover/>}/>
                         <Route path={'/login'} children={<Login/>}/>
                     </Switch>
                 </div>

@@ -8,3 +8,4 @@ export const TOKEN_FOUND = 'TOKEN_FOUND';
 export const TOKEN_NOT_FOUND = 'TOKEN_NOT_FOUND';
 export const REQUEST_ERROR = 'REQUEST_ERROR';
 
+export const NEW_PASSWORD = 'NEW_PASSWORD';

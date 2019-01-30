@@ -12,3 +12,10 @@
     -webkit-box-shadow: 0 0 9px 0 rgba(90,90,90,1) ;
     box-shadow: 0 0 9px 0 rgba(90,90,90,1) ;
 }
+
+button:active, button:focus {
+    outline: none;
+}
+button::-moz-focus-inner {
+    border: 0;
+}
