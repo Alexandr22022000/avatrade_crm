@@ -46,39 +46,7 @@
     margin-top: 10px;
 }
 
-#func-holder a {
-    color: #EC6B44;
-    text-decoration: none;
-}
 
-#func-holder a:hover,
-#func-holder a.hover {
-    text-decoration: underline;
-}
-
-#func-holder a:active,
-#func-holder a.active {
-    color: #9c00b8;
-}
-
-#func-holder button {
-    color: #fff;
-    background-color: #41A7BB;
-    text-shadow: -1px 1px #376C80;
-    border: none;
-}
-
-#func-holder button:hover,
-#func-holder button.hover {
-    background-color: #1E4964;
-    text-shadow: -1px 1px #44006d;
-}
-
-#func-holder button:active,
-#func-holder button.active {
-    background-color: #05012E;
-    text-shadow: -1px 1px #160047;
-}
 
 .inputHolder div input {
     width: 100%;

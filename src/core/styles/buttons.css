@@ -13,9 +13,47 @@
     box-shadow: 0 0 9px 0 rgba(90,90,90,1) ;
 }
 
+.link-decor {
+    color: #EC6B44;
+    text-decoration: none;
+}
+
+.link-decor:hover,
+.link-decor .hover {
+    text-decoration: underline;
+}
+
+.link-decor:active,
+.link-decor .active {
+    color: #9c00b8;
+}
+
+.pointed {
+    cursor: pointer;
+}
+
 button:active, button:focus {
     outline: none;
 }
 button::-moz-focus-inner {
     border: 0;
+}
+
+.blue-button {
+    color: #fff;
+    background-color: #41A7BB;
+    text-shadow: -1px 1px #376C80;
+    border: none;
+}
+
+.blue-button:hover,
+.blue-button .hover {
+    background-color: #1E4964;
+    text-shadow: -1px 1px #44006d;
+}
+
+.blue-button:active,
+.blue-button .active {
+    background-color: #05012E;
+    text-shadow: -1px 1px #160047;
 }

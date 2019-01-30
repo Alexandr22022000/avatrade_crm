@@ -20,211 +20,252 @@
     }
     И закомментировать оба медиазапроса
  */
-@media screen and (max-height: 768px) and (min-height: 400px){
-    .stuffHolder {
-        margin-left: 2%;
-        margin-top: 2%;
-        width: 400px;
-        text-align: center;
-        background-color: #1f1f1f;
-        border: #555555 solid 1px;
-        box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);
-    }
-    .stuffHolder #stuffHolder {
-        margin-top: 20px;
-        width: inherit;
-        height: 400px;
-        overflow: auto;
-        overflow-y: scroll;
-        border-radius: 10px;
-    }
-}
-/*медиазапрос, который не работает*/
-@media screen and (min-height: 1280px) {
-    .stuffHolder {
-        margin-left: 2%;
-        margin-top: 2%;
-        width: 200px;
-        text-align: center;
-        background-color: #1f1f1f;
-        border: #555555 solid 1px;
-        box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);
-    }
-    .stuffHolder #stuffHolder {
-        margin-top: 20px;
-        width: inherit;
-        height: 1000px;
-        overflow: auto;
-        overflow-y: scroll;
-        border-radius: 10px;
-    }
-}
-
-#controlButtons {
-    margin-top: 2%;
+@media screen and (max-height: 768px) and (min-height: 400px) {
+  .stuffHolder {
     margin-left: 2%;
-}
-
-::-webkit-scrollbar {
-    width: 8px;
-    background-color: rgba(0,0,0,0);
-}
-::-webkit-scrollbar:hover {
-    width: 6px;
-}
-::-webkit-scrollbar-thumb {
-    background-color: #404040;
-    border-radius: 4px;
-}
-::-webkit-scrollbar-corner {
+    margin-top: 2%;
+    width: 400px;
+    text-align: center;
+    background-color: #1f1f1f;
+    border: #555555 solid 1px;
+    box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);
+  }
+  .stuffHolder #stuffHolder {
+    width: inherit;
+    height: 400px;
+    overflow: auto;
+    overflow-y: scroll;
     border-radius: 10px;
-}
-
-.modalHolder {
-    position: fixed;
-    top:0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.7);
-}
-
-.modalHolder #cross {
-    text-align: right;
-}
-
-.modalHolder #cross div {
-    width: 30px;
-    height: 30px;
-}
-
-.modal {
+  }
+  .borders {
+    width: 450px;
+    height: 430px;
+    margin-left: 34%;
+    margin-top: 7%;
+    background-color: #1f1f1f;
+    border-radius: 6px;
+  }
+  .modal {
     height: 340px;
     overflow: auto;
     overflow-y: scroll;
     text-align: left;
     padding-left: 2%;
     padding-bottom: 10px;
+  }
+
+}
+/*медиазапрос, который не работает*/
+@media screen and (min-height: 720px) {
+  .stuffHolder {
+    margin-left: 2%;
+    margin-top: 2%;
+    width: 450px;
+    text-align: center;
+    background-color: #1f1f1f;
+    border: #555555 solid 1px;
+    box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);
+  }
+  .stuffHolder #stuffHolder {
+    width: inherit;
+    height: 600px;
+    overflow: auto;
+    overflow-y: scroll;
+    border-radius: 10px;
+  }
+  .borders {
+    width: 450px;
+    height: 700px;
+    margin-left: 36%;
+    margin-top: 6%;
+    background-color: #1f1f1f;
+    border-radius: 6px;
+  }
+  .modal {
+    height: 610px;
+    overflow: auto;
+    overflow-y: scroll;
+    text-align: left;
+    padding-left: 2%;
+    padding-bottom: 10px;
+  }
+}
+
+.sackButton {
+  margin-right: 270px;
+}
+
+.action-button {
+  background-color: #9c00b8;
+  border-color: #7f0a85;
+  box-shadow: 0 0 9px 0 rgb(96, 0, 107);
+}
+
+.action-button:hover {
+  background-color: #7f0a85;
+}
+
+.action-button:checked {
+  background-color: #4b003d;
+}
+
+#controlButtons {
+  margin-top: 2%;
+  margin-left: 2%;
+}
+
+#controlButtons .dropDown {
+  background-color: #424242;
+  color: #ffffff;
+  border-radius: 4px;
+  width: 60%;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 5px 10px;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background-color: rgba(0, 0, 0, 0);
+}
+::-webkit-scrollbar:hover {
+  width: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #404040;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-corner {
+  border-radius: 10px;
+}
+
+.modalHolder {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modalHolder #cross {
+  text-align: right;
+}
+
+.modalHolder #cross div {
+  width: 30px;
+  height: 30px;
 }
 
 .modal h2 {
-    margin-top: 10px;
-    margin-bottom: 3px;
-    font-size: 20px;
+  margin-top: 10px;
+  margin-bottom: 3px;
+  font-size: 20px;
 }
 
 .modal div {
-    font-size: 30px;
+  font-size: 30px;
 }
 
 .modal input {
-    font-size: 24px;
-    padding: 0;
-    background-color: #1f1f1f;
-    color: white;
-    border: none;
-    outline: 0;
-    outline-offset: 0;
+  font-size: 24px;
+  padding: 0;
+  background-color: #1f1f1f;
+  color: white;
+  border: none;
+  outline: 0;
+  outline-offset: 0;
 }
 .modal input:focus,
 .modal input:hover,
 .modal input:active {
-    border: none;
-    border-bottom: #44006d solid 2px;
-    outline: 0;
-    outline-offset: 0;
-}
-
-.borders {
-    width: 450px;
-    height: 430px;
-    margin-left: 36%;
-    margin-top: 10%;
-    background-color: #1f1f1f;
-    border-radius: 6px;
+  border: none;
+  border-bottom: #44006d solid 2px;
+  outline: 0;
+  outline-offset: 0;
 }
 
 .borders .header-m {
-    font-size: 18px;
+  font-size: 18px;
 }
 
 .borders .body-m {
-    margin-bottom: 25px;
+  margin-bottom: 25px;
 }
 
 .iconHolder {
-    background-image: url("../../images/user-icon.png");
-    width: 60px;
-    height: 60px;
-    border-radius: 60px;
-    border: black solid 2px;
-    margin-right: 10px;
+  background-image: url("../../images/user-icon.png");
+  width: 60px;
+  height: 60px;
+  border-radius: 60px;
+  border: black solid 2px;
+  margin-right: 10px;
 }
 
 .write-icon {
-    width: 30px;
-    height: 30px;
-    background: url("../../images/write-icon.png") no-repeat;
-    background-size: 30px 30px;
-    margin-left: 20px;
-    cursor: pointer;
-    display: inline-block;
+  width: 30px;
+  height: 30px;
+  background: url("../../images/write-icon.png") no-repeat;
+  background-size: 30px 30px;
+  margin-left: 20px;
+  cursor: pointer;
+  display: inline-block;
 }
 
 .inline {
-    display: inline-block;
+  display: inline-block;
 }
 
 .fixed {
-    width: 85%;
+  width: 85%;
 }
 
 .docHolder {
-    background-color: #282c34;
-    padding-left: 5px;
-    width: 95%;
-    border-radius: 6px;
-    padding-bottom: 6px;
+  background-color: #282c34;
+  padding-left: 5px;
+  width: 95%;
+  border-radius: 6px;
+  padding-bottom: 6px;
 }
 
 .link {
-    color: #EC6B44;
-    text-decoration: none;
+  color: #ec6b44;
+  text-decoration: none;
 }
 
 .docHolder a:hover,
 .docHolder a.hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .docHolder a:active,
 .docHolder a.active {
-    color: #9c00b8;
+  color: #9c00b8;
 }
 
 .docHolder div {
-    font-size: 30px;
+  font-size: 30px;
 }
 
-.addDocButton{
-    background-color: #1f1f1f;
-    border: none;
-    box-shadow: none;
-    color: #757070;
-    font-size: 18px;
-    cursor: pointer;
-    position: relative;
-    top: -30px;
+.addDocButton {
+  background-color: #1f1f1f;
+  border: none;
+  box-shadow: none;
+  color: #757070;
+  font-size: 18px;
+  cursor: pointer;
+  position: relative;
+  top: -30px;
 }
 
 .addDocButton:active,
 .addDocButton:checked,
 .addDocButton:focus {
-    border: none;
+  border: none;
 }
 
 .saveButtonHolder {
-    text-align: right;
-    padding-right:4px;
-    padding-top: 4px;
+  text-align: right;
+  padding-right: 4px;
+  padding-top: 4px;
 }
