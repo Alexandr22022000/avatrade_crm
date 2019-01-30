@@ -20,7 +20,7 @@ class PassRecover extends Component{
                                 Пароль успешно изменен
                             </div>
                             <div id={'func-holder'} className={'LoginForm-func'}>
-                                <Link to={'/login'}>
+                                <Link onClick={() => this.props.cleanErrors()} to={'/login'}>
                                     <button className={'btn-m'} onClick={this.sendPass.bind(this)}>
                                         Перейти к входу
                                     </button>

@@ -11,5 +11,6 @@ export default connect(
     dispatch => ({
         onSendPassword: (token, pass) => dispatch(recoverPass(token, pass)),
         setError: (text) => dispatch(goodLoginError(text)),
+        cleanErrors: () => dispatch(goodLoginError("")),
     }),
 )(PassRecover);

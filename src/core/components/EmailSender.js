@@ -43,7 +43,7 @@ class EmailSender extends Component {
                     <div id={'func-holder'} className={'LoginForm-func'}>
                         <button className={'btn-m'} onClick={this.sendEmail.bind(this)}>Востоновить</button>
                         <br/>
-                        <Link to={'/login'}><span>Вход</span></Link>
+                        <Link onClick={() => this.props.cleanErrors()} to={'/login'}><span>Вход</span></Link>
                     </div>
                 </div>
             </div>

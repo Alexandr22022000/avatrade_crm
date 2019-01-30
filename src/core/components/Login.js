@@ -33,16 +33,12 @@ class Login extends Component {
                     <div style={{fontSize: '18px', textAlign: 'center', color:'#FF0000', height:'30px'}}>
                         {this.props.loginInfo.loginError}
                     </div>
-                    <div id={'func-holder'}
-                         className={'LoginForm-func'}
-                    >
-                        <button className={'btn-m'}
-                                onClick={this.login.bind(this)}
-                        >
+                    <div id={'func-holder'} className={'LoginForm-func'}>
+                        <button className={'btn-m'} onClick={this.login.bind(this)}>
                             Войти
                         </button>
                         <br/>
-                        <Link to={'/start_recover_password'}>
+                        <Link onClick={() => this.props.cleanErrors()} to={'/start_recover_password'}>
                             <span>Забыли пароль?</span>
                         </Link>
                     </div>
