@@ -1,7 +1,7 @@
 .stuffHolder {
     margin-left: 2%;
     margin-top: 2%;
-    width: 25%;
+    width: 450px;
     text-align: center;
     background-color: #1f1f1f;
     border: #555555 solid 1px;
@@ -11,10 +11,15 @@
 .stuffHolder #stuffHolder {
     margin-top: 20px;
     width: inherit;
-    height: 500px;
+    height: 480px;
     overflow: auto;
     overflow-y: scroll;
     border-radius: 10px;
+}
+
+#controlButtons {
+    margin-top: 2%;
+    margin-left: 2%;
 }
 
 ::-webkit-scrollbar {
@@ -28,8 +33,6 @@
     background-color: #404040;
     border-radius: 4px;
 }
-
-
 ::-webkit-scrollbar-corner {
     border-radius: 10px;
 }
@@ -90,12 +93,20 @@
 }
 
 .borders {
-    width: 25%;
+    width: 450px;
     height: 430px;
     margin-left: 36%;
     margin-top: 10%;
     background-color: #1f1f1f;
     border-radius: 6px;
+}
+
+.borders .header-m {
+    font-size: 18px;
+}
+
+.borders .body-m {
+    margin-bottom: 25px;
 }
 
 .iconHolder {
@@ -108,10 +119,13 @@
 }
 
 .write-icon {
-    background-image: url("../../images/write-icon.png");
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
+    background: url("../../images/write-icon.png") no-repeat;
+    background-size: 30px 30px;
     margin-left: 20px;
+    cursor: pointer;
+    display: inline-block;
 }
 
 .inline {
@@ -119,15 +133,30 @@
 }
 
 .fixed {
-    width: 358px;
+    width: 85%;
 }
 
 .docHolder {
     background-color: #282c34;
     padding-left: 5px;
-    width: inherit;
+    width: 95%;
     border-radius: 6px;
     padding-bottom: 6px;
+}
+
+.docHolder a {
+    color: #EC6B44;
+    text-decoration: none;
+}
+
+.docHolder a:hover,
+.docHolder a.hover {
+    text-decoration: underline;
+}
+
+.docHolder a:active,
+.docHolder a.active {
+    color: #9c00b8;
 }
 
 .docHolder div {

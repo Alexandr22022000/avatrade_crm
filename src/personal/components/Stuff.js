@@ -2,19 +2,20 @@ import React, {Component} from 'react';
 import '../../core/styles/buttons.css';
 import '../styles/Stuff.css';
 import cross from '../../images/cross-icon.png';
-import DropDown from "./DropDown";
+import DropDown from "../containers/DropDown";
 
 
 
 class Stuff extends  Component {
-    getModal() {
-        let userTempData = {user:null, ranks: null};
-        if(this.props.currentPerson !== null) {
-            userTempData.user = Object.assign({}, this.props.currentPerson.user);
-            userTempData.ranks = Object.assign({}, this.props.currentPerson.ranks);
-        }
+    getModal(userTempData) {
         return(
-            <div className={'modalHolder'} onClick={() => {this.props.onCloseModal(); this.props.onChangeBlockStatus(-1);}}>
+            <div
+                className={'modalHolder'}
+                onClick={() => {
+                    this.props.onCloseModal();
+                    this.props.onChangeBlockStatus(-1);
+                }}
+            >
                 <div className={'borders'} onClick={(e) => {e.stopPropagation()}}>
                     <div id={'cross'} >
                         <img src={cross}
@@ -29,13 +30,17 @@ class Stuff extends  Component {
                     <div className={'saveButtonHolder'}>
                         <button className={'btn-m'}
                                 onClick={() => {
-                                    this.props.onUpdateUserData({...userTempData.user, id:this.props.currentPersonId});
+                                    if(this.props.currentPersonId !== -1){
+                                        this.props.onUpdateUserData({...userTempData.user, id:this.props.currentPersonId})
+                                    } else {
+                                        this.props.onAddNewUser(userTempData.user);
+                                    }
+                                    this.props.onCloseModal();this.props.onChangeBlockStatus(-1);
                                 }}
                         >
                             Сохранить
                         </button>
                     </div>
-
                 </div>
             </div>
         )
@@ -47,108 +52,127 @@ class Stuff extends  Component {
             dropDownOptions.push(userTempData.ranks[index].name);
         }
         let newDocName;
-        console.log(`dropDownOptions ${dropDownOptions}`);
         return (
             <div>
-                {this.props.currentPerson !== null?
+                {userTempData !== null?
                     <div>
-                        <h2>ФИО:</h2>
-                        {this.props.blockStatuses[0] === true?
-                            <div>
-                                <input
-                                    onChange={e => userTempData.user.name = e.target.value}
-                                    defaultValue={userTempData.user.name}
-                                    onBlurCapture={() => {this.props.onChangeBlockStatus(-1); this.props.onFetchUserData(userTempData)}}
-                                    autoFocus
-                                    className={'inline fixed'}
-                                />
-                                <div className={'write-icon inline'} />
-                            </div>:
-                            <div>
-                                <div className={'inline fixed'}>
-                                    {userTempData.user.name}
+                        <div className={'header-m'}>ФИО:</div>
+                        <div className={'body-m'}>
+                            {this.props.blockStatuses[0] === true?
+                                <div>
+                                    <input
+                                        onChange={e => userTempData.user.name = e.target.value}
+                                        defaultValue={userTempData.user.name}
+                                        onBlurCapture={() => {this.props.onChangeBlockStatus(-1); this.props.onFetchUserData(userTempData)}}
+                                        autoFocus
+                                        className={'inline fixed'}
+                                    />
+                                    <div className={'write-icon inline'} />
+                                </div>:
+                                <div>
+                                    <div className={'inline fixed'}>
+                                        {userTempData.user.name }
+                                    </div>
+                                    <div className={'write-icon'} onClick={() => this.props.onChangeBlockStatus(0)}/>
                                 </div>
-                                <div className={'write-icon inline'} onClick={() => this.props.onChangeBlockStatus(0)}/>
-                            </div>
-                        }
-                        <h2>Адрес:</h2>
-                        {this.props.blockStatuses[1] === true?
-                            <div>
-                                <input
-                                    onChange={e => userTempData.user.email = e.target.value}
-                                    defaultValue={userTempData.user.email}
-                                    onBlurCapture={() => {this.props.onChangeBlockStatus(-1); this.props.onFetchUserData(userTempData)}}
-                                    autoFocus
-                                    className={'inline fixed'}
-                                />
-                                <div className={'write-icon inline'} />
-                            </div>:
-                            <div>
-                                <div className={'inline fixed'}>
-                                    {userTempData.user.email}
+                            }
+                        </div>
+                        <div className={'header-m'}>Адрес:</div>
+                        <div className={'body-m'}>
+                            {this.props.blockStatuses[1] === true ?
+                                <div>
+                                    <input
+                                        onChange={e => userTempData.user.email = e.target.value}
+                                        defaultValue={userTempData.user.email}
+                                        onBlurCapture={() => {this.props.onChangeBlockStatus(-1); this.props.onFetchUserData(userTempData)}}
+                                        autoFocus
+                                        className={'inline fixed'}
+                                    />
+                                    <div className={'write-icon'} />
+                                </div>:
+                                <div>
+                                    <div className={'inline fixed'}>
+                                        {userTempData.user.email}
+                                    </div>
+                                    <div className={'write-icon'} onClick={() => this.props.onChangeBlockStatus(1)}/>
                                 </div>
-                                <div className={'write-icon inline'} onClick={() => this.props.onChangeBlockStatus(1)}/>
-                            </div>
-                        }
-                        <h2>Телефон:</h2>
-                        {this.props.blockStatuses[2] === true?
-                            <div>
-                                <input
-                                    onChange={e => userTempData.user.phone = e.target.value}
-                                    defaultValue={userTempData.user.phone}
-                                    onBlurCapture={() => {this.props.onChangeBlockStatus(-1); this.props.onFetchUserData(userTempData)}}
-                                    autoFocus
-                                    className={'inline fixed'}
-                                />
-                                <div className={'write-icon inline'} />
-                            </div>:
-                            <div>
-                                <div className={'inline fixed'}>
-                                    {userTempData.user.phone}
+                            }
+                        </div>
+                        <div className={'header-m'}>Телефон:</div>
+                        <div className={'body-m'}>
+                            {this.props.blockStatuses[2] === true?
+                                <div>
+                                    <input
+                                        onChange={e => userTempData.user.phone = e.target.value}
+                                        defaultValue={userTempData.user.phone}
+                                        onBlurCapture={() => {this.props.onChangeBlockStatus(-1); this.props.onFetchUserData(userTempData)}}
+                                        autoFocus
+                                        className={'inline fixed'}
+                                    />
+                                    <div className={'write-icon'} />
+                                </div>:
+                                <div>
+                                    <div className={'inline fixed'}>
+                                        {userTempData.user.phone}
+                                    </div>
+                                    <div className={'write-icon'} onClick={() => this.props.onChangeBlockStatus(2)}/>
                                 </div>
-                                <div className={'write-icon inline'} onClick={() => this.props.onChangeBlockStatus(2)}/>
-                            </div>
-                        }
-                        <h2>VK:</h2>
-                        {this.props.blockStatuses[3] === true?
-                            <div>
-                                <input
-                                    onChange={e => userTempData.user.vk = e.target.value}
-                                    defaultValue={userTempData.user.vk}
-                                    onBlurCapture={() => {this.props.onChangeBlockStatus(-1); this.props.onFetchUserData(userTempData)}}
-                                    autoFocus
-                                    className={'inline fixed'}
-                                />
-                                <div className={'write-icon inline'} />
-                            </div>:
-                            <div>
-                                <div className={'inline fixed'}>
-                                    {userTempData.user.vk}
+                            }
+                        </div>
+                        <div className={'header-m'}>VK:</div>
+                        <div className={'body-m'}>
+                            {this.props.blockStatuses[3] === true?
+                                <div>
+                                    <input
+                                        onChange={e => userTempData.user.vk = e.target.value}
+                                        defaultValue={userTempData.user.vk}
+                                        onBlurCapture={() => {this.props.onChangeBlockStatus(-1); this.props.onFetchUserData(userTempData)}}
+                                        autoFocus
+                                        className={'inline fixed'}
+                                    />
+                                    <div className={'write-icon'} />
+                                </div>:
+                                <div>
+                                    <div className={'inline fixed'}>
+                                        {userTempData.user.vk}
+                                    </div>
+                                    <div className={'write-icon'} onClick={() => this.props.onChangeBlockStatus(3)}/>
                                 </div>
-                                <div className={'write-icon inline'} onClick={() => this.props.onChangeBlockStatus(3)}/>
+                            }
+                        </div>
+                        <div className={'header-m'}>Ранг:</div>
+                        <div className={'body-m'}>
+                            <div>
+                                <DropDown
+                                    onSelected={(value) => {
+                                        userTempData.user.rank = value;
+                                        this.props.onFetchUserData(userTempData)
+                                    }}
+                                />
                             </div>
-                        }
-                        <h2>Ранг:</h2>
-                        {console.log(userTempData.user.rank)}
-                        <div><DropDown userTempData={userTempData}/></div>
-                        <h2>Документы:</h2>
-                        <div>{console.log(userTempData.user.docs)}{userTempData.user.docs.map((value, index) => {
+                        </div>
+                        <div className={'header-m'}>Документы:</div>
+                        <div className={'body-m'}>
+                            {console.log(userTempData)}{userTempData.user.docs.map((value, index) => {
                             return (
                                 <div className={'docHolder'} key={index}>
-                                    <div className={'inline'}>{value.length >= 25?
-                                        value.substring(0,24) + '...':
-                                        value
-                                    }</div>
-                                    <div style={{display: 'inline-block'}}>
+                                    <a href={value} target={'_blank'}>
+                                        <div className={'inline'}>{value.length >= 25?
+                                            value.substring(0,25) + '...':
+                                            value
+                                        }</div>
+                                    </a>
+                                    <div style={{display: 'inline-block', float:'right', marginTop: '9px'}}>
                                         <img src={cross}
                                              alt={'cross'}
-                                             style={{cursor: 'pointer', position:'relative', top: '8px', left: '30px'}}
+                                             style={{cursor: 'pointer', float:'left'}}
                                              onClick={()=> {userTempData.user.docs.splice(index,1);this.props.onFetchUserData(userTempData)}}
                                         />
                                     </div>
                                 </div>
                             )
-                        })}</div>
+                        })}
+                        </div>
                         <button className={'addDocButton'}
                                 onClick={() => this.props.onChangeBlockStatus(4)}
                         >
@@ -168,7 +192,8 @@ class Stuff extends  Component {
                             <div/>
                         }
                     </div>:
-                    <div/>}
+                    <div/>
+                }
             </div>
         )
     }
@@ -180,7 +205,14 @@ class Stuff extends  Component {
         return (
             <div>
                 <div id={'controlButtons'}>
-                    <button className={'btn-m'}>Добавить</button>
+                    <button
+                        className={'btn-m'}
+                        onClick={() => {
+                            this.showPerson(null);
+                        }}
+                    >
+                        Добавить
+                    </button>
                 </div>
                 <div className={style.holder}>
                     <div id={'stuffList-holder'}>
@@ -213,19 +245,29 @@ class Stuff extends  Component {
                         </div>
                     </div>
                     <hr color={'#1f1f1f'}/>
-                    {this.props.modalStatus? this.getModal():<div/>}
+                    {this.props.modalStatus? this.getModal(this.props.currentPerson):<div/>}
                 </div>
             </div>
         );
     }
 
     showPerson(personInfo) {
-        this.props.onGetCurrentUser(personInfo.id);
-        this.props.onOpenModal(personInfo.id);
+        if(personInfo !== null){
+            this.props.onGetCurrentUser(personInfo.id);
+            this.props.onOpenModal(personInfo.id);
+        } else {
+            this.props.onSetEmptyUser(this.props.currentPerson.ranks);
+            this.props.onOpenModal(-1);
+        }
     }
 
     componentDidMount() {
         this.props.onGetUsers();
+        this.props.onGetCurrentUser(0);
+    }
+
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        return true;
     }
 }
 

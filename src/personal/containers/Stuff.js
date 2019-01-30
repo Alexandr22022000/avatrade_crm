@@ -7,6 +7,9 @@ import {getPerson} from "../async-actions/getPerson";
 import {changeBlockStatus} from "../actions/changeBlockStatus";
 import {fetchUserData} from "../actions/fetchUserData";
 import {updateUserData} from "../async-actions/updateUserData";
+import {addNewUser} from "../async-actions/addNewUser";
+import {setEmptyCurrentUser} from "../actions/setEmptyCurrentUser";
+
 
 export default connect(
     state => ({
@@ -38,6 +41,12 @@ export default connect(
         },
         onUpdateUserData: (data) => {
             dispatch(updateUserData(data))
+        },
+        onAddNewUser: (userData) => {
+            dispatch(addNewUser(userData));
+        },
+        onSetEmptyUser: (ranks) => {
+            dispatch(setEmptyCurrentUser(ranks))
         }
     })
 )(Stuff);

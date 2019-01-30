@@ -4,7 +4,8 @@ import {
   OPEN_PERSON_MODAL,
   SET_CURRENT_USER,
   SET_STUFF,
-  FETCHING_USER_DATA
+  FETCHING_USER_DATA,
+  SET_EMPTY_USER
 } from "../actions/types";
 
 const defaultStuffState = {
@@ -12,7 +13,8 @@ const defaultStuffState = {
   stuff: [],
   currentUser: null,
   currentUserId: -1,
-  blockStatuses: [false, false, false, false, false]
+  blockStatuses: [false, false, false, false, false],
+  selectedRank: null
 };
 
 const stuff = (state = defaultStuffState, action) => {
@@ -49,6 +51,11 @@ const stuff = (state = defaultStuffState, action) => {
       return {
         ...state,
         currentUser: action.data
+      };
+    case SET_EMPTY_USER:
+      return{
+        ...state,
+        currentUser: action.user
       };
     default:
       return state;

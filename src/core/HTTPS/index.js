@@ -6,7 +6,7 @@ import {SERVER_STATUS} from "./serverStatuses";
 
 
 const thenCallback = (response, callback) => {
-    console.log(response.data);
+    console.log('thenCallback');
     callback(response.data);
     return response;
 };
