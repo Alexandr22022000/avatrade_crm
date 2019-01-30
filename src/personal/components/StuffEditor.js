@@ -134,7 +134,7 @@ class StuffEditor extends Component {
   }
 
   onSack(){
-
+    this.props.
   }
 
   onClose(isSave) {

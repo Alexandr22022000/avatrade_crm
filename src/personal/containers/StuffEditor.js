@@ -17,5 +17,6 @@ export default connect(
         updateUser: (data) => dispatch(updateUser(data)),
         onAddNewUser: (userData) => dispatch(addNewUser(userData)),
         delCurrentUser: () => dispatch(delCurrentUser()),
+        sackCurrentUser: () => dispatch(),
     })
 )(StuffEditor);
