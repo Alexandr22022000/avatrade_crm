@@ -22,6 +22,7 @@ class StuffInput extends  Component {
                     onBlurCapture={() => this.setActive(false)}
                     autoFocus
                     className={'inline fixed'}
+                    onKeyDown={this.onEnter.bind(this)}
                 />
             );
             value = this.props.value;
@@ -94,6 +95,12 @@ class StuffInput extends  Component {
                     this.inInput = false;
                 }
             }, 500);
+        }
+    }
+
+    onEnter (e) {
+        if (e.keyCode === 13) {
+            this.setActive(false);
         }
     }
 }

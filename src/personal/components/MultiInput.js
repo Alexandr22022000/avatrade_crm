@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import '../styles/dropdown.css'
-import cross from "../../images/cross-icon.png";
 import DropDown from './DropDown';
 import MultiInputItem from './MultiInputItem';
 
@@ -39,6 +38,7 @@ class MultiInput extends Component {
                     autoFocus
                     className={'inline fixed'}
                     value={this.state.inputValue}
+                    onKeyDown={this.onEnter.bind(this)}
                 />
             );
         }
@@ -94,6 +94,12 @@ class MultiInput extends Component {
             this.props.onChange(values);
 
             this.setState({showInput});
+        }
+    }
+
+    onEnter (e) {
+        if (e.keyCode === 13) {
+            this.setInputShow(false);
         }
     }
 }
