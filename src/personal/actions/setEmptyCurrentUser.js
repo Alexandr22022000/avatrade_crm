@@ -1,18 +1,18 @@
-import {SET_EMPTY_USER} from "./types";
+import { SET_EMPTY_USER } from "./types";
 
-export const setEmptyCurrentUser = (ranks) => ({
-    type:SET_EMPTY_USER,
+export const setEmptyCurrentUser = ranks => ({
+  type: SET_EMPTY_USER,
+  user: {
     user: {
-        user: {
-            email: '',
-            name: '',
-            rank: 0,
-            phone: '',
-            permissions: [],
-            address: '',
-            vk: '',
-            docs: []
-        },
-        ranks
-    }
+      email: "",
+      name: "",
+      rank: 0,
+      phone: "",
+      permissions: [],
+      address: "",
+      vk: "",
+      docs: []
+    },
+    ranks
+  }
 });

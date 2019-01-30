@@ -53,7 +53,7 @@ const stuff = (state = defaultStuffState, action) => {
         currentUser: action.data
       };
     case SET_EMPTY_USER:
-      return{
+      return {
         ...state,
         currentUser: action.user
       };

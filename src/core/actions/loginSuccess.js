@@ -1,6 +1,6 @@
-import {LOGIN_SUCCESS} from "./types";
+import { LOGIN_SUCCESS } from "./types";
 
-export const loginSuccess = (loginInfo) => ({
-    type: LOGIN_SUCCESS,
-    payload: loginInfo
+export const loginSuccess = loginInfo => ({
+  type: LOGIN_SUCCESS,
+  payload: loginInfo
 });

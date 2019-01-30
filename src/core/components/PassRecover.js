@@ -46,11 +46,11 @@ class PassRecover extends Component{
     }
 
     shouldComponentUpdate(nextProps, nextState, nextContext) {
-        if(nextProps.reqStatus) {
-            this.dataValid = true;
-            document.location.href = getCleanUrl() + '/login';
-        } else if(nextProps.errorStatus !== null) {
-            this.dataValid = false;
+        if (nextProps.reqStatus) {
+          this.dataValid = true;
+          document.location.href = getCleanUrl() + "/login";
+        } else if (nextProps.errorStatus !== null) {
+          this.dataValid = false;
         }
     }
 }

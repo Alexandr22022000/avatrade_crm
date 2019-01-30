@@ -1,6 +1,6 @@
-import {PERMISSIONS_SUCCESS} from "./types";
+import { PERMISSIONS_SUCCESS } from "./types";
 
-export const permissionsSuccess = (permissions)=> ({
-    type: PERMISSIONS_SUCCESS,
-    payload: permissions.permissions
+export const permissionsSuccess = permissions => ({
+  type: PERMISSIONS_SUCCESS,
+  payload: permissions.permissions
 });

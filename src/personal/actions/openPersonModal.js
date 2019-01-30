@@ -1,8 +1,8 @@
-import {OPEN_PERSON_MODAL} from "./types";
+import { OPEN_PERSON_MODAL } from "./types";
 
-export const openPersonModal = (id) => {
-    return {
-        type: OPEN_PERSON_MODAL,
-        id
-    }
+export const openPersonModal = id => {
+  return {
+    type: OPEN_PERSON_MODAL,
+    id
+  };
 };

@@ -1,6 +1,6 @@
-import {TOKEN_FOUND} from "./types";
+import { TOKEN_FOUND } from "./types";
 
-export const tokenFound = (token) => ({
-    type: TOKEN_FOUND,
-    token
+export const tokenFound = token => ({
+  type: TOKEN_FOUND,
+  token
 });
