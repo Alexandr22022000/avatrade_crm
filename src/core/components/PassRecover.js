@@ -82,13 +82,19 @@ class PassRecover extends Component{
 
     sendPass() {
         this.props.cleanErrors();
-        if (this.state.password1 === this.state.password2) {
-            let token = getTokenFromUrl();
-            this.props.onSendPassword(token, this.state.password2);
-        }
-        else {
+
+        if (this.state.password1 !== this.state.password2) {
             this.props.setError("Пароли не совпадают");
+            return;
         }
+
+        if (this.state.password1.trim() === '') {
+            this.props.setError("Пароль не может быть пустым");
+            return;
+        }
+
+        let token = getTokenFromUrl();
+        this.props.onSendPassword(token, this.state.password2);
     }
 
     onEnter (e) {

@@ -5,6 +5,7 @@ import { PERMISSIONS_TEXT, PERMISSIONS } from "../../core/constants";
 import cross from "../../images/cross-icon.png";
 import StuffInput from "./StuffInput";
 import MultiInput from "./MultiInput";
+import validator from 'validator';
 
 class StuffEditor extends Component {
   render() {
@@ -123,14 +124,23 @@ class StuffEditor extends Component {
           </div>
           <div className={"modal"}>{editor}</div>
           <div className={"saveButtonHolder"}>
-              {!this.props.currentUser || this.isOwner() ? "" :
+              {!this.props.currentUser || this.isOwner() || !this.props.currentUser.id ? "" :
                   <div className={"inline sackButton link-decor pointed"} onClick={() => this.onChangeUserStatus()}>{this.props.currentUser.status === 0 ? "Уволить" : "Востоновить"}</div>
               }
-              <button className={"btn-m inline blue-button"} onClick={() => this.onClose(true)}>Сохранить</button>
+              <button className={"btn-m inline" + (this.canSave() ? " blue-button" : "")} onClick={() => this.onClose(true)}>Сохранить</button>
           </div>
         </div>
       </div>
     );
+  }
+
+  canSave () {
+      if (!this.props.currentUser) return false;
+      if (!validator.isEmail(this.props.currentUser.email)) return false;
+      if (this.props.currentUser.name.trim() === '') return false;
+      if (this.props.currentUser.phone.trim() === '') return false;
+      if (this.isOwner()) return false;
+      return true;
   }
 
   onChangeUserStatus() {
@@ -149,7 +159,8 @@ class StuffEditor extends Component {
     if (this.changed && !isSave && !window.confirm("Вы уверены? Все не сохраненые изменения будут потеряны!")) return;
 
     if (isSave && this.props.currentUser) {
-      console.log(this.props.currentUser);
+      if (!this.canSave()) return;
+
       if (this.props.currentUser.id) {
         this.props.updateUser(this.props.currentUser);
       } else {
