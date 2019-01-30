@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import '../styles/NavBar.css';
 import '../styles/buttons.css';
 import {PERMISSIONS} from '../constants';
+import getCleanUrl from "../HTTPS/getCleanUrl";
 
 
 class NavBar extends Component{
@@ -88,7 +89,7 @@ class NavBar extends Component{
                     })}</div>
                     <button className={'btn-m ' + style.buttons}
                             id={'exitButton'}
-                            onClick={() => {this.clearCookies(); this.context.router.history.push('/login');}}
+                            onClick={() => {this.clearCookies(); document.location.href = getCleanUrl() + '/login';}}
                     >
                         Выйти
                     </button>

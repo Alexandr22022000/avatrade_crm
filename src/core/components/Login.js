@@ -28,8 +28,13 @@ class Login extends Component {
                     <div className={'inputHolder'}>
                         <label>Password</label>
                         <br/>
-                        <div><input ref={(input) => {this.passInput = input}} placeholder={'password'}/></div>
+                        <div><input type={'password'} ref={(input) => {this.passInput = input}} placeholder={'password'}/></div>
                     </div>
+                    {this.dataValid?
+                        <div style={{height:'30px'}}/>:
+                        <div style={{fontSize: '22px', textAlign: 'center', color:'#FF0000'}}>
+                            Неверный логин или пароль
+                        </div>}
                     <div id={'func-holder'}
                          className={'LoginForm-func'}
                     >
@@ -39,7 +44,7 @@ class Login extends Component {
                             Войти
                         </button>
                         <br/>
-                        <Link to={'/login'}>
+                        <Link to={'/start_recover_password'}>
                             <span>Забыли пароль?</span>
                         </Link>
                     </div>

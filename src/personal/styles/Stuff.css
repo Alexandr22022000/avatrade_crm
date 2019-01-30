@@ -1,12 +1,66 @@
-.stuffHolder {
-    margin-left: 2%;
-    margin-top: 2%;
-    width: 450px;
-    text-align: center;
-    background-color: #1f1f1f;
-    border: #555555 solid 1px;
-    box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);
+/*медиазапрос, который, вроде, работает.
+ *Работает до отображения 80% при HD экране
+ * Для возврата на прошлое состоярие нужно раскомменировать следующее:
+ .stuffHolder {
+        margin-left: 2%;
+        margin-top: 2%;
+        width: 450px;
+        text-align: center;
+        background-color: #1f1f1f;
+        border: #555555 solid 1px;
+        box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);
+    }
+    .stuffHolder #stuffHolder {
+        margin-top: 20px;
+        width: inherit;
+        height: 500px;
+        overflow: auto;
+        overflow-y: scroll;
+        border-radius: 10px;
+    }
+    И закомментировать оба медиазапроса
+ */
+@media screen and (max-height: 768px){
+    .stuffHolder {
+        margin-left: 2%;
+        margin-top: 2%;
+        width: 450px;
+        text-align: center;
+        background-color: #1f1f1f;
+        border: #555555 solid 1px;
+        box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);
+    }
+    .stuffHolder #stuffHolder {
+        margin-top: 20px;
+        width: inherit;
+        height: 500px;
+        overflow: auto;
+        overflow-y: scroll;
+        border-radius: 10px;
+    }
 }
+/*медиазапрос, который не работает*/
+@media screen and (device-height: 1080px){
+    .stuffHolder {
+        margin-left: 2%;
+        margin-top: 2%;
+        width: 800px;
+        text-align: center;
+        background-color: #1f1f1f;
+        border: #555555 solid 1px;
+        box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);
+    }
+    .stuffHolder #stuffHolder {
+        margin-top: 20px;
+        width: inherit;
+        height: 1000px;
+        overflow: auto;
+        overflow-y: scroll;
+        border-radius: 10px;
+    }
+}
+
+
 
 .stuffHolder #stuffHolder {
     margin-top: 20px;
@@ -38,7 +92,7 @@
 }
 
 .modalHolder {
-    position: absolute;
+    position: fixed;
     top:0;
     left: 0;
     width: 100%;
