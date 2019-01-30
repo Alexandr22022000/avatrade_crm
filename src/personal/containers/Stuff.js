@@ -1,52 +1,26 @@
 import {connect} from "react-redux";
 import Stuff from "../components/Stuff";
-import {openPersonModal} from "../actions/openPersonModal";
-import {closePersonModal} from "../actions/closePersonModal";
 import {getStuff} from "../async-actions/getStuff";
 import {getPerson} from "../async-actions/getPerson";
-import {changeBlockStatus} from "../actions/changeBlockStatus";
-import {fetchUserData} from "../actions/fetchUserData";
-import {updateUserData} from "../async-actions/updateUserData";
+import updateUserData from "../async-actions/updateUserData";
 import {addNewUser} from "../async-actions/addNewUser";
 import {setEmptyCurrentUser} from "../actions/setEmptyCurrentUser";
 
 
 export default connect(
     state => ({
-        stuff: state.stuff.stuff,
+        users: state.stuff.users,
         reqStatus: state.status.requestSuccessful,
-        modalStatus: state.stuff.modalIsOpen,
-        currentPerson: state.stuff.currentUser,
-        currentPersonId: state.stuff.currentUserId,
-        blockStatuses: state.stuff.blockStatuses,
     }),
     dispatch => ({
-        onOpenModal: (id) => {
-            dispatch(openPersonModal(id));
-        },
-        onCloseModal: () => {
-            dispatch(closePersonModal());
-        },
-        onGetUsers: ( is_all = true) => {
-            dispatch(getStuff( is_all));
-        },
-        onGetCurrentUser: (id) => {
-            dispatch(getPerson(id));
-        },
-        onChangeBlockStatus: (index) => {
-            dispatch(changeBlockStatus(index));
-        },
-        onFetchUserData: (data) => {
-            dispatch(fetchUserData(data));
-        },
+        onGetUsers: (is_all = false) => dispatch(getStuff(is_all)),
+        onGetCurrentUser: (id) => dispatch(getPerson(id)),
         onUpdateUserData: (data) => {
             dispatch(updateUserData(data))
         },
         onAddNewUser: (userData) => {
             dispatch(addNewUser(userData));
         },
-        onSetEmptyUser: (ranks) => {
-            dispatch(setEmptyCurrentUser(ranks))
-        }
+        onSetEmptyUser: () => dispatch(setEmptyCurrentUser()),
     })
 )(Stuff);

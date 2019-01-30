@@ -18,7 +18,7 @@ module.exports = (app) => {
         const user = checkUser(req.body.token);
 
         if (!user) return res.status(401).end();
-        if (!checkPermissions(user, [PERMISSIONS.OWNER, PERMISSIONS.OWNER])) return res.status(403).end();
+        if (!checkPermissions(user, [PERMISSIONS.OWNER, PERMISSIONS.TOP_MANAGER])) return res.status(403).end();
 
         const id = Date.now();
         query(QUERYES.ADD_USER, [id, req.body.email, null, req.body.permissions, req.body.name, req.body.phone, req.body.vk, req.body.address, req.body.rank, req.body.docs])

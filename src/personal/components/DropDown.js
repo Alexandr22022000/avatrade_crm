@@ -2,46 +2,33 @@ import React, {Component} from 'react';
 import '../styles/dropdown.css'
 
 
-class DropDown extends Component{
-    constructor (props) {
-        super(props);
-        this.state = {
-            isOpen: false
-        };
-    }
-
+class DropDown extends Component {
     render() {
-        let tempUserData = {user:null, ranks: null};
-        if(this.props.currentPerson !== null) {
-            tempUserData.user = Object.assign({}, this.props.currentPerson.user);
-            tempUserData.ranks = Object.assign({}, this.props.currentPerson.ranks);
-        }
         let options = [];
-        for(let key in this.props.currentPerson.ranks) {
-            if(this.props.currentPerson.ranks[key].id === this.props.currentPerson.user.rank) {
-                options.push(<option selected key={key}>{this.props.currentPerson.ranks[key].name}</option>)
+        for(let key in this.props.options) {
+            if (+key === this.props.value) {
+                options.push(<option selected key={key}>{this.props.options[key]}</option>)
             } else {
-                options.push(<option key={key}>{this.props.currentPerson.ranks[key].name}</option>)
+                options.push(<option key={key}>{this.props.options[key]}</option>)
             }
         }
 
         return(
             <div className={this.props.style}>
-                <select className={'dropdownPlaceholder'}
-                        onChange={(e) => {
-                            this.props.onSelected((() => {
-                                for(let key in this.props.currentPerson.ranks) {
-                                    if(this.props.currentPerson.ranks[key].name === e.target.value) {
-                                        return this.props.currentPerson.ranks[key].id;
-                                    }
-                                }
-                            })());
-                        }}
-                >
+                <select className={'dropdownPlaceholder'} onChange={(e) => this.onChange(e.target.value)}>
                     {options}
                 </select>
             </div>
         )
+    }
+
+    onChange (value) {
+        for (let key in this.props.options) {
+            if (this.props.options[key] === value) {
+                this.props.onChange(+key);
+                break;
+            }
+        }
     }
 }
 

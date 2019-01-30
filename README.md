@@ -153,6 +153,7 @@ Response body:
 
 ```$xslt
 user: {
+    id: bigint,
     email: text,
     name: text,
     rank: bigint,
