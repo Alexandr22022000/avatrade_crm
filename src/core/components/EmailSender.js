@@ -41,7 +41,7 @@ class EmailSender extends Component {
           <div
             style={{ textAlign: "center", fontSize: "30px", marginBottom: "0" }}
           >
-            Востоновить пароль
+              Восстановить пароль
           </div>
           <div className={"inputHolder"}>
             <label>Email</label>
@@ -67,7 +67,7 @@ class EmailSender extends Component {
           </div>
           <div id={"func-holder"} className={"LoginForm-func"}>
             <button className={"btn-m blue-button"} onClick={this.sendEmail.bind(this)}>
-              Востоновить
+                Восстановить
             </button>
             <br />
             <Link onClick={() => this.props.cleanErrors()} to={"/login"}>

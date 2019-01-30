@@ -81,7 +81,7 @@ class StuffEditor extends Component {
           />
 
           <MultiInput
-            title={"Должность:"}
+            title={"Должности:"}
             values={this.listProcessorVales(
               this.props.currentUser.permissions,
               permissions

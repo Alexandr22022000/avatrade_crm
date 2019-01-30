@@ -25,7 +25,7 @@ class NavBar extends Component {
           case PERMISSIONS.OWNER:
           case PERMISSIONS.TOP_MANAGER:
             buttons["planning"] = {
-              name: "планнинг",
+              name: "планинг",
               isActive: false,
               route: "planning"
             };
@@ -33,16 +33,6 @@ class NavBar extends Component {
               name: "склад",
               isActive: false,
               route: "warehouse"
-            };
-            buttons["stuff"] = {
-              name: "персонал",
-              isActive: false,
-              route: "stuff"
-            };
-            buttons["prices"] = {
-              name: "прайс",
-              isActive: false,
-              route: "prices"
             };
             buttons["turnovers"] = {
               name: "обороты",
@@ -54,18 +44,37 @@ class NavBar extends Component {
               isActive: false,
               route: "events"
             };
+            buttons["stuff"] = {
+              name: "персонал",
+              isActive: false,
+              route: "stuff"
+            };
+            buttons["cabinet"] = {
+              name: "кабинет",
+              isActive: false,
+              route: "cabinet"
+            };
+            buttons["prices"] = {
+              name: "прайс",
+              isActive: false,
+              route: "prices"
+            };
             break;
           case PERMISSIONS.STORE_MANAGER:
-            buttons["planning"] = {
-              name: "планнинг",
+            buttons["cash"] = {
+              name: "касса",
               isActive: false,
-              route: "planning"
+              route: "cash"
             };
-            buttons["cash"] = { name: "касса", isActive: false, route: "cash" };
             buttons["warehouse"] = {
               name: "склад",
               isActive: false,
               route: "warehouse"
+            };
+            buttons["planning"] = {
+              name: "планинг",
+              isActive: false,
+              route: "planning"
             };
             buttons["cabinet"] = {
               name: "кабинет",
@@ -85,7 +94,7 @@ class NavBar extends Component {
             break;
           case PERMISSIONS.WAREHOUSE_MANAGER:
             buttons["planning"] = {
-              name: "планнинг",
+              name: "планинг",
               isActive: false,
               route: "planning"
             };

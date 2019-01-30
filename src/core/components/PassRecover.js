@@ -22,7 +22,7 @@ class PassRecover extends Component{
                             <div id={'func-holder'} className={'LoginForm-func'}>
                                 <Link onClick={() => this.props.cleanErrors()} to={'/login'}>
                                     <button className={'btn-m blue-button'}>
-                                        Перейти к входу
+                                        Перейти ко входу
                                     </button>
                                 </Link>
                             </div>
