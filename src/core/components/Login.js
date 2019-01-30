@@ -53,7 +53,6 @@ class Login extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState, nextContext) {
-    console.log('shouldComponentUpdate login', nextProps.loginInfo.requestSuccessful);
     if (nextProps.loginInfo.requestSuccessful === true) {
       this.dataValid = true;
       setToken(nextProps.loginInfo.token);
@@ -66,7 +65,7 @@ class Login extends Component {
   }
 
   login() {
-    console.log({val:this.loginInput, val1:this.passInput});
+    this.props.cleanErrors();
     if (this.loginInput.value !== '' && this.passInput.value !== '') {
       this.props.onLogin(this.loginInput.value, this.passInput.value);
     }

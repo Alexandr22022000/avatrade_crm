@@ -86,6 +86,7 @@ class EmailSender extends Component {
   }
 
   sendEmail() {
+    this.props.cleanErrors();
     this.props.onSendEmail(this.state.email);
   }
 
