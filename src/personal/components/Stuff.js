@@ -57,6 +57,7 @@ class Stuff extends Component {
               className={"dropDown"}
               options={["Действующие", "Все"]}
               value={0}
+              onChange={()=>{}}
             />
           </div>
         </div>
