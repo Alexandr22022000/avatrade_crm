@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
-import PassRecover from "../components/PassRecover";
 import {recoverPass} from "../async-actions/recoverPass";
+import EmailSender from "../components/EmailSender";
 
 export default connect(
     state=> ({
@@ -8,9 +8,9 @@ export default connect(
         errorStatus: state.status.errorStatus
     }),
     dispatch => ({
-        onSendPassword: (token, pass) => {
+        onSendEmail: (token, email) => {
             console.log('send pass');
-            dispatch(recoverPass(token, pass));
+            dispatch(recoverPass(token, email));
         }
     })
-)(PassRecover);
+)(EmailSender);

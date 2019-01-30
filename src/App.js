@@ -6,6 +6,7 @@ import NavBar from "./core/containers/NavBar";
 import Stuff from "./personal/containers/Stuff";
 import InDev from "./core/components/InDev";
 import PassRecover from "./core/containers/PassRecover";
+import EmailSender from "./core/containers/EmailSender";
 
 
 class App extends Component {
@@ -25,6 +26,7 @@ class App extends Component {
                         <Route exact path={'/cabinet'} children={<NavBar><InDev/></NavBar>}/>
                         <Route exact path={'/contacts'} children={<NavBar><InDev/></NavBar>}/>
                         <Route exact path={'/recover_password'} children={<PassRecover/>}/>
+                        <Route exact path={'/start_recover_password'} children={<EmailSender/>}/>
                         <Route path={'/login'} children={<Login/>}/>
                     </Switch>
                 </div>
