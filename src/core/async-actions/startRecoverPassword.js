@@ -9,7 +9,6 @@ const startRecoverPassword = (email) => (dispatch, getState) => {
     HTTPS.dispatch = dispatch;
     HTTPS.HTTP.post('/api/v0.0/start_recover_password', {email})
         .then(response => {
-            HTTPS.token = response.data.token;
             dispatch(requestSuccess());
         })
         .catch((reason) => {
