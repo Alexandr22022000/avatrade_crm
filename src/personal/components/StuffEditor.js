@@ -20,7 +20,7 @@ class StuffEditor extends Component {
           <StuffInput
             title={"ФИО:"}
             value={this.props.currentUser.name}
-            onChange={v => this.props.updateUserData(v, "name")}
+            onChange={v => this.updateUserData(v, "name")}
             alwaysActive={isNew}
             onlyRead={onlyRead}
           />
@@ -29,7 +29,7 @@ class StuffEditor extends Component {
             title={"Email:"}
             link={"mailto:" + this.props.currentUser.email}
             value={this.props.currentUser.email}
-            onChange={v => this.props.updateUserData(v, "email")}
+            onChange={v => this.updateUserData(v, "email")}
             alwaysActive={isNew}
             onlyRead={onlyRead}
           />
@@ -38,7 +38,7 @@ class StuffEditor extends Component {
             title={"Телефон:"}
             link={"tel:" + this.props.currentUser.phone}
             value={this.props.currentUser.phone}
-            onChange={v => this.props.updateUserData(v, "phone")}
+            onChange={v => this.updateUserData(v, "phone")}
             alwaysActive={isNew}
             onlyRead={onlyRead}
           />
@@ -47,7 +47,7 @@ class StuffEditor extends Component {
             title={"VK:"}
             link={this.props.currentUser.vk}
             value={this.props.currentUser.vk}
-            onChange={v => this.props.updateUserData(v, "vk")}
+            onChange={v => this.updateUserData(v, "vk")}
             alwaysActive={isNew}
             onlyRead={onlyRead}
           />
@@ -55,7 +55,7 @@ class StuffEditor extends Component {
           <StuffInput
             title={"Адресс:"}
             value={this.props.currentUser.address}
-            onChange={v => this.props.updateUserData(v, "address")}
+            onChange={v => this.updateUserData(v, "address")}
             alwaysActive={isNew}
             onlyRead={onlyRead}
           />
@@ -69,7 +69,7 @@ class StuffEditor extends Component {
               )[0]
             }
             onChange={v =>
-              this.props.updateUserData(
+              this.updateUserData(
                 this.listProcessorWriter([v], this.props.ranks)[0],
                 "rank"
               )
@@ -86,7 +86,7 @@ class StuffEditor extends Component {
               permissions
             )}
             onChange={v =>
-              this.props.updateUserData(
+              this.updateUserData(
                 this.listProcessorWriter(v, permissions),
                 "permissions"
               )
@@ -98,7 +98,7 @@ class StuffEditor extends Component {
           <MultiInput
             title={"Документы:"}
             values={this.props.currentUser.docs}
-            onChange={v => this.props.updateUserData(v, "docs")}
+            onChange={v => this.updateUserData(v, "docs")}
             onlyRead={onlyRead}
           />
         </div>
@@ -123,29 +123,31 @@ class StuffEditor extends Component {
           </div>
           <div className={"modal"}>{editor}</div>
           <div className={"saveButtonHolder"}>
-            <div
-              className={"inline sackButton link-decor pointed"}
-              onClick={() => this.onChangeUserStatus(1)}
-            >
-              Уволить
-            </div>
-            <button
-              className={"btn-m inline blue-button"}
-              onClick={() => this.onClose(true)}
-            >
-              Сохранить
-            </button>
+              {!this.props.currentUser || this.isOwner() ? "" :
+                  <div className={"inline sackButton link-decor pointed"} onClick={() => this.onChangeUserStatus()}>{this.props.currentUser.status === 0 ? "Уволить" : "Востоновить"}</div>
+              }
+              <button className={"btn-m inline blue-button"} onClick={() => this.onClose(true)}>Сохранить</button>
           </div>
         </div>
       </div>
     );
   }
 
-  onChangeUserStatus(status) {
-    this.props.changeCurrentUserStatus(status, this.props.currentUser.id);
+  onChangeUserStatus() {
+      if (!window.confirm("Вы уверены?")) return;
+      this.props.delCurrentUser();
+      this.props.onClose();
+      this.props.changeCurrentUserStatus(this.props.currentUser.status === 0 ? 1 : 0 , this.props.currentUser.id);
   }
 
+    updateUserData (value, name) {
+        this.changed = true;
+        this.props.updateUserData(value, name);
+    }
+
   onClose(isSave) {
+    if (this.changed && !window.confirm("Вы уверены? Все не сохраненые изменения будут потеряны!")) return;
+
     if (isSave && this.props.currentUser) {
       console.log(this.props.currentUser);
       if (this.props.currentUser.id) {
