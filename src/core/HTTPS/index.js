@@ -6,7 +6,6 @@ import {SERVER_STATUS} from "./serverStatuses";
 
 
 const thenCallback = (response, callback) => {
-    console.log('thenCallback');
     callback(response.data);
     return response;
 };
@@ -43,7 +42,7 @@ const HTTPS = {
     get(url, params, callback) {
         let token = this.token;
         this.HTTP.get(url, {params:{...params, token}})
-            .then((response)=>thenCallback(response,callback))
+            .then((response)=> thenCallback(response,callback))
             .catch(reason => catchCallback(reason.response, this.dispatch));
     }
 };

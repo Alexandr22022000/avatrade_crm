@@ -30,11 +30,9 @@ class Login extends Component {
                         <br/>
                         <div><input type={'password'} ref={(input) => {this.passInput = input}} placeholder={'password'}/></div>
                     </div>
-                    {this.dataValid?
-                        <div style={{height:'30px'}}/>:
-                        <div style={{fontSize: '22px', textAlign: 'center', color:'#FF0000'}}>
-                            Неверный логин или пароль
-                        </div>}
+                    <div style={{fontSize: '18px', textAlign: 'center', color:'#FF0000', height:'30px'}}>
+                        {this.props.loginInfo.loginError}
+                    </div>
                     <div id={'func-holder'}
                          className={'LoginForm-func'}
                     >

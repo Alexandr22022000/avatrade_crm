@@ -2,6 +2,7 @@ export const POST = 'POST';
 export const GET = 'GET';
 
 export const LOGIN_ERROR = 'LOGIN_ERROR';
+export const GOOD_LOGIN_ERROR = 'GOOD_LOGIN_ERROR';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const PERMISSIONS_SUCCESS = 'PERMISSIONS_SUCCESS';
 export const TOKEN_FOUND = 'TOKEN_FOUND';

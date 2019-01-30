@@ -5,7 +5,8 @@ import {
   NEW_PASSWORD_ACCEPTED,
   PERMISSIONS_SUCCESS,
   REQUEST_ERROR,
-  TOKEN_FOUND
+  TOKEN_FOUND,
+  GOOD_LOGIN_ERROR,
 } from "../actions/types";
 
 const defaultStatus = {
@@ -14,7 +15,8 @@ const defaultStatus = {
   tokenExists: false,
   requestSuccessful: false,
   errorStatus: null,
-  errorStatusText: null
+  errorStatusText: null,
+  loginError: "",
 };
 
 const status = (state = defaultStatus, action) => {
@@ -24,6 +26,13 @@ const status = (state = defaultStatus, action) => {
         ...state,
         token: action.token
       };
+
+    case GOOD_LOGIN_ERROR:
+      return {
+        ...state,
+        loginError: action.text,
+      };
+
     case LOGIN_SUCCESS:
       return {
         ...state,
@@ -34,6 +43,7 @@ const status = (state = defaultStatus, action) => {
         errorStatus: null,
         errorStatusText: null
       };
+
     case LOGIN_ERROR:
       return {
         ...state,
@@ -41,6 +51,7 @@ const status = (state = defaultStatus, action) => {
         tokenExists: false,
         requestSuccessful: false
       };
+
     case REQUEST_ERROR:
       return {
         ...state,
@@ -49,6 +60,7 @@ const status = (state = defaultStatus, action) => {
         errorStatus: action.error.errorStatus,
         errorStatusText: action.error.errorText
       };
+
     case PERMISSIONS_SUCCESS:
       return {
         ...state,
@@ -56,6 +68,7 @@ const status = (state = defaultStatus, action) => {
         requestSuccessful: true,
         permissions: action.payload
       };
+
     case NEW_PASSWORD_ACCEPTED:
       return {
         ...state,
@@ -63,6 +76,7 @@ const status = (state = defaultStatus, action) => {
         errorStatus: null,
         errorStatusText: null
       };
+
     case EMAIL_ACCEPTED:
       return {
         ...state,
@@ -70,6 +84,7 @@ const status = (state = defaultStatus, action) => {
         errorStatus: null,
         errorStatusText: null
       };
+
     default:
       return state;
   }
