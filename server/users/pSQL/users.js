@@ -9,4 +9,5 @@ module.exports = {
     SET_USER_PASSWORD: 'UPDATE users SET password = $2 WHERE id = $1',
 
     CHECK_USER: 'SELECT id FROM users WHERE email = $1',
+    CHECK_USER_OWNER: 'SELECT id FROM users WHERE id = $1 and array_position(permissions , 0) IS NOT NULL',
 };

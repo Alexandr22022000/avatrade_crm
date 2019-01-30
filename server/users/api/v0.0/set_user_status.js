@@ -1,6 +1,7 @@
 const {query} = require('neuronex-pg'),
     {checkUser} = require('neuronex-login-backend'),
     checkPermissions = require('../../../core/users/checkPermissions'),
+    isOwner = require('../../users/isOwner'),
     QUERYES = require('../../pSQL/users'),
     PERMISSIONS = require('../../../core/constants/permissions');
 
@@ -11,7 +12,12 @@ module.exports = (app) => {
         if (!user) return res.status(401).end();
         if (!checkPermissions(user, [PERMISSIONS.OWNER, PERMISSIONS.TOP_MANAGER])) return res.status(403).end();
 
-        query(QUERYES.SET_USER_STATUS, [req.body.id, req.body.status])
-            .then(() => res.status(200).end());
+        isOwner(req.body.id)
+            .then((isO) => {
+                if (isO) return res.status(403).end();
+
+                query(QUERYES.SET_USER_STATUS, [req.body.id, req.body.status])
+                    .then(() => res.status(200).end());
+            });
     });
 };

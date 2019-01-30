@@ -161,6 +161,7 @@ user: {
     permissions: integer[],
     address: text,
     vk: text,
+    status: bigint,
     docs: text[]
 },
 ranks: [

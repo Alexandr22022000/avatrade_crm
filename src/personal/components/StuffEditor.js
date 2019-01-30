@@ -139,7 +139,7 @@ class StuffEditor extends Component {
       if (!validator.isEmail(this.props.currentUser.email)) return false;
       if (this.props.currentUser.name.trim() === '') return false;
       if (this.props.currentUser.phone.trim() === '') return false;
-      if (this.isOwner()) return false;
+      if (!this.canEdit()) return false;
       return true;
   }
 
