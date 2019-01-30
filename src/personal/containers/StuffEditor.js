@@ -4,6 +4,7 @@ import updateUserData from "../actions/updateUserData";
 import delCurrentUser from "../actions/delCurrentUser";
 import updateUser from "../async-actions/updateUserData";
 import {addNewUser} from "../async-actions/addNewUser";
+import {changeUserStatus} from "../async-actions/changeUserStatus";
 
 
 export default connect(
@@ -17,6 +18,6 @@ export default connect(
         updateUser: (data) => dispatch(updateUser(data)),
         onAddNewUser: (userData) => dispatch(addNewUser(userData)),
         delCurrentUser: () => dispatch(delCurrentUser()),
-        sackCurrentUser: () => dispatch(),
+        changeCurrentUserStatus: (status, id) => dispatch(changeUserStatus(status, id)),
     })
 )(StuffEditor);

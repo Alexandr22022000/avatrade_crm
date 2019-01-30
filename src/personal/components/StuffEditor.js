@@ -123,8 +123,16 @@ class StuffEditor extends Component {
           </div>
           <div className={"modal"}>{editor}</div>
           <div className={"saveButtonHolder"}>
-              <div className={'inline sackButton link-decor pointed'} onClick={()=> this.onSack()}>Уволить</div>
-            <button className={"btn-m inline blue-button"} onClick={() => this.onClose(true)}>
+            <div
+              className={"inline sackButton link-decor pointed"}
+              onClick={() => this.onChangeUserStatus(1)}
+            >
+              Уволить
+            </div>
+            <button
+              className={"btn-m inline blue-button"}
+              onClick={() => this.onClose(true)}
+            >
               Сохранить
             </button>
           </div>
@@ -133,8 +141,8 @@ class StuffEditor extends Component {
     );
   }
 
-  onSack(){
-    this.props.
+  onChangeUserStatus(status) {
+    this.props.changeCurrentUserStatus(status, this.props.currentUser.id);
   }
 
   onClose(isSave) {
