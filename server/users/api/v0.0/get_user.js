@@ -10,7 +10,7 @@ module.exports = (app) => {
         const user = checkUser(req.query.token);
 
         if (!user) return res.status(401).end();
-        if (!checkPermissions(user, [PERMISSIONS.OWNER, PERMISSIONS.OWNER])) return res.status(403).end();
+        if (!checkPermissions(user, [PERMISSIONS.OWNER, PERMISSIONS.TOP_MANAGER])) return res.status(403).end();
 
         query(QUERYES.GET_USER, [req.query.id])
             .then(({rows}) => {

@@ -4,3 +4,22 @@ export const PERMISSIONS = {
   WAREHOUSE_MANAGER: 2,
   TOP_MANAGER: 3
 };
+
+export const PERMISSIONS_TEXT = [
+    {
+        id: 0,
+        name: "Учередитель",
+    },
+    {
+        id: 1,
+        name: "Менеджер",
+    },
+    {
+        id: 2,
+        name: "Кладовщик",
+    },
+    {
+        id: 3,
+        name: "Управляющий",
+    },
+];

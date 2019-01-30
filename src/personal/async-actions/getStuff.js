@@ -1,9 +1,9 @@
 import HTTPS from "../../core/HTTPS";
-import { stuffResponse } from "../actions/stuffResponse";
+import {setUsers} from "../actions/setUsers";
 
-export const getStuff = is_all => (dispatch, getState) => {
-  HTTPS.dispatch = dispatch;
-  HTTPS.get("/api/v0.0/users", { is_all }, response => {
-    dispatch(stuffResponse(response));
-  });
+export const getStuff = (is_all) => (dispatch, getState) => {
+    HTTPS.dispatch = dispatch;
+    HTTPS.get('/api/v0.0/users', {is_all}, (response) => {
+        dispatch(setUsers(response));
+    });
 };
