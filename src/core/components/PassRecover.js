@@ -50,7 +50,14 @@ class PassRecover extends Component{
                         <div className={'inputHolder'}>
                             <label>Повторить пароль:</label>
                             <br/>
-                            <div><input type={'password'} value={this.state.password2} onChange={(e) => this.setState({password2: e.target.value})} placeholder={'password'}/></div>
+                            <div>
+                                <input
+                                    type={'password'}
+                                    value={this.state.password2}
+                                    onChange={(e) => this.setState({password2: e.target.value})}
+                                    placeholder={'password'}
+                                    onKeyDown={this.onEnter.bind(this)}/>
+                                </div>
                         </div>
                         <div style={{fontSize: '18px', textAlign: 'center', color:'#FF0000', height:'30px'}}>
                             {this.props.loginError}
@@ -80,6 +87,12 @@ class PassRecover extends Component{
         }
         else {
             this.props.setError("Пароли не совпадают");
+        }
+    }
+
+    onEnter (e) {
+        if (e.keyCode === 13) {
+            this.sendPass();
         }
     }
 }

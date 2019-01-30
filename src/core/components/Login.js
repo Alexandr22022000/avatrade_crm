@@ -28,7 +28,12 @@ class Login extends Component {
                     <div className={'inputHolder'}>
                         <label>Password</label>
                         <br/>
-                        <div><input type={'password'} ref={(input) => {this.passInput = input}} placeholder={'password'}/></div>
+                        <div><input
+                            type={'password'}
+                            ref={(input) => {this.passInput = input}}
+                            placeholder={'password'}
+                            onKeyDown={this.onEnter.bind(this)}
+                        /></div>
                     </div>
                     <div style={{fontSize: '18px', textAlign: 'center', color:'#FF0000', height:'30px'}}>
                         {this.props.loginInfo.loginError}
@@ -64,6 +69,12 @@ class Login extends Component {
         console.log({val:this.loginInput, val1:this.passInput});
         if (this.loginInput.value !== '' && this.passInput.value !== '') {
             this.props.onLogin(this.loginInput.value, this.passInput.value);
+        }
+    }
+
+    onEnter (e) {
+        if (e.keyCode === 13) {
+            this.login();
         }
     }
 }

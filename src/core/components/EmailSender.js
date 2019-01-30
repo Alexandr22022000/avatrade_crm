@@ -34,7 +34,11 @@ class EmailSender extends Component {
                         <label>Email</label>
                         <br/>
                         <div>
-                            <input value={this.state.email} onChange={(e) => this.setState({email: e.target.value})} placeholder={'email'}/>
+                            <input
+                                value={this.state.email}
+                                onChange={(e) => this.setState({email: e.target.value})}
+                                placeholder={'email'}
+                                onKeyDown={this.onEnter.bind(this)}/>
                         </div>
                     </div>
                     <div style={{fontSize: '18px', textAlign: 'center', color:'#FF0000', height:'30px'}}>
@@ -58,6 +62,12 @@ class EmailSender extends Component {
 
     sendEmail() {
         this.props.onSendEmail(this.state.email);
+    }
+
+    onEnter (e) {
+        if (e.keyCode === 13) {
+            this.sendEmail();
+        }
     }
 }
 
