@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import '../styles/dropdown.css'
 import DropDown from './DropDown';
 import MultiInputItem from './MultiInputItem';
+import {PERMISSIONS_TEXT, PERMISSIONS} from '../../core/constants';
 
 
 class MultiInput extends Component {
@@ -11,7 +12,8 @@ class MultiInput extends Component {
         if (this.props.options) {
             for (let key in this.props.values) {
                 let text = this.props.options[this.props.values[key]];
-                values.push(<MultiInputItem value={text} onDel={()=> this.onDel(key)} onlyRead={this.props.onlyRead}/>)
+                const readOnly = text === PERMISSIONS_TEXT[PERMISSIONS.OWNER].name;
+                values.push(<MultiInputItem value={text} onDel={()=> this.onDel(key)} onlyRead={this.props.onlyRead || readOnly}/>)
             }
 
             input = (
