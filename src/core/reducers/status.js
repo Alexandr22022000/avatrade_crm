@@ -1,4 +1,11 @@
-import {LOGIN_ERROR, LOGIN_SUCCESS, PERMISSIONS_SUCCESS, REQUEST_ERROR, TOKEN_FOUND} from "../actions/types";
+import {
+    LOGIN_ERROR,
+    LOGIN_SUCCESS,
+    NEW_PASSWORD_ACCEPTED,
+    PERMISSIONS_SUCCESS,
+    REQUEST_ERROR,
+    TOKEN_FOUND
+} from "../actions/types";
 
 const defaultStatus = {
     token: null,
@@ -45,6 +52,11 @@ const status = (state = defaultStatus, action) =>{
                 tokenExists: true,
                 requestSuccessful: true,
                 permissions: action.payload
+            };
+        case NEW_PASSWORD_ACCEPTED:
+            return {
+                ...state,
+                requestSuccessful:true
             };
         default:
             return state;

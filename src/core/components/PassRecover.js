@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import setToken from "../cookie/setToken";
 import '../styles/LoginPage.css';
+import {getTokenFromUrl} from "../HTTPS/getTokenFromUrl";
 
 class PassRecover extends Component{
     render() {
@@ -18,7 +19,7 @@ class PassRecover extends Component{
                     <div className={'inputHolder'}>
                         <label>Пароль</label>
                         <br/>
-                        <div><input ref={(input) => {this.loginInput = input}} placeholder={'password'}/></div>
+                        <div><input ref={(input) => {this.passInput = input}} placeholder={'password'}/></div>
                     </div>
                     <div id={'func-holder'}
                          className={'LoginForm-func'}
@@ -34,7 +35,12 @@ class PassRecover extends Component{
         )
     }
 
-
+    sendPass() {
+        let token = getTokenFromUrl();
+        if(!this.passInput.value || !/[^\s]+/.test(this.passInput.value)) {
+            this.props.onSendPassword(token,this.passInput);
+        }
+    }
 }
 
 export default PassRecover;
