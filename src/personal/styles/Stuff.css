@@ -1,25 +1,3 @@
-/*медиазапрос, который, вроде, работает.
- *Работает до отображения 80% при HD экране
- * Для возврата на прошлое состоярие нужно раскомменировать следующее:
- .stuffHolder {
-        margin-left: 2%;
-        margin-top: 2%;
-        width: 450px;
-        text-align: center;
-        background-color: #1f1f1f;
-        border: #555555 solid 1px;
-        box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);
-    }
-    .stuffHolder #stuffHolder {
-        margin-top: 20px;
-        width: inherit;
-        height: 500px;
-        overflow: auto;
-        overflow-y: scroll;
-        border-radius: 10px;
-    }
-    И закомментировать оба медиазапроса
- */
 @media screen and (max-height: 768px) and (min-height: 400px) {
   .stuffHolder {
     margin-left: 2%;
@@ -55,7 +33,7 @@
   }
 
 }
-/*медиазапрос, который не работает*/
+
 @media screen and (min-height: 720px) {
   .stuffHolder {
     margin-left: 2%;
