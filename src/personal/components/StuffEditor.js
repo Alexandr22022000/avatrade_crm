@@ -146,7 +146,7 @@ class StuffEditor extends Component {
     }
 
   onClose(isSave) {
-    if (this.changed && !window.confirm("Вы уверены? Все не сохраненые изменения будут потеряны!")) return;
+    if (this.changed && !isSave && !window.confirm("Вы уверены? Все не сохраненые изменения будут потеряны!")) return;
 
     if (isSave && this.props.currentUser) {
       console.log(this.props.currentUser);
