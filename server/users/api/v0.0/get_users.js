@@ -11,7 +11,7 @@ module.exports = (app) => {
         if (!user) return res.status(401).end();
         if (!checkPermissions(user, [PERMISSIONS.OWNER, PERMISSIONS.TOP_MANAGER])) return res.status(403).end();
 
-        query(req.query.is_all ? QUERYES.GET_USERS_ALL : QUERYES.GET_USERS_WORK)
+        query(req.query.is_all === 'true' ? QUERYES.GET_USERS_ALL : QUERYES.GET_USERS_WORK)
             .then(({rows}) => res.status(200).json({users: rows}));
     });
 };

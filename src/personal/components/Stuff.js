@@ -56,8 +56,8 @@ class Stuff extends Component {
             <DropDown
               className={"dropDown"}
               options={["Действующие", "Все"]}
-              value={0}
-              onChange={()=>{}}
+              value={this.props.showAll ? 1 : 0}
+              onChange={(v) => {this.props.setUsersFilter(v === 1); this.props.onGetUsers();}}
             />
           </div>
         </div>
@@ -90,7 +90,7 @@ class Stuff extends Component {
       this.props.onGetCurrentUser(personId);
     } else {
       this.props.onSetEmptyUser();
-      //GET RANKS!!!
+      this.props.getRanks();
     }
     this.setState({ showEditor: true });
   }

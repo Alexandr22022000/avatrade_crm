@@ -5,12 +5,14 @@ import {
   UPDATE_USER_DATA,
   SET_RANKS,
   DEL_CURRENT_USER,
+  SET_USERS_FILTER,
 } from "../actions/types";
 
 const defaultStuffState = {
   users: [],
   currentUser: null,
   ranks: [],
+  showAll: false,
 };
 
 const stuff = (state = defaultStuffState, action) => {
@@ -25,6 +27,12 @@ const stuff = (state = defaultStuffState, action) => {
       return {
         ...state,
         currentUser: action.user
+      };
+
+    case SET_USERS_FILTER:
+      return {
+        ...state,
+        showAll: action.showAll
       };
 
     case SET_EMPTY_USER:
