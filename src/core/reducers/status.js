@@ -7,6 +7,7 @@ import {
   REQUEST_ERROR,
   TOKEN_FOUND,
   GOOD_LOGIN_ERROR,
+  REQUEST_SUCCESS,
 } from "../actions/types";
 
 const defaultStatus = {
@@ -17,6 +18,7 @@ const defaultStatus = {
   errorStatus: null,
   errorStatusText: null,
   loginError: "",
+  requestSuccess: false,
 };
 
 const status = (state = defaultStatus, action) => {
@@ -31,6 +33,12 @@ const status = (state = defaultStatus, action) => {
       return {
         ...state,
         loginError: action.text,
+      };
+
+    case REQUEST_SUCCESS:
+      return {
+        ...state,
+        requestSuccess: action.isSuccess,
       };
 
     case LOGIN_SUCCESS:

@@ -1,16 +1,16 @@
 import {connect} from "react-redux";
-import {recoverPass} from "../async-actions/recoverPass";
+import startRecoverPassword from "../async-actions/startRecoverPassword";
 import EmailSender from "../components/EmailSender";
 
 export default connect(
     state=> ({
         reqStatus: state.status.requestSuccessful,
-        errorStatus: state.status.errorStatus
+        errorStatus: state.status.errorStatus,
+
+        loginError: state.status.loginError,
+        requestSuccess: state.status.requestSuccess,
     }),
     dispatch => ({
-        onSendEmail: (token, email) => {
-            console.log('send pass');
-            dispatch(recoverPass(token, email));
-        }
+        onSendEmail: (email) => dispatch(startRecoverPassword(email)),
     })
 )(EmailSender);
