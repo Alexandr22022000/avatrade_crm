@@ -11,6 +11,11 @@ const thenCallback = (response, callback) => {
 };
 
 const catchCallback = (error, dispatch) => {
+    if (!error) {
+        dispatch(requestError(SERVER_STATUS.NO_CONNECTION, "Нет подключения к серверу!"));
+        return alert("Нет подключения к серверу!");
+    }
+
     switch (error.status) {
         case SERVER_STATUS.UNAUTHORIZED:
             dispatch(loginError(error.statusText));

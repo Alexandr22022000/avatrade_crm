@@ -12,6 +12,11 @@ const startRecoverPassword = (email) => (dispatch, getState) => {
             dispatch(requestSuccess());
         })
         .catch((reason) => {
+            if (!reason.response) {
+                dispatch(goodLoginError("Нет подключения к серверу"));
+                return;
+            }
+
             switch (reason.response.status) {
                 case SERVER_STATUS.UNAUTHORIZED:
                     dispatch(goodLoginError("Не верный email"));

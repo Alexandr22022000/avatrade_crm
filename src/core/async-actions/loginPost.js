@@ -13,6 +13,11 @@ const loginPost = (login, password) => (dispatch, getState) => {
             dispatch(loginSuccess(response.data));
         })
         .catch((reason) => {
+            if (!reason.response) {
+                dispatch(goodLoginError("Нет подключения к серверу"));
+                return;
+            }
+
             switch (reason.response.status) {
                 case SERVER_STATUS.UNAUTHORIZED:
                     dispatch(goodLoginError("Не верный логин или пароль"));
