@@ -12,8 +12,6 @@ const getCleanUrl = () => {
         return 'http://localhost:4000';
     url = deleteSymbols(url, '#');
     url = deleteSymbols(url, '/');
-    url = deleteSymbols(url, ':');
-    url = url + ':4000';
     return url;
 };
 
