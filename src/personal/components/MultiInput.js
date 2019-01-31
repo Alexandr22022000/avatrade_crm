@@ -31,7 +31,7 @@ class MultiInput extends Component {
                 let text = this.props.values[key];
                 if (text.length >= 25) text = text.substring(0,25) + '...';
 
-                values.push(<MultiInputItem value={text} onDel={()=> this.onDel(key)} link={text} onlyRead={this.props.onlyRead}/>)
+                values.push(<MultiInputItem value={text} onDel={()=> this.onDel(key)} link={this.props.values[key]} onlyRead={this.props.onlyRead}/>)
             }
 
             input = (
