@@ -15,13 +15,22 @@ class MultiInput extends Component {
                 const readOnly = text === PERMISSIONS_TEXT[PERMISSIONS.OWNER].name;
                 values.push(<MultiInputItem value={text} onDel={()=> this.onDel(key)} onlyRead={this.props.onlyRead || readOnly}/>)
             }
+            let disabled = this.props.options.map((option,index) => this.props.values.indexOf(index,0) !== -1);
+            this.inputValue = -1;
+            for(let disKey in disabled) {
+                if(!disabled[disKey]){
+                    this.inputValue = disKey;
+                    break;
+                }
+            }
 
             input = (
                 <div onBlurCapture={() => this.setInputShow(false)}>
                     <DropDown
                         className={'dropdownPlaceholder'}
                         options={this.props.options}
-                        value={0}
+                        disabled={disabled}
+                        value={this.inputValue}
                         onChange={(v) => this.onChangeInput(v)}/>
                 </div>
             );
@@ -50,7 +59,7 @@ class MultiInput extends Component {
             <div>
                 <div className={'header-m'}>{this.props.title}</div>
                 <div className={'body-m'}>{values}</div>
-                {this.props.onlyRead ? "" : (
+                {this.props.onlyRead || this.inputValue === -1 ? "" : (
                     this.state.showInput ?
                         <div style={{position: 'relative', top: '-20px'}}>{input}</div>
                         :
@@ -85,7 +94,7 @@ class MultiInput extends Component {
             let value = this.state.inputValue;
             if (value === "") {
                 if (this.props.options) {
-                    value = 0;
+                    value = this.inputValue;
                 }
                 else {
                     return this.setState({showInput});

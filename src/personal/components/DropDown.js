@@ -5,8 +5,15 @@ import '../styles/dropdown.css'
 class DropDown extends Component {
     render() {
         let options = [];
+        let disabled = this.props.disabled;
+        if (!disabled) {
+            disabled = [];
+            for (let i = 0; i < this.props.options.length; i++) disabled.push(false);
+        }
         for(let key in this.props.options) {
-            if (+key === this.props.value) {
+            if(disabled[key]) {
+                options.push(<option disabled key={key}>{this.props.options[key]}</option>)
+            } else if (+key === this.props.value) {
                 options.push(<option selected key={key}>{this.props.options[key]}</option>)
             } else {
                 options.push(<option key={key}>{this.props.options[key]}</option>)
