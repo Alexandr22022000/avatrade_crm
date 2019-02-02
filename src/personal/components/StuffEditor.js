@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import "../../core/styles/buttons.css";
 import "../styles/Stuff.css";
 import { PERMISSIONS_TEXT, PERMISSIONS } from "../../core/constants";
-import cross from "../../images/cross-icon.png";
 import StuffInput from "./StuffInput";
 import MultiInput from "./MultiInput";
 import validator from 'validator';
+import Modal from "../../core/components/Modal";
 
 class StuffEditor extends Component {
   render() {
@@ -105,32 +105,26 @@ class StuffEditor extends Component {
         </div>
       );
     }
-
-    return (
-      <div className={"modalHolder"} onClick={() => this.onClose(false)}>
-        <div
-          className={"borders"}
-          onClick={e => {
-            e.stopPropagation();
-          }}
-        >
-          <div id={"cross"}>
-            <img
-              src={cross}
-              onClick={() => this.onClose(false)}
-              alt={"cross"}
-              style={{ cursor: "pointer" }}
-            />
-          </div>
-          <div className={"modal"}>{editor}</div>
-          <div className={"saveButtonHolder"}>
-              {!this.props.currentUser || this.isOwner() || !this.props.currentUser.id ? "" :
-                  <div className={"inline sackButton link-decor pointed"} onClick={() => this.onChangeUserStatus()}>{this.props.currentUser.status === 0 ? "Уволить" : "Востоновить"}</div>
-              }
-              <button className={"btn-m inline" + (this.canSave() ? " blue-button" : "")} onClick={() => this.onClose(true)}>Сохранить</button>
-          </div>
+    let controlButtons = (
+        <div>
+            {!this.props.currentUser || this.isOwner() || !this.props.currentUser.id ? "" :
+                <div className={"inline sackButton link-decor pointed"} onClick={() => this.onChangeUserStatus()}>{this.props.currentUser.status === 0 ? "Уволить" : "Востоновить"}</div>
+            }
+            <button className={"btn-m inline" + (this.canSave() ? " blue-button" : "")} onClick={() => this.onClose(true)}>Сохранить</button>
         </div>
-      </div>
+    );
+    return (
+        <div>
+            <Modal bgClassName={"modalHolder"}
+                   windowClassName={"borders"}
+                   childClassName={"modal"}
+                   controlClassName={"saveButtonHolder"}
+                   controls={controlButtons}
+                   onClose={() => this.onClose(false)}
+            >
+                {editor}
+            </Modal>
+        </div>
     );
   }
 

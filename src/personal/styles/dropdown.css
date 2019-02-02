@@ -1,8 +1,9 @@
-select:active, select:focus {
+select:active,
+select:focus {
     outline: none;
 }
 
-.dropdownPlaceholder{
+.dropdownPlaceholder {
     background-color: #424242;
     color: #ffffff;
     border-radius: 4px;
@@ -13,6 +14,6 @@ select:active, select:focus {
 }
 
 .dropdownPlaceholder:active,
-.dropdownPlaceholder:focus{
+.dropdownPlaceholder:focus {
     border: none;
 }
