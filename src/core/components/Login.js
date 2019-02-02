@@ -6,8 +6,6 @@ import {Link} from "react-router-dom";
 import Form from "./Form";
 
 class Login extends Component {
-  dataValid = true;
-
   render() {
     const style = window.navigator.userAgent.toLocaleLowerCase().indexOf("android") === -1 ?
         {form: 'LoginForm-d LoginFormColors', logoHolder: 'logoHolder logoHolder-d'} :
@@ -23,8 +21,7 @@ class Login extends Component {
             <div className={'inputHolder'}>
               <label>Email</label>
               <br/>
-              <div><input
-                          placeholder={'email'}
+              <div><input placeholder={'email'}
                           value={this.state.login}
                           onChange={e => this.setState({login: e.target.value})}
               /></div>
@@ -67,12 +64,9 @@ class Login extends Component {
 
   shouldComponentUpdate(nextProps, nextState, nextContext) {
     if (nextProps.loginInfo.requestSuccess === true) {
-      this.dataValid = true;
       setToken(nextProps.loginInfo.token);
       this.context.router.history.push('/');
       return false;
-    } else {
-      this.dataValid = false;
     }
     return true;
   }
