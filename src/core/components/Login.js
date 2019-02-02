@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import setToken from "../cookie/setToken";
 import '../styles/LoginPage.css';
 import {Link} from "react-router-dom";
+import Form from "./Form";
 
 class Login extends Component {
   dataValid = true;
@@ -13,9 +14,9 @@ class Login extends Component {
         {form: 'LoginForm-t LoginFormColors', logoHolder: 'logoHolder-t logoHolder'};
     return (
         <div>
-          <div className={style.logoHolder}>
-          </div>
-          <div className={style.form}>
+          <Form logoClassName={style.logoHolder}
+                formClassName={style.form}
+          >
             <div style={{textAlign: 'center', fontSize: '30px', marginBottom: '0'}}>
               Вход
             </div>
@@ -47,7 +48,7 @@ class Login extends Component {
                 <span className={'link-decor'}>Забыли пароль?</span>
               </Link>
             </div>
-          </div>
+          </Form>
         </div>
     )
   }

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import '../styles/LoginPage.css';
 import {getTokenFromUrl} from "../HTTPS/getTokenFromUrl";
 import {Link} from "react-router-dom";
+import Form from "./Form";
 
 class PassRecover extends Component{
     render() {
@@ -12,10 +13,10 @@ class PassRecover extends Component{
         if (this.props.requestSuccess) {
             return (
                 <div>
-                    <div>
-                        <div className={style.logoHolder}>
-                        </div>
-                        <div className={style.form}>
+                    <Form logoClassName={style.logoHolder}
+                          formClassName={style.form}
+                    >
+                        <div>
                             <div style={{textAlign: 'center', fontSize: '30px', marginBottom: '0'}}>
                                 Пароль успешно изменен
                             </div>
@@ -27,17 +28,17 @@ class PassRecover extends Component{
                                 </Link>
                             </div>
                         </div>
-                    </div>
+                    </Form>
                 </div>
             );
         }
 
         return(
             <div>
-                <div>
-                    <div className={style.logoHolder}>
-                    </div>
-                    <div className={style.form}>
+                <Form logoClassName={style.logoHolder}
+                      formClassName={style.form}
+                >
+                    <div>
                         <div style={{textAlign: 'center', fontSize: '30px', marginBottom: '0'}}>
                             Задать новый пароль
                         </div>
@@ -68,7 +69,7 @@ class PassRecover extends Component{
                             </button>
                         </div>
                     </div>
-                </div>
+                </Form>
             </div>
         )
     }
