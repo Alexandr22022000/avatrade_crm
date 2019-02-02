@@ -27,7 +27,7 @@ class Stuff extends Component {
                       </td>
                     </tr>
                     <tr>
-                      <td>
+                      <td style={{ textAlign: "left" }}>
                         {item.phone} - {item.rank}
                       </td>
                     </tr>
