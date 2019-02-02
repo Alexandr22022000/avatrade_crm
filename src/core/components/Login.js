@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import setToken from "../cookie/setToken";
 import '../styles/LoginPage.css';
 import {Link} from "react-router-dom";
+import Form from "./Form";
 
 class Login extends Component {
   dataValid = true;
@@ -13,16 +14,20 @@ class Login extends Component {
         {form: 'LoginForm-t LoginFormColors', logoHolder: 'logoHolder-t logoHolder'};
     return (
         <div>
-          <div className={style.logoHolder}>
-          </div>
-          <div className={style.form}>
+          <Form logoClassName={style.logoHolder}
+                formClassName={style.form}
+          >
             <div style={{textAlign: 'center', fontSize: '30px', marginBottom: '0'}}>
               Вход
             </div>
             <div className={'inputHolder'}>
               <label>Email</label>
               <br/>
-              <div><input ref={(input) => {this.loginInput = input}} placeholder={'email'}/></div>
+              <div><input
+                          placeholder={'email'}
+                          value={this.state.login}
+                          onChange={e => this.setState({login: e.target.value})}
+              /></div>
 
             </div>
             <div className={'inputHolder'}>
@@ -30,7 +35,8 @@ class Login extends Component {
               <br/>
               <div><input
                   type={'password'}
-                  ref={(input) => {this.passInput = input}}
+                  value={this.state.password}
+                  onChange={e => this.setState({password: e.target.value})}
                   placeholder={'password'}
                   onKeyDown={this.onEnter.bind(this)}
               /></div>
@@ -47,9 +53,16 @@ class Login extends Component {
                 <span className={'link-decor'}>Забыли пароль?</span>
               </Link>
             </div>
-          </div>
+          </Form>
         </div>
     )
+  }
+
+  componentWillMount() {
+    this.setState({
+      password:"",
+      login:"",
+    })
   }
 
   shouldComponentUpdate(nextProps, nextState, nextContext) {
@@ -66,8 +79,8 @@ class Login extends Component {
 
   login() {
     this.props.cleanErrors();
-    if (this.loginInput.value !== '' && this.passInput.value !== '') {
-      this.props.onLogin(this.loginInput.value, this.passInput.value);
+    if (this.state.login.trim() !== '' && this.state.password.trim() !== '') {
+      this.props.onLogin(this.state.login, this.state.password);
     }
   }
 
