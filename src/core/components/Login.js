@@ -23,7 +23,11 @@ class Login extends Component {
             <div className={'inputHolder'}>
               <label>Email</label>
               <br/>
-              <div><input ref={(input) => {this.loginInput = input}} placeholder={'email'}/></div>
+              <div><input
+                          placeholder={'email'}
+                          value={this.state.login}
+                          onChange={e => this.setState({login: e.target.value})}
+              /></div>
 
             </div>
             <div className={'inputHolder'}>
@@ -31,7 +35,8 @@ class Login extends Component {
               <br/>
               <div><input
                   type={'password'}
-                  ref={(input) => {this.passInput = input}}
+                  value={this.state.password}
+                  onChange={e => this.setState({password: e.target.value})}
                   placeholder={'password'}
                   onKeyDown={this.onEnter.bind(this)}
               /></div>
@@ -53,6 +58,13 @@ class Login extends Component {
     )
   }
 
+  componentWillMount() {
+    this.setState({
+      password:"",
+      login:"",
+    })
+  }
+
   shouldComponentUpdate(nextProps, nextState, nextContext) {
     if (nextProps.loginInfo.requestSuccessful === true) {
       this.dataValid = true;
@@ -67,8 +79,8 @@ class Login extends Component {
 
   login() {
     this.props.cleanErrors();
-    if (this.loginInput.value !== '' && this.passInput.value !== '') {
-      this.props.onLogin(this.loginInput.value, this.passInput.value);
+    if (this.state.login.trim() !== '' && this.state.password.trim() !== '') {
+      this.props.onLogin(this.state.login, this.state.password);
     }
   }
 
