@@ -53,7 +53,7 @@ class Login extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState, nextContext) {
-    if (nextProps.loginInfo.requestSuccessful === true) {
+    if (nextProps.loginInfo.requestSuccess === true) {
       this.dataValid = true;
       setToken(nextProps.loginInfo.token);
       this.context.router.history.push('/');

@@ -194,17 +194,6 @@ class NavBar extends Component {
     );
   }
 
-  shouldComponentUpdate(nextProps, nextState, nextContext) {
-    if (
-      nextProps.tokenInfo.tokenExists !== true &&
-      nextProps.tokenInfo.token === null
-    ) {
-      this.context.router.history.push("/login");
-      return false;
-    }
-    return true;
-  }
-
   clearCookies() {
     let cookies = document.cookie.split(";");
 

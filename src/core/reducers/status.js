@@ -1,8 +1,5 @@
 import {
-  EMAIL_ACCEPTED,
-  LOGIN_ERROR,
   LOGIN_SUCCESS,
-  NEW_PASSWORD_ACCEPTED,
   PERMISSIONS_SUCCESS,
   REQUEST_ERROR,
   TOKEN_FOUND,
@@ -13,8 +10,6 @@ import {
 const defaultStatus = {
   token: null,
   permissions: null,
-  tokenExists: false,
-  requestSuccessful: false,
   errorStatus: null,
   errorStatusText: null,
   loginError: "",
@@ -46,51 +41,22 @@ const status = (state = defaultStatus, action) => {
         ...state,
         token: action.payload.token,
         permissions: action.payload.permissions,
-        tokenExists: true,
-        requestSuccessful: true,
-        errorStatus: null,
-        errorStatusText: null
-      };
-
-    case LOGIN_ERROR:
-      return {
-        ...state,
-        token: null,
-        tokenExists: false,
-        requestSuccessful: false
+        requestSuccess: true,
       };
 
     case REQUEST_ERROR:
+      alert(action.error.errorText);
       return {
         ...state,
-        tokenExists: false,
         requestSuccessful: false,
         errorStatus: action.error.errorStatus,
-        errorStatusText: action.error.errorText
+        errorStatusText: action.error.errorText,
       };
 
     case PERMISSIONS_SUCCESS:
       return {
         ...state,
-        tokenExists: true,
-        requestSuccessful: true,
         permissions: action.payload
-      };
-
-    case NEW_PASSWORD_ACCEPTED:
-      return {
-        ...state,
-        requestSuccessful: true,
-        errorStatus: null,
-        errorStatusText: null
-      };
-
-    case EMAIL_ACCEPTED:
-      return {
-        ...state,
-        requestSuccessful: true,
-        errorStatus: null,
-        errorStatusText: null
       };
 
     default:
