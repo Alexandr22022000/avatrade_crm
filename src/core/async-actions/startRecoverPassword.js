@@ -1,34 +1,32 @@
 import HTTPS from "../HTTPS";
 import {SERVER_STATUS} from "../HTTPS/serverStatuses";
-import {requestError} from "../actions/requestError";
 import goodLoginError from "../actions/goodLoginError";
-import requestSuccess from "../actions/requestSuccess";
+import {loginSuccess} from "../actions/loginSuccess";
 
 
 const startRecoverPassword = (email) => (dispatch, getState) => {
-    HTTPS.dispatch = dispatch;
-    HTTPS.HTTP.post('/api/v0.0/start_recover_password', {email})
-        .then(response => {
-            dispatch(requestSuccess());
+
+    HTTPS.postRequest('/api/v0.0/start_recover_password', {email})
+        .then((response) => {
+            dispatch(loginSuccess(response));
         })
-        .catch((reason) => {
-            if (!reason.response) {
+        .catch((error) => {
+            if (!error) {
                 dispatch(goodLoginError("Нет подключения к серверу"));
                 return;
             }
 
-            switch (reason.response.status) {
+            switch (error.status) {
                 case SERVER_STATUS.UNAUTHORIZED:
                     dispatch(goodLoginError("Не верный email"));
                     break;
-                case SERVER_STATUS.NOT_FOUND:
-                    dispatch(requestError(SERVER_STATUS.NOT_FOUND, reason.response.statusText));
-                    break;
+
                 case SERVER_STATUS.INTERNAL_SERVER_ERROR:
-                    dispatch(requestError(SERVER_STATUS.INTERNAL_SERVER_ERROR, reason.response.statusText));
+                    dispatch(goodLoginError("Ошибка на сервере"));
                     break;
+
                 default:
-                    dispatch(requestError(reason.response.status, reason.response.statusText));
+                    HTTPS.catch(error);
                     break;
             }
         });

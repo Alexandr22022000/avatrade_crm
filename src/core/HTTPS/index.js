@@ -30,7 +30,7 @@ const HTTPS = {
     },
 
     postRequest (url, body) {
-        new Promise((resolve, reject) => {
+        return new Promise((resolve, reject) => {
             this.HTTP.post(url, body)
                 .then((response) => resolve(response.data))
                 .catch((reason => reject(reason.response)));
@@ -38,7 +38,7 @@ const HTTPS = {
     },
 
     getRequest (url, params) {
-        new Promise((resolve, reject) => {
+        return new Promise((resolve, reject) => {
             this.HTTP.get(url, {params})
                 .then((response) => resolve(response.data))
                 .catch((reason => reject(reason.response)));
@@ -47,19 +47,19 @@ const HTTPS = {
 
     post (url, body, dispatch, getState){
         this.dispatch = dispatch;
-        new Promise((resolve, reject) => {
+        return new Promise((resolve, reject) => {
             this.postRequest(url, {...body, token: getState().status.token}, dispatch)
                 .then((data) => resolve(data))
-                .catch(this.catch);
+                .catch(this.catch.bind(this));
         });
     },
 
     get(url, params, dispatch, getState) {
         this.dispatch = dispatch;
-        new Promise((resolve, reject) => {
+        return new Promise((resolve, reject) => {
             this.getRequest(url, {...params, token: getState().status.token}, dispatch, getState)
                 .then((data) => resolve(data))
-                .catch(this.catch);
+                .catch(this.catch.bind(this));
         });
     }
 };

@@ -6,30 +6,27 @@ import goodLoginError from "../actions/goodLoginError";
 
 
 const loginPost = (login, password) => (dispatch, getState) => {
-    HTTPS.dispatch = dispatch;
-    HTTPS.HTTP.post('/api/v0.0/login', {login, password})
-        .then(response => {
-            HTTPS.token = response.data.token;
-            dispatch(loginSuccess(response.data));
+    HTTPS.postRequest('/api/v0.0/login', {login, password})
+        .then((response) => {
+            dispatch(loginSuccess(response));
         })
-        .catch((reason) => {
-            if (!reason.response) {
+        .catch((error) => {
+            if (!error) {
                 dispatch(goodLoginError("Нет подключения к серверу"));
                 return;
             }
 
-            switch (reason.response.status) {
+            switch (error.status) {
                 case SERVER_STATUS.UNAUTHORIZED:
                     dispatch(goodLoginError("Не верный логин или пароль"));
                     break;
-                case SERVER_STATUS.NOT_FOUND:
-                    dispatch(requestError(SERVER_STATUS.NOT_FOUND, reason.response.statusText));
-                    break;
+
                 case SERVER_STATUS.INTERNAL_SERVER_ERROR:
-                    dispatch(requestError(SERVER_STATUS.INTERNAL_SERVER_ERROR, reason.response.statusText));
+                    dispatch(goodLoginError("Ошибка на сервере"));
                     break;
+
                 default:
-                    dispatch(requestError(reason.response.status, reason.response.statusText));
+                    HTTPS.catch(error);
                     break;
             }
         });
