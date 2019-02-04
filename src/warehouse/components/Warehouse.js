@@ -25,27 +25,21 @@ class Warehouse extends Component {
                     </button>
                 </div>
                 <div className={'dataTable'}>
-                    <table>
-                        <thead>
-                            <tr>
-                                <td>
-                                    Артикул
-                                </td>
-                                <td>
-                                    Наименование
-                                </td>
-                                <td>
-                                    Количество
-                                </td>
-                                <td>
-                                    Стоимость
-                                </td>
-                                <td>
-                                    Склад
-                                </td>
-                            </tr>
-                        </thead>
-                    </table>
+                    <div style={{display:'inline-block'}}>
+                        Артикул
+                    </div>
+                    <div style={{display:'inline-block'}}>
+                        Наименование
+                    </div>
+                    <div style={{display:'inline-block'}}>
+                        Количество
+                    </div>
+                    <div style={{display:'inline-block'}}>
+                        Стоимость
+                    </div>
+                    <div style={{display:'inline-block'}}>
+                        Склад
+                    </div>
                 </div>
             </div>
         )
