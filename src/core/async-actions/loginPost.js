@@ -1,7 +1,6 @@
 import HTTPS from "../HTTPS";
 import {loginSuccess} from "../actions/loginSuccess";
 import {SERVER_STATUS} from "../HTTPS/serverStatuses";
-import {requestError} from "../actions/requestError";
 import goodLoginError from "../actions/goodLoginError";
 
 
