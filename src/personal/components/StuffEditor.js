@@ -54,7 +54,7 @@ class StuffEditor extends Component {
           />
 
           <StuffInput
-            title={"Адресс:"}
+            title={"Адрес:"}
             value={this.props.currentUser.address}
             onChange={v => this.updateUserData(v, "address")}
             alwaysActive={isNew}

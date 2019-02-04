@@ -82,6 +82,8 @@ Runs production server. Can be used for test API.
 
 - 404 - Not found
 
+- 409 - Conflict
+
 - 500 - Internal server error 
 
 ### Core:
@@ -91,23 +93,23 @@ Runs production server. Can be used for test API.
 Request body:
 
 ```$xslt
-login: string
-password: string
+login: text
+password: text
 ```
 
 Response body:
 
 ```$xslt
-token: string
+token: text
 permissions: integer[]
 ```
 
 #### `GET: /api/v0.0/permissions`
 
-Request headers:
+Request params:
 
 ```$xslt
-token: string
+token: text
 ```
 
 Response body:
@@ -120,10 +122,10 @@ permissions: integer[]
 
 #### `GET: /api/v0.0/users`
 
-Request headers:
+Request params:
 
 ```$xslt
-token: string,
+token: text,
 is_all: bool (optional)
 ```
 
@@ -142,10 +144,10 @@ users: [
 
 #### `GET: /api/v0.0/user`
 
-Request headers:
+Request params:
 
 ```$xslt
-token: string,
+token: text,
 id: bigint
 ```
 
@@ -175,7 +177,7 @@ ranks: [
 Request body:
 
 ```$xslt
-token: string,
+token: text,
 id: bigint,
 email: text,
 name: text,
@@ -198,7 +200,7 @@ Response body:
 Request body:
 
 ```$xslt
-token: string,
+token: text,
 email: text,
 name: text,
 rank: bigint,
@@ -220,9 +222,9 @@ Response body:
 Request body:
 
 ```$xslt
-token: string,
+token: text,
 id: bigint,
-status: integer
+status: text
 ```
 
 Response body:
@@ -236,7 +238,7 @@ Response body:
 Request body:
 
 ```$xslt
-email: string
+email: text
 ```
 
 Response body:
@@ -250,14 +252,140 @@ Response body:
 Request body:
 
 ```$xslt
-token: string,
-password: string
+token: text,
+password: text
 ```
 
 Response body:
 
 ```$xslt
 
+```
+
+### Cargos:
+
+#### `GET: /api/v0.0/stocks`
+
+Request params:
+
+```$xslt
+token: text,
+is_all: bool, (optional) 
+store: integer, (optional)
+search: text (optional)
+```
+
+Response body:
+
+```$xslt
+stocks: [
+    {
+        id: bigint,
+        count: integer,
+        name: text,
+        article: text, 
+        address: rext,
+        cargo_id: bigint,
+        store_id: bigint,
+    }
+]
+```
+
+#### `GET: /api/v0.0/cargos`
+
+Request params:
+
+```$xslt
+token: text,
+search: text (optional)
+```
+
+Response body:
+
+```$xslt
+cargos: [
+    {
+        id: bigint,
+        name: text,
+        article: text,
+    }
+]
+```
+
+#### `POST: /api/v0.0/add_stocks`
+
+Request body:
+
+```$xslt
+token: text,
+count: integer,
+cargo: integer
+```
+
+Response body:
+
+```$xslt
+
+```
+
+#### `POST: /api/v0.0/add_stocks`
+
+Request body:
+
+```$xslt
+token: text,
+count: integer,
+name: text,
+article: text
+```
+
+Response body:
+
+```$xslt
+
+```
+
+#### `POST: /api/v0.0/migrate`
+
+Request body:
+
+```$xslt
+token: text,
+from: integer,
+to: integer,
+stocks: [
+    {
+        id: integer,
+        count: integer
+    }
+]
+```
+
+Response body:
+
+```$xslt
+
+```
+
+### Stores:
+
+#### `GET: /api/v0.0/stores`
+
+Request params:
+
+```$xslt
+token: text,
+```
+
+Response body:
+
+```$xslt
+stores: [
+    {
+        id: bigint, 
+        address: rext,
+    }
+]
 ```
 
 ## Constants
