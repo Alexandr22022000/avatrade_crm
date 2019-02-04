@@ -44,9 +44,10 @@
 
 @media screen and (max-height: 768px) and (min-height: 400px) {
     .dataTable{
-        overflow: auto;
-        overflow-y: scroll;
-        height: 500px;
+        margin-top: 2%;
+        margin-left: 2%;
+        height: 450px;
+        width: 450px;
         background-color: #1f1f1f;
         border: #555555 solid 1px;
         box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);
@@ -57,12 +58,14 @@
     .dataTable{
         margin-top: 2%;
         margin-left: 2%;
-        overflow: auto;
-        overflow-y: scroll;
         height: 700px;
-        width: 500px;
+        width: 550px;
         background-color: #1f1f1f;
         border: #555555 solid 1px;
         box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);
+    }
+    .stocks{
+        overflow: auto;
+        overflow-y: scroll;
     }
 }

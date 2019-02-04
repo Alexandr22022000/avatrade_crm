@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../styles/LoginPage.css";
 import { Link } from "react-router-dom";
-import Form from "./PassRecover";
+import Form from "./Form";
 
 class EmailSender extends Component {
   render() {
