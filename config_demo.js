@@ -3,7 +3,7 @@ module.exports = {
     DOMAIN: 'http://localhost:4000',
     PORT: 4000,
     EMAIL_SERVER: {
-        host: 'smtp.gmail.com',
+        host: 'smtp.yandex.ru',
         port: 465,
         secure: true,
         auth: {
