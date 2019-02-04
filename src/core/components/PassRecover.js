@@ -45,7 +45,10 @@ class PassRecover extends Component{
                         <div className={'inputHolder'}>
                             <label>Пароль:</label>
                             <br/>
-                            <div><input value={this.state.password1} onChange={(e) => this.setState({password1: e.target.value})} placeholder={'password'}/></div>
+                            <div><input value={this.state.password1}
+                                        onChange={(e) => this.setState({password1: e.target.value})}
+                                        placeholder={'password'}/>
+                            </div>
 
                         </div>
                         <div className={'inputHolder'}>

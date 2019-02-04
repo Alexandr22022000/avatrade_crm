@@ -47,6 +47,7 @@
         overflow: auto;
         overflow-y: scroll;
         height: 500px;
+        width: 450px;
         background-color: #1f1f1f;
         border: #555555 solid 1px;
         box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);
@@ -60,7 +61,7 @@
         overflow: auto;
         overflow-y: scroll;
         height: 700px;
-        width: 500px;
+        width: 550px;
         background-color: #1f1f1f;
         border: #555555 solid 1px;
         box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);
