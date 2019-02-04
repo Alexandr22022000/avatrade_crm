@@ -27,7 +27,7 @@ class MultiInput extends Component {
             input = (
                 <div onBlurCapture={() => this.setInputShow(false)}>
                     <DropDown
-                        className={'dropdownPlaceholder'}
+                        className={'dropdownPlaceholder dropdown-sizes'}
                         options={this.props.options}
                         disabled={disabled}
                         value={this.inputValue}

@@ -3,7 +3,6 @@ import getToken from "../cookie/getToken";
 import PropTypes from "prop-types";
 import "../styles/NavBar.css";
 import "../styles/buttons.css";
-import { PERMISSIONS } from "../constants";
 import getCleanUrl from "../HTTPS/getCleanUrl";
 import getButtonsInfo from "../constants/getButtonsInfo";
 

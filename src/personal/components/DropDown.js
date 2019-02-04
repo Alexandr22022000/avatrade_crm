@@ -21,7 +21,7 @@ class DropDown extends Component {
         }
 
         return(
-            <div className={this.props.holderClassName}>
+            <div className={this.props.holderClassName} style={this.props.holderStyle}>
                 <select className={this.props.className} onChange={(e) => this.onChange(e.target.value)}>
                     {options}
                 </select>
