@@ -15,7 +15,7 @@ const express = require('express'),
 
     app = express();
 
-app.set('port', (process.env.PORT || 4000));
+app.set('port', (process.env.PORT || CONFIG.PORT));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 n_login.setConfig(checkUser);
