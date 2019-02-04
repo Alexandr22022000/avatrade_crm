@@ -16,7 +16,7 @@ module.exports = (app) => {
 
         query(QUERY.GET_CARGOS, [search])
             .then(({rows}) => {
-                res.status(200).json({stocks: rows});
+                res.status(200).json({cargos: rows});
             });
     });
 };

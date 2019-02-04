@@ -4,7 +4,7 @@ const {checkUser} = require('neuronex-login-backend'),
     PERMISSIONS = require('../../../core/constants/permissions'),
     QUERY = require('../../pSQL/stocks'),
     CAGROS_QUERY = require('../../pSQL/cargos'),
-    STORES_QUERY = require('../../../stores/pSQL/stores');
+    STORES_QUERY = require('../../pSQL/stores');
 
 module.exports = (app) => {
     app.post('/api/v0.0/add_stocks', (req, res) => {
