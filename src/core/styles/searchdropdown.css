@@ -1,0 +1,30 @@
+#options {
+    position: absolute;
+    display: block;
+    background-color: black;
+    color: #D5D9DE;
+    width: 292px;
+    height: 100px;
+    overflow: auto;
+    overflow-y: scroll;
+}
+
+#options div {
+    cursor: pointer;
+    padding: 15px 5px;
+    font-size: 20px;
+}
+#options div:hover {
+    background-color: #424242;
+}
+
+.search-input {
+    font-size: 24px;
+    padding: 0;
+    background-color: #1f1f1f;
+    color: white;
+    border: none;
+    outline: 0;
+    outline-offset: 0;
+    border-bottom: #44006d solid 2px;
+}

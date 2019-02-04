@@ -7,7 +7,8 @@ class Modal extends Component {
         return(
             <div className={this.props.bgClassName} onClick={() => this.props.onClose()}>
                 <div className={this.props.windowClassName} onClick={e => e.stopPropagation()}>
-                    <div id={"cross"}>
+                    <div id={'modalHeader'}>
+                        <div id={'headerName'}>{this.props.header? this.props.header: ''}</div>
                         <img
                             src={cross}
                             onClick={() => this.props.onClose()}
@@ -15,6 +16,7 @@ class Modal extends Component {
                             style={{ cursor: "pointer" }}
                         />
                     </div>
+
                     <div className={this.props.childClassName}>{this.props.children}</div>
                     <div className={this.props.controlClassName}>{this.props.controls}</div>
                 </div>

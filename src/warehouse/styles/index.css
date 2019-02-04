@@ -29,6 +29,13 @@
     outline: none;
 }
 
+.warehouse-control-dropdown-modal {
+    width: 200px;
+    font-size: 16px;
+    padding: 5px 10px;
+    margin-bottom: 20px;
+}
+
 .warehouse-control-input-icon {
     width: 32px;
     height: 32px;
@@ -47,11 +54,25 @@
         margin-top: 2%;
         margin-left: 2%;
         height: 450px;
-        width: 450px;
+        width: 600px;
         background-color: #1f1f1f;
         border: #555555 solid 1px;
         box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);
     }
+    .warehouse-modal {
+        width: 450px;
+        height: 400px;
+        margin-left: 36%;
+        margin-top: 8%;
+        background-color: #1f1f1f;
+        border-radius: 6px;
+    }
+    .stocks{
+        margin-left: 4%;
+        height: 335px;
+        margin-top: 10px;
+    }
+
 }
 
 @media screen and (min-height: 720px) {
@@ -59,13 +80,40 @@
         margin-top: 2%;
         margin-left: 2%;
         height: 700px;
-        width: 550px;
+        width: 700px;
         background-color: #1f1f1f;
         border: #555555 solid 1px;
         box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);
     }
-    .stocks{
-        overflow: auto;
-        overflow-y: scroll;
+
+    .warehouse-modal {
+        width: 450px;
+        height: 400px;
+        margin-left: 36%;
+        margin-top: 15%;
+        background-color: #1f1f1f;
+        border-radius: 6px;
     }
+    .stocks{
+        margin-left: 4%;
+        height: 315px;
+        margin-top: 20px;
+    }
+}
+
+
+.table-header {
+    display: table;
+    width: inherit;
+    margin: 0 auto;
+}
+
+.table-header-cell {
+    display: table-cell;
+    border-left: black solid 1px;
+    border-right: black solid 1px;
+    text-align: center;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    border-bottom: black solid 2px;
 }

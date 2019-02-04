@@ -22,6 +22,7 @@ class StuffInput extends Component {
       input = (
         <input
           onChange={e => this.props.onChange(e.target.value)}
+          placeholder={this.props.placeholder}
           value={this.props.value}
           onBlurCapture={() => this.setActive(false)}
           autoFocus
@@ -63,7 +64,7 @@ class StuffInput extends Component {
             onMouseOut={() => this.setIconShow(false)}
           >
             <div>
-              <div className={"inline fixed"}>{value}</div>
+              <div className={"inline fixed"}>{value? value: this.props.placeholder}</div>
               {!this.state.showIcon ? (
                 ""
               ) : (
