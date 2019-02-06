@@ -284,7 +284,7 @@ stocks: [
         count: integer,
         name: text,
         article: text, 
-        address: rext,
+        store: rext,
         cargo_id: bigint,
         store_id: bigint,
     }

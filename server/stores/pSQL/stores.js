@@ -1,3 +1,3 @@
 module.exports = {
-    STORES_GET: 'SELECT id, address FROM stores',
+    STORES_GET: 'SELECT id, address, name FROM stores',
 };
