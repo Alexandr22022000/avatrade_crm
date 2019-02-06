@@ -433,6 +433,39 @@ stores: [
 ]
 ```
 
+#### `POST: /api/v0.0/add_store`
+
+Request params:
+
+```$xslt
+token: text,
+name: text,
+address: text
+```
+
+Response body:
+
+```$xslt
+
+```
+
+#### `POST: /api/v0.0/store`
+
+Request params:
+
+```$xslt
+token: text,
+id: integer,
+name: text,
+address: text
+```
+
+Response body:
+
+```$xslt
+
+```
+
 ## Constants
 
 ### Permissions list
