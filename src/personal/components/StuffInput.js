@@ -21,7 +21,7 @@ class StuffInput extends Component {
     } else {
       input = (
         <input
-          onChange={e => this.props.onChange(e.target.value)}
+          onChange={e => this.onChange(e.target.value)}
           placeholder={this.props.placeholder}
           value={this.props.value}
           onBlurCapture={() => this.setActive(false)}
@@ -43,7 +43,7 @@ class StuffInput extends Component {
 
     if (this.state.isActive || this.props.alwaysActive) {
       return (
-        <div>
+        <div style={this.props.style}>
           <div className={"header-m"}>{this.props.title}</div>
           <div
             className={"body-m"}
@@ -56,7 +56,7 @@ class StuffInput extends Component {
       );
     } else {
       return (
-        <div>
+        <div style={this.props.style}>
           <div className={"header-m"}>{this.props.title}</div>
           <div
             className={"body-m"}
@@ -113,6 +113,18 @@ class StuffInput extends Component {
   onEnter(e) {
     if (e.keyCode === 13) {
       this.setActive(false);
+    }
+
+  }
+
+  onChange(value) {
+    if(this.props.numbers === true){
+      let regexp = /^\d+$/;
+      if(regexp.test(value)){
+        this.props.onChange(value);
+      }
+    } else {
+      this.props.onChange(value);
     }
   }
 }

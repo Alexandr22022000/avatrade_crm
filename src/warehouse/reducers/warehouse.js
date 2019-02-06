@@ -14,6 +14,7 @@ const warehouse = (state = defaultState, action) => {
                 stores: action.stores
             };
         case STOCKS_UPDATE:
+            console.log(action.stocks);
             return{
                 ...state,
                 stocks:action.stocks

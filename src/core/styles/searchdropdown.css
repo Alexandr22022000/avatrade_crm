@@ -14,7 +14,8 @@
     padding: 15px 5px;
     font-size: 20px;
 }
-#options div:hover {
+#options div:hover,
+#options div.hover{
     background-color: #424242;
 }
 
