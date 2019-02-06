@@ -107,7 +107,6 @@ const getButtonsInfo = (permission) => {
             }
         }
     }
-    console.log(buttons);
     return buttons;
 };
 

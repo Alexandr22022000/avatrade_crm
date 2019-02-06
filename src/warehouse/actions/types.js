@@ -1,0 +1,2 @@
+export const STOCKS_UPDATE = 'STOCKS_UPDATE';
+export const CARGOS_UPDATE = 'CARGOS_UPDATE';
