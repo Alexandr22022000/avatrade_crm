@@ -22,13 +22,15 @@ class WarehouseModal extends Component{
                    onClose={()=>this.props.onClose()}
             >
                 <SearchDropdown options={['один', 'два','три']}/>
-                <StuffInput placeholder={'Название'}
+                <StuffInput title={'Имя'}
+                            placeholder={'Название'}
                             onChange={v => {this.setState({name: v})}}
                             value={this.state.name}
                 />
                 <StuffInput placeholder={'Артикул'}
                             onChange={v => {this.setState({article: v})}}
                             value={this.state.article}
+                            title={'Артикул'}
                 />
             </Modal>
         )

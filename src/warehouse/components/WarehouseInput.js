@@ -12,6 +12,7 @@ class WarehouseInput extends Component {
                        placeholder={this.state.placeholder}
                        className={this.props.inputClassName}
                        style={this.props.inputStyle}
+                       onChange={(e) => this.props.onChange(e.target.value)}
                 />
             </div>
         )
