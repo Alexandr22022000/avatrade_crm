@@ -367,6 +367,51 @@ Response body:
 
 ```
 
+#### `GET: /api/v0.0/migrates`
+
+Request params:
+
+```$xslt
+token: text
+```
+
+Response body:
+
+```$xslt
+migrate: [
+    {
+        id: bigint,
+        from_id: bigint,
+        to_id: bigint,
+        from: text,
+        to: text,
+        sender_id: bigint,
+        sender: text,
+        stocks: [
+            {
+                id: bigint,
+                count: integer
+            }
+        ]
+    }
+]
+```
+
+#### `POST: /api/v0.0/approve_migrate`
+
+Request body:
+
+```$xslt
+token: text,
+id: integer
+```
+
+Response body:
+
+```$xslt
+
+```
+
 ### Stores:
 
 #### `GET: /api/v0.0/stores`
