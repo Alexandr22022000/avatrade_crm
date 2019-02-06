@@ -15,7 +15,7 @@ module.exports = (app) => {
         if (!checkPermissions(user, [PERMISSIONS.WAREHOUSE_MANAGER, PERMISSIONS.TOP_MANAGER, PERMISSIONS.OWNER])) return res.status(403).end();
 
         if (!!req.body.cargo) {
-            query(QUERY.INCREASE_STOCKS, [req.body.cargo, req.body.count])
+            query(QUERY.INCREASE_STOCKS, [req.body.cargo, req.body.count, 0])
                 .then(() => res.status(200).end());
         }
         else {
