@@ -82,12 +82,10 @@ class Warehouse extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState, nextContext) {
-        console.log(nextState);
         return true;
     }
 
     onStoreChange(name, index) {
-        console.log(name);
         if(index=== -1){
             this.props.onGetStocks(this.state.is_all,null,this.state.searchStocks);
         } else {
@@ -101,24 +99,24 @@ class Warehouse extends Component {
     }
 
     onIsAllChange(index){
-        console.log(index);
         if(index === 0) {
             this.setState({is_all: true});
-            this.props.onGetStocks(true, this.state.store, this.state.searchStocks)
+            this.props.onGetStocks(true, this.state.store === -1? null : this.props.stores[this.state.store].id, this.state.searchStocks)
         } else {
             this.setState({is_all:false});
-            this.props.onGetStocks(false, this.state.store, this.state.searchStocks)
+            this.props.onGetStocks(false, this.state.store === -1? null : this.props.stores[this.state.store].id, this.state.searchStocks)
         }
+    }
+
+    onFilterChange(value) {
+        this.setState({searchStocks: value});
+        this.props.onGetStocks(this.state.is_all,this.state.store === -1? null : this.props.stores[this.state.store].id,value);
     }
 
     componentDidMount() {
 
         this.props.onGetStocks(true,null,this.state.searchStocks);
         this.props.onGetStores();
-    }
-    onFilterChange(value) {
-        this.setState({searchStocks: value});
-        this.props.onGetStocks(this.state.is_all,this.state.store === -1? null : this.props.stores[this.state.store].id,value);
     }
 }
 
