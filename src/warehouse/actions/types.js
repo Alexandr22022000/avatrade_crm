@@ -1,3 +1,4 @@
 export const STOCKS_UPDATE = 'STOCKS_UPDATE';
 export const CARGOS_UPDATE = 'CARGOS_UPDATE';
 export const STORES_UPDATE = 'STORES_UPDATE';
+export const CHANGE_FILTER = 'CHANGE_FILTER';

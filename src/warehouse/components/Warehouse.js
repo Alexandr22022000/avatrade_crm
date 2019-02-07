@@ -24,21 +24,21 @@ class Warehouse extends Component {
                 <div className={'controlWarehouse'}>
                     <WarehouseInput className={'warehouse-control-input'}
                                     placeholder={'поиск'}
-                                    value={this.state.searchStocks}
+                                    value={this.props.filter.search}
                                     iconClassName={'warehouse-control-input-icon'}
                                     haveIcon={true}
-                                    onChange={(v) => this.onFilterChange(v)}
+                                    onChange={(v) => this.onSearchChange(v)}
                     />
                     <DropDown className={'dropdownPlaceholder warehouse-control-dropdown'}
-                              options={['Все',...stores]}
+                              options={['Все склады', ...stores]}
                               holderStyle={{display: 'inline-block'}}
-                              onChange={v => {this.onStoreChange(stores[v-1], v-1)}}
-                              value={this.state.store + 1}
+                              onChange={v => {this.onStoreChange(v)}}
+                              value={this.getStoreValue()}
                     />
                     <DropDown className={'dropdownPlaceholder warehouse-control-dropdown'}
                               options={['Все','В наличии']}
                               holderStyle={{display: 'inline-block'}}
-                              value={this.state.is_all}
+                              value={this.state.is_all ? 0 : 1}
                               onChange={(v) => {this.onIsAllChange(v)}}
                     />
                     <button className={'btn-m blue-button inline'}
@@ -63,7 +63,7 @@ class Warehouse extends Component {
                     <div  className={'table-body'}>
                         <table>
                             <tbody>
-                            {this.props.stocks? this.props.stocks.map((value, index)=> {
+                            {this.props.stocks ? this.props.stocks.map((value, index)=> {
                                     return <tr key={index}>
                                         <td className={'table-body-cell'} style={{borderLeft: 'none',width: '46px', maxWidth: '40px'}}><input type={'checkbox'}/></td>
                                         <td className={'table-body-cell'} style={{width: '173px'}}>{value.article}</td>
@@ -77,47 +77,53 @@ class Warehouse extends Component {
                         </table>
                     </div>
                 </div>
-                {this.state.showEditor===true? <WarehouseModal onClose={()=> {
-                    this.setState({showEditor: false});
-                    console.log('this.props.onGetStocks()');
-                    this.props.onGetStocks(this.state.is_all, this.state.store === -1? null : this.props.stores[this.state.store].id, this.state.searchStocks)}
-                }/>:''}
+
+                {this.state.showEditor !== true ? '' :
+                    <WarehouseModal onClose={this.onCloseWindow.bind(this)}/>
+                }
             </div>
         )
     }
 
-    onStoreChange(name, index) {
-        if(index=== -1){
-            this.setState({store: -1});
-            this.props.onGetStocks(this.state.is_all,null,this.state.searchStocks);
-        } else {
-            for (let key in this.props.stores) {
-                if (this.props.stores[key].name === name) {
-                    this.setState({store: index});
-                    this.props.onGetStocks(this.state.is_all, this.props.stores[key].id, this.state.searchStocks)
-                }
-            }
+    onCloseWindow () {
+        this.setState({showEditor: false});
+        this.props.onGetStocks();
+    }
+
+    getStoreValue () {
+        if (!this.props.filter.store) return 0;
+
+        for (let key in this.props.stores) {
+            if (this.props.stores[key].id === this.props.filter.store)
+                return +key + 1;
         }
+
+        return 0;
+    }
+
+
+    onStoreChange(index) {
+        if (index === 0) {
+            this.props.changeFilter(this.props.filter.search, null, this.props.filter.is_all);
+        }
+        else {
+            this.props.changeFilter(this.props.filter.search, this.props.stores[index - 1].id, this.props.filter.is_all);
+        }
+        this.props.onGetStocks();
     }
 
     onIsAllChange(index){
-        if(index === 0) {
-            this.setState({is_all: true});
-            this.props.onGetStocks(true, this.state.store === -1? null : this.props.stores[this.state.store].id, this.state.searchStocks)
-        } else {
-            this.setState({is_all:false});
-            this.props.onGetStocks(false, this.state.store === -1? null : this.props.stores[this.state.store].id, this.state.searchStocks)
-        }
+        this.props.changeFilter(this.props.filter.search, this.props.filter.store, index === 0);
+        this.props.onGetStocks();
     }
 
-    onFilterChange(value) {
-        this.setState({searchStocks: value});
-        console.log(this.state.store);
-        this.props.onGetStocks(this.state.is_all,this.state.store === -1? null : this.props.stores[this.state.store].id,value);
+    onSearchChange (value) {
+        this.props.changeFilter(value, this.props.filter.store, this.props.filter.is_all);
+        this.props.onGetStocks();
     }
 
-    componentDidMount() {
-        this.props.onGetStocks(true,null,this.state.searchStocks);
+    componentDidMount () {
+        this.props.onGetStocks();
         this.props.onGetStores();
     }
 }

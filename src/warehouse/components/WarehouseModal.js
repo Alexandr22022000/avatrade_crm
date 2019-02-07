@@ -5,12 +5,6 @@ import SearchDropdown from "../../core/components/SearchDropdown";
 import '../../core/styles/buttons.css'
 
 class WarehouseModal extends Component{
-    state = {
-        name: '',
-        article: '',
-        count:'',
-        selectedCargo:-1,
-    };
     render() {
         const addButton = (<div style={{textAlign:'right',paddingRight:'3%'}}>
             <button className={"btn-m inline" + (this.canSave() ? " blue-button" : "")}
@@ -34,57 +28,60 @@ class WarehouseModal extends Component{
                    onClose={()=>this.onClose(false)}
             >
                 <SearchDropdown options={['Добавить',...cargos]}
-                                onSelect={(v) => {this.setState({selectedCargo: v-1});this.changed = true;}}
+                                onSelect={(v) => {this.setState({cargo: v-1})}}
                 />
-                {this.state.selectedCargo === -1?
+
+                {this.state.cargo !== -1 ? '' :
                     <div>
                         <StuffInput title={'Имя'}
                                 placeholder={'Название'}
-                                onChange={v => {this.setState({name: v});this.changed = true;}}
+                                onChange={v => {this.setState({name: v})}}
                                 value={this.state.name}
+                                alwaysActive={true}
                                 style={{marginTop: '20px'}}
                         />
                         <StuffInput placeholder={'Артикул'}
-                            onChange={v => {this.setState({article: v});this.changed = true;}}
+                            onChange={v => {this.setState({article: v})}}
                             value={this.state.article}
+                            alwaysActive={true}
                             title={'Артикул'}
-                        />
-                        <StuffInput placeholder={'Количество'}
-                                    onChange={v => {this.setState({count: v});this.changed = true;}}
-                                    value={this.state.count}
-                                    title={'Количество'}
-                                    numbers={true}
-                        />
-                    </div>
-                    :
-                    <div>
-                        <StuffInput placeholder={'Количество'}
-                                    onChange={v => {this.setState({count: v, isChanged:true});this.changed = true;}}
-                                    value={this.state.count}
-                                    title={'Количество'}
-                                    numbers={true}
-                                    style={{marginTop: '20px'}}
                         />
                     </div>
                 }
+
+                <StuffInput placeholder={'Количество'}
+                            onChange={v => {this.setState({count: v})}}
+                            value={this.state.count}
+                            title={'Количество'}
+                            numbers={true}
+                            alwaysActive={true}
+                            style={{marginTop: '20px'}}
+                />
 
             </Modal>
         )
     }
 
-
-
-    componentDidMount() {
-        this.props.onGetCargos()
+    componentWillMount () {
+        this.props.onGetCargos();
+        this.setState({
+            cargo: -2,
+            name: '',
+            article: '',
+            count: '',
+        });
     }
 
-    onClose(isSave){
-        console.log(isSave);
+    onClose (isSave) {
         if(isSave){
             if (this.canSave()) {
-                this.state.selectedCargo === -1 ?
-                    this.props.onAddNewStocks(this.state.name, this.state.article, this.state.count) :
-                    this.props.onAddStocks(parseInt(this.state.count), this.props.cargos[this.state.selectedCargo].id);
+                if (this.state.cargo === -1) {
+                    this.props.onAddNewStocks(this.state.name, this.state.article, this.state.count)
+                }
+                else {
+                    this.props.onAddStocks(parseInt(this.state.count), this.props.cargos[this.state.cargo].id);
+                }
+
                 this.props.onClose();
             }
         } else {
@@ -93,7 +90,7 @@ class WarehouseModal extends Component{
     }
 
     canSave () {
-        if(this.state.selectedCargo === -1) {
+        if(this.state.cargo === -1) {
             if (this.state.name ==='') return false;
             if (this.state.article === '') return false;
         }

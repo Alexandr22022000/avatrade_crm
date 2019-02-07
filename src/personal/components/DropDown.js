@@ -10,8 +10,9 @@ class DropDown extends Component {
             disabled = [];
             for (let i = 0; i < this.props.options.length; i++) disabled.push(false);
         }
-        for(let key in this.props.options) {
-            if(disabled[key]) {
+
+        for (let key in this.props.options) {
+            if (disabled[key]) {
                 options.push(<option disabled key={key}>{this.props.options[key]}</option>)
             } else if (+key === this.props.value) {
                 options.push(<option selected key={key}>{this.props.options[key]}</option>)
