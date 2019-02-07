@@ -11,7 +11,6 @@ class Warehouse extends Component {
         is_all: true,
         store: -1,
         searchStocks:'',
-        searchCargos:'',
     };
     render() {
         const stores = [];
@@ -32,16 +31,12 @@ class Warehouse extends Component {
                     <DropDown className={'dropdownPlaceholder warehouse-control-dropdown'}
                               options={['Все',...stores]}
                               holderStyle={{display: 'inline-block'}}
-                              onChange={v => {this.setState({store:v-1}); console.log(this.state,v)}}
+                              onChange={v => {this.onStoreChange(stores[v-1], v-1)}}
                     />
                     <DropDown className={'dropdownPlaceholder warehouse-control-dropdown'}
                               options={['Все','В наличии']}
                               holderStyle={{display: 'inline-block'}}
-                              onChange={(v) => {
-                                  v === 0?
-                                      this.setState({is_all: false}):
-                                      this.setState({is_all:true})
-                              }}
+                              onChange={(v) => {this.onIsAllChange(v)}}
                     />
                     <button className={'btn-m blue-button inline'}
                             style={{fontSize: '18px', marginLeft: '40px'}}
@@ -56,8 +51,8 @@ class Warehouse extends Component {
                         <tr>
                             <td className={'table-header-cell'} style={{borderLeft: 'none', width: '105px'}}>Артикул</td>
                             <td className={'table-header-cell'}  style={{width: '250px'}}>Наименование</td>
-                            <td className={'table-header-cell'}   style={{width: '100px'}}>Количество</td>
-                            <td className={'table-header-cell'}>Стоимость</td>
+                            <td className={'table-header-cell'}  style={{width: '100px'}}>Количество</td>
+                            <td className={'table-header-cell'}  style={{width: '200px'}}>Стоимость</td>
                             <td className={'table-header-cell'} style={{borderRight: 'none'}}>Склад</td>
                         </tr>
                         </thead>
@@ -67,11 +62,11 @@ class Warehouse extends Component {
                             <tbody>
                             {this.props.stocks? this.props.stocks.map((value, index)=> {
                                     return <tr key={index}>
-                                        <td className={'table-header-cell'} style={{borderLeft: 'none',width: '100px'}}>{value.article}</td>
-                                        <td className={'table-header-cell'}  style={{width: '250px'}}>{value.name}</td>
-                                        <td className={'table-header-cell'}  style={{width: '100px'}}>{value.count}</td>
-                                        <td className={'table-header-cell'}>Стоимость</td>
-                                        <td className={'table-header-cell'} style={{borderRight: 'none'}}>{value.store_id}</td>
+                                        <td className={'table-body-cell'} style={{borderLeft: 'none',width: '100px'}}>{value.article}</td>
+                                        <td className={'table-body-cell'}  style={{width: '253px'}}>{value.name}</td>
+                                        <td className={'table-body-cell'}  style={{width: '102px'}}>{value.count}</td>
+                                        <td className={'table-body-cell'}  style={{width: '202px'}}>Стоимость</td>
+                                        <td className={'table-body-cell'} style={{borderRight: 'none'}}>{value.store_id}</td>
                                     </tr>
                                 }
                             ): <tr/>}
@@ -88,10 +83,32 @@ class Warehouse extends Component {
 
     shouldComponentUpdate(nextProps, nextState, nextContext) {
         console.log(nextState);
-        if(nextState.is_all !== this.state.is_all ||nextState.store !== this.state.store || nextState.showEditor !== this.state.showEditor){
-            this.props.onGetStocks(this.state.is_all,this.state.store === -1? null : this.props.stores[this.state.store].id,this.state.searchStocks);
-        }
         return true;
+    }
+
+    onStoreChange(name, index) {
+        console.log(name);
+        if(index=== -1){
+            this.props.onGetStocks(this.state.is_all,null,this.state.searchStocks);
+        } else {
+            for (let key in this.props.stores) {
+                if (this.props.stores[key].name === name) {
+                    this.setState({store: index});
+                    this.props.onGetStocks(this.state.is_all, this.props.stores[key].id, this.state.searchStocks)
+                }
+            }
+        }
+    }
+
+    onIsAllChange(index){
+        console.log(index);
+        if(index === 0) {
+            this.setState({is_all: true});
+            this.props.onGetStocks(true, this.state.store, this.state.searchStocks)
+        } else {
+            this.setState({is_all:false});
+            this.props.onGetStocks(false, this.state.store, this.state.searchStocks)
+        }
     }
 
     componentDidMount() {
