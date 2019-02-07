@@ -24,6 +24,7 @@ class Warehouse extends Component {
                 <div className={'controlWarehouse'}>
                     <WarehouseInput className={'warehouse-control-input'}
                                     placeholder={'поиск'}
+                                    value={this.state.searchStocks}
                                     iconClassName={'warehouse-control-input-icon'}
                                     haveIcon={true}
                                     onChange={(v) => this.onFilterChange(v)}
@@ -32,10 +33,12 @@ class Warehouse extends Component {
                               options={['Все',...stores]}
                               holderStyle={{display: 'inline-block'}}
                               onChange={v => {this.onStoreChange(stores[v-1], v-1)}}
+                              value={this.state.store + 1}
                     />
                     <DropDown className={'dropdownPlaceholder warehouse-control-dropdown'}
                               options={['Все','В наличии']}
                               holderStyle={{display: 'inline-block'}}
+                              value={this.state.is_all}
                               onChange={(v) => {this.onIsAllChange(v)}}
                     />
                     <button className={'btn-m blue-button inline'}
@@ -49,10 +52,10 @@ class Warehouse extends Component {
                     <table className={'table-header'}>
                         <thead>
                         <tr>
-                            <td className={'table-header-cell'} style={{borderLeft: 'none', width: '105px'}}>Артикул</td>
-                            <td className={'table-header-cell'}  style={{width: '250px'}}>Наименование</td>
-                            <td className={'table-header-cell'}  style={{width: '100px'}}>Количество</td>
-                            <td className={'table-header-cell'}  style={{width: '200px'}}>Стоимость</td>
+                            <td className={'table-header-cell'} style={{borderLeft: 'none', width: '58px'}}><input type={'checkbox'}/></td>
+                            <td className={'table-header-cell'} style={{width: '180px'}}>Артикул</td>
+                            <td className={'table-header-cell'}  style={{width: '300px'}}>Наименование</td>
+                            <td className={'table-header-cell'}  style={{width: '150px'}}>Количество</td>
                             <td className={'table-header-cell'} style={{borderRight: 'none'}}>Склад</td>
                         </tr>
                         </thead>
@@ -62,11 +65,11 @@ class Warehouse extends Component {
                             <tbody>
                             {this.props.stocks? this.props.stocks.map((value, index)=> {
                                     return <tr key={index}>
-                                        <td className={'table-body-cell'} style={{borderLeft: 'none',width: '100px'}}>{value.article}</td>
-                                        <td className={'table-body-cell'}  style={{width: '253px'}}>{value.name}</td>
-                                        <td className={'table-body-cell'}  style={{width: '102px'}}>{value.count}</td>
-                                        <td className={'table-body-cell'}  style={{width: '202px'}}>Стоимость</td>
-                                        <td className={'table-body-cell'} style={{borderRight: 'none'}}>{value.store_id}</td>
+                                        <td className={'table-body-cell'} style={{borderLeft: 'none',width: '46px', maxWidth: '40px'}}><input type={'checkbox'}/></td>
+                                        <td className={'table-body-cell'} style={{width: '173px'}}>{value.article}</td>
+                                        <td className={'table-body-cell'}  style={{width: '293px', maxWidth:'290px'}}>{value.name}</td>
+                                        <td className={'table-body-cell'}  style={{width: '144px', maxWidth:'150px'}}>{value.count}</td>
+                                        <td className={'table-body-cell'} style={{borderRight: 'none'}}>{value.store}</td>
                                     </tr>
                                 }
                             ): <tr/>}
@@ -75,18 +78,17 @@ class Warehouse extends Component {
                     </div>
                 </div>
                 {this.state.showEditor===true? <WarehouseModal onClose={()=> {
-                    this.setState({showEditor: false})}
+                    this.setState({showEditor: false});
+                    console.log('this.props.onGetStocks()');
+                    this.props.onGetStocks(this.state.is_all, this.state.store === -1? null : this.props.stores[this.state.store].id, this.state.searchStocks)}
                 }/>:''}
             </div>
         )
     }
 
-    shouldComponentUpdate(nextProps, nextState, nextContext) {
-        return true;
-    }
-
     onStoreChange(name, index) {
         if(index=== -1){
+            this.setState({store: -1});
             this.props.onGetStocks(this.state.is_all,null,this.state.searchStocks);
         } else {
             for (let key in this.props.stores) {
@@ -110,11 +112,11 @@ class Warehouse extends Component {
 
     onFilterChange(value) {
         this.setState({searchStocks: value});
+        console.log(this.state.store);
         this.props.onGetStocks(this.state.is_all,this.state.store === -1? null : this.props.stores[this.state.store].id,value);
     }
 
     componentDidMount() {
-
         this.props.onGetStocks(true,null,this.state.searchStocks);
         this.props.onGetStores();
     }
