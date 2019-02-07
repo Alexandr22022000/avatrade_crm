@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "../styles/searchdropdown.css";
+import cross from "../../images/cross-icon.png";
 
 class SearchDropdown extends Component {
   state = {
@@ -43,6 +44,9 @@ class SearchDropdown extends Component {
             onChange={event => this.onChange(event.target.value)}
             onKeyDown={e => this.onKeyDown(e)}
             onClickCapture={() => this.setState({ showOptions: true })}
+          />
+          <button
+              className={'cross-dropdown'}
           />
           {this.state.showOptions ? this.getOptions() : ""}
         </div>

@@ -119,7 +119,7 @@ class StuffInput extends Component {
 
   onChange(value) {
     if(this.props.numbers === true){
-      let regexp = /^\d+$/;
+      let regexp = /^\d*$/;
       if(regexp.test(value)){
         this.props.onChange(value);
       }
