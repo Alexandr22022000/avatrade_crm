@@ -163,12 +163,12 @@ class Warehouse extends Component {
     }
 
     getCheckboxTool () {
-        if (this.getCheck(false)) return <input type={'checkbox'} onClick={() => this.props.checkAllStocks(true)}/>;
+        if (this.getCheck(false)) return <input type={'checkbox'} checked={false} onClick={() => this.props.checkAllStocks(true)}/>;
 
         if (!this.getCheck(true))
-            return <input  type={'checkbox'} className={'some-check-tool'} onClick={() => this.props.checkAllStocks(true)}/>;
+            return <input checked={false} type={'checkbox'} className={'some-check-tool'} onClick={() => this.props.checkAllStocks(true)}/>;
         else
-            return <input checked type={'checkbox'} onClick={() => this.props.checkAllStocks(false)}/>;
+            return <input checked={true} type={'checkbox'} onClick={() => this.props.checkAllStocks(false)}/>;
     }
 
     getCheck (isChecked) {
