@@ -4,13 +4,15 @@ import '../styles/index.css'
 import DropDown from "../../personal/components/DropDown";
 import WarehouseInput from "./WarehouseInput";
 import WarehouseModal from "../containers/WarehouseModal";
+import MigrateEditor from "../containers/MigrateEditor";
 
 class Warehouse extends Component {
     state = {
         showEditor: false,
+        showMigrate: false,
         is_all: true,
         store: -1,
-        searchStocks:'',
+        searchStocks: '',
     };
 
     createItem (value, index, isBuffer) {
@@ -53,26 +55,39 @@ class Warehouse extends Component {
                                     value={this.props.filter.search}
                                     iconClassName={'warehouse-control-input-icon'}
                                     haveIcon={true}
+                                    onClickIcon={() => this.props.onGetStocks()}
                                     onChange={(v) => this.onSearchChange(v)}
                     />
+
                     <DropDown className={'dropdownPlaceholder warehouse-control-dropdown'}
                               options={['Все склады', ...stores]}
                               holderStyle={{display: 'inline-block'}}
                               onChange={v => {this.onStoreChange(v)}}
                               value={this.getStoreValue()}
                     />
+
                     <DropDown className={'dropdownPlaceholder warehouse-control-dropdown'}
                               options={['Все','В наличии']}
                               holderStyle={{display: 'inline-block'}}
                               value={this.state.is_all ? 0 : 1}
                               onChange={(v) => {this.onIsAllChange(v)}}
                     />
+
                     <button className={'btn-m blue-button inline'}
                             style={{fontSize: '18px', marginLeft: '40px'}}
                             onClick={()=> this.setState({showEditor: true})}
                     >
                         Добавить
                     </button>
+
+                    {this.getCheck(false) ? '' :
+                        <button className={'btn-m inline ' + (this.isOneStore() ? 'blue-button' : '')}
+                                style={{fontSize: '18px', marginLeft: '40px'}}
+                                onClick={()=> this.onMigrate()}
+                        >
+                            Переместить
+                        </button>
+                    }
                 </div>
                 <div className={'dataTable'}>
                     <table className={'table-header'}>
@@ -97,8 +112,11 @@ class Warehouse extends Component {
                     </div>
                 </div>
 
-                {this.state.showEditor !== true ? '' :
+                {!this.state.showEditor ? '' :
                     <WarehouseModal onClose={this.onCloseWindow.bind(this)}/>
+                }
+                {!this.state.showMigrate ? '' :
+                    <MigrateEditor onClose={() => this.setState({showMigrate: false})}/>
                 }
             </div>
         )
@@ -147,30 +165,50 @@ class Warehouse extends Component {
     }
 
     getCheckboxTool () {
-        let haveCheck = false;
+        if (this.getCheck(false)) return <input type={'checkbox'} onClick={() => this.props.checkAllStocks(true)}/>;
 
-        this.props.buffer.map(item => {
-            if (item.isChecked) haveCheck = true;
-        });
-        this.props.stocks.map(item => {
-            if (item.isChecked) haveCheck = true;
-        });
-
-        if (!haveCheck) return <input type={'checkbox'} onClick={() => this.props.checkAllStocks(true)}/>;
-
-        let haveUncheck = false;
-
-        this.props.buffer.map(item => {
-            if (!item.isChecked) haveUncheck = true;
-        });
-        this.props.stocks.map(item => {
-            if (!item.isChecked) haveUncheck = true;
-        });
-
-        if (haveUncheck)
+        if (!this.getCheck(true))
             return <input  type={'checkbox'} className={'some-check-tool'} onClick={() => this.props.checkAllStocks(true)}/>;
         else
             return <input checked type={'checkbox'} onClick={() => this.props.checkAllStocks(false)}/>;
+    }
+
+    getCheck (isChecked) {
+        let isOk = true;
+
+        this.props.buffer.map(item => {
+            if (item.isChecked !== isChecked) isOk = false;
+        });
+        this.props.stocks.map(item => {
+            if (item.isChecked !== isChecked) isOk = false;
+        });
+
+        return isOk;
+    }
+
+    isOneStore () {
+        let store, isOk = true;
+
+        this.props.buffer.map(item => {
+            if (item.isChecked) {
+                if (!store) return store = item.store;
+                if (store !== item.store) isOk = false;
+            }
+        });
+        this.props.stocks.map(item => {
+            if (item.isChecked) {
+                if (!store) return store = item.store;
+                if (store !== item.store) isOk = false;
+            }
+        });
+
+        return !!store && isOk;
+    }
+
+    onMigrate () {
+        if (!this.isOneStore()) return;
+
+        this.setState({showMigrate: true});
     }
 }
 

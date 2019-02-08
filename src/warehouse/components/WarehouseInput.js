@@ -7,7 +7,7 @@ class WarehouseInput extends Component {
     render() {
         return(
             <div className={this.props.className}>
-                {this.props.haveIcon === true? <button className={this.props.iconClassName} onClick={()=> console.log('icon')}/> : ''}
+                {this.props.haveIcon === true? <button className={this.props.iconClassName} onClick={this.props.onClickIcon}/> : ''}
                 <input value={this.props.value}
                        placeholder={this.state.placeholder}
                        className={this.props.inputClassName}
