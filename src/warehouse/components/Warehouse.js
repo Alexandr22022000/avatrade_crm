@@ -22,14 +22,12 @@ class Warehouse extends Component {
             </tr>
         );
 
+        console.log(value.isChecked);
+
         return (
             <tr>
                 <td className={'table-body-cell'} style={{borderLeft: 'none',width: '46px', maxWidth: '40px'}}>
-                    {value.isChecked ?
-                        <input checked type={'checkbox'} onClick={() => this.props.checkStock(index, isBuffer)}/>
-                        :
-                        <input type={'checkbox'} onClick={() => this.props.checkStock(index, isBuffer)}/>
-                    }
+                    <input checked={value.isChecked} type={'checkbox'} onClick={() => this.props.checkStock(index, isBuffer)}/>
                 </td>
 
                 <td className={'table-body-cell'} style={{width: '173px'}}>{value.article}</td>
