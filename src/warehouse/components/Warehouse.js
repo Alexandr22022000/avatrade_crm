@@ -52,11 +52,11 @@ class Warehouse extends Component {
                     <table className={'table-header'}>
                         <thead>
                         <tr>
-                            <td className={'table-header-cell'} style={{borderLeft: 'none', width: '58px'}}><input type={'checkbox'}/></td>
-                            <td className={'table-header-cell'} style={{width: '180px'}}>Артикул</td>
-                            <td className={'table-header-cell'}  style={{width: '300px'}}>Наименование</td>
-                            <td className={'table-header-cell'}  style={{width: '150px'}}>Количество</td>
-                            <td className={'table-header-cell'} style={{borderRight: 'none'}}>Склад</td>
+                            <td className={'table-cell'} style={{borderLeft: 'none'}}><input type={'checkbox'}/></td>
+                            <td className={'table-cell'}>Артикул</td>
+                            <td className={'table-cell'}>Наименование</td>
+                            <td className={'table-cell'}>Количество</td>
+                            <td className={'table-cell'}>Склад</td>
                         </tr>
                         </thead>
                     </table>
@@ -65,11 +65,11 @@ class Warehouse extends Component {
                             <tbody>
                             {this.props.stocks? this.props.stocks.map((value, index)=> {
                                     return <tr key={index}>
-                                        <td className={'table-body-cell'} style={{borderLeft: 'none',width: '46px', maxWidth: '40px'}}><input type={'checkbox'}/></td>
-                                        <td className={'table-body-cell'} style={{width: '173px'}}>{value.article}</td>
-                                        <td className={'table-body-cell'}  style={{width: '293px', maxWidth:'290px'}}>{value.name}</td>
-                                        <td className={'table-body-cell'}  style={{width: '144px', maxWidth:'150px'}}>{value.count}</td>
-                                        <td className={'table-body-cell'} style={{borderRight: 'none'}}>{value.store}</td>
+                                        <td className={'table-cell'} style={{borderLeft: 'none'}}><input type={'checkbox'}/></td>
+                                        <td className={'table-cell'}>{value.article}</td>
+                                        <td className={'table-cell'}>{value.name}</td>
+                                        <td className={'table-cell'}>{value.count}</td>
+                                        <td className={'table-cell'} style={{borderRight: 'none'}}>{value.store}</td>
                                     </tr>
                                 }
                             ): <tr/>}
