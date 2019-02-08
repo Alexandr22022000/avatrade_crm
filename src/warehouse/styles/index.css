@@ -148,3 +148,11 @@
     width: 99%;
     margin: 0 auto;
 }
+
+.some-check-tool:before {
+    background-color: gray;
+    content: "";
+    width: 13px;
+    height: 13px;
+    position: absolute;
+}

@@ -12,6 +12,32 @@ class Warehouse extends Component {
         store: -1,
         searchStocks:'',
     };
+
+    createItem (value, index, isBuffer) {
+        if (!value) return (
+            <tr>
+
+            </tr>
+        );
+
+        return (
+            <tr>
+                <td className={'table-body-cell'} style={{borderLeft: 'none',width: '46px', maxWidth: '40px'}}>
+                    {value.isChecked ?
+                        <input checked type={'checkbox'} onClick={() => this.props.checkStock(index, isBuffer)}/>
+                        :
+                        <input type={'checkbox'} onClick={() => this.props.checkStock(index, isBuffer)}/>
+                    }
+                </td>
+
+                <td className={'table-body-cell'} style={{width: '173px'}}>{value.article}</td>
+                <td className={'table-body-cell'}  style={{width: '293px', maxWidth:'290px'}}>{value.name}</td>
+                <td className={'table-body-cell'}  style={{width: '144px', maxWidth:'150px'}}>{value.count}</td>
+                <td className={'table-body-cell'} style={{borderRight: 'none'}}>{value.store}</td>
+            </tr>
+        );
+    }
+
     render() {
         const stores = [];
         if(this.props.stores !== null) {
@@ -52,7 +78,7 @@ class Warehouse extends Component {
                     <table className={'table-header'}>
                         <thead>
                         <tr>
-                            <td className={'table-header-cell'} style={{borderLeft: 'none', width: '58px'}}><input type={'checkbox'}/></td>
+                            <td className={'table-header-cell'} style={{borderLeft: 'none', width: '58px'}}>{this.getCheckboxTool()}</td>
                             <td className={'table-header-cell'} style={{width: '180px'}}>Артикул</td>
                             <td className={'table-header-cell'}  style={{width: '300px'}}>Наименование</td>
                             <td className={'table-header-cell'}  style={{width: '150px'}}>Количество</td>
@@ -63,16 +89,9 @@ class Warehouse extends Component {
                     <div  className={'table-body'}>
                         <table>
                             <tbody>
-                            {this.props.stocks ? this.props.stocks.map((value, index)=> {
-                                    return <tr key={index}>
-                                        <td className={'table-body-cell'} style={{borderLeft: 'none',width: '46px', maxWidth: '40px'}}><input type={'checkbox'}/></td>
-                                        <td className={'table-body-cell'} style={{width: '173px'}}>{value.article}</td>
-                                        <td className={'table-body-cell'}  style={{width: '293px', maxWidth:'290px'}}>{value.name}</td>
-                                        <td className={'table-body-cell'}  style={{width: '144px', maxWidth:'150px'}}>{value.count}</td>
-                                        <td className={'table-body-cell'} style={{borderRight: 'none'}}>{value.store}</td>
-                                    </tr>
-                                }
-                            ): <tr/>}
+                            {this.props.buffer.map((value, index)=> this.createItem(value, index, true))}
+                            {this.createItem()}
+                            {this.props.stocks.map((value, index)=> this.createItem(value, index, false))}
                             </tbody>
                         </table>
                     </div>
@@ -125,6 +144,33 @@ class Warehouse extends Component {
     componentDidMount () {
         this.props.onGetStocks();
         this.props.onGetStores();
+    }
+
+    getCheckboxTool () {
+        let haveCheck = false;
+
+        this.props.buffer.map(item => {
+            if (item.isChecked) haveCheck = true;
+        });
+        this.props.stocks.map(item => {
+            if (item.isChecked) haveCheck = true;
+        });
+
+        if (!haveCheck) return <input type={'checkbox'} onClick={() => this.props.checkAllStocks(true)}/>;
+
+        let haveUncheck = false;
+
+        this.props.buffer.map(item => {
+            if (!item.isChecked) haveUncheck = true;
+        });
+        this.props.stocks.map(item => {
+            if (!item.isChecked) haveUncheck = true;
+        });
+
+        if (haveUncheck)
+            return <input  type={'checkbox'} className={'some-check-tool'} onClick={() => this.props.checkAllStocks(true)}/>;
+        else
+            return <input checked type={'checkbox'} onClick={() => this.props.checkAllStocks(false)}/>;
     }
 }
 
