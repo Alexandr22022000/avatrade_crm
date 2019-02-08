@@ -3,6 +3,7 @@ import Modal from '../../core/components/Modal';
 import StuffInput from "../../personal/components/StuffInput";
 import SearchDropdown from "../../core/components/SearchDropdown";
 import '../../core/styles/buttons.css'
+import CountableField from "../../core/components/CountableField";
 
 class WarehouseModal extends Component{
     render() {
@@ -27,10 +28,10 @@ class WarehouseModal extends Component{
                    controls={addButton}
                    onClose={()=>this.onClose(false)}
             >
+                <CountableField title={'Поле'}/>
                 <SearchDropdown options={['Добавить',...cargos]}
                                 onSelect={(v) => {this.setState({cargo: v-1})}}
                 />
-
                 {this.state.cargo !== -1 ? '' :
                     <div>
                         <StuffInput title={'Имя'}
