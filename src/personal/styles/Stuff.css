@@ -103,12 +103,11 @@
 }
 
 ::-webkit-scrollbar {
+  z-index: 1000;
   width: 8px;
   background-color: rgba(0, 0, 0, 0);
 }
-::-webkit-scrollbar:hover {
-  width: 6px;
-}
+
 ::-webkit-scrollbar-thumb {
   background-color: #404040;
   border-radius: 4px;

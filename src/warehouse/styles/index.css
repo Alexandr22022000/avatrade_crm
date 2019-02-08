@@ -79,7 +79,7 @@
         overflow: auto;
         overflow-y: scroll;
         width: inherit;
-        height: 410px;
+        height: 417px;
         margin: 0 auto;
     }
 }
@@ -112,7 +112,7 @@
         overflow: auto;
         overflow-y: scroll;
         width: inherit;
-        height: 655px;
+        height: 667px;
         margin: 0 auto;
     }
 }
@@ -124,16 +124,7 @@
     margin: 0 auto;
 }
 
-.table-header-cell {
-    border-left: black solid 2px;
-    border-right: black solid 2px;
-    text-align: center;
-    padding-bottom: 5px;
-    padding-top: 5px;
-    border-bottom: black solid 4px;
-}
-
-.table-body-cell {
+.table-cell {
     border-left: black solid 1px;
     border-right: black solid 1px;
     text-align: center;
@@ -142,10 +133,9 @@
     overflow: hidden;
 }
 
-
 .table-body table {
     border-spacing: unset;
-    width: 99%;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -155,4 +145,8 @@
     width: 13px;
     height: 13px;
     position: absolute;
+}
+
+.table-body::-webkit-scrollbar {
+    position: fixed;
 }

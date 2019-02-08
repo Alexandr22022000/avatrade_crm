@@ -13,7 +13,7 @@ class StuffInput extends Component {
             options={this.props.options}
             value={this.props.value}
             onChange={v => this.props.onChange(v)}
-            className={'dropdownPlaceholder'}
+            className={'dropdownPlaceholder dropdown-sizes'}
           />
         </div>
       );
