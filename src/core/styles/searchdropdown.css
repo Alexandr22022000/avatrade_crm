@@ -7,6 +7,7 @@
     height: 300px;
     overflow: auto;
     overflow-y: scroll;
+    z-index: 2;
 }
 
 #options div {
@@ -29,18 +30,34 @@
     border-radius: 4px 0 0 4px;
     padding: 10px 5px 10px 5px;
     width: 340px;
+    z-index: 1;
+    position: relative;
+}
+
+.dropdown-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+.cross-dropdown-active {
+    background: url("../../images/cross-icon.png") no-repeat;
+    cursor: pointer;
 }
 
 .cross-dropdown {
-    cursor: pointer;
     display: inline-block;
     vertical-align: top;
     width: 30px;
     height: 48px;
-    background: url("../../images/cross-icon.png") no-repeat;
     background-size: 30px 30px;
     background-color: #424242;
     background-position: 0 8px;
     border: none;
     border-radius: 0 4px 4px 0;
+    z-index: 2;
+    position: relative;
 }

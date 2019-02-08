@@ -16,7 +16,7 @@ class WarehouseModal extends Component{
         const cargos =[];
         if (this.props.cargos) {
             for (let key in this.props.cargos) {
-                cargos.push(this.props.cargos[key].name)
+                cargos.push(this.props.cargos[key].name + ' - ' + this.props.cargos[key].article)
             }
         }
         return (
@@ -90,11 +90,14 @@ class WarehouseModal extends Component{
     }
 
     canSave () {
-        if(this.state.cargo === -1) {
+        if (this.state.cargo === -2) return false;
+
+        if (this.state.cargo === -1) {
             if (this.state.name ==='') return false;
             if (this.state.article === '') return false;
         }
-        if(this.state.count === '') return false;
+
+        if (this.state.count === '') return false;
         return true;
     }
 }
