@@ -6,6 +6,7 @@ import {
   GOOD_LOGIN_ERROR,
   REQUEST_SUCCESS,
 } from "../actions/types";
+import {SET_MIGRATES} from "../../personal/actions/types";
 
 const defaultStatus = {
   token: null,
@@ -14,6 +15,7 @@ const defaultStatus = {
   errorStatusText: null,
   loginError: "",
   requestSuccess: false,
+  migrates: [],
 };
 
 const status = (state = defaultStatus, action) => {
@@ -59,6 +61,11 @@ const status = (state = defaultStatus, action) => {
         permissions: action.payload
       };
 
+    case SET_MIGRATES:
+      return {
+        ...state,
+        migrates: action.migrates,
+      };
     default:
       return state;
   }

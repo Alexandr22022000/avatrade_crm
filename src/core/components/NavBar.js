@@ -5,8 +5,12 @@ import "../styles/NavBar.css";
 import "../styles/buttons.css";
 import getCleanUrl from "../HTTPS/getCleanUrl";
 import getButtonsInfo from "../constants/getButtonsInfo";
+import AlertsBox from "../containers/AlertsBox";
 
 class NavBar extends Component {
+  state = {
+    showAlerts: false,
+  };
   render() {
     const style = {
       holder: "",
@@ -81,14 +85,23 @@ class NavBar extends Component {
             Выйти
           </button>
         </div>
+        <div id={'alerts'}>
+          <div className={'alert-icon'} onClick={() => {this.setState({showAlerts: true})}}/>
+          {this.state.showAlerts? <div className={'alert-box'}>{this.showAlerts()}</div> : ''}
+        </div>
         {this.props.tokenInfo.token === null ? (
-          <div />
+          <div/>
         ) : (
           <div id={"children"}>{this.props.children}</div>
         )}
       </div>
     );
   }
+
+  showAlerts(){
+    return <AlertsBox onClose={()=> {this.setState({showAlerts:false})}}/>
+  }
+
 
   clearCookies() {
     let cookies = document.cookie.split(";");
