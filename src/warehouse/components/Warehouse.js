@@ -26,14 +26,14 @@ class Warehouse extends Component {
 
         return (
             <tr>
-                <td className={'table-cell'}>
+                <td className={'table-cell chbox-cell'}>
                     <input checked={value.isChecked} type={'checkbox'} onClick={() => this.props.checkStock(index, isBuffer)}/>
                 </td>
 
-                <td className={'table-cell'}>{value.article}</td>
-                <td className={'table-cell'}>{value.name}</td>
-                <td className={'table-cell'}>{value.count}</td>
-                <td className={'table-cell'}>{value.store}</td>
+                <td className={'table-cell art-cell'}>{value.article}</td>
+                <td className={'table-cell name-cell'}>{value.name}</td>
+                <td className={'table-cell count-cell'}>{value.count}</td>
+                <td className={'table-cell warehouse-cell'}>{value.store}</td>
             </tr>
         );
     }
@@ -91,11 +91,11 @@ class Warehouse extends Component {
                     <table className={'table-header'}>
                         <thead>
                         <tr>
-                            <td className={'table-cell'}>{this.getCheckboxTool()}</td>
-                            <td className={'table-cell'}>Артикул</td>
-                            <td className={'table-cell'}>Наименование</td>
-                            <td className={'table-cell'}>Количество</td>
-                            <td className={'table-cell'}>Склад</td>
+                            <td className={'table-cell header-cell chbox-cell'}>{this.getCheckboxTool()}</td>
+                            <td className={'table-cell header-cell art-cell'}>Артикул</td>
+                            <td className={'table-cell header-cell name-cell'}>Наименование</td>
+                            <td className={'table-cell header-cell count-cell'}>Количество</td>
+                            <td className={'table-cell header-cell warehouse-cell'}>Склад</td>
                         </tr>
                         </thead>
                     </table>

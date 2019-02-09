@@ -63,10 +63,24 @@
     }
 
     #alerts .alert-icon {
+        position: fixed;
+        bottom: 2%;
+        right: 2%;
         background-image: url("../../images/message-icon.png");
         width: 60px;
         height: 60px;
         background-size: 60px 60px;
+        transition: 0.6s;
+        cursor: pointer;
+    }
+
+    #alerts .alert-icon-hidden {
+        bottom: -20%;
+        transform: scale(0.5);
+    }
+
+    #alerts .alert-icon:hover {
+        transform: scale(1.2);
     }
 
     #alerts .alertbox-bg {
@@ -77,6 +91,11 @@
         left: 0;
     }
 
+    #alerts .alertbox-bg-hidden {
+        width: 0;
+        height: 0;
+    }
+
     #alerts .alertbox {
         width: 450px;
         position: fixed;
@@ -85,12 +104,23 @@
         background-color: #1f1f1f;
         border: #555555 solid 1px;
         box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);
+        transition: 0.8s;
+    }
+
+    #alerts .alertbox-hidden {
+        right: -100%;
+        transform: scale(0.2);
     }
 
     #alerts .alterbox-content {
         height: 760px;
         overflow: auto;
         overflow-y: scroll;
+    }
+
+    .migration-confirm {
+        text-align: right;
+        width: 225px;
     }
 }
 
@@ -102,10 +132,24 @@
     }
 
     #alerts .alert-icon {
+        position: fixed;
+        bottom: 2%;
+        right: 2%;
         background-image: url("../../images/message-icon.png");
         width: 60px;
         height: 60px;
         background-size: 60px 60px;
+        transition: 0.5s;
+        cursor: pointer;
+    }
+
+    #alerts .alert-icon:hover {
+        transform: scale(1.2);
+    }
+
+    #alerts .alert-icon-hidden {
+        bottom: -20%;
+        transform: scale(0.5);
     }
 
     #alerts .alertbox-bg {
@@ -116,6 +160,11 @@
         left: 0;
     }
 
+    #alerts .alertbox-bg-hidden {
+        width: 0;
+        height: 0;
+    }
+
     #alerts .alertbox {
         width: 400px;
         position: fixed;
@@ -124,6 +173,12 @@
         background-color: #1f1f1f;
         border: #555555 solid 1px;
         box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);
+        transition: 0.8s;
+    }
+
+    #alerts .alertbox-hidden {
+        right: -100%;
+        transform: scale(0.2);
     }
 
     #alerts .alterbox-content {
@@ -131,4 +186,33 @@
         overflow: auto;
         overflow-y: scroll;
     }
+
+    .migration-confirm {
+        text-align: right;
+        width: 177px;
+    }
 }
+
+.migration-msg {
+    padding-left: 10px;
+    background-color: #424242;
+    border-radius: 10px;
+    padding-bottom: 5px;
+    margin: 2px 5px 10px 12px;
+    position: relative;
+}
+
+.migration-msg h1 {
+    margin-top: 2px;
+}
+
+.migration-msg h2 {
+    margin-left: 20px;
+    margin-bottom: 5px;
+}
+
+.migration-msg span {
+    margin-top: 5px;
+    margin-left: 40px;
+}
+

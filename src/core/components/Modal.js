@@ -4,16 +4,28 @@ import cross from "../../images/cross-icon.png";
 class Modal extends Component {
 
     render() {
+        const borderParams =this.props.borders?  '#555555 solid 1px':'';
+        const crossBorders = {borderBottom:borderParams};
+        if(this.props.leftCross){
+            crossBorders['borderRight'] = borderParams;
+        }
+        else {
+            crossBorders['borderLeft'] = borderParams;
+        }
+        const styles = {
+            cross: crossBorders,
+        };
         return(
             <div className={this.props.bgClassName} onClick={() => this.props.onClose()}>
                 <div className={this.props.windowClassName} onClick={e => e.stopPropagation()}>
-                    <div id={'modalHeader'}>
+                    <div id={'modalHeader'} style={{borderBottom:borderParams}}>
                         <div id={'headerName'}>{this.props.header? this.props.header: ''}</div>
                         <img
                             src={cross}
                             onClick={() => this.props.onClose()}
                             alt={"cross"}
-                            style={{ cursor: "pointer" }}
+                            style={{ cursor: "pointer", ...styles.cross}}
+                            className={`${this.props.leftCross? 'left':'right'}`}
                         />
                     </div>
 

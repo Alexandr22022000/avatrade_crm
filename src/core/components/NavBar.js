@@ -5,7 +5,7 @@ import "../styles/NavBar.css";
 import "../styles/buttons.css";
 import getCleanUrl from "../HTTPS/getCleanUrl";
 import getButtonsInfo from "../constants/getButtonsInfo";
-import AlertsBox from "../containers/AlertsBox";
+import AlertsBox from "./AlertsBox";
 
 class NavBar extends Component {
   state = {
@@ -86,8 +86,8 @@ class NavBar extends Component {
           </button>
         </div>
         <div id={'alerts'}>
-          <div className={'alert-icon'} onClick={() => {this.setState({showAlerts: true})}}/>
-          {this.state.showAlerts? <div className={'alert-box'}>{this.showAlerts()}</div> : ''}
+          <div className={`alert-icon ${this.state.showAlerts? 'alert-icon-hidden':''}`} onClick={() => {this.showAlertBox()}}/>
+          <div className={'alert-box'}>{this.getAlertsBox()}</div>
         </div>
         {this.props.tokenInfo.token === null ? (
           <div/>
@@ -98,8 +98,22 @@ class NavBar extends Component {
     );
   }
 
-  showAlerts(){
-    return <AlertsBox onClose={()=> {this.setState({showAlerts:false})}}/>
+  showAlertBox(){
+    this.setState({showAlerts: true});
+    this.props.onLoadCargos();
+    this.props.onLoadMigrates();
+  }
+
+  getAlertsBox(){
+    return <AlertsBox onClose={()=> {this.setState({showAlerts: false})}}
+                      onApproveMigrate={(id) => {
+                        this.props.onApproveMigrate(id);
+                        this.props.onLoadMigrates();
+                      }}
+                      migrates={this.props.migrates}
+                      cargos={this.props.cargos}
+                      closed={!this.state.showAlerts}
+    />
   }
 
 

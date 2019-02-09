@@ -21,7 +21,13 @@ class CountableField extends Component {
                     </div>
                     <button className={'inline add-button'} onClick={()=> this.onIncrease()}>+</button>
                     <div style={{width: '80%'}}>
-                        <input type={'range'} min={1} max={this.state.maxAmount} style={{width: '90%',marginLeft:'12%'}}/>
+                        <input type={'range'}
+                               min={1}
+                               max={this.state.maxAmount}
+                               style={{width: '90%',marginLeft:'12%'}}
+                               value={this.state.amount}
+                               onChange={(e)=> this.onChange(e.target.value)}
+                        />
                     </div>
                 </div>
             </div>

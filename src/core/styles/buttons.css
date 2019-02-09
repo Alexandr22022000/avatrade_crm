@@ -12,6 +12,7 @@
     -webkit-box-shadow: 0 0 9px 0 rgba(90,90,90,1) ;
     box-shadow: 0 0 9px 0 rgba(90,90,90,1) ;
     border: none;
+    transition: 0.3s;
 }
 
 .link-decor {
