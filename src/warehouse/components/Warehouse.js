@@ -22,14 +22,12 @@ class Warehouse extends Component {
             </tr>
         );
 
+        console.log(value.isChecked);
+
         return (
             <tr>
                 <td className={'table-cell'}>
-                    {value.isChecked ?
-                        <input checked type={'checkbox'} onClick={() => this.props.checkStock(index, isBuffer)}/>
-                        :
-                        <input type={'checkbox'} onClick={() => this.props.checkStock(index, isBuffer)}/>
-                    }
+                    <input checked={value.isChecked} type={'checkbox'} onClick={() => this.props.checkStock(index, isBuffer)}/>
                 </td>
 
                 <td className={'table-cell'}>{value.article}</td>
@@ -165,12 +163,12 @@ class Warehouse extends Component {
     }
 
     getCheckboxTool () {
-        if (this.getCheck(false)) return <input type={'checkbox'} onClick={() => this.props.checkAllStocks(true)}/>;
+        if (this.getCheck(false)) return <input type={'checkbox'} checked={false} onClick={() => this.props.checkAllStocks(true)}/>;
 
         if (!this.getCheck(true))
-            return <input  type={'checkbox'} className={'some-check-tool'} onClick={() => this.props.checkAllStocks(true)}/>;
+            return <input checked={false} type={'checkbox'} className={'some-check-tool'} onClick={() => this.props.checkAllStocks(true)}/>;
         else
-            return <input checked type={'checkbox'} onClick={() => this.props.checkAllStocks(false)}/>;
+            return <input checked={true} type={'checkbox'} onClick={() => this.props.checkAllStocks(false)}/>;
     }
 
     getCheck (isChecked) {
