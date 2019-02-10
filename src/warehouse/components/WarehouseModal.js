@@ -56,7 +56,6 @@ class WarehouseModal extends Component{
                             alwaysActive={true}
                             style={{marginTop: '20px'}}
                 />
-
             </Modal>
         )
     }

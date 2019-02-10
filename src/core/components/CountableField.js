@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import StuffInput from "../../personal/components/StuffInput";
+import '../styles/countable-field.css'
 
 class CountableField extends Component {
     state = {
@@ -11,23 +12,30 @@ class CountableField extends Component {
             <div className={'countable-field ' + this.props.className}>
                 <div className={'countable-field-title ' + this.props.titleClassName}>{this.props.title}</div>
                 <div>
-                    <button className={'inline sub-button'} onClick={()=> this.onDecrease()}>-</button>
-                    <div style={{display: 'inline-block', minWidth: '350px'}}>
+                    <div  className={'countable-input-ctrl'}>
+                        <button className={'inline sub-button blue-button'} onClick={()=> this.onDecrease()}>-</button>
                         <StuffInput value={this.state.amount}
                                     onChange={v => this.onChange(v)}
                                     placeholder={'Количество'}
                                     numbers={true}
+                                    alwaysActive={true}
+                                    style={{width: '200px', display: 'inline-block'}}
                         />
+                        <button className={'inline add-button blue-button'}
+                                onClick={()=> this.onIncrease()}
+                        >
+                            +
+                        </button>
                     </div>
-                    <button className={'inline add-button'} onClick={()=> this.onIncrease()}>+</button>
-                    <div style={{width: '80%'}}>
+                    <div className={'rng-input'}>
+                        <span style={{marginRight:'10px'}}>0</span>
                         <input type={'range'}
-                               min={1}
+                               min={0}
                                max={this.state.maxAmount}
-                               style={{width: '90%',marginLeft:'12%'}}
                                value={this.state.amount}
                                onChange={(e)=> this.onChange(e.target.value)}
                         />
+                        <span style={{marginLeft:'10px'}}>{this.state.maxAmount}</span>
                     </div>
                 </div>
             </div>
@@ -45,7 +53,7 @@ class CountableField extends Component {
     }
 
     onDecrease() {
-        if(this.state.amount !== 1) {
+        if(this.state.amount !== 0) {
             this.setState({amount: this.state.amount - 1});
         }
     }
