@@ -390,7 +390,9 @@ migrate: [
         stocks: [
             {
                 id: bigint,
-                count: integer
+                count: integer,
+                name: text,
+                article: text
             }
         ]
     }
