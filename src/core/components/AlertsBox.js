@@ -14,54 +14,32 @@ class AlertsBox extends Component {
                    header={'Уведомления'}
             >
                 {this.props.migrates? this.props.migrates.map((value, index) => {
-                    return <div key={index}>{this.showMigrateMsg(value)}</div>
+                    return this.showMigrateMsg(value, index);
                 }) : ''}
             </Modal>
         )
     }
 
-    onApproveMigrateClick(id) {
-        this.props.onApproveMigrate(id);
-    }
-
-    showMigrateMsg(migration) {
+    showMigrateMsg(migration, index) {
         return (
-            <div className={'migration-msg'}>
-                <div className={'title'}><h1>Логистика</h1></div>
-                <div className={'from'}>
-                    <h2>Отправитель:</h2>
-                    <span>{migration.from}</span>
-                </div>
-                <div className={'to'}>
-                    <h2>Получатель:</h2>
-                    <span>{migration.to}</span>
-                </div>
-                <div className={'id'}>
-                    <h2>Идентификатор:</h2>
-                    <span>{migration.id}</span>
-                </div>
-                <div className={'stocks-list inline'}>
-                    <h2>Содержимое:</h2>
-                    {migration.stocks.map((value, index) => {
-                        let cargo = this.getCargoById(value.id);
-                        if(cargo) return <span>{cargo.name} - {value.count}</span>
-                        else  return ''
+            <div className={'migration-msg'} onClick={() => this.props.onShowMigrate(index)}>
+                <h1>Логистика</h1>
+                <p>{'Со склада: ' + migration.from}</p>
+                <p>{'На склад: ' + migration.to}</p>
+                <p>{'Отправитель: ' + migration.sender}</p>
+                <p>Грузы:</p>
+                <div>
+                    {migration.stocks.map(stock => {
+                        let cargo = this.getCargoById(stock.id);
+
+                        return <p>{cargo.name + " - " + stock.count}</p>;
                     })}
-                </div>
-                <div className={'migration-confirm inline'}>
-                    <button className={'btn-m blue-button'}
-                            onClick={()=>this.onApproveMigrateClick(migration.id)}
-                    >
-                        Подтвердить
-                    </button>
                 </div>
             </div>
         )
     }
 
     getCargoById(id) {
-        console.log(id);
-        console.log(this.props.cargos);
         for(let key in this.props.cargos) {
             if(this.props.cargos[key].id === id){
                 return this.props.cargos[key];

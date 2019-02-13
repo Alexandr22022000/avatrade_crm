@@ -4,14 +4,8 @@ import cross from "../../images/cross-icon.png";
 class Modal extends Component {
 
     render() {
-        const borderParams =this.props.borders?  '#555555 solid 1px':'';
+        const borderParams = this.props.borders ? '#555555 solid 1px' : '';
         const crossBorders = {borderBottom:borderParams};
-        if(this.props.leftCross){
-            crossBorders['borderRight'] = borderParams;
-        }
-        else {
-            crossBorders['borderLeft'] = borderParams;
-        }
         const styles = {
             cross: crossBorders,
         };
