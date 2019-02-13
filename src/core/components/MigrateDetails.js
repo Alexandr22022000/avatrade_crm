@@ -17,7 +17,7 @@ class MigrateDetails extends Component {
             <StuffInput
                 onlyRead={true}
                 value={item.count}
-                title={item.id}
+                title={item.name}
             />
         ));
 

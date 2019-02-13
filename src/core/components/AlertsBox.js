@@ -29,22 +29,10 @@ class AlertsBox extends Component {
                 <p>{'Отправитель: ' + migration.sender}</p>
                 <p>Грузы:</p>
                 <div>
-                    {migration.stocks.map(stock => {
-                        let cargo = this.getCargoById(stock.id);
-
-                        return <p>{cargo.name + " - " + stock.count}</p>;
-                    })}
+                    {migration.stocks.map(stock => <p>{stock.name + " - " + stock.count}</p>)}
                 </div>
             </div>
         )
-    }
-
-    getCargoById(id) {
-        for(let key in this.props.cargos) {
-            if(this.props.cargos[key].id === id){
-                return this.props.cargos[key];
-            }
-        }
     }
 }
 
