@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import Modal from "./Modal";
-import '../styles/NavBar.css'
+import Modal from '../../core/components/Modal';
+import '../../core/styles/NavBar.css';
 
-class AlertsBox extends Component {
+
+class AlertBox extends Component {
     render() {
         return(
             <Modal bgClassName={`alertbox-bg ${this.props.closed? 'alertbox-bg-hidden' : ''}`}
@@ -36,4 +37,4 @@ class AlertsBox extends Component {
     }
 }
 
-export default AlertsBox;
+export default AlertBox;

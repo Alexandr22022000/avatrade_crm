@@ -17,20 +17,9 @@ export default connect(
     onPermissionsGet: token => {
       dispatch(permissionsGet(token));
     },
-    setActiveMigrate: migrate => {
-      dispatch(setActiveMigration(migrate));
-    },
     onTokenDispatch: token => {
       dispatch(tokenFound(token));
     },
-    onLoadMigrates: () => {
-      dispatch(getMigrates())
-    },
-    onApproveMigrate: (id) => {
-      dispatch(approveMigrate(id));
-    },
-    onLoadCargos: () => {
-      dispatch(getCargos(''))
-    }
+
   })
 )(NavBar);

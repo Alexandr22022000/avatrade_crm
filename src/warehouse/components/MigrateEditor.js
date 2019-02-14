@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Modal from '../../core/components/Modal';
 import StuffInput from "../../personal/components/StuffInput";
 import '../../core/styles/buttons.css'
+import CountableField from "../../core/components/CountableField";
 
 class WarehouseModal extends Component {
     render() {
@@ -12,15 +13,20 @@ class WarehouseModal extends Component {
                 Переместить
             </button>
         </div>);
-
-        const inputs = this.list.map((item, index) => (
-            <StuffInput
+        {/*<StuffInput
                 placeholder={'Количество'}
                 numbers={true}
                 alwaysActive={true}
                 onChange={v => {this.onChange(v, index)}}
                 value={this.state.values[index]}
                 title={item.name}
+            />*/}
+        const inputs = this.list.map((item, index) => (
+            <CountableField
+                title={'Количество'}
+                value={this.state.values[index]}
+                maxValue={this.list[index].max}
+                onChange={v => {this.onChange(v, index)}}
             />
         ));
 
@@ -120,9 +126,6 @@ class WarehouseModal extends Component {
     canSave () {
         let sum = 0;
         for (let key in this.state.values) {
-            if (this.state.values[key].trim() === '') return false;
-            if (+this.state.values[key] > this.list[key].max) return false;
-
             sum += +this.state.values[key];
         }
 

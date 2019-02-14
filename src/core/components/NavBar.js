@@ -5,14 +5,11 @@ import "../styles/NavBar.css";
 import "../styles/buttons.css";
 import getCleanUrl from "../HTTPS/getCleanUrl";
 import getButtonsInfo from "../constants/getButtonsInfo";
-import AlertsBox from "./AlertsBox";
-import MigrateDetails from "../containers/MigrateDetails";
+import AlertBoxWrapper from "../../alerts/containers/AlertBoxWrapper";
+import clearCookies from "../cookie/clearCookies";
 
 class NavBar extends Component {
-  state = {
-    showAlerts: false,
-    showMigrateDetails: false,
-  };
+
   render() {
     const style = {
       holder: "",
@@ -80,59 +77,22 @@ class NavBar extends Component {
             className={"btn-m " + style.buttons}
             id={"exitButton"}
             onClick={() => {
-              this.clearCookies();
+              clearCookies();
               document.location.href = getCleanUrl() + "/login";
             }}
           >
             Выйти
           </button>
         </div>
-        <div id={'alerts'}>
-          <div className={`alert-icon`} onClick={() => {this.showAlertBox()}}/>
-          <div className={'alert-box'}>{this.getAlertsBox()}</div>
-        </div>
+        <AlertBoxWrapper/>
+
         {this.props.tokenInfo.token === null ? (
-          <div/>
+          <div />
         ) : (
           <div id={"children"}>{this.props.children}</div>
         )}
-        {!this.state.showMigrateDetails ? '' : (
-            <MigrateDetails onClose={() => {
-              this.setState({showMigrateDetails: false});
-            }} />
-        )}
       </div>
     );
-  }
-
-  showAlertBox(){
-    this.setState({showAlerts: true});
-    this.props.onLoadCargos();
-    this.props.onLoadMigrates();
-  }
-
-  getAlertsBox(){
-    return <AlertsBox onClose={()=> {this.setState({showAlerts: false})}}
-                      onShowMigrate={(index) => {
-                        this.props.setActiveMigrate(this.props.migrates[index]);
-                        this.setState({showMigrateDetails: true});
-                      }}
-                      migrates={this.props.migrates}
-                      cargos={this.props.cargos}
-                      closed={!this.state.showAlerts}
-    />
-  }
-
-
-  clearCookies() {
-    let cookies = document.cookie.split(";");
-
-    for (let i = 0; i < cookies.length; i++) {
-      let cookie = cookies[i];
-      let eqPos = cookie.indexOf("=");
-      let name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-      document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
-    }
   }
 
   componentDidMount() {

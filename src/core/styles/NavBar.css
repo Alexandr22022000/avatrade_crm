@@ -113,7 +113,7 @@
     }
 
     #alerts .alterbox-content {
-        height: 760px;
+        height: 700px;
         overflow: auto;
         overflow-y: scroll;
     }
@@ -218,4 +218,3 @@
 .migration-msg div {
     margin-left: 20px;
 }
-
