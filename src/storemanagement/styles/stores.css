@@ -1,0 +1,76 @@
+.stores-controller {
+    margin-left: 2%;
+    margin-bottom: 2%;
+    margin-top: 2%;
+}
+
+@media screen and (max-height: 768px) and (min-height: 400px) {
+    .stores-wrapper {
+        margin-left: 2%;
+        margin-top: 2%;
+        width: 450px;
+        text-align: center;
+        height: 470px;
+        background-color: #1f1f1f;
+        border: #555555 solid 1px;
+        box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);
+        overflow: auto;
+        overflow-y: scroll;
+    }
+    .stores-modal {
+        width: 450px;
+        height: 400px;
+        margin-left: 36%;
+        margin-top: 8%;
+        background-color: #1f1f1f;
+        border-radius: 6px;
+    }
+    .stores-data {
+        height: 310px;
+        margin-left: 10px;
+    }
+}
+
+@media screen and (min-height: 720px) {
+    .stores-wrapper {
+        margin-left: 2%;
+        margin-top: 2%;
+        width: 500px;
+        height: 706px;
+        text-align: center;
+        background-color: #1f1f1f;
+        border: #555555 solid 1px;
+        box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);
+        overflow: auto;
+        overflow-y: scroll;
+    }
+    .stores-modal {
+        width: 450px;
+        height: 400px;
+        margin-left: 36%;
+        margin-top: 15%;
+        background-color: #1f1f1f;
+        border-radius: 6px;
+    }
+    .stores-data {
+        height: 310px;
+        margin-left: 10px;
+    }
+}
+
+.store-holder {
+    margin-left: 8px;
+    margin-top: 2px;
+    margin-bottom: 6px;
+    cursor: pointer;
+}
+
+.store-title {
+    text-align: left;
+    font-size: 18px;
+}
+
+.store-address {
+    margin-left: 20px;
+    text-align: left;
+}
