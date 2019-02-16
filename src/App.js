@@ -8,6 +8,7 @@ import InDev from "./core/components/InDev";
 import PassRecover from "./core/containers/PassRecover";
 import EmailSender from "./core/containers/EmailSender";
 import Warehouse from "./warehouse/containers/Warehouse";
+import StoresWrapper from "./storemanagement/containers/StoresWrapper";
 
 
 class App extends Component {
@@ -26,6 +27,7 @@ class App extends Component {
                         <Route exact path={'/events'} children={<NavBar><InDev/></NavBar>}/>
                         <Route exact path={'/cabinet'} children={<NavBar><InDev/></NavBar>}/>
                         <Route exact path={'/contacts'} children={<NavBar><InDev/></NavBar>}/>
+                        <Route exact path={'/stores'} children={<NavBar><StoresWrapper/></NavBar>}/>
                         <Route exact path={'/recover_password'} children={<PassRecover/>}/>
                         <Route exact path={'/start_recover_password'} children={<EmailSender/>}/>
                         <Route path={'/login'} children={<Login/>}/>

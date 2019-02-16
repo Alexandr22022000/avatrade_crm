@@ -23,14 +23,9 @@ const getButtonsInfo = (permission) => {
                         route: "turnovers"
                     };
                     buttons["events"] = {
-                        name: "движуха",
+                        name: "табель выходов",
                         isActive: false,
                         route: "events"
-                    };
-                    buttons["stuff"] = {
-                        name: "персонал",
-                        isActive: false,
-                        route: "stuff"
                     };
                     buttons["cabinet"] = {
                         name: "кабинет",
@@ -41,6 +36,16 @@ const getButtonsInfo = (permission) => {
                         name: "прайс",
                         isActive: false,
                         route: "prices"
+                    };
+                    buttons["stuff"] = {
+                        name: "персонал",
+                        isActive: false,
+                        route: "stuff"
+                    };
+                    buttons["stores"] = {
+                        name: "подразделения",
+                        isActive: false,
+                        route: "stores"
                     };
                     break;
                 case PERMISSIONS.STORE_MANAGER:
@@ -107,7 +112,6 @@ const getButtonsInfo = (permission) => {
             }
         }
     }
-    console.log(buttons);
     return buttons;
 };
 

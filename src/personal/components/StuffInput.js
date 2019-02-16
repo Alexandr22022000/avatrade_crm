@@ -13,7 +13,7 @@ class StuffInput extends Component {
             options={this.props.options}
             value={this.props.value}
             onChange={v => this.props.onChange(v)}
-            className={'dropdownPlaceholder'}
+            className={'dropdownPlaceholder dropdown-sizes'}
           />
         </div>
       );
@@ -21,7 +21,8 @@ class StuffInput extends Component {
     } else {
       input = (
         <input
-          onChange={e => this.props.onChange(e.target.value)}
+          onChange={e => this.onChange(e.target.value)}
+          placeholder={this.props.placeholder}
           value={this.props.value}
           onBlurCapture={() => this.setActive(false)}
           autoFocus
@@ -42,7 +43,7 @@ class StuffInput extends Component {
 
     if (this.state.isActive || this.props.alwaysActive) {
       return (
-        <div>
+        <div style={this.props.style}>
           <div className={"header-m"}>{this.props.title}</div>
           <div
             className={"body-m"}
@@ -55,7 +56,7 @@ class StuffInput extends Component {
       );
     } else {
       return (
-        <div>
+        <div style={this.props.style}>
           <div className={"header-m"}>{this.props.title}</div>
           <div
             className={"body-m"}
@@ -63,7 +64,7 @@ class StuffInput extends Component {
             onMouseOut={() => this.setIconShow(false)}
           >
             <div>
-              <div className={"inline fixed"}>{value}</div>
+              <div className={"inline fixed"}>{value? value: this.props.placeholder}</div>
               {!this.state.showIcon ? (
                 ""
               ) : (
@@ -112,6 +113,18 @@ class StuffInput extends Component {
   onEnter(e) {
     if (e.keyCode === 13) {
       this.setActive(false);
+    }
+
+  }
+
+  onChange(value) {
+    if(this.props.numbers === true){
+      let regexp = /^\d*$/;
+      if(regexp.test(value)){
+        this.props.onChange(value);
+      }
+    } else {
+      this.props.onChange(value);
     }
   }
 }

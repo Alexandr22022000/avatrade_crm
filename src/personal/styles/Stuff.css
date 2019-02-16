@@ -100,15 +100,15 @@
   cursor: pointer;
   font-size: 16px;
   padding: 5px 10px;
+  border: none;
 }
 
 ::-webkit-scrollbar {
+  z-index: 1000;
   width: 8px;
   background-color: rgba(0, 0, 0, 0);
 }
-::-webkit-scrollbar:hover {
-  width: 6px;
-}
+
 ::-webkit-scrollbar-thumb {
   background-color: #404040;
   border-radius: 4px;
@@ -126,13 +126,30 @@
   background-color: rgba(0, 0, 0, 0.7);
 }
 
-.modalHolder #cross {
-  text-align: right;
+#modalHeader {
+  text-align: center;
 }
 
-.modalHolder #cross div {
+#headerName {
+  text-align: center;
+  display: inline-block;
+  vertical-align: top;
+  min-height: 30px;
+  max-height: 30px;
+  font-size: 20px;
+}
+
+#modalHeader img {
   width: 30px;
   height: 30px;
+}
+
+#modalHeader .left {
+  float: left;
+}
+
+#modalHeader .right {
+  float: right;
 }
 
 .modal h2 {
@@ -141,11 +158,11 @@
   font-size: 20px;
 }
 
-.modal div {
+.body-m div {
   font-size: 30px;
 }
 
-.modal input {
+.body-m input {
   font-size: 24px;
   padding: 0;
   background-color: #1f1f1f;
@@ -155,20 +172,20 @@
   outline-offset: 0;
   border-bottom: #44006d solid 2px;
 }
-.modal input:focus,
-.modal input:hover,
-.modal input:active {
+.body-m input:focus,
+.body-m input:hover,
+.body-m input:active {
   border: none;
   border-bottom: #44006d solid 2px;
   outline: 0;
   outline-offset: 0;
 }
 
-.borders .header-m {
+.header-m {
   font-size: 18px;
 }
 
-.borders .body-m {
+.body-m {
   margin-bottom: 25px;
 }
 
@@ -234,7 +251,7 @@
   font-size: 18px;
   cursor: pointer;
   position: relative;
-  top: -30px;
+  top: -25px;
 }
 
 .addDocButton:active,

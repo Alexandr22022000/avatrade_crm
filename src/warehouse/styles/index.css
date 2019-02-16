@@ -8,25 +8,35 @@
     font-size: 16px;
     padding: 5px 10px;
     display: inline-block;
+    margin-left: 40px;
+    color: #D5D9DE;
 }
 
 .warehouse-control-input {
     display: inline-block;
     vertical-align: middle;
-    margin-right: 2%;
 }
 
 .warehouse-control-input input{
     height: 30px;
+    font-size: 20px;
     display: inline-block;
     vertical-align: top;
-    background-color: white;
+    background-color: #1f1f1f;
+    color: #D5D9DE;
     border: none;
     outline: none;
 }
 .warehouse-control-input input:focus,
 .warehouse-control-input input:active {
     outline: none;
+}
+
+.warehouse-control-dropdown-modal {
+    width: 200px;
+    font-size: 16px;
+    padding: 5px 10px;
+    margin-bottom: 20px;
 }
 
 .warehouse-control-input-icon {
@@ -36,7 +46,7 @@
     vertical-align: top;
     background: url("../../images/search-icon.png") no-repeat;
     background-size: 20px 20px;
-    background-color: white;
+    background-color: #1f1f1f;
     background-position: 5px 6px;
     border: none;
     cursor: pointer;
@@ -47,10 +57,33 @@
         margin-top: 2%;
         margin-left: 2%;
         height: 450px;
-        width: 450px;
+        width: 800px;
         background-color: #1f1f1f;
         border: #555555 solid 1px;
         box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);
+    }
+
+    .warehouse-modal {
+        width: 450px;
+        height: 400px;
+        margin-left: 36%;
+        margin-top: 8%;
+        background-color: #1f1f1f;
+        border-radius: 6px;
+    }
+
+    .stocks{
+        margin-left: 4%;
+        height: 320px;
+        margin-top: 10px;
+    }
+
+    .table-body {
+        overflow: auto;
+        overflow-y: scroll;
+        width: inherit;
+        height: 417px;
+        margin: 0 auto;
     }
 }
 
@@ -59,13 +92,96 @@
         margin-top: 2%;
         margin-left: 2%;
         height: 700px;
-        width: 550px;
+        width: 850px;
         background-color: #1f1f1f;
         border: #555555 solid 1px;
         box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);
     }
+
+    .warehouse-modal {
+        width: 450px;
+        height: 400px;
+        margin-left: 36%;
+        margin-top: 15%;
+        background-color: #1f1f1f;
+        border-radius: 6px;
+    }
+
     .stocks{
+        margin-left: 4%;
+        height: 315px;
+        margin-top: 20px;
+    }
+
+    .table-body {
         overflow: auto;
         overflow-y: scroll;
+        width: inherit;
+        height: 667px;
+        margin: 0 auto;
     }
+}
+
+.header-cell {
+    background-color: #424242;
+}
+
+.table-header {
+    border-spacing: unset;
+    width: inherit;
+    margin: 0 auto;
+}
+
+.table-cell {
+    border: black solid 1px;
+    text-align: center;
+    padding: 5px 6px 5px 5px;
+    overflow: hidden;
+}
+
+.table-body table {
+    border-spacing: unset;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.some-check-tool:before {
+    background-color: gray;
+    content: "";
+    width: 13px;
+    height: 13px;
+    position: absolute;
+}
+
+.table-body::-webkit-scrollbar {
+    width: 6px;
+    position: absolute;
+}
+
+.table-body::-webkit-scrollbar-thumb {
+    width: 5px;
+}
+
+.chbox-cell {
+    width: 30px;
+    border-left: none;
+}
+
+.art-cell {
+    width: 150px;
+    max-width: 150px;
+}
+
+.name-cell {
+    width: 280px;
+    max-width: 280px;
+}
+
+.count-cell {
+    width: 100px;
+    max-width: 100px;
+}
+
+.warehouse-cell {
+    border-right: black solid 1px;
 }

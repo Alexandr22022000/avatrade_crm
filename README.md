@@ -284,7 +284,7 @@ stocks: [
         count: integer,
         name: text,
         article: text, 
-        address: rext,
+        store: rext,
         cargo_id: bigint,
         store_id: bigint,
     }
@@ -367,6 +367,53 @@ Response body:
 
 ```
 
+#### `GET: /api/v0.0/migrates`
+
+Request params:
+
+```$xslt
+token: text
+```
+
+Response body:
+
+```$xslt
+migrate: [
+    {
+        id: bigint,
+        from_id: bigint,
+        to_id: bigint,
+        from: text,
+        to: text,
+        sender_id: bigint,
+        sender: text,
+        stocks: [
+            {
+                id: bigint,
+                count: integer,
+                name: text,
+                article: text
+            }
+        ]
+    }
+]
+```
+
+#### `POST: /api/v0.0/approve_migrate`
+
+Request body:
+
+```$xslt
+token: text,
+id: integer
+```
+
+Response body:
+
+```$xslt
+
+```
+
 ### Stores:
 
 #### `GET: /api/v0.0/stores`
@@ -388,6 +435,56 @@ stores: [
 ]
 ```
 
+#### `POST: /api/v0.0/add_store`
+
+Request params:
+
+```$xslt
+token: text,
+name: text,
+address: text
+```
+
+Response body:
+
+```$xslt
+
+```
+
+#### `POST: /api/v0.0/store`
+
+Request params:
+
+```$xslt
+token: text,
+id: integer,
+name: text,
+address: text,
+status: integer
+```
+
+Response body:
+
+```$xslt
+
+```
+
+#### `POST: /api/v0.0/store_status`
+
+Request params:
+
+```$xslt
+token: text,
+id: integer,
+status: integer,
+```
+
+Response body:
+
+```$xslt
+
+```
+
 ## Constants
 
 ### Permissions list
@@ -401,3 +498,8 @@ stores: [
 
 - Active: 0
 - Fired: 1
+
+### Store statuses
+
+- Active: 0
+- Closed: 1

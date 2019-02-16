@@ -6,10 +6,15 @@ import {SERVER_STATUS} from "./serverStatuses";
 const HTTPS = {
     HTTP: null,
     dispatch: null,
+    errors: null,
 
-    catch (error) {
+    catch (error, customErrors) {
+        let msg;
+
         if (!error) {
-            this.dispatch(requestError(SERVER_STATUS.NO_CONNECTION, "Нет подключения к серверу!"));
+            msg = "Нет подключения к серверу!";
+            if (customErrors && customErrors[SERVER_STATUS.NO_CONNECTION]) msg = customErrors[SERVER_STATUS.NO_CONNECTION];
+            this.dispatch(requestError(SERVER_STATUS.NO_CONNECTION, msg));
             return;
         }
 
@@ -18,13 +23,29 @@ const HTTPS = {
                 document.location.href = getCleanUrl() + "/login";
                 break;
             case SERVER_STATUS.NOT_FOUND:
-                this.dispatch(requestError(SERVER_STATUS.NOT_FOUND, "Нет данных!"));
+                msg = "Нет данных!";
+                if (customErrors && customErrors[SERVER_STATUS.NOT_FOUND]) msg = customErrors[SERVER_STATUS.NOT_FOUND];
+                this.dispatch(requestError(SERVER_STATUS.NOT_FOUND, msg));
+                break;
+            case SERVER_STATUS.FORBIDDEN:
+                msg = "У вас нет полномочий для этого действия!";
+                if (customErrors && customErrors[SERVER_STATUS.FORBIDDEN]) msg = customErrors[SERVER_STATUS.FORBIDDEN];
+                this.dispatch(requestError(SERVER_STATUS.FORBIDDEN, msg));
+                break;
+            case SERVER_STATUS.CONFLICT:
+                msg = "Действие выполнить невозможно!";
+                if (customErrors && customErrors[SERVER_STATUS.CONFLICT]) msg = customErrors[SERVER_STATUS.CONFLICT];
+                this.dispatch(requestError(SERVER_STATUS.CONFLICT, msg));
                 break;
             case SERVER_STATUS.INTERNAL_SERVER_ERROR:
-                this.dispatch(requestError(SERVER_STATUS.INTERNAL_SERVER_ERROR, "Ошибка на сервере!"));
+                msg = "Ошибка на сервере!";
+                if (customErrors && customErrors[SERVER_STATUS.INTERNAL_SERVER_ERROR]) msg = customErrors[SERVER_STATUS.INTERNAL_SERVER_ERROR];
+                this.dispatch(requestError(SERVER_STATUS.INTERNAL_SERVER_ERROR, msg));
                 break;
             default:
-                this.dispatch(requestError(error.status, "Неизвестная ошибка!"));
+                msg = "Неизвестная ошибка!";
+                if (customErrors && customErrors[SERVER_STATUS.DEFAULT]) msg = customErrors[SERVER_STATUS.DEFAULT];
+                this.dispatch(requestError(error.status, msg));
                 break;
         }
     },
@@ -45,21 +66,21 @@ const HTTPS = {
         });
     },
 
-    post (url, body, dispatch, getState){
+    post (url, body, dispatch, getState, errors){
         this.dispatch = dispatch;
         return new Promise((resolve, reject) => {
             this.postRequest(url, {...body, token: getState().status.token}, dispatch)
                 .then((data) => resolve(data))
-                .catch(this.catch.bind(this));
+                .catch((e) => this.catch(e, errors));
         });
     },
 
-    get(url, params, dispatch, getState) {
+    get(url, params, dispatch, getState, errors) {
         this.dispatch = dispatch;
         return new Promise((resolve, reject) => {
             this.getRequest(url, {...params, token: getState().status.token}, dispatch, getState)
                 .then((data) => resolve(data))
-                .catch(this.catch.bind(this));
+                .catch((e) => this.catch(e, errors));
         });
     }
 };

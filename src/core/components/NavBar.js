@@ -5,8 +5,11 @@ import "../styles/NavBar.css";
 import "../styles/buttons.css";
 import getCleanUrl from "../HTTPS/getCleanUrl";
 import getButtonsInfo from "../constants/getButtonsInfo";
+import AlertBoxWrapper from "../../alerts/containers/AlertBoxWrapper";
+import clearCookies from "../cookie/clearCookies";
 
 class NavBar extends Component {
+
   render() {
     const style = {
       holder: "",
@@ -74,13 +77,15 @@ class NavBar extends Component {
             className={"btn-m " + style.buttons}
             id={"exitButton"}
             onClick={() => {
-              this.clearCookies();
+              clearCookies();
               document.location.href = getCleanUrl() + "/login";
             }}
           >
             Выйти
           </button>
         </div>
+        <AlertBoxWrapper/>
+
         {this.props.tokenInfo.token === null ? (
           <div />
         ) : (
@@ -88,17 +93,6 @@ class NavBar extends Component {
         )}
       </div>
     );
-  }
-
-  clearCookies() {
-    let cookies = document.cookie.split(";");
-
-    for (let i = 0; i < cookies.length; i++) {
-      let cookie = cookies[i];
-      let eqPos = cookie.indexOf("=");
-      let name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-      document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
-    }
   }
 
   componentDidMount() {
