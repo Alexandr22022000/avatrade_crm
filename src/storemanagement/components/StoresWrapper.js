@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import '../styles/stores.css'
 import StoreEditor from "../containers/StoreEditor";
+import DropDown from "../../personal/components/DropDown";
 
 class StoresWrapper extends Component {
 	state = {
@@ -52,6 +53,14 @@ class StoresWrapper extends Component {
 					        }}>
 						Добавить
 					</button>
+
+					<DropDown className={'dropdownPlaceholder warehouse-control-dropdown'}
+							  options={['Действующие', 'Все']}
+							  holderStyle={{display: 'inline-block'}}
+							  value={this.props.is_all ? 1 : 0}
+							  onChange={(v) => this.isAllChange(v)}
+					/>
+
 				</div>
 				<div className={'stores-wrapper'}>
 					{stores}
@@ -64,6 +73,11 @@ class StoresWrapper extends Component {
 	}
 
 	componentDidMount() {
+		this.props.onGetStores();
+	}
+
+	isAllChange (value) {
+		this.props.setIsAll(value === 1);
 		this.props.onGetStores();
 	}
 }
