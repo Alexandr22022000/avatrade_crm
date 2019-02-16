@@ -24,9 +24,10 @@ class App extends Component {
                         <Route exact path={'/warehouse'} children={<NavBar><Warehouse/></NavBar>}/>
                         <Route exact path={'/prices'} children={<NavBar><InDev/></NavBar>}/>
                         <Route exact path={'/turnovers'} children={<NavBar><InDev/></NavBar>}/>
-                        <Route exact path={'/events'} children={<NavBar><StoresWrapper/></NavBar>}/>
+                        <Route exact path={'/events'} children={<NavBar><InDev/></NavBar>}/>
                         <Route exact path={'/cabinet'} children={<NavBar><InDev/></NavBar>}/>
                         <Route exact path={'/contacts'} children={<NavBar><InDev/></NavBar>}/>
+                        <Route exact path={'/stores'} children={<NavBar><StoresWrapper/></NavBar>}/>
                         <Route exact path={'/recover_password'} children={<PassRecover/>}/>
                         <Route exact path={'/start_recover_password'} children={<EmailSender/>}/>
                         <Route path={'/login'} children={<Login/>}/>
