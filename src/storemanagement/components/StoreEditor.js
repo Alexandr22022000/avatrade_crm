@@ -14,26 +14,26 @@ class StoreEditor extends Component {
 			<div style={{textAlign: 'right', marginRight: '10px'}}>
 				<button className={`btn-m ${this.canSave()? 'blue-button': ''}`}
 				        onClick={()=> this.onClose(true)}>
-					Подтвердить
+					Сохранить
 				</button>
 			</div>
 		);
 		return (
 			<Modal bgClassName={"modalHolder"}
 			       windowClassName={"stores-modal"}
-			       header={this.props.currentStore? 'Редактировать': 'Добавить'}
+			       header={this.props.currentStore? 'Редактировать подразделение': 'Добавить подразделение'}
 			       childClassName={'stores-data'}
 			       controls={confirm}
 			       onClose={()=>this.onClose(false)}
 			>
-				<StuffInput placeholder={'имя магазина'}
+				<StuffInput placeholder={'имя подразделения'}
 				            onChange={v => {this.setState({name: v})}}
 				            value={this.state.name}
 				            title={'Имя'}
 				            alwaysActive={this.state.alwaysActive}
 				            style={{marginTop: '20px'}}
 				/>
-				<StuffInput placeholder={'адрес магазина'}
+				<StuffInput placeholder={'адрес подразделения'}
 				            onChange={v => {this.setState({address: v})}}
 				            value={this.state.address}
 				            title={'Адрес'}
