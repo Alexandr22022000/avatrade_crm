@@ -22,8 +22,8 @@ module.exports = (app) => {
 
                 query(CARGOS_QUERY.GET_CARGOS)
                     .then((cargos) => {
-                        cargos.rows.map((item) => {
-                            query(STOCKS_QUERY.ADD_STOCKS, [id + item.id + 1, item.id, id, 0])
+                        cargos.rows.map((item, index) => {
+                            query(STOCKS_QUERY.ADD_STOCKS, [id + index, item.id, id, 0])
                                 .then(() => {});
                         });
                     });

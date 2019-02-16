@@ -8,7 +8,8 @@ module.exports = (app) => {
 
         if (!user) return res.status(401).end();
 
-        query(QUERY.STORES_GET, )
+        req.query.is_all = req.query.is_all === 'true';
+        query(QUERY.STORES_GET, [req.query.is_all])
             .then(({rows}) => res.status(200).json({stores: rows}));
     });
 };

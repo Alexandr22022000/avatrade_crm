@@ -6,13 +6,14 @@ import {SERVER_STATUS} from "./serverStatuses";
 const HTTPS = {
     HTTP: null,
     dispatch: null,
+    errors: null,
 
-    catch (error) {
+    catch (error, customErrors) {
         let msg;
 
         if (!error) {
             msg = "Нет подключения к серверу!";
-            if (this.errors && this.errors[SERVER_STATUS.NO_CONNECTION]) msg = this.errors[SERVER_STATUS.NO_CONNECTION];
+            if (customErrors && customErrors[SERVER_STATUS.NO_CONNECTION]) msg = customErrors[SERVER_STATUS.NO_CONNECTION];
             this.dispatch(requestError(SERVER_STATUS.NO_CONNECTION, msg));
             return;
         }
@@ -23,27 +24,27 @@ const HTTPS = {
                 break;
             case SERVER_STATUS.NOT_FOUND:
                 msg = "Нет данных!";
-                if (this.errors && this.errors[SERVER_STATUS.NOT_FOUND]) msg = this.errors[SERVER_STATUS.NOT_FOUND];
+                if (customErrors && customErrors[SERVER_STATUS.NOT_FOUND]) msg = customErrors[SERVER_STATUS.NOT_FOUND];
                 this.dispatch(requestError(SERVER_STATUS.NOT_FOUND, msg));
                 break;
             case SERVER_STATUS.FORBIDDEN:
                 msg = "У вас нет полномочий для этого действия!";
-                if (this.errors && this.errors[SERVER_STATUS.FORBIDDEN]) msg = this.errors[SERVER_STATUS.FORBIDDEN];
+                if (customErrors && customErrors[SERVER_STATUS.FORBIDDEN]) msg = customErrors[SERVER_STATUS.FORBIDDEN];
                 this.dispatch(requestError(SERVER_STATUS.FORBIDDEN, msg));
                 break;
             case SERVER_STATUS.CONFLICT:
                 msg = "Действие выполнить невозможно!";
-                if (this.errors && this.errors[SERVER_STATUS.CONFLICT]) msg = this.errors[SERVER_STATUS.CONFLICT];
+                if (customErrors && customErrors[SERVER_STATUS.CONFLICT]) msg = customErrors[SERVER_STATUS.CONFLICT];
                 this.dispatch(requestError(SERVER_STATUS.CONFLICT, msg));
                 break;
             case SERVER_STATUS.INTERNAL_SERVER_ERROR:
                 msg = "Ошибка на сервере!";
-                if (this.errors && this.errors[SERVER_STATUS.INTERNAL_SERVER_ERROR]) msg = this.errors[SERVER_STATUS.INTERNAL_SERVER_ERROR];
+                if (customErrors && customErrors[SERVER_STATUS.INTERNAL_SERVER_ERROR]) msg = customErrors[SERVER_STATUS.INTERNAL_SERVER_ERROR];
                 this.dispatch(requestError(SERVER_STATUS.INTERNAL_SERVER_ERROR, msg));
                 break;
             default:
                 msg = "Неизвестная ошибка!";
-                if (this.errors && this.errors[SERVER_STATUS.DEFAULT]) msg = this.errors[SERVER_STATUS.DEFAULT];
+                if (customErrors && customErrors[SERVER_STATUS.DEFAULT]) msg = customErrors[SERVER_STATUS.DEFAULT];
                 this.dispatch(requestError(error.status, msg));
                 break;
         }
@@ -67,21 +68,19 @@ const HTTPS = {
 
     post (url, body, dispatch, getState, errors){
         this.dispatch = dispatch;
-        this.errors = errors;
         return new Promise((resolve, reject) => {
             this.postRequest(url, {...body, token: getState().status.token}, dispatch)
                 .then((data) => resolve(data))
-                .catch(this.catch.bind(this));
+                .catch((e) => this.catch(e, errors));
         });
     },
 
     get(url, params, dispatch, getState, errors) {
         this.dispatch = dispatch;
-        this.errors = errors;
         return new Promise((resolve, reject) => {
             this.getRequest(url, {...params, token: getState().status.token}, dispatch, getState)
                 .then((data) => resolve(data))
-                .catch(this.catch.bind(this));
+                .catch((e) => this.catch(e, errors));
         });
     }
 };

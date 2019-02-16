@@ -459,7 +459,24 @@ Request params:
 token: text,
 id: integer,
 name: text,
-address: text
+address: text,
+status: integer
+```
+
+Response body:
+
+```$xslt
+
+```
+
+#### `POST: /api/v0.0/store_status`
+
+Request params:
+
+```$xslt
+token: text,
+id: integer,
+status: integer,
 ```
 
 Response body:
@@ -481,3 +498,8 @@ Response body:
 
 - Active: 0
 - Fired: 1
+
+### Store statuses
+
+- Active: 0
+- Closed: 1
