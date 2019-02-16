@@ -22,8 +22,6 @@ class Warehouse extends Component {
             </tr>
         );
 
-        console.log(value.isChecked);
-
         return (
             <tr>
                 <td className={'table-cell chbox-cell'}>
