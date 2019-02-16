@@ -7,6 +7,41 @@ class StoresWrapper extends Component {
 		showEditor: false
 	};
 	render() {
+		const stores = this.props.stores.map(store => (
+			<table
+				onClick={()=>{
+					this.props.onSetCurrentStore(store);
+					this.setState({showEditor: true});
+				}}
+				style={{ cursor: "pointer", marginLeft: "8px" }}
+			>
+				<tbody>
+				<tr>
+					<td>
+						<div className={"iconStore"} />
+					</td>
+					<td>
+						<table>
+							<tbody>
+							<tr>
+								<td style={{ textAlign: "left", fontSize: "25px" }}>
+									{store.name}
+								</td>
+							</tr>
+							<tr>
+								<td style={{ textAlign: "left" }}>
+									{store.address}
+								</td>
+							</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		));
+
+
 		return (
 			<div>
 				<div className={'stores-controller'}>
@@ -19,16 +54,7 @@ class StoresWrapper extends Component {
 					</button>
 				</div>
 				<div className={'stores-wrapper'}>
-					{this.props.stores.map((value, index) =>
-						<div key={index} className={'store-holder'}
-						     onClick={()=>{
-						     	this.props.onSetCurrentStore(value);
-						     	this.setState({showEditor: true});
-						     }}>
-							<div className={'store-title'}>{value.name}</div>
-							<div className={'store-address'}>{value.address}</div>
-						</div>
-					)}
+					{stores}
 				</div>
 				<div>
 					{this.state.showEditor? <StoreEditor onClose={() => this.setState({showEditor: false})}/>: ''}
