@@ -51,10 +51,10 @@ class Stuff extends Component {
           </button>
           <div
             className={"inline"}
-            style={{ width: "250px", marginLeft: "40px" }}
+            style={{ width: "250px" }}
           >
             <DropDown
-              className={"dropDown"}
+              className={"dropdownPlaceholder warehouse-control-dropdown"}
               options={["Действующие", "Все"]}
               value={this.props.showAll ? 1 : 0}
               onChange={(v) => {this.props.setUsersFilter(v === 1); this.props.onGetUsers();}}

@@ -13,14 +13,6 @@ class WarehouseModal extends Component {
                 Переместить
             </button>
         </div>);
-        {/*<StuffInput
-                placeholder={'Количество'}
-                numbers={true}
-                alwaysActive={true}
-                onChange={v => {this.onChange(v, index)}}
-                value={this.state.values[index]}
-                title={item.name}
-            />*/}
         const inputs = this.list.map((item, index) => (
             <CountableField
                 title={'Количество'}
@@ -85,6 +77,7 @@ class WarehouseModal extends Component {
                 id: item.cargo_id,
             });
             this.fromStore = item.store;
+            console.log('item.store_id',item.store_id);
             this.fromStoreId = item.store_id;
         });
 
@@ -92,6 +85,11 @@ class WarehouseModal extends Component {
             values: this.list.map(() => ''),
             store: 0,
         });
+    }
+
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        console.log(nextState);
+        return true;
     }
 
     onChange (value, index) {
@@ -112,7 +110,7 @@ class WarehouseModal extends Component {
                         id: this.list[index].id,
                     });
                 });
-
+                console.log(this.props.stores[this.state.store].id);
                 this.props.addMigrate(this.fromStoreId, this.props.stores[this.state.store].id, stocks);
                 this.props.checkAllStocks(false);
                 this.props.onGetStocks();
