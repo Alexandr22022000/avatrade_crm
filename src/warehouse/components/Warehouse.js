@@ -25,7 +25,10 @@ class Warehouse extends Component {
         return (
             <tr>
                 <td className={'table-cell chbox-cell'}>
-                    <input checked={value.isChecked} type={'checkbox'} onClick={() => this.props.checkStock(index, isBuffer)}/>
+                    <input checked={value.isChecked}
+                           type={'checkbox'}
+                           onClick={() => this.props.checkStock(index, isBuffer)}
+                    />
                 </td>
 
                 <td className={'table-cell art-cell'}>{value.article}</td>
@@ -140,6 +143,7 @@ class Warehouse extends Component {
             this.props.changeFilter(this.props.filter.search, null, this.props.filter.is_all);
         }
         else {
+            console.log('id',this.props.stores[index - 1].id);
             this.props.changeFilter(this.props.filter.search, this.props.stores[index - 1].id, this.props.filter.is_all);
         }
         this.props.onGetStocks();
