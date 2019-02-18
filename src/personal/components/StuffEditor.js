@@ -108,7 +108,7 @@ class StuffEditor extends Component {
     let controlButtons = (
         <div>
             {!this.props.currentUser || this.isOwner() || !this.props.currentUser.id ? "" :
-                <div className={"inline sackButton link-decor pointed"} onClick={() => this.onChangeUserStatus()}>{this.props.currentUser.status === 0 ? "Уволить" : "Востоновить"}</div>
+                <div className={"inline sackButton link-decor pointed"} onClick={() => this.onChangeUserStatus()}>{this.props.currentUser.status === 0 ? "Уволить" : "Восстановить"}</div>
             }
             <button className={"btn-m inline" + (this.canSave() ? " blue-button" : "")} onClick={() => this.onClose(true)}>Сохранить</button>
         </div>
