@@ -61,7 +61,7 @@ class MultiInput extends Component {
                 <div className={'body-m'}>{values}</div>
                 {this.props.onlyRead || this.inputValue === -1 ? "" : (
                     this.state.showInput ?
-                        <div style={{position: 'relative', top: '-20px'}}>{input}</div>
+                        <div style={{position: 'relative', top: '-20px'}} className={'body-m'}>{input}</div>
                         :
                         <button className={'addDocButton'} onClick={() => this.setInputShow(true)}>Добавить</button>
                 )}

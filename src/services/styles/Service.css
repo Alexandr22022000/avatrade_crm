@@ -21,6 +21,15 @@
         background-size: 28px 28px;
         background-position: 4px 5px;
     }
+    .sv-ctrl-dpd {
+        height: 35px;
+        font-size: 20px;
+        padding: 5px 10px;
+        display: inline-block;
+        margin-left: 40px;
+        color: #D5D9DE;
+        vertical-align: top;
+    }
 }
 
 @media screen and (max-height: 768px) and (min-height: 400px) {
@@ -29,7 +38,7 @@
         height: 500px;
     }
     .sv-search-sz input {
-        height: 30px;
+        height: 32px;
         font-size: 20px;
         width: 195px;
         padding-right: 5px;
@@ -40,6 +49,15 @@
         background: url("../../images/search-icon.png") no-repeat;
         background-size: 20px 20px;
         background-position: 5px 6px;
+    }
+    .sv-ctrl-dpd {
+        height: 32px;
+        font-size: 16px;
+        padding: 5px 10px;
+        display: inline-block;
+        margin-left: 40px;
+        color: #D5D9DE;
+        vertical-align: top;
     }
 }
 
@@ -97,3 +115,4 @@
     padding-top: 6px;
     padding-bottom: 6px;
 }
+
