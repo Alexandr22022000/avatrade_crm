@@ -1,0 +1,82 @@
+.controlCashbox {
+
+}
+
+@media screen and (max-height: 768px) and (min-height: 400px) {
+    .cb-width {
+        width: 700px;
+    }
+    .cb-height {
+        height: 500px;
+    }
+    .cashbox-search {
+        border-bottom: black solid 2px;
+        width: 349px;
+    }
+    .cb-search-input-width {
+        width: 310px;
+    }
+}
+
+@media screen and (min-height: 720px) {
+    .cb-width {
+        width: 900px;
+    }
+    .cashbox-search {
+        border-bottom: black solid 3px;
+        width: 448px;
+    }
+    .cb-height {
+        height: 700px;
+    }
+    .cb-search-input-width {
+        width: 410px;
+    }
+}
+.cashbox-services {
+    border-right: black solid 1px;
+    height: inherit;
+}
+
+.cashbox-stocks {
+    border-left: black solid 1px;
+    height: inherit;
+}
+
+.cashbox-list {
+    overflow: auto;
+    overflow-y: scroll;
+}
+
+.cashbox-info {
+    margin-top: 2%;
+    margin-left: 2%;
+    background-color: #1f1f1f;
+    border: #555555 solid 1px;
+    box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);
+}
+
+
+
+.cashbox-search-input {
+    height: 30px;
+    font-size: 20px;
+    display: inline-block;
+    vertical-align: top;
+    background-color: #1f1f1f;
+    color: #D5D9DE;
+    border: none;
+    outline: none;
+}
+
+.cashbox-search-input:active {
+    outline: none;
+}
+
+.cashbox-services {
+    display: inline-block;
+}
+
+.cashbox-stocks {
+    display: inline-block;
+}

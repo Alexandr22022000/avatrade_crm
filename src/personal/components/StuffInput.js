@@ -28,6 +28,7 @@ class StuffInput extends Component {
           autoFocus
           className={"inline fixed"}
           onKeyDown={this.onEnter.bind(this)}
+          style={this.props.inputStyle}
         />
       );
       value = this.props.value;

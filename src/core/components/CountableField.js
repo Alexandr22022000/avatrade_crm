@@ -21,6 +21,7 @@ class CountableField extends Component {
                                     numbers={true}
                                     alwaysActive={true}
                                     style={{width: '200px', display: 'inline-block'}}
+                                    inputStyle={{textAlign: 'center'}}
                         />
                         <button className={'inline add-button blue-button'}
                                 onClick={()=> this.onIncrease()}
