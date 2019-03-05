@@ -11,6 +11,7 @@ const express = require('express'),
     cargosApi = require('./server/cargos/api'),
     storesApi = require('./server/stores/api'),
     notificationsApi = require('./server/notifications/api'),
+    cashboxApi = require('./server/cashbox/api'),
     checkUser = require('./server/core/users/login'),
     CONFIG = require('./server/core/config'),
 
@@ -35,6 +36,7 @@ usersApi(app);
 cargosApi(app);
 storesApi(app);
 notificationsApi(app);
+cashboxApi(app);
 
 app.use(express.static('build'));
 
