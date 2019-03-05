@@ -7,6 +7,7 @@ const add_stocks = require('./v0.0/add_stocks'),
     set_request = require('./v0.0/set_request'),
     get_request = require('./v0.0/get_request'),
     get_requests = require('./v0.0/get_requests'),
+    get_migrate = require('./v0.0/get_migrate'),
     stocks_migrate = require('./v0.0/stocks_migrate');
 
 module.exports = (app) => {
@@ -20,4 +21,5 @@ module.exports = (app) => {
     set_request(app);
     get_request(app);
     get_requests(app);
+    get_migrate(app);
 };
