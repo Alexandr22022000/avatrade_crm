@@ -1,3 +1,3 @@
 module.exports = {
-    GET_SERVICES: 'SELECT id, price, consumables FROM services WHERE status = 0',
+    GET_SERVICES: 'SELECT id, name, is_product, price, consumables FROM services WHERE status = 0',
 };

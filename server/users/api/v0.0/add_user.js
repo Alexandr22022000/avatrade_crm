@@ -6,6 +6,7 @@ const {query} = require('neuronex-pg'),
     getStartedMsg = require('../../email/get_started'),
 
     QUERYES = require('../../pSQL/users'),
+    QUERYES_SETTINGS = require('../../pSQL/settings'),
     QUERYES_TOKENS = require('../../pSQL/tokens'),
     PERMISSIONS = require('../../../core/constants/permissions'),
     TOKENS = require('../../../core/constants/tokens'),
@@ -23,6 +24,9 @@ module.exports = (app) => {
         const id = Date.now();
         query(QUERYES.ADD_USER, [id, req.body.email, null, req.body.permissions, req.body.name, req.body.phone, req.body.vk, req.body.address, req.body.rank, req.body.docs])
             .then(() => {
+                query(QUERYES_SETTINGS.ADD, [id, []])
+                    .then(() => {});
+
                 const token = tokenGenerator.createToken({
                     uid: 'eb61e19f-d2a2-466e-a2b5-f759258a1166',
                     some: "Development data",
