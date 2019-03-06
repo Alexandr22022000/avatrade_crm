@@ -11,7 +11,9 @@ module.exports = (app) => {
         if (!user) return res.status(401).end();
         if (!checkPermissions(user, [PERMISSIONS.STORE_MANAGER, PERMISSIONS.WAREHOUSE_MANAGER, PERMISSIONS.TOP_MANAGER, PERMISSIONS.OWNER])) return res.status(403).end();
 
-        const stocks = {stocks: req.body.stocks};
+        let stocks = req.body.stocks.map(item => ({...item, ready: 0}));
+        stocks = {stocks};
+
 
         query(QUERY.ADD_REQUESTS, [Date.now(), req.body.to_id, user.id, stocks])
             .then(() => res.status(200).end());
