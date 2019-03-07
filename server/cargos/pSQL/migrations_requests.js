@@ -3,4 +3,6 @@ module.exports = {
     GET_REQUESTS: 'SELECT migrations_requests.id, migrations_requests.to_id, migrations_requests.sender_id, migrations_requests.stocks, users.name AS sender, stores.name AS to FROM migrations_requests JOIN users ON migrations_requests.sender_id = users.id JOIN stores ON migrations_requests.to_id = stores.id',
     UPDATE_REQUESTS: 'UPDATE migrations_requests SET to_id = $2, stocks = $3 WHERE id = $1',
     ADD_REQUESTS: 'INSERT INTO migrations_requests(id, to_id, sender_id, stocks, status) VALUES($1, $2, $3, $4, 0)',
+    GET_BY_STORE: 'SELECT id, stocks FROM migrations_requests WHERE to_id = $1',
+    UPDATE_READY: 'UPDATE migrations_requests SET stocks = $2, status = $3 WHERE id = $1',
 };
