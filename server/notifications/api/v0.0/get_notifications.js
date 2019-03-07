@@ -28,7 +28,7 @@ module.exports = (app) => {
                                     const stocks = item.stocks.stocks.map(item => {
                                         for (let key in cargos.rows) {
                                             if (+cargos.rows[key].id === +item.id) {
-                                                return `\t${cargos.rows[key].name} - ${item.count}`;
+                                                return `\t${cargos.rows[key].name} - ${item.ready}/${item.count}`;
                                             }
                                         }
                                     });
