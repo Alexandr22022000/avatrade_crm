@@ -443,9 +443,9 @@ Response body:
 
 ```
 
-### Migrates request
+### Migrates request:
 
-#### `POST: /api/v0.0/add_migrates_request` (in developing)
+#### `POST: /api/v0.0/add_migrate_request` (in developing)
 
 Request params:
 
@@ -466,7 +466,7 @@ Response body:
 
 ```
 
-#### `GET: /api/v0.0/migrates` (in developing)
+#### `GET: /api/v0.0/migrate_requests` (in developing)
 
 Request params:
 
@@ -496,7 +496,7 @@ migrate_requests: [
 ]
 ```
 
-#### `GET: /api/v0.0/migrate` (in developing)
+#### `GET: /api/v0.0/migrate_request` (in developing)
 
 Request params:
 
@@ -540,7 +540,8 @@ alerts: [
     {
         id: bigint,
         type: number,
-        object_id: bigint
+        title: text,
+        text: text
     }
 }
 ```
@@ -636,13 +637,15 @@ services: [
     {
         id: bigint, 
         name: text,
-		price: number,
-		is_product: bool,
-		is_del: bool,
-		consumables: [
+        price: number,
+        is_product: bool,
+        status: number,
+        consumables: [
             {
                 id: bigint,
-                count: num
+                count: num,
+                name: text,
+                article: text
             }
         ]
     }
@@ -712,7 +715,7 @@ Response body:
 
 ```
 
-### CashBox
+### CashBox:
 
 #### `POST: /api/v0.0/sell` (in developing)
 
@@ -720,6 +723,8 @@ Request params:
 
 ```$xslt
 token: text,
+store: number,
+is_card: bool,
 services: [
     {
         id: number,
@@ -749,7 +754,16 @@ fast_services: [
     {
         id: bigint,
         name: text,
-        price: number
+        price: number,
+        is_product: bool,
+        consumables: [
+            {
+                id: number,
+                count: number,
+                name: text,
+                article: text
+            }
+        ]
     }
 ]
 ```
@@ -787,6 +801,11 @@ Response body:
 
 - Active: 0
 - Closed: 1
+
+### Services statuses
+
+- Active: 0
+- Deleted: 1
 
 ### Notifications types
 

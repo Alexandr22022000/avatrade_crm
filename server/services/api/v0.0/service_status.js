@@ -6,7 +6,7 @@ const {checkUser} = require('neuronex-login-backend'),
 
 module.exports = (app) => {
     app.post('/api/v0.0/services_status', (req, res) => {
-      const user = checkUser(req.body.token);
+        const user = checkUser(req.body.token);
 
         if (!user) return res.status(401).end();
         if (!checkPermissions(user, [PERMISSIONS.TOP_MANAGER, PERMISSIONS.OWNER])) return res.status(403).end();

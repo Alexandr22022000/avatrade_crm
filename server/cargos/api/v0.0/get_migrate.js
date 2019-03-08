@@ -25,7 +25,7 @@ module.exports = (app) => {
                             }
                         });
 
-                        res.status(200).json({migrates: rows[0]});
+                        res.status(200).json(rows[0]);
                     });
             });
     });

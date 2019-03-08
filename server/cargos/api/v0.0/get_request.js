@@ -6,7 +6,7 @@ const {checkUser} = require('neuronex-login-backend'),
     QUERY = require('../../pSQL/migrations_requests');
 
 module.exports = (app) => {
-    app.get('/api/v0.0/migration_request', (req, res) => {
+    app.get('/api/v0.0/migrate_request', (req, res) => {
         const user = checkUser(req.query.token);
 
         if (!user) return res.status(401).end();
@@ -31,7 +31,7 @@ module.exports = (app) => {
                             }
                         });
 
-                        res.status(200).json({migration_request: row});
+                        res.status(200).json(row);
                     });
             });
     });

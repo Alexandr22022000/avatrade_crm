@@ -5,7 +5,7 @@ const {checkUser} = require('neuronex-login-backend'),
     QUERY = require('../../pSQL/migrations_requests');
 
 module.exports = (app) => {
-    app.post('/api/v0.0/add_migration_request', (req, res) => {
+    app.post('/api/v0.0/add_migrate_request', (req, res) => {
         const user = checkUser(req.body.token);
 
         if (!user) return res.status(401).end();
