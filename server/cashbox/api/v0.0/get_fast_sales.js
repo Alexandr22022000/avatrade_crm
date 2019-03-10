@@ -38,7 +38,7 @@ module.exports = (app) => {
                                     }
                                 });
 
-                                res.status(200).json({fast_sales: rows});
+                                res.status(200).json({fast_services: rows});
                             });
                     });
             });

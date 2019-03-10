@@ -8,7 +8,7 @@ module.exports = (app) => {
 
         if (!user) return res.status(401).end();
 
-        let fast_sales = req.body.fast_sales;
+        let fast_sales = req.body.fast_services;
 
         query(QUERY.SET, [user.id, fast_sales])
             .then(() => res.status(200).end());
