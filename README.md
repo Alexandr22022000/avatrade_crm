@@ -399,6 +399,35 @@ migrate: [
 ]
 ```
 
+#### `GET: /api/v0.0/migrate` (in developing)
+
+Request params:
+
+```$xslt
+token: text,
+id: number
+```
+
+Response body:
+
+```$xslt
+id: bigint,
+from_id: bigint,
+to_id: bigint,
+from: text,
+to: text,
+sender_id: bigint,
+sender: text,
+stocks: [
+    {
+        id: bigint,
+        count: integer,
+        name: text,
+        article: text
+    }
+]
+```
+
 #### `POST: /api/v0.0/approve_migrate`
 
 Request body:
@@ -412,6 +441,109 @@ Response body:
 
 ```$xslt
 
+```
+
+### Migrates request:
+
+#### `POST: /api/v0.0/add_migrate_request` (in developing)
+
+Request params:
+
+```$xslt
+token: text,
+to_id: bigint,
+stocks: [
+    {
+        id: bigint,
+        count: integer
+    }
+]
+```
+
+Response body:
+
+```$xslt
+
+```
+
+#### `GET: /api/v0.0/migrate_requests` (in developing)
+
+Request params:
+
+```$xslt
+token: text
+```
+
+Response body:
+
+```$xslt
+migrate_requests: [
+    {
+        id: bigint,
+        to_id: bigint,
+        to: text,
+        sender_id: bigint,
+        sender: text,
+        stocks: [
+            {
+                id: bigint,
+                count: integer,
+                name: text,
+                article: text
+            }
+        ]
+    }
+]
+```
+
+#### `GET: /api/v0.0/migrate_request` (in developing)
+
+Request params:
+
+```$xslt
+token: text,
+id: number
+```
+
+Response body:
+
+```$xslt
+id: bigint,
+to_id: bigint,
+to: text,
+sender_id: bigint,
+sender: text,
+stocks: [
+    {
+        id: bigint,
+        count: integer,
+        name: text,
+        article: text
+    }
+]
+```
+
+### Notifications
+
+#### `GET: /api/v0.0/notifications` (in developing)
+
+Request params:
+
+```$xslt
+token: text
+```
+
+Response body:
+
+```$xslt
+alerts: [
+    {
+        id: bigint,
+        type: number,
+        title: text,
+        text: text
+    }
+}
 ```
 
 ### Stores:
@@ -485,6 +617,172 @@ Response body:
 
 ```
 
+### Services:
+
+#### `GET: /api/v0.0/services` (in developing)
+
+Request params:
+
+```$xslt
+token: text,
+search: text, (optional)
+is_product: bool, (optional)
+is_del: bool (optional)
+```
+
+Response body:
+
+```$xslt
+services: [
+    {
+        id: bigint, 
+        name: text,
+        price: number,
+        is_product: bool,
+        status: number,
+        consumables: [
+            {
+                id: bigint,
+                count: num,
+                name: text,
+                article: text
+            }
+        ]
+    }
+]
+```
+
+#### `POST: /api/v0.0/add_services` (in developing)
+
+Request params:
+
+```$xslt
+token: text,
+name: text,
+price: number,
+is_product: bool,
+consumables: [
+    {
+        id: bigint,
+        count: num
+    }
+]
+```
+
+Response body:
+
+```$xslt
+
+```
+
+#### `POST: /api/v0.0/services` (in developing)
+
+Request params:
+
+```$xslt
+token: text,
+id: number,
+name: text,
+price: number,
+is_product: bool,
+consumables: [
+    {
+        id: bigint,
+        count: num
+    }
+]
+```
+
+Response body:
+
+```$xslt
+
+```
+
+#### `POST: /api/v0.0/services_status` (in developing)
+
+Request params:
+
+```$xslt
+token: text,
+id: number,
+status: number
+```
+
+Response body:
+
+```$xslt
+
+```
+
+### CashBox:
+
+#### `POST: /api/v0.0/sell` (in developing)
+
+Request params:
+
+```$xslt
+token: text,
+store: number,
+is_card: bool,
+services: [
+    {
+        id: number,
+        count: number   
+    }
+]
+```
+
+Response body:
+
+```$xslt
+
+```
+
+#### `GET: /api/v0.0/fast_services` (in developing)
+
+Request params:
+
+```$xslt
+token: text
+```
+
+Response body:
+
+```$xslt
+fast_services: [
+    {
+        id: bigint,
+        name: text,
+        price: number,
+        is_product: bool,
+        consumables: [
+            {
+                id: number,
+                count: number,
+                name: text,
+                article: text
+            }
+        ]
+    }
+]
+```
+
+#### `POST: /api/v0.0/fast_services` (in developing)
+
+Request params:
+
+```$xslt
+token: text
+fast_services: [number]
+```
+
+Response body:
+
+```$xslt
+
+```
+
 ## Constants
 
 ### Permissions list
@@ -503,3 +801,13 @@ Response body:
 
 - Active: 0
 - Closed: 1
+
+### Services statuses
+
+- Active: 0
+- Deleted: 1
+
+### Notifications types
+
+- Migration: 0
+- Migration request: 1

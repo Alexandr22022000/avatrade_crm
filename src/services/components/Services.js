@@ -1,17 +1,15 @@
 import React, {Component} from 'react';
 import WarehouseInput from "../../warehouse/components/WarehouseInput";
 import '../styles/Service.css';
+import ServicesModal from "../containers/ServicesModal";
 import DropDown from "../../personal/components/DropDown";
-import '../../warehouse/styles/index.css';
 
 class Services extends Component{
 	state = {
-		servType: null,
-		is_all: true,
+		showServiceEditor: false,
+		addNew: null,
 	};
 	render() {
-		let servTypes = ['Все', 'Товары', 'Услуги'];
-		let activeTypes = ['Все', 'Активные'];
 		return (
 			<div className={'services'}>
 				<div className={'controlServices'}>
@@ -19,24 +17,24 @@ class Services extends Component{
 					                placeholder={'поиск'}
 					                iconClassName={'sv-search-icon sv-search-icon-sz'}
 					                haveIcon={true}
-					                onClickIcon={() => {this.onSearchChange(this.props.filter.search)}}
+					                onClickIcon={() => {this.props.onLoadServices();}}
 					                onChange={(v) => {this.onSearchChange(v)}}
 					/>
-					<DropDown className={'dropdownPlaceholder sv-ctrl-dpd'}
-					          options={servTypes}
-					          holderStyle={{display: 'inline-block'}}
-					          onChange={v => {this.servTypesChange(v)}}
-					          value={servTypes[this.props.filter.servType]}
+					<DropDown className={'dropdownPlaceholder sv-ctrl-dp'}
+							  options={['Все', 'Товары','Услуги']}
+							  holderStyle={{display: 'inline-block'}}
+							  onChange={v => {this.servTypeChange(v)}}
+							  value={this.getServTypeValue()}
 					/>
-					<DropDown className={'dropdownPlaceholder sv-ctrl-dpd'}
-					          options={activeTypes}
-					          holderStyle={{display: 'inline-block'}}
-					          onChange={v => {this.onActiveTypeChange(v)}}
-					          value={this.getActiveValue()}
-					/>
+					<button className={'btn-m blue-button sv-ctrl-btn'}
+							onClick={()=>{this.setState({showServiceEditor: true, addNew: true})}}
+					>
+						Добавить
+					</button>
 				</div>
 				<div className={'servicesTable st-sizes'}>
 					<table>
+						<tbody>
 						<tr>
 							<td className={'st-left st-header-cell'}>
 								Название
@@ -48,47 +46,68 @@ class Services extends Component{
 								Товар/Услуга
 							</td>
 						</tr>
+						</tbody>
 					</table>
 					<div className={'st-content'}>
 
 					</div>
 				</div>
+				{this.state.showServiceEditor ?
+					<ServicesModal onClose={()=> this.setState({showServiceEditor: false})}
+								   addNew={this.state.addNew}
+					/>:
+					''
+				}
 			</div>
 		);
 	}
 
-	shouldComponentUpdate(nextProps, nextState, nextContext) {
-		console.log(nextProps.filter);
-		return true;
+	servTypeChange(value) {
+		if(value === 0) {
+			this.props.onFilterChange(this.props.filter.search,null, this.props.filter.is_del);
+		} else if(value === 1) {
+			this.props.onFilterChange(this.props.filter.search, true, this.props.filter.is_del);
+		} else {
+			this.props.onFilterChange(this.props.filter.search, false, this.props.filter.is_del);
+		}
+		this.props.onLoadServices();
+	}
+
+	getServTypeValue() {
+		switch (this.props.filter.is_product) {
+			case true:
+				return 1;
+			case false:
+				return 2;
+			default:
+				return 0;
+		}
+	}
+
+	showServices() {
+		let services = [];
+
+		this.props.services.map((value,index)=> {
+			services.push(<tr key={index}
+							  onClick={()=> {
+								  this.props.onSetCurrentService(this.props.services[index]);
+								  this.setState({showServiceEditor: true, addNew: false})
+							  }}
+			>
+				<td>{value.name}</td>
+				<td>{value.price}</td>
+				<td>{value.is_product ? 'Товар' : 'Услуга'}</td>
+			</tr>)
+		})
 	}
 
 	onSearchChange(v) {
-		this.props.onFilterChange(v,this.props.filter.servType, this.props.filter.is_all);
+		this.props.onFilterChange(v,this.props.filter.is_product,this.props.filter.is_del);
+		this.props.onLoadServices();
 	}
 
-	servTypesChange(v) {
-		if(v === 0){
-			this.props.onFilterChange(this.props.filter.search,null,this.props.filter.is_all)
-		}
-		this.props.onFilterChange(this.props.filter.search,v,this.props.filter.is_all)
-	}
-
-	onActiveTypeChange(v) {
-		if(v === 0) {
-			this.props.onFilterChange(this.props.filter.search,this.props.filter.servType, true);
-		}
-		else {
-			this.props.onFilterChange(this.props.filter.search,this.props.filter.servType, false);
-		}
-	}
-
-	getActiveValue() {
-		if(this.props.filter.is_all) {
-			return 'Все';
-		}
-		else {
-			return'Активные'
-		}
+	componentDidMount() {
+		this.props.onLoadServices();
 	}
 }
 

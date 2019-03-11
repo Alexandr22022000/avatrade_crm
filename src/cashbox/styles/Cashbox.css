@@ -1,6 +1,11 @@
-.controlCashbox {
-
+.controlCashbox{
+    margin-top: 4%;
+    margin-left: 2%;
+    vertical-align: top;
 }
+
+
+
 
 @media screen and (max-height: 768px) and (min-height: 400px) {
     .cb-width {
@@ -15,6 +20,11 @@
     }
     .cb-search-input-width {
         width: 310px;
+    }
+    .controlCashbox button {
+        display: block;
+        width: 150px;
+        margin-bottom: 15px;
     }
 }
 
@@ -31,6 +41,12 @@
     }
     .cb-search-input-width {
         width: 410px;
+    }
+    .controlCashbox button {
+        display: block;
+        width: 200px;
+        margin-bottom: 20px;
+        font-size: 20px;
     }
 }
 .cashbox-services {
@@ -49,11 +65,12 @@
 }
 
 .cashbox-info {
-    margin-top: 2%;
+    margin-top: 4%;
     margin-left: 2%;
     background-color: #1f1f1f;
     border: #555555 solid 1px;
     box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);
+    vertical-align: top;
 }
 
 

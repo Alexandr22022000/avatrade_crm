@@ -1,12 +1,17 @@
 import {connect} from 'react-redux';
 import Services from "../components/Services";
-import changeFilterServ from "../actions/changeFilterServ";
+import getServices from "../async-actions/getServices";
+import changeFilter from '../actions/changeFilter';
+import setCurrentService from "../actions/setCurrentService";
 
 export default connect(
 	state => ({
+		services: state.services.services,
 		filter: state.services.filter,
 	}),
 	dispatch => ({
-		onFilterChange: (search, servType, is_all)=>dispatch(changeFilterServ(search,servType,is_all))
+		onLoadServices: () => dispatch(getServices()),
+		onFilterChange: (search,is_product,is_del) => dispatch(changeFilter(search,is_product,is_del)),
+		onSetCurrentService: (service) => dispatch(setCurrentService(service)),
 	})
 )(Services)

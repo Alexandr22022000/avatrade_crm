@@ -1,6 +1,7 @@
 const {checkUser} = require('neuronex-login-backend'),
     {query} = require('neuronex-pg'),
     QUERY = require('../../pSQL/migrates'),
+    REQUESTS_QUERY = require('../../pSQL/migrations_requests'),
     STOCKS_QUERY = require('../../pSQL/stocks');
 
 module.exports = (app) => {
@@ -32,6 +33,52 @@ module.exports = (app) => {
                                     query(STOCKS_QUERY.INCREASE_STOCKS, [item.id, item.count * -1, rows[0].from_id])
                                         .then(() => {});
                                 });
+
+                                query(REQUESTS_QUERY.GET_BY_STORE, [rows[0].to_id])
+                                    .then((requests) => {
+                                        requests = requests.rows;
+                                        let migrate = rows[0].stocks.stocks;
+
+                                        requests = requests.map(request => {
+                                            request.stocks.stocks = request.stocks.stocks.map(requestStock => {
+                                                migrate = migrate.map(migrateStock => {
+                                                    if (+requestStock.id === +migrateStock.id && migrateStock.count > 0) {
+                                                        let requestCount = requestStock.count - requestStock.ready;
+
+                                                        let newMigrateCount = migrateStock.count - requestCount,
+                                                            newRequestCount = requestCount - migrateStock.count;
+
+                                                        if (newMigrateCount < 0) newMigrateCount = 0;
+                                                        if (newRequestCount < 0) newRequestCount = 0;
+
+                                                        migrateStock.count = newMigrateCount;
+                                                        requestStock.ready = requestStock.count - newRequestCount;
+
+                                                        request.chenged = true;
+                                                    }
+
+                                                    return migrateStock;
+                                                });
+
+                                                return requestStock;
+                                            });
+
+                                            return request;
+                                        });
+
+                                        requests.map(request => {
+                                            if (request.chenged) {
+                                                let isEnd = true;
+                                                request.stocks.stocks.map(stock => {
+                                                    if (stock.count !== stock.ready)
+                                                        isEnd = false;
+                                                });
+
+                                                query(REQUESTS_QUERY.UPDATE_READY, [request.id, request.stocks, isEnd ? 1 : 0])
+                                                    .then(() => {});
+                                            }
+                                        });
+                                    });
 
                                 query(QUERY.APPROVE_MIGRATE, [req.body.id, user.id])
                                     .then(() => res.status(200).end());

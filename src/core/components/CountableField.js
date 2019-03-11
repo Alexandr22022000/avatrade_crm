@@ -5,19 +5,35 @@ import '../styles/countable-field.css'
 class CountableField extends Component {
     state = {
         amount: (this.props.value? this.props.value:0),
-        maxAmount: this.props.maxValue,
+        maxAmount: this.props.maxValue? this.props.maxValue : 0,
         textAmount: '',
     };
     render() {
+        let range = '';
+        if(!this.props.withoutRange){
+            range = (
+                <div className={'rng-input'}>
+                    <span style={{marginRight:'10px'}}>0</span>
+                    <input type={'range'}
+                           min={0}
+                           defaultValue={0}
+                           max={this.state.maxAmount}
+                           value={this.state.amount}
+                           onChange={(e)=> this.onChange(e.target.value)}
+                    />
+                    <span style={{marginLeft:'10px'}}>{this.state.maxAmount}</span>
+                </div>
+            )
+        }
         return (
             <div className={'countable-field ' + this.props.className}>
                 <div className={'countable-field-title ' + this.props.titleClassName}>{this.props.title}</div>
-                <div>
+                <div className={this.props.className} style={this.props.style}>
                     <div  className={'countable-input-ctrl'}>
                         <button className={'inline sub-button blue-button'} onClick={()=> this.onDecrease()}>-</button>
                         <StuffInput value={this.state.textAmount}
                                     onChange={v => this.onChange(v)}
-                                    placeholder={'Количество'}
+                                    placeholder={this.props.placeHolder?this.props.placeHolder : 'Количество'}
                                     numbers={true}
                                     alwaysActive={true}
                                     style={{width: '200px', display: 'inline-block'}}
@@ -29,27 +45,21 @@ class CountableField extends Component {
                             +
                         </button>
                     </div>
-                    <div className={'rng-input'}>
-                        <span style={{marginRight:'10px'}}>0</span>
-                        <input type={'range'}
-                               min={0}
-                               defaultValue={0}
-                               max={this.state.maxAmount}
-                               value={this.state.amount}
-                               onChange={(e)=> this.onChange(e.target.value)}
-                        />
-                        <span style={{marginLeft:'10px'}}>{this.state.maxAmount}</span>
-                    </div>
+                    {range}
                 </div>
             </div>
         );
     }
 
     onChange(value) {
+
         if(value === '') {
             this.setState({amount: 0, textAmount: ''});
             this.props.onChange(0);
-        }else if(this.state.maxAmount >= parseInt(value, 10)) {
+        } else if(this.state.maxAmount >= parseInt(value, 10)) {
+            this.setState({amount: parseInt(value, 10),textAmount: value});
+            this.props.onChange(parseInt(value, 10));
+        } else if(this.state.maxAmount === 0) {
             this.setState({amount: parseInt(value, 10),textAmount: value});
             this.props.onChange(parseInt(value, 10));
         }

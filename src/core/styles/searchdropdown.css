@@ -1,5 +1,5 @@
-#options {
-    position: absolute;
+.options {
+    position: relative;
     display: block;
     background-color: black;
     color: #D5D9DE;
@@ -7,16 +7,15 @@
     height: 300px;
     overflow: auto;
     overflow-y: scroll;
-    z-index: 2;
 }
 
-#options div {
+.options div {
     cursor: pointer;
     padding: 15px 5px;
     font-size: 20px;
 }
-#options div:hover,
-#options div.hover{
+.options div:hover,
+.options div.hover{
     background-color: #424242;
 }
 
@@ -30,7 +29,6 @@
     border-radius: 4px 0 0 4px;
     padding: 10px 5px 10px 5px;
     width: 340px;
-    z-index: 1;
     position: relative;
 }
 
@@ -40,7 +38,6 @@
     height: 100%;
     top: 0;
     left: 0;
-    z-index: 0;
 }
 
 .cross-dropdown-active {
@@ -58,6 +55,5 @@
     background-position: 0 8px;
     border: none;
     border-radius: 0 4px 4px 0;
-    z-index: 2;
     position: relative;
 }
