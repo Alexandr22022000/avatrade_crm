@@ -52,6 +52,12 @@
         margin-top: 6%;
         border-radius: 6px;
     }
+    .sv-mcf-input {
+        width: 400px;
+    }
+    .sv-mcf-options {
+        width: 440px;
+    }
 }
 
 @media screen and (max-height: 768px) and (min-height: 400px) {
@@ -93,6 +99,12 @@
     }
     .sv-child {
         height: 380px;
+    }
+    .sv-mcf-input{
+        width: 350px;
+    }
+    .sv-mcf-options{
+        width: 390px;
     }
 }
 

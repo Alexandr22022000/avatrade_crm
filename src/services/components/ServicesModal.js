@@ -7,9 +7,9 @@ import ServiceMCFEditor from "../containers/ServiceMCFEditor";
 
 class ServicesModal extends Component{
     state = {
-        price: 0,
-        name:'',
-        is_product: true,
+        price: this.props.addNew? 0: this.props.currentService.price,
+        name: this.props.addNew? '': this.props.currentService.name,
+        is_product: this.props.addNew? true: this.props.currentService.is_product,
     };
     render() {
         return (
@@ -60,12 +60,53 @@ class ServicesModal extends Component{
         return this.state.is_product? 0: 1;
     }
 
+    setConsumablesIds() {
+        let currentConsumables = Object.assign([], this.props.currentConsumables);
+        for (let i = 0; i < currentConsumables.length;) {
+            if(currentConsumables[i].cargoIndex === -1) {
+                currentConsumables.splice(i,1);
+            } else {
+                currentConsumables[i].id = this.props.cargos[currentConsumables[i].cargoIndex].id;
+                ++i;
+            }
+        }
+        this.props.onSetConsumables(currentConsumables);
+    }
+
     servTypeChange(value) {
         this.setState({is_product: value === 0})
     }
 
+    canSave () {
+        if (this.state.name === '') return false;
+        if (this.state.price === 0) return false;
+        return true;
+    }
+
     onClose(isSave) {
-        this.props.onClose();
+        this.setConsumablesIds();
+        if(isSave){
+            if(this.canSave()) {
+                if(this.props.addNew) {
+                    this.props.onAddNewService(
+                        this.state.name,
+                        this.state.price,
+                        this.state.is_product,
+                        this.props.currentConsumables
+                    );
+                } else {
+                    this.props.onChangeCurrentService(
+                        this.props.currentService.id,
+                        this.props.currentService.name,
+                        this.state.price,
+                        this.state.is_product,
+                        this.props.currentConsumables
+                    )
+                }
+            }
+        } else {
+            this.props.onClose();
+        }
     }
 
     shouldComponentUpdate(nextProps, nextState, nextContext) {

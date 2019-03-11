@@ -17,6 +17,11 @@ class MultipleCountableField extends  Component {
                 <SearchDropdown options={this.props.options}
                                 onSelect={(index)=>{this.selected(index)}}
                                 value={this.props.value}
+                                disabled={this.props.disabled}
+                                inputStyle={this.props.inputStyle}
+                                inputClassName={this.props.inputClassName}
+                                optionsClassName={this.props.optionsClassName}
+                                withoutFirstCell={this.props.withoutFirstCell}
                 />
             )
         } else {
@@ -25,16 +30,18 @@ class MultipleCountableField extends  Component {
                           options={this.props.options}
                           value={this.state.selectedOption}
                           onChange={(index)=>{this.selected(index)}}
+                          disabled={this.props.disabled}
                 />
             )
         }
         return (
-            <div className={'mcf-holder'} key={this.props.key}>
+            <div className={'mcf-holder ' + this.props.className} key={this.props.key} style={this.props.style}>
                 {dd}
                 <CountableField
                     value={this.state.count}
                     maxValue={this.state.maxCount}
                     onChange={v => {this.onCountChange(v)}}
+                    withoutRange={this.props.withoutRange}
                 />
             </div>
         );

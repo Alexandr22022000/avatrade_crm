@@ -4,25 +4,27 @@ import "../styles/searchdropdown.css";
 class SearchDropdown extends Component {
     state = {
         showOptions: false,
-        inputValue: this.props.value,
+        inputValue: this.props.value? this.props.value : '',
     };
 
     getOptions() {
+        console.log(this.props.disabled);
         return (
             <div>
-                <div id={"options"}>
+                <div className={"options " + this.props.optionsClassName}>
                     {this.props.options
                         .filter((value, index) => {
-                            return this.state.inputValue && index !== 0
+                            return this.state.inputValue && (this.props.withoutFirstCell? true : index !== 0)
                                 ? value
                                 .toLocaleLowerCase()
                                 .indexOf(this.state.inputValue.toLocaleLowerCase()) !== -1
+                                || this.props.disabled.indexOf(index) !== -1
                                 : true;
                         })
                         .map((value, index) => (
                             <div
                                 key={index}
-                                onClick={e => {
+                                onClick={() => {
                                     this.onSelect(value);
                                     this.setState({ showOptions: false });
                                 }}
@@ -43,7 +45,8 @@ class SearchDropdown extends Component {
                 }
                 <div>
                     <input
-                        className={"search-input"}
+                        style={this.props.inputStyle}
+                        className={"search-input " + this.props.inputClassName}
                         value={this.state.inputValue}
                         onChange={event => this.onChange(event.target.value)}
                         onKeyDown={e => this.onKeyDown(e)}
