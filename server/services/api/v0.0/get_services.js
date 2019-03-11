@@ -16,13 +16,14 @@ module.exports = (app) => {
         if (!user) return res.status(401).end();
         if (!checkPermissions(user, [PERMISSIONS.OWNER, PERMISSIONS.TOP_MANAGER])) return res.status(403).end();
 
-        if (is_del === undefined || is_del === null || is_del === 'undefined' || is_del === 'null')
+        if (is_del.trim() === '' || is_del === undefined || is_del === null || is_del === 'undefined' || is_del === 'null')
             is_del = undefined;
         else
             is_del = is_del === 'true' ? 1 : 0;
 
-        if (is_product === 'null' || is_product === 'undefined') is_product = undefined;
+        if (is_product.trim() === '' || is_product === 'null' || is_product === 'undefined') is_product = undefined;
         if (search && search !== 'null' && search !== 'undefined') search = `%${search}%`;
+        else search = undefined;
 
         query(QUERYES.SERVICES_GET, [search, is_del, is_product])
             .then(({rows}) => {
