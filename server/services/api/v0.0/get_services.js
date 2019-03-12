@@ -21,7 +21,7 @@ module.exports = (app) => {
         else
             is_del = is_del === 'true' ? 1 : 0;
 
-        if (is_del === undefined || is_del === null || is_product.trim() === '' || is_product === 'null' || is_product === 'undefined') is_product = undefined;
+        if (is_product === undefined || is_product === null || is_product.trim() === '' || is_product === 'null' || is_product === 'undefined') is_product = undefined;
         if (search && search !== 'null' && search !== 'undefined') search = `%${search}%`;
         else search = undefined;
 
