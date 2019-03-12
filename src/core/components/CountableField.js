@@ -6,7 +6,7 @@ class CountableField extends Component {
     state = {
         amount: (this.props.value? this.props.value:0),
         maxAmount: this.props.maxValue? this.props.maxValue : 0,
-        textAmount: '',
+        textAmount: (this.props.value? this.props.value.toString():0 .toString()),
     };
     render() {
         let range = '';

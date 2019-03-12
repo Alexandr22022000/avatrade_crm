@@ -4,9 +4,6 @@
     vertical-align: top;
 }
 
-
-
-
 @media screen and (max-height: 768px) and (min-height: 400px) {
     .cb-width {
         width: 700px;
@@ -49,19 +46,26 @@
         font-size: 20px;
     }
 }
+
 .cashbox-services {
     border-right: black solid 1px;
     height: inherit;
+    vertical-align: top;
 }
 
 .cashbox-stocks {
     border-left: black solid 1px;
     height: inherit;
+    vertical-align: top;
 }
 
 .cashbox-list {
     overflow: auto;
     overflow-y: scroll;
+}
+
+.cb-listItem {
+    margin-left: 6px;
 }
 
 .cashbox-info {
@@ -72,8 +76,6 @@
     box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);
     vertical-align: top;
 }
-
-
 
 .cashbox-search-input {
     height: 30px;

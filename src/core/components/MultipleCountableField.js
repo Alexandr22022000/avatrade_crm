@@ -53,7 +53,7 @@ class MultipleCountableField extends  Component {
     }
 
     onCountChange(value) {
-        this.setState({count:value});
+        this.setState({count: value});
         this.props.onCountChange(value, this.state.selectedOption);
     }
 }

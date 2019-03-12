@@ -97,6 +97,11 @@ class ServiceMCFEditor extends Component{
         this.props.onSetConsumables(currentConsumables);
     }
 
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        console.log(nextProps.currentConsumables);
+        return true;
+    }
+
     componentDidMount() {
         this.props.onLoadCargos();
         if(!this.props.addNew) {

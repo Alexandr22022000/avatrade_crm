@@ -12,6 +12,11 @@
     overflow-x: scroll;
 }
 
+.sv-content {
+    overflow: auto;
+    overflow-y: scroll;
+}
+
 @media screen and (min-height: 720px) {
     .sv-child {
         height: 530px;
@@ -57,6 +62,35 @@
     }
     .sv-mcf-options {
         width: 440px;
+    }
+    .st-left {
+        width: 340px;
+    }
+    .sv-content {
+        width: inherit;
+    }
+    .sv-content table {
+        overflow-x: hidden;
+        border-collapse: collapse;
+        max-width: 790px;
+    }
+    .sv-content table td {
+        overflow: hidden;
+    }
+    .sv-tb-name {
+        width: 340px;
+        border-right: black solid 3px;
+        border-bottom: black solid 3px;
+        border-top: black solid 3px;
+    }
+    .sv-tb-price {
+        width: 255px;
+        border: black solid 3px;
+    }
+    .sv-tb-st {
+        border-left: black solid 3px;
+        border-bottom: black solid 3px;
+        border-top: black solid 3px;
     }
 }
 
@@ -106,6 +140,38 @@
     .sv-mcf-options{
         width: 390px;
     }
+    .st-left {
+        width: 200px;
+    }
+    .st-middle {
+        width: 160px;
+    }
+    .sv-content {
+        width: inherit;
+    }
+    .sv-content table {
+        overflow-x: hidden;
+        border-collapse: collapse;
+        max-width: 592px;
+    }
+    .sv-content table td {
+        overflow: hidden;
+    }
+    .sv-tb-name {
+        width: 200px;
+        border-right: black solid 2px;
+        border-bottom: black solid 2px;
+        border-top: black solid 2px;
+    }
+    .sv-tb-price {
+        width: 160px;
+        border: black solid 2px;
+    }
+    .sv-tb-st {
+        border-left: black solid 2px;
+        border-bottom: black solid 2px;
+        border-top: black solid 2px;
+    }
 }
 
 .servicesTable {
@@ -120,7 +186,6 @@
 }
 
 .serv-search input {
-
     display: inline-block;
     vertical-align: top;
     background-color: #1f1f1f;

@@ -4,6 +4,7 @@ import CountableField from "../../core/components/CountableField";
 import StuffInput from "../../personal/components/StuffInput";
 import DropDown from "../../personal/components/DropDown";
 import ServiceMCFEditor from "../containers/ServiceMCFEditor";
+import '../../core/styles/buttons.css'
 
 class ServicesModal extends Component{
     state = {
@@ -12,12 +13,20 @@ class ServicesModal extends Component{
         is_product: this.props.addNew? true: this.props.currentService.is_product,
     };
     render() {
+        let addButton = (
+            <div style={{textAlign: 'right', marginRight:'20px'}}>
+                <button className={'btn-m ' + (this.canSave()? 'blue-button':'')}
+                        onClick={()=>this.onClose(true)}
+                >
+                    Добавить
+                </button>
+            </div>);
         return (
             <Modal bgClassName={"modalHolder"}
                    windowClassName={"sv-modal sv-modal-sz"}
                    header={this.props.addNew? 'Добавить' : 'Изменить'}
                    childClassName={'sv-child'}
-                   controls={/*addButton*/''}
+                   controls={addButton}
                    onClose={()=>this.onClose(false)}
             >
                 {this.getEditor(this.props.addNew)}
@@ -28,7 +37,6 @@ class ServicesModal extends Component{
     getEditor(addNew) {
         return (
             <Fragment>
-
                 <CountableField onChange={(v) => {console.log(v); this.setState({price: v})}}
                                 value={this.state.price}
                                 withoutRange={true}
@@ -85,15 +93,20 @@ class ServicesModal extends Component{
 
     onClose(isSave) {
         this.setConsumablesIds();
+        console.log('1');
         if(isSave){
+            console.log('2');
             if(this.canSave()) {
+                console.log('3');
                 if(this.props.addNew) {
+                    console.log('4');
                     this.props.onAddNewService(
                         this.state.name,
                         this.state.price,
                         this.state.is_product,
                         this.props.currentConsumables
                     );
+                    this.props.onClose();
                 } else {
                     this.props.onChangeCurrentService(
                         this.props.currentService.id,
@@ -101,11 +114,20 @@ class ServicesModal extends Component{
                         this.state.price,
                         this.state.is_product,
                         this.props.currentConsumables
-                    )
+                    );
+                    this.props.onClose();
                 }
             }
         } else {
             this.props.onClose();
+        }
+    }
+
+    componentDidMount() {
+        if(!this.props.addNew) {
+            this.props.onSetConsumables(this.props.currentService.consumables);
+        } else {
+            this.props.onSetConsumables([]);
         }
     }
 
