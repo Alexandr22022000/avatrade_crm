@@ -13,12 +13,14 @@ class ServicesModal extends Component{
         is_product: this.props.addNew? true: this.props.currentService.is_product,
     };
     render() {
-        let addButton = (
-            <div style={{textAlign: 'right', marginRight:'20px'}}>
+        let controls = (
+            <div style={{textAlign: 'center', marginRight:'20px',marginLeft:'20px'}}>
+                {this.getChangeStatusBtn()}
                 <button className={'btn-m ' + (this.canSave()? 'blue-button':'')}
                         onClick={()=>this.onClose(true)}
+                        style={{float:'right'}}
                 >
-                    Добавить
+                    {this.props.addNew? 'Добавить' : 'Сохранить'}
                 </button>
             </div>);
         return (
@@ -26,7 +28,7 @@ class ServicesModal extends Component{
                    windowClassName={"sv-modal sv-modal-sz"}
                    header={this.props.addNew? 'Добавить' : 'Изменить'}
                    childClassName={'sv-child'}
-                   controls={addButton}
+                   controls={controls}
                    onClose={()=>this.onClose(false)}
             >
                 {this.getEditor(this.props.addNew)}
@@ -61,6 +63,30 @@ class ServicesModal extends Component{
                 />
                 <ServiceMCFEditor/>
             </Fragment>
+        )
+    }
+
+    getChangeStatusBtn() {
+        return (
+            <div style={{float:'left'}}>
+                {this.props.addNew?
+                    '':
+                    (this.props.currentService?
+                        <div className={'link-decor'}
+                             onClick={()=>{
+                                 this.props.onChangeServiceStatus(
+                                     this.props.currentService.id,
+                                     this.props.currentService.status === 1? 0: 1
+                                 );
+                                 this.props.onClose();
+                             }}
+                        >
+                            {this.props.currentService.status===1? 'Восстановить' : 'Удалить'}
+                        </div> :
+                        ''
+                    )
+                }
+            </div>
         )
     }
 

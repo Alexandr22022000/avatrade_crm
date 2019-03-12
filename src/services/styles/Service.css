@@ -148,6 +148,8 @@
     }
     .sv-content {
         width: inherit;
+        overflow: auto;
+        overflow-y: scroll;
     }
     .sv-content table {
         overflow-x: hidden;

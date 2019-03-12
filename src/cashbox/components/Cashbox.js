@@ -45,8 +45,7 @@ class Cashbox extends Component {
                                         onClickIcon={() => this.props.onLoadStocksList()}
                                         onChange={(v) => {this.props.onChangeStockFilter(v);this.props.onLoadStocksList()}}
                         />
-                        <div className={'cashbox-list'}>
-                            {console.log(products)}
+                        <div  className={'cashbox-list'}>
                             {products.map((value,index) =>
                                 <div key={index} className={'cb-listItem'}>
                                     {value.name}

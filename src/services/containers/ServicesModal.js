@@ -3,6 +3,7 @@ import ServicesModal from "../components/ServicesModal";
 import postAddServices from "../async-actions/postAddServices";
 import postService from "../async-actions/postServices";
 import setConsumables from "../actions/setConsumables";
+import postServiceStatus from "../async-actions/postServiceStatus";
 
 export default connect(
     state =>({
@@ -16,5 +17,6 @@ export default connect(
         onChangeCurrentService: (id, name, price, is_product, consumables) =>
             dispatch(postService(id, name, price, is_product, consumables)),
         onSetConsumables: (consumables) => dispatch(setConsumables(consumables)),
+        onChangeServiceStatus: (id, status) => dispatch(postServiceStatus(id, status)),
     })
 )(ServicesModal)

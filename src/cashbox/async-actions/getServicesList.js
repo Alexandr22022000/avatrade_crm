@@ -4,7 +4,7 @@ import setServicesList from "../actions/setServicesList";
 const getServicesList = () => (dispatch, getState) => {
     const search = getState().cashbox.servicesSearch;
     console.log(search);
-    HTTPS.get('/api/v0.0/services',{search, is_product: false, is_del: null}, dispatch, getState)
+    HTTPS.get('/api/v0.0/services',{search, is_product: false, is_del: false}, dispatch, getState)
         .then(response => dispatch(setServicesList(response.services)))
 };
 

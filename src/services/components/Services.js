@@ -26,6 +26,12 @@ class Services extends Component{
                               onChange={v => {this.servTypeChange(v)}}
                               value={this.getServTypeValue()}
                     />
+                    <DropDown className={'dropdownPlaceholder sv-ctrl-dp'}
+                              options={['Действующие','Удаленные']}
+                              holderStyle={{display: 'inline-block'}}
+                              onChange={v => {this.setStatusChange(v)}}
+                              value={this.getServStatus()}
+                    />
                     <button className={'btn-m blue-button sv-ctrl-btn'}
                             onClick={()=>{this.setState({showServiceEditor: true, addNew: true})}}
                     >
@@ -108,12 +114,24 @@ class Services extends Component{
         return services;
     }
 
+    setStatusChange(val) {
+        val === 1? this.props.onFilterChange(this.props.filter.search, this.props.filter.is_product, true):
+            this.props.onFilterChange(this.props.filter.search, this.props.filter.is_product, false);
+        this.props.onLoadServices();
+    }
+
+    getServStatus() {
+        if(this.props.filter.is_del) return 1;
+        return 0;
+    }
+
     onSearchChange(v) {
-        this.props.onFilterChange(v,this.props.filter.is_product,this.props.filter.is_del);
+        this.props.onFilterChange(v, this.props.filter.is_product, this.props.filter.is_del);
         this.props.onLoadServices();
     }
 
     componentDidMount() {
+        this.props.onFilterChange('', null, false);
         this.props.onLoadServices();
     }
 }

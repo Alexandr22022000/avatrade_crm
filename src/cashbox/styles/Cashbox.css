@@ -12,7 +12,7 @@
         height: 500px;
     }
     .cashbox-search {
-        border-bottom: black solid 2px;
+        border-bottom: black solid 4px;
         width: 349px;
     }
     .cb-search-input-width {
@@ -30,7 +30,7 @@
         width: 900px;
     }
     .cashbox-search {
-        border-bottom: black solid 3px;
+        border-bottom: black solid 4px;
         width: 448px;
     }
     .cb-height {
@@ -60,12 +60,21 @@
 }
 
 .cashbox-list {
+    margin-top: 5px;
     overflow: auto;
     overflow-y: scroll;
 }
 
+.cashbox-list table{
+    border-collapse: collapse;
+}
+
 .cb-listItem {
-    margin-left: 6px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-bottom: black solid 2px;
+    width: inherit;
+    text-align: center;
 }
 
 .cashbox-info {
