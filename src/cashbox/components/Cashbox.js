@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import '../styles/Cashbox.css';
 import '../../core/styles/buttons.css';
 import WarehouseInput from "../../warehouse/components/WarehouseInput";
+import CashboxCountable from "./CashboxCountable";
 
 class Cashbox extends Component {
     render() {
@@ -52,6 +53,9 @@ class Cashbox extends Component {
                                 </div>
                             )}
                         </div>
+                    </div>
+                    <div className={'inline'}>
+                        <CashboxCountable title={'title'}/>
                     </div>
                 </div>
                 <div className={'controlCashbox inline'}>
