@@ -188,6 +188,8 @@
     padding: 0;
     border-spacing: 0;
     text-align: left;
+    overflow-y: hidden;
+    overflow-x: hidden;
 }
 
 .wh-storeWrapper {

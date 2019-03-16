@@ -2,9 +2,18 @@
     margin-top: 4%;
     margin-left: 2%;
     vertical-align: top;
+    overflow: auto;
+    overflow-y: scroll;
+}
+
+.controlCashbox img {
+    background-size: 40px 40px;
 }
 
 @media screen and (max-height: 768px) and (min-height: 400px) {
+    .controlCashbox {
+        width: 205px;
+    }
     .cb-width {
         width: 700px;
     }
@@ -19,15 +28,12 @@
         width: 310px;
     }
     .controlCashbox button {
-        display: block;
-        width: 150px;
-        margin-bottom: 15px;
+        width: 130px;
+        margin: 0 0 0 0;
     }
     .cb-modal-sz {
         width: 300px;
         height: 500px;
-        margin-left: 37%;
-        margin-top: 8%;
         border-radius: 6px;
     }
     .cb-child{
@@ -43,7 +49,7 @@
         margin-right: 5px;
     }
     .cb-c-title {
-        width: 67%;
+        width: 60%;
         text-align: left;
     }
     .cb-countable {
@@ -60,8 +66,8 @@
     }
     .cb-modalHolder {
         position: absolute;
-        right: 16%;
-        top: 12%;
+        right: 8%;
+        top: 16%;
     }
     .cb-StoreCheck {
         width: 300px;
@@ -79,6 +85,9 @@
 }
 
 @media screen and (min-height: 720px) {
+    .controlCashbox {
+        width: 220px;
+    }
     .cb-width {
         width: 900px;
     }
@@ -94,15 +103,13 @@
     }
     .controlCashbox button {
         display: block;
-        width: 200px;
+        width: 150px;
         margin-bottom: 20px;
         font-size: 20px;
     }
     .cb-modal-sz {
         width: 450px;
         height: 700px;
-        margin-left: 40%;
-        margin-top: 8%;
         border-radius: 6px;
     }
     .cb-child{
@@ -118,7 +125,7 @@
         margin-right: 12px;
     }
     .cb-c-title {
-        width: 77%;
+        width: 74%;
         text-align: left;
     }
     .cb-countable {
@@ -135,8 +142,8 @@
     }
     .cb-modalHolder {
         position: absolute;
-        right: 18%;
-        top: 11%;
+        right: 8%;
+        top: 16%;
     }
     .cb-StoreCheck {
         width: 400px;
@@ -177,6 +184,11 @@
     width: inherit;
     text-align: center;
     cursor: pointer;
+    transition: 0.2s;
+}
+
+.cb-listItem:hover {
+    background: #555555;
 }
 
 .cashbox-info {
@@ -242,8 +254,8 @@
     text-shadow: -1px 1px #160047;
 }
 .cb-c-b-input {
-    min-width: 20px;
-    max-width: 20px;
+    min-width: 40px;
+    max-width: 40px;
     background: #1f1f1f;
     color: #D5D9DE;
     border: #9c00b8 solid 2px;

@@ -39,28 +39,29 @@ class ServicesModal extends Component{
     getEditor(addNew) {
         return (
             <Fragment>
-                <CountableField onChange={(v) => {console.log(v); this.setState({price: v})}}
-                                value={this.state.price}
-                                withoutRange={true}
-                                styleInput={{textAlign: 'left', marginLeft: '6%'}}
-                                placeHolder={'Цена'}
-                                title={addNew?
-                                    <StuffInput placeholder={'Название услуги'}
-                                                onChange={v => {this.setState({name: v})}}
-                                                value={this.state.name}
-                                                alwaysActive={true}
-                                                style={{marginLeft: '6%'}}
-                                    /> :
-                                    <div style={{marginLeft:'6%',fontSize:'24px'}}>{this.props.currentService.name}</div>
-                                }
+                <div style={{marginLeft:'6%',fontSize:'24px'}}>Имя</div>
+                <StuffInput placeholder={'Название услуги'}
+                            onChange={v => {this.setState({name: v})}}
+                            value={this.state.name}
+                            style={{marginLeft: '6%'}}
+                            alwaysActive={addNew}
                 />
-                <div style={{marginLeft:'6%',fontSize:'24px'}}>Тип</div>
+                <div style={{marginLeft:'6%',fontSize:'24px', marginTop:'20px'}}>Цена</div>
+                <StuffInput placeholder={'Название услуги'}
+                            onChange={v => {this.setState({price: +v})}}
+                            value={this.state.price}
+                            style={{marginLeft: '6%'}}
+                            alwaysActive={addNew}
+                            numbers={true}
+                />
+                <div style={{marginLeft:'6%',fontSize:'24px', marginTop:'20px'}}>Тип</div>
                 <DropDown className={'dropdownPlaceholder sv-ctrl-dp'}
                           options={['Товар','Услуга']}
                           holderStyle={{display: 'inline-block'}}
                           onChange={v => {this.servTypeChange(v)}}
                           value={this.getServTypeValue()}
                 />
+                <div style={{marginLeft:'6%',fontSize:'24px', marginTop:'20px'}}>Расходные материалы</div>
                 <ServiceMCFEditor/>
             </Fragment>
         )
@@ -136,7 +137,7 @@ class ServicesModal extends Component{
                 } else {
                     this.props.onChangeCurrentService(
                         this.props.currentService.id,
-                        this.props.currentService.name,
+                        this.state.name,
                         this.state.price,
                         this.state.is_product,
                         this.props.currentConsumables

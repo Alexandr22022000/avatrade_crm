@@ -4,6 +4,7 @@ import '../../core/styles/buttons.css';
 import WarehouseInput from "../../warehouse/components/WarehouseInput";
 import CashboxModal from "../containers/CashboxModal";
 import CashboxStorePrompt from "../containers/CashboxStorePrompt";
+import cross from "../../images/cross-icon.png";
 
 class Cashbox extends Component {
     state ={
@@ -36,7 +37,16 @@ class Cashbox extends Component {
                                      className={'cb-listItem'}
                                      onClick={() => this.addToSell(index,true)}
                                 >
-                                    {value.name}
+                                    <div className={'inline'}>
+                                        {value.name} - {value.price} ₽
+                                    </div>
+                                    <div className={'inline'} style={{float: 'right', marginRight:'5px'}}>
+                                        <button onClick={() => this.onIncrease()}
+                                                className={'cb-c-inc cb-c-btn'}
+                                        >
+                                            +
+                                        </button>
+                                    </div>
                                 </div>
                             )}
                         </div>
@@ -59,7 +69,16 @@ class Cashbox extends Component {
                                      className={'cb-listItem'}
                                      onClick={() => this.addToSell(index, false)}
                                 >
-                                    {value.name}
+                                    <div className={'inline'}>
+                                        {value.name} - {value.price} ₽
+                                    </div>
+                                    <div className={'inline'} style={{float: 'right', marginRight:'5px'}}>
+                                        <button onClick={() => this.onIncrease()}
+                                                className={'cb-c-inc cb-c-btn'}
+                                        >
+                                            +
+                                        </button>
+                                    </div>
                                 </div>
                             )}
                         </div>
@@ -67,10 +86,37 @@ class Cashbox extends Component {
                 </div>
                 <div className={'controlCashbox inline'}>
                     {this.props.fastServices.map((value, index) =>
-                        <button className={'btn-m blue-button'} key={index}>
-                            {value.name}
-                        </button>
+                        <div>
+                            <button className={'btn-m blue-button inline'}
+                                    key={index}
+                            >
+                                {value.name}
+                            </button>
+                            <img
+                                src={cross}
+                                onClick={() => this.props.onClose()}
+                                alt={"cross"}
+                                style={{ cursor: "pointer", float:'right'}}
+                                className={'cb-c-cross'}
+                            />
+                        </div>
                     )}
+                    <div>
+                        <button className={'btn-m blue-button inline'}>Изменить</button>
+                        <img
+                            src={cross}
+                            onClick={() => this.props.onClose()}
+                            alt={"cross"}
+                            style={{
+                                cursor: "pointer",
+                                maxWidth:'32px',
+                                maxHeight:'32px',
+                                display:'inline-block',
+                                verticalAlign:'top'
+                            }}
+                        />
+                    </div>
+
                 </div>
                 <CashboxModal/>
                 {this.state.showStorePrompt?

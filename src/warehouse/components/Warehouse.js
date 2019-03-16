@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import '../../core/styles/buttons.css'
 import '../styles/index.css'
-import DropDown from "../../personal/components/DropDown";
 import WarehouseInput from "./WarehouseInput";
 import WarehouseModal from "../containers/WarehouseModal";
 import MigrateEditor from "../containers/MigrateEditor";
@@ -21,7 +20,7 @@ class Warehouse extends Component {
 
             </tr>
         );
-        const width = `${this.props.stores.length * 120}px`;
+        const width = `${this.props.stores.length * 120 - 6}px`;
         return (
             <tr>
                 <td className={'table-cell chbox-cell'}>
@@ -73,7 +72,7 @@ class Warehouse extends Component {
                     </button>
 
                     {this.getCheck(false) ? '' :
-                        <button className={'btn-m inline ' + (this.isOneStore() ? 'blue-button' : '')}
+                        <button className={'btn-m blue-button'}
                                 style={{fontSize: '18px', marginLeft: '40px'}}
                                 onClick={()=> this.onMigrate()}
                         >
@@ -89,7 +88,7 @@ class Warehouse extends Component {
                             <td className={'table-cell header-cell art-cell'}>Артикул</td>
                             <td className={'table-cell header-cell name-cell'}>Наименование</td>
                             <td className={'table-cell header-cell warehouse-cell'}
-                                style={{width: widths.storesCellWidth}}
+                                style={{width: widths.storesCellWidth, textAlign:'center'}}
                             >
                                 Склады
                             </td>
@@ -163,27 +162,7 @@ class Warehouse extends Component {
         return isOk;
     }
 
-    isOneStore () {
-        let store, isOk = true;
-
-        this.props.buffer.map(item => {
-            if (item.isChecked) {
-                if (!store) return store = item.store;
-                if (store !== item.store) isOk = false;
-            }
-        });
-        this.props.stocks.map(item => {
-            if (item.isChecked) {
-                if (!store) return store = item.store;
-                if (store !== item.store) isOk = false;
-            }
-        });
-
-        return !!store && isOk;
-    }
-
     onMigrate () {
-        if (!this.isOneStore()) return;
         this.setState({showMigrate: true});
     }
 }
