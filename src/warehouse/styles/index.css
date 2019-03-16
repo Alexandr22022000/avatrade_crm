@@ -187,11 +187,13 @@
     border-collapse: collapse;
     padding: 0;
     border-spacing: 0;
+    text-align: left;
 }
 
 .wh-storeWrapper {
     display: inline-block;
     margin: 0 auto;
+    text-align: center;
 }
 
 .wh-storeName {
@@ -206,9 +208,6 @@
     border-right: black solid 1px;
 }
 
-.wh-first .wh-storeName{
-    padding-right: 20px;
-}
 
 .wh-last {
     border-left: black solid 1px;
