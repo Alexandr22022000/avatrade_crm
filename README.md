@@ -313,7 +313,7 @@ stocks: [
                 {
                     count: number,
                     store_id: bigint,
-                    store: bigint
+                    store: text
                 }
             ]
         }

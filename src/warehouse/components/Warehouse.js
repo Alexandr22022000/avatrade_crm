@@ -21,7 +21,7 @@ class Warehouse extends Component {
 
             </tr>
         );
-        const width = `${this.props.stores.length * 100 - 5}px`;
+        const width = `${this.props.stores.length * 120}px`;
         return (
             <tr>
                 <td className={'table-cell chbox-cell'}>
@@ -33,24 +33,25 @@ class Warehouse extends Component {
 
                 <td className={'table-cell art-cell'}>{value.article}</td>
                 <td className={'table-cell name-cell'}>{value.name}</td>
-                <td className={'table-cell warehouse-cell'} style={{width}}>{value.store}</td>
+                <td className={'table-cell warehouse-cell'} style={{width}}>
+                    {value.stocks.map((val,index) =>
+                        <div key={index}
+                             className={'wh-storeWrapper ' + (
+                                 index === 0? 'wh-first':
+                                     (index === value.stocks.length-1? 'wh-last':'wh-middle')
+                             )}
+                             style={{width: '115px'}}
+                        >
+                            <div className={'wh-storeName'}>{val.store}</div>
+                            <div className={'wh-count'}>{val.count}</div>
+                        </div>
+                    )}
+                </td>
             </tr>
         );
     }
 
     render() {
-        const stores = [];
-        if(this.props.stores !== null) {
-            for (let key in this.props.stores) {
-                stores.push(this.props.stores[key].name);
-            }
-        }
-        let stocks = [];
-        if(this.props.stocks) {
-            for(let key in this.props.stocks) {
-
-            }
-        }
         const widths = this.getWidths();
         return (
             <div>
@@ -62,20 +63,6 @@ class Warehouse extends Component {
                                     haveIcon={true}
                                     onClickIcon={() => this.props.onGetStocks()}
                                     onChange={(v) => this.onSearchChange(v)}
-                    />
-
-                    <DropDown className={'dropdownPlaceholder warehouse-control-dropdown'}
-                              options={['Все склады', ...stores]}
-                              holderStyle={{display: 'inline-block'}}
-                              onChange={v => {this.onStoreChange(v)}}
-                              value={this.getStoreValue()}
-                    />
-
-                    <DropDown className={'dropdownPlaceholder warehouse-control-dropdown'}
-                              options={['Все','В наличии']}
-                              holderStyle={{display: 'inline-block'}}
-                              value={this.state.is_all ? 0 : 1}
-                              onChange={(v) => {this.onIsAllChange(v)}}
                     />
 
                     <button className={'btn-m blue-button inline'}
@@ -131,41 +118,17 @@ class Warehouse extends Component {
     }
 
     getWidths() {
-        let storesCellWidth = this.props.stores.length*100;
-        let width = 700 + storesCellWidth;
+        let storesCellWidth;
+        if (this.props.stocks[0]) {
+            console.log(this.props.stocks[0].stocks.length);
+            storesCellWidth = this.props.stocks[0].stocks.length * 120;
+        }
+        let width = 370 + storesCellWidth;
         return {tableWidth:`${width.toString(10)}px`, storesCellWidth}
     }
 
     onCloseWindow () {
         this.setState({showEditor: false});
-        this.props.onGetStocks();
-    }
-
-    getStoreValue () {
-        if (!this.props.filter.store) return 0;
-
-        for (let key in this.props.stores) {
-            if (this.props.stores[key].id === this.props.filter.store)
-                return +key + 1;
-        }
-
-        return 0;
-    }
-
-
-    onStoreChange(index) {
-        if (index === 0) {
-            this.props.changeFilter(this.props.filter.search, null, this.props.filter.is_all);
-        }
-        else {
-            console.log('id',this.props.stores[index - 1].id);
-            this.props.changeFilter(this.props.filter.search, this.props.stores[index - 1].id, this.props.filter.is_all);
-        }
-        this.props.onGetStocks();
-    }
-
-    onIsAllChange(index){
-        this.props.changeFilter(this.props.filter.search, this.props.filter.store, index === 0);
         this.props.onGetStocks();
     }
 
@@ -176,7 +139,6 @@ class Warehouse extends Component {
 
     componentDidMount () {
         this.props.onGetStocks();
-        this.props.onGetStores();
     }
 
     getCheckboxTool () {
@@ -222,7 +184,6 @@ class Warehouse extends Component {
 
     onMigrate () {
         if (!this.isOneStore()) return;
-
         this.setState({showMigrate: true});
     }
 }
