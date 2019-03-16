@@ -133,6 +133,7 @@ class Services extends Component{
     componentDidMount() {
         this.props.onFilterChange('', null, false);
         this.props.onLoadServices();
+        this.props.onGetCargos();
     }
 }
 

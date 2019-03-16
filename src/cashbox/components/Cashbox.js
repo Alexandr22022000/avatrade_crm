@@ -3,10 +3,11 @@ import '../styles/Cashbox.css';
 import '../../core/styles/buttons.css';
 import WarehouseInput from "../../warehouse/components/WarehouseInput";
 import CashboxModal from "../containers/CashboxModal";
+import CashboxStorePrompt from "../containers/CashboxStorePrompt";
 
 class Cashbox extends Component {
-    state = {
-        showSellBox: false,
+    state ={
+        showStorePrompt: this.props.storeId === null,
     };
     render() {
         let products = this.props.stocks, services = this.props.services;
@@ -31,7 +32,10 @@ class Cashbox extends Component {
                         />
                         <div className={'cashbox-list'}>
                             {services.map((value, index)=>
-                                <div key={index} className={'cb-listItem'}>
+                                <div key={index}
+                                     className={'cb-listItem'}
+                                     onClick={() => this.addToSell(index,true)}
+                                >
                                     {value.name}
                                 </div>
                             )}
@@ -51,7 +55,10 @@ class Cashbox extends Component {
                         />
                         <div className={'cashbox-list'}>
                             {products.map((value,index) =>
-                                <div key={index} className={'cb-listItem'}>
+                                <div key={index}
+                                     className={'cb-listItem'}
+                                     onClick={() => this.addToSell(index, false)}
+                                >
                                     {value.name}
                                 </div>
                             )}
@@ -60,28 +67,40 @@ class Cashbox extends Component {
                 </div>
                 <div className={'controlCashbox inline'}>
                     {this.props.fastServices.map((value, index) =>
-                        <button className={'btn-m blue-button'}>
+                        <button className={'btn-m blue-button'} key={index}>
                             {value.name}
                         </button>
                     )}
-                    <button className={'btn-m blue-button'}
-                            onClick={() => this.setState({showSellBox:true})}
-                    >
-                        окно
-                    </button>
                 </div>
-                {this.state.showSellBox? <CashboxModal onClose={() => this.setState({showSellBox:false})}/>:''}
+                <CashboxModal/>
+                {this.state.showStorePrompt?
+                    <CashboxStorePrompt onClose={() => this.setState({showStorePrompt: false})}/>
+                    :''
+                }
             </div>
         );
     }
 
+    addToSell(index, isService) {
+        let sellObj = isService? this.props.services[index] : this.props.stocks[index];
+        let sellServices = [...this.props.sellServices];
+        for(let key in sellServices) {
+            if(sellServices[key].id === sellObj.id) {
+                sellServices[key].count += 1;
+                this.props.onServicesChange(sellServices);
+                return;
+            }
+        }
+        this.props.onServicesChange([...sellServices, {...sellObj, count: 1}])
+    }
+
     shouldComponentUpdate(nextProps, nextState, nextContext) {
         console.log(nextProps.services);
-        console.log(nextProps.stocks);
         return true;
     }
 
     componentDidMount() {
+        this.props.onGetStores();
         this.props.onLoadFastServices();
         this.props.onLoadStocksList();
         this.props.onLoadServicesList();

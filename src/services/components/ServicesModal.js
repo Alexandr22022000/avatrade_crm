@@ -150,6 +150,7 @@ class ServicesModal extends Component{
     }
 
     componentDidMount() {
+        this.props.onGetCargos();
         if(!this.props.addNew) {
             this.props.onSetConsumables(this.props.currentService.consumables);
         } else {

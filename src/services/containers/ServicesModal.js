@@ -4,6 +4,7 @@ import postAddServices from "../async-actions/postAddServices";
 import postService from "../async-actions/postServices";
 import setConsumables from "../actions/setConsumables";
 import postServiceStatus from "../async-actions/postServiceStatus";
+import {getCargos} from "../../warehouse/async-actions/getCargos";
 
 export default connect(
     state =>({
@@ -18,5 +19,6 @@ export default connect(
             dispatch(postService(id, name, price, is_product, consumables)),
         onSetConsumables: (consumables) => dispatch(setConsumables(consumables)),
         onChangeServiceStatus: (id, status) => dispatch(postServiceStatus(id, status)),
+        onGetCargos: () => dispatch(getCargos(null)),
     })
 )(ServicesModal)
