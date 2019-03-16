@@ -1,11 +1,11 @@
 import MigrateDetails from "../components/MigrateDetails";
 import { connect } from "react-redux";
-import setActiveMigration from "../actions/setActiveMigration";
-import {approveMigrate} from "../async-actions/approveMigrate";
+import setActiveMigration from "../../core/actions/setActiveMigration";
+import {approveMigrate} from "../../core/async-actions/approveMigrate";
 
 export default connect(
     state => ({
-        migrate: state.status.activeMigration,
+        selectedObject: state.alerts.selectedObject,
     }),
     dispatch => ({
         setActiveMigrate: migrate => {

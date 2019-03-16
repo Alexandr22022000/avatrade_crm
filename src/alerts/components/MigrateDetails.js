@@ -13,7 +13,7 @@ class MigrateDetails extends Component {
             </button>
         </div>);
 
-        const inputs = this.props.migrate.stocks.map((item, index) => (
+        const inputs = this.props.selectedObject.stocks.map((item, index) => (
             <StuffInput
                 onlyRead={true}
                 value={item.count}
@@ -32,19 +32,19 @@ class MigrateDetails extends Component {
             >
                 <StuffInput
                     onlyRead={true}
-                    value={this.props.migrate.from}
+                    value={this.props.selectedObject.from}
                     title={'Со склада'}
                 />
 
                 <StuffInput
                     onlyRead={true}
-                    value={this.props.migrate.to}
+                    value={this.props.selectedObject.to}
                     title={'На склад'}
                 />
 
                 <StuffInput
                     onlyRead={true}
-                    value={this.props.migrate.sender}
+                    value={this.props.selectedObject.sender}
                     title={'Отправитель'}
                 />
 

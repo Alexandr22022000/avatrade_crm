@@ -1,0 +1,7 @@
+const NOTIFICATIONS_TYPES = {
+    WAITING: -1,
+    MIGRATION: 0,
+    MIGRATION_REQUESTS: 1,
+};
+
+export default NOTIFICATIONS_TYPES;
