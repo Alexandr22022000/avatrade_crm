@@ -264,7 +264,7 @@ Response body:
 
 ### Cargos:
 
-#### `GET: /api/v0.0/stocks`
+#### `GET: /api/v0.0/stocks` (deprecated)
 
 Request params:
 
@@ -289,6 +289,35 @@ stocks: [
         store_id: bigint,
     }
 ]
+```
+
+#### `GET: /api/v0.1/stocks`
+
+Request params:
+
+```$xslt
+token: text,
+is_all: bool, (optional) 
+search: text (optional)
+```
+
+Response body:
+
+```$xslt
+stocks: [
+        {
+            id: bigint,
+            name: text,
+            article: text,
+            stocks: [
+                {
+                    count: number,
+                    store_id: bigint,
+                    store: bigint
+                }
+            ]
+        }
+    ]
 ```
 
 #### `GET: /api/v0.0/cargos`
