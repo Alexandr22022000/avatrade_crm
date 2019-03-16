@@ -23,6 +23,40 @@
         width: 150px;
         margin-bottom: 15px;
     }
+    .cb-modal-sz {
+        width: 300px;
+        height: 450px;
+        margin-left: 37%;
+        margin-top: 8%;
+        border-radius: 6px;
+    }
+    .cb-child{
+        overflow: auto;
+        overflow-y: scroll;
+        height: 380px;
+        margin-left: 8px;
+    }
+    .cb-btn-w {
+        width: 70px;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    .cb-c-title {
+        width: 187px;
+        text-align: left;
+    }
+    .cb-countable {
+        width: 280px;
+        margin-bottom: 10px;
+    }
+    .cb-c-box {
+        display: inline-block;
+    }
+    .cb-c-cross {
+        vertical-align: top;
+        max-width: 25px;
+        max-height: 25px;
+    }
 }
 
 @media screen and (min-height: 720px) {
@@ -45,6 +79,40 @@
         margin-bottom: 20px;
         font-size: 20px;
     }
+    .cb-modal-sz {
+        width: 350px;
+        height: 600px;
+        margin-left: 40%;
+        margin-top: 8%;
+        border-radius: 6px;
+    }
+    .cb-child{
+        overflow: auto;
+        overflow-y: scroll;
+        height: 520px;
+        margin-left: 8px;
+    }
+    .cb-btn-w {
+        width: 86px;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    .cb-c-title {
+        width: 239px;
+        text-align: left;
+    }
+    .cb-countable {
+        width: 330px;
+        margin-bottom: 10px;
+    }
+    .cb-c-box {
+        display: inline-block;
+    }
+    .cb-c-cross {
+        vertical-align: top;
+        max-width: 23px;
+        max-height: 23px;
+    }
 }
 
 .cashbox-services {
@@ -60,13 +128,8 @@
 }
 
 .cashbox-list {
-    margin-top: 5px;
     overflow: auto;
     overflow-y: scroll;
-}
-
-.cashbox-list table{
-    border-collapse: collapse;
 }
 
 .cb-listItem {
@@ -107,14 +170,6 @@
 
 .cashbox-stocks {
     display: inline-block;
-}
-
-.cb-c-inc {
-
-}
-
-.cb-c-dec {
-
 }
 
 .cb-c-btn {
@@ -159,18 +214,6 @@
     outline: none;
 }
 
-.cb-countable {
-    width: 200px;
-}
-
-.cb-countable p {
-    float: left;
-    display: inline-block;
-    vertical-align: top;
-}
-
-.cb-countable div {
-    float: right;
-    display: inline-block;
-
+.cb-modal {
+    background-color: #1f1f1f;
 }

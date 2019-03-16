@@ -21,7 +21,7 @@ class Warehouse extends Component {
 
             </tr>
         );
-
+        const width = `${this.props.stores.length * 100 - 5}px`;
         return (
             <tr>
                 <td className={'table-cell chbox-cell'}>
@@ -33,8 +33,7 @@ class Warehouse extends Component {
 
                 <td className={'table-cell art-cell'}>{value.article}</td>
                 <td className={'table-cell name-cell'}>{value.name}</td>
-                <td className={'table-cell count-cell'}>{value.count}</td>
-                <td className={'table-cell warehouse-cell'}>{value.store}</td>
+                <td className={'table-cell warehouse-cell'} style={{width}}>{value.store}</td>
             </tr>
         );
     }
@@ -46,6 +45,13 @@ class Warehouse extends Component {
                 stores.push(this.props.stores[key].name);
             }
         }
+        let stocks = [];
+        if(this.props.stocks) {
+            for(let key in this.props.stocks) {
+
+            }
+        }
+        const widths = this.getWidths();
         return (
             <div>
                 <div className={'controlWarehouse'}>
@@ -88,15 +94,18 @@ class Warehouse extends Component {
                         </button>
                     }
                 </div>
-                <div className={'dataTable'}>
+                <div className={'dataTable'} style={{width:widths.tableWidth}}>
                     <table className={'table-header'}>
                         <thead>
                         <tr>
                             <td className={'table-cell header-cell chbox-cell'}>{this.getCheckboxTool()}</td>
                             <td className={'table-cell header-cell art-cell'}>Артикул</td>
                             <td className={'table-cell header-cell name-cell'}>Наименование</td>
-                            <td className={'table-cell header-cell count-cell'}>Количество</td>
-                            <td className={'table-cell header-cell warehouse-cell'}>Склад</td>
+                            <td className={'table-cell header-cell warehouse-cell'}
+                                style={{width: widths.storesCellWidth}}
+                            >
+                                Склады
+                            </td>
                         </tr>
                         </thead>
                     </table>
@@ -119,6 +128,12 @@ class Warehouse extends Component {
                 }
             </div>
         )
+    }
+
+    getWidths() {
+        let storesCellWidth = this.props.stores.length*100;
+        let width = 700 + storesCellWidth;
+        return {tableWidth:`${width.toString(10)}px`, storesCellWidth}
     }
 
     onCloseWindow () {

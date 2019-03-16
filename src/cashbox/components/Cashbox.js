@@ -2,9 +2,12 @@ import React, {Component} from 'react';
 import '../styles/Cashbox.css';
 import '../../core/styles/buttons.css';
 import WarehouseInput from "../../warehouse/components/WarehouseInput";
-import CashboxCountable from "./CashboxCountable";
+import CashboxModal from "../containers/CashboxModal";
 
 class Cashbox extends Component {
+    state = {
+        showSellBox: false,
+    };
     render() {
         let products = this.props.stocks, services = this.props.services;
 
@@ -46,16 +49,13 @@ class Cashbox extends Component {
                                         onClickIcon={() => this.props.onLoadStocksList()}
                                         onChange={(v) => {this.props.onChangeStockFilter(v);this.props.onLoadStocksList()}}
                         />
-                        <div  className={'cashbox-list'}>
+                        <div className={'cashbox-list'}>
                             {products.map((value,index) =>
                                 <div key={index} className={'cb-listItem'}>
                                     {value.name}
                                 </div>
                             )}
                         </div>
-                    </div>
-                    <div className={'inline'}>
-                        <CashboxCountable title={'title'}/>
                     </div>
                 </div>
                 <div className={'controlCashbox inline'}>
@@ -64,7 +64,13 @@ class Cashbox extends Component {
                             {value.name}
                         </button>
                     )}
+                    <button className={'btn-m blue-button'}
+                            onClick={() => this.setState({showSellBox:true})}
+                    >
+                        окно
+                    </button>
                 </div>
+                {this.state.showSellBox? <CashboxModal onClose={() => this.setState({showSellBox:false})}/>:''}
             </div>
         );
     }

@@ -1,4 +1,5 @@
 import {
+    CHANGE_SELLING_SERVS,
     SERVICES_SEARCH_CHANGE,
     SET_FAST_SERVICES,
     SET_SERVICES_LIST,
@@ -12,6 +13,7 @@ const defaultState = {
     stocks:[],
     servicesSearch: '',
     stocksSearch: '',
+    sellServices:[],
 };
 
 const cashbox = (state = defaultState, action) => {
@@ -40,6 +42,11 @@ const cashbox = (state = defaultState, action) => {
             return {
                 ...state,
                 stocksSearch: action.search,
+            };
+        case CHANGE_SELLING_SERVS:
+            return {
+                ...state,
+                sellServices:action.services,
             };
         default:
             return state;
