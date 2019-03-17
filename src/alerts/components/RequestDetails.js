@@ -64,7 +64,7 @@ class MigrateDetails extends Component {
 
     onClose (isSave) {
         if(isSave){
-            //this.props.onApproveMigrate(this.props.selectedObject.id);
+            this.props.print(this.props.selectedObject.id);
             this.props.onClose();
         } else {
             this.props.onClose();
