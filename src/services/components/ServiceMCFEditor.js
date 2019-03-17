@@ -18,10 +18,9 @@ class ServiceMCFEditor extends Component{
 
     showMCFs() {
         const currentConsumables = this.props.currentConsumables;
-        let cargos = [];
-        for(let key in this.props.cargos) {
-            cargos.push(this.props.cargos[key].name);
-        }
+        let cargos = this.props.cargos.map(item => {
+            return item.name + ' - ' + item.article;
+        });
 
         let disabled = [];
         for(let key in currentConsumables) {
@@ -33,17 +32,17 @@ class ServiceMCFEditor extends Component{
             consums.push(
                 <div key={key}>
                     <MultipleCountableField needSearch={true}
-                                            options={cargos}
-                                            amount={currentConsumables[key].count}
-                                            onSelected={(val) => this.selectedCargo(val, key)}
-                                            onCountChange={(val) => this.changedCargoCount(val, key)}
-                                            value={this.getSearchValue(currentConsumables[key].cargoIndex)}
-                                            disabled={disabled}
-                                            withoutRange={true}
-                                            style={{marginLeft:'6%'}}
-                                            inputClassName={'sv-mcf-input'}
-                                            optionsClassName={'sv-mcf-options'}
-                                            withoutFirstCell={true}
+                        options={cargos}
+                        amount={currentConsumables[key].count}
+                        onSelected={(val) => this.selectedCargo(val, key)}
+                        onCountChange={(val) => this.changedCargoCount(val, key)}
+                        value={this.getSearchValue(currentConsumables[key].cargoIndex)}
+                        disabled={disabled}
+                        withoutRange={true}
+                        style={{marginLeft:'6%'}}
+                        inputClassName={'sv-mcf-input'}
+                        optionsClassName={'sv-mcf-options'}
+                        withoutFirstCell={true}
                     />
                     <div style={{fontSize: '18px', textAlign: 'left',cursor:'pointer',marginLeft:'6%', width: 'fit-content'}}
                          onClick={()=> this.delMFC(key)}
@@ -57,7 +56,7 @@ class ServiceMCFEditor extends Component{
     }
 
     getSearchValue(cargoIndex) {
-        return this.props.cargos[cargoIndex]? this.props.cargos[cargoIndex].name: '';
+        return this.props.cargos[cargoIndex] ? this.props.cargos[cargoIndex].name + ' - ' + this.props.cargos[cargoIndex].article : '';
     }
 
     changedCargoCount(val, MCFKey) {
