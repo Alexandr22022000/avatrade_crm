@@ -9,6 +9,7 @@ class Warehouse extends Component {
     state = {
         showEditor: false,
         showMigrate: false,
+        isRequest: false,
         is_all: true,
         store: -1,
         searchStocks: '',
@@ -71,14 +72,21 @@ class Warehouse extends Component {
                         Добавить
                     </button>
 
-                    {this.getCheck(false) ? '' :
+                    {this.getCheck(false) ? '' : [
                         <button className={'btn-m blue-button'}
                                 style={{fontSize: '18px', marginLeft: '40px'}}
-                                onClick={()=> this.onMigrate()}
+                                onClick={()=> this.onMigrate(false)}
                         >
                             Переместить
+                        </button>,
+
+                        <button className={'btn-m blue-button'}
+                        style={{fontSize: '18px', marginLeft: '40px'}}
+                        onClick={()=> this.onMigrate(true)}
+                        >
+                        Запросить
                         </button>
-                    }
+                    ]}
                 </div>
                 <div className={'dataTable'} style={{width:widths.tableWidth}}>
                     <table className={'table-header'}>
@@ -110,7 +118,7 @@ class Warehouse extends Component {
                     <WarehouseModal onClose={this.onCloseWindow.bind(this)}/>
                 }
                 {!this.state.showMigrate ? '' :
-                    <MigrateEditor onClose={() => this.setState({showMigrate: false})}/>
+                    <MigrateEditor onClose={() => this.setState({showMigrate: false})} isRequest={this.state.isRequest}/>
                 }
             </div>
         )
@@ -119,7 +127,6 @@ class Warehouse extends Component {
     getWidths() {
         let storesCellWidth;
         if (this.props.stocks[0]) {
-            console.log(this.props.stocks[0].stocks.length);
             storesCellWidth = this.props.stocks[0].stocks.length * 120;
         }
         let width = 370 + storesCellWidth;
@@ -162,8 +169,8 @@ class Warehouse extends Component {
         return isOk;
     }
 
-    onMigrate () {
-        this.setState({showMigrate: true});
+    onMigrate (isRequest) {
+        this.setState({showMigrate: true, isRequest});
     }
 }
 

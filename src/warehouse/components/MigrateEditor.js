@@ -10,20 +10,33 @@ class WarehouseModal extends Component {
             <button className={"btn-m inline" + (this.canSave() ? " blue-button" : "")}
                     onClick={() => {this.onClose(true)}}
             >
-                Переместить
+                {this.props.isRequest ? 'Запросить' : 'Переместить'}
             </button>
         </div>);
+
+        this.list = this.list.map(item => {
+            for (let key in item.stocks) {
+                if (+item.stocks[key].store_id === +this.state.from) {
+                    item.max = item.stocks[key].count;
+                    return item;
+                }
+            }
+
+            item.max = 0;
+            return item;
+        });
+
         const inputs = this.list.map((item, index) => (
             <CountableField
-                title={'Количество'}
+                title={item.name}
                 value={this.state.values[index]}
-                maxValue={this.list[index].max}
+                maxValue={this.props.isRequest ? null : item.max}
                 onChange={v => {this.onChange(v, index)}}
             />
         ));
 
         return (
-            <Modal header={'Переместить'}
+            <Modal header={this.props.isRequest ? 'Запросить' : 'Переместить'}
                    bgClassName={"modalHolder"}
                    windowClassName={"borders"}
                    childClassName={"modal"}
@@ -31,15 +44,19 @@ class WarehouseModal extends Component {
                    controls={addButton}
                    onClose={()=> this.onClose(false)}
             >
-                <StuffInput
-                    onlyRead={true}
-                    value={this.fromStore}
-                    title={'Со склада'}
-                />
+                {this.props.isRequest ? '' : (
+                    <StuffInput
+                        value={this.state.from}
+                        onChange={v => this.setState({from: v})}
+                        title={'Со склада'}
+                        alwaysActive={true}
+                        options={this.props.stores.map(v => v.name)}
+                    />
+                )}
 
                 <StuffInput
-                    value={this.state.store}
-                    onChange={v => this.setState({store: v})}
+                    value={this.state.to}
+                    onChange={v => this.setState({to: v})}
                     title={'На склад'}
                     alwaysActive={true}
                     options={this.props.stores.map(v => v.name)}
@@ -61,8 +78,9 @@ class WarehouseModal extends Component {
 
             this.list.push({
                 name: item.name,
-                max: item.count,
-                id: item.cargo_id,
+                stocks: item.stocks,
+                max: 0,
+                id: item.id,
             });
             this.fromStore = item.store;
             this.fromStoreId = item.store_id;
@@ -73,23 +91,19 @@ class WarehouseModal extends Component {
 
             this.list.push({
                 name: item.name,
-                max: item.count,
-                id: item.cargo_id,
+                stocks: item.stocks,
+                max: 0,
+                id: item.id,
             });
             this.fromStore = item.store;
-            console.log('item.store_id',item.store_id);
             this.fromStoreId = item.store_id;
         });
 
         this.setState({
-            values: this.list.map(() => ''),
-            store: 0,
+            values: this.list.map(() => 0),
+            to: 0,
+            from: 0,
         });
-    }
-
-    shouldComponentUpdate(nextProps, nextState, nextContext) {
-        console.log(nextState);
-        return true;
     }
 
     onChange (value, index) {
@@ -110,8 +124,12 @@ class WarehouseModal extends Component {
                         id: this.list[index].id,
                     });
                 });
-                console.log(this.props.stores[this.state.store].id);
-                this.props.addMigrate(this.fromStoreId, this.props.stores[this.state.store].id, stocks);
+
+                if (this.props.isRequest)
+                    this.props.createMigrationRequest(this.props.stores[this.state.to].id, stocks);
+                else
+                    this.props.addMigrate(this.props.stores[this.state.from].id, this.props.stores[this.state.to].id, stocks);
+
                 this.props.checkAllStocks(false);
                 this.props.onGetStocks();
                 this.props.onClose();
@@ -129,7 +147,9 @@ class WarehouseModal extends Component {
 
         if (sum === 0) return false;
 
-        if (this.fromStoreId === this.props.stores[this.state.store].id) return false;
+        if (this.props.isRequest) return true;
+
+        if (this.props.stores[this.state.from].id === this.props.stores[this.state.to].id) return false;
 
         return true;
     }
