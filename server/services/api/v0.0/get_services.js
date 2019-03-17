@@ -1,9 +1,7 @@
 const {query} = require('neuronex-pg'),
     {checkUser} = require('neuronex-login-backend'),
-    checkPermissions = require('../../../core/users/checkPermissions'),
     QUERYES = require('../../pSQL/services'),
-    QUERYES_CARGOS = require('../../pSQL/cargos'),
-    PERMISSIONS = require('../../../core/constants/permissions');
+    QUERYES_CARGOS = require('../../pSQL/cargos');
 
 module.exports = (app) => {
     app.get('/api/v0.0/services', (req, res) => {
@@ -14,7 +12,6 @@ module.exports = (app) => {
         const user = checkUser(req.query.token);
 
         if (!user) return res.status(401).end();
-        if (!checkPermissions(user, [PERMISSIONS.OWNER, PERMISSIONS.TOP_MANAGER])) return res.status(403).end();
 
         if (is_del === undefined || is_del === null || is_del.trim() === '' || is_del === 'undefined' || is_del === 'null')
             is_del = undefined;
