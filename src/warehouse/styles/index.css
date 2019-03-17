@@ -173,8 +173,8 @@
 }
 
 .name-cell {
-    width: 280px;
-    max-width: 280px;
+    width: 150px;
+    max-width: 150px;
 }
 
 .count-cell {
@@ -183,5 +183,39 @@
 }
 
 .warehouse-cell {
+    border-right: black solid 1px;
+    border-collapse: collapse;
+    padding: 0;
+    border-spacing: 0;
+    text-align: left;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.wh-storeWrapper {
+    display: inline-block;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.wh-storeName {
+    border-bottom: black solid 2px;
+    padding-right: 5px;
+    padding-left: 2px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.wh-first {
+    border-right: black solid 1px;
+}
+
+
+.wh-last {
+    border-left: black solid 1px;
+}
+
+.wh-middle {
+    border-left: black solid 1px;
     border-right: black solid 1px;
 }

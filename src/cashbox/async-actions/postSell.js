@@ -1,7 +1,8 @@
 import HTTPS from "../../core/HTTPS";
 
-const postSell = (store,is_card,services) => (dispatch, getState) => {
-    HTTPS.post('/api/v0.0/sell',{store,is_card,services}, dispatch,getState)
+const postSell = (is_card,services) => (dispatch, getState) => {
+    const store = getState().cashbox.currentStoreId;
+    HTTPS.post('/api/v0.0/sale',{store,is_card,services}, dispatch,getState)
         .then(()=>{})
 };
 

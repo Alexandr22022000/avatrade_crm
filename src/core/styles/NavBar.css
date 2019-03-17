@@ -51,6 +51,7 @@
         position: absolute;
         bottom: 4%;
         right: 2%;
+        z-index: 9999;
     }
     .imgHolder {
         background: url("../../images/ava-logo-s.png") no-repeat;
@@ -102,6 +103,7 @@
         border: #555555 solid 1px;
         box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);
         transition: 0.8s;
+        z-index: 9999;
     }
     #alerts .alertbox-hidden {
         right: -100%;

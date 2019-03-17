@@ -2,9 +2,18 @@
     margin-top: 4%;
     margin-left: 2%;
     vertical-align: top;
+    overflow: auto;
+    overflow-y: scroll;
+}
+
+.controlCashbox img {
+    background-size: 40px 40px;
 }
 
 @media screen and (max-height: 768px) and (min-height: 400px) {
+    .controlCashbox {
+        width: 205px;
+    }
     .cb-width {
         width: 700px;
     }
@@ -19,22 +28,20 @@
         width: 310px;
     }
     .controlCashbox button {
-        display: block;
-        width: 150px;
-        margin-bottom: 15px;
+        width: 130px;
+        margin: 0 0 0 0;
     }
     .cb-modal-sz {
         width: 300px;
-        height: 450px;
-        margin-left: 37%;
-        margin-top: 8%;
+        height: 500px;
         border-radius: 6px;
     }
     .cb-child{
         overflow: auto;
         overflow-y: scroll;
-        height: 380px;
+        height: 430px;
         margin-left: 8px;
+        z-index: -1;
     }
     .cb-btn-w {
         width: 70px;
@@ -42,11 +49,11 @@
         margin-right: 5px;
     }
     .cb-c-title {
-        width: 187px;
+        width: 60%;
         text-align: left;
     }
     .cb-countable {
-        width: 280px;
+        width: 100%;
         margin-bottom: 10px;
     }
     .cb-c-box {
@@ -57,9 +64,30 @@
         max-width: 25px;
         max-height: 25px;
     }
+    .cb-modalHolder {
+        position: absolute;
+        right: 8%;
+        top: 16%;
+    }
+    .cb-StoreCheck {
+        width: 300px;
+        height: 150px;
+        margin-left: 36%;
+        margin-top: 12%;
+        background-color: #1f1f1f;
+        border-radius: 6px;
+    }
+    .cb-sc-child {
+        height: 60px;
+        padding-top: 25px;
+        padding-left: 20px;
+    }
 }
 
 @media screen and (min-height: 720px) {
+    .controlCashbox {
+        width: 220px;
+    }
     .cb-width {
         width: 900px;
     }
@@ -75,34 +103,33 @@
     }
     .controlCashbox button {
         display: block;
-        width: 200px;
+        width: 150px;
         margin-bottom: 20px;
         font-size: 20px;
     }
     .cb-modal-sz {
-        width: 350px;
-        height: 600px;
-        margin-left: 40%;
-        margin-top: 8%;
+        width: 450px;
+        height: 700px;
         border-radius: 6px;
     }
     .cb-child{
         overflow: auto;
         overflow-y: scroll;
-        height: 520px;
+        height: 620px;
         margin-left: 8px;
+        z-index: -1;
     }
     .cb-btn-w {
-        width: 86px;
-        margin-left: 5px;
-        margin-right: 5px;
+        width: 105px;
+        margin-left: 12px;
+        margin-right: 12px;
     }
     .cb-c-title {
-        width: 239px;
+        width: 74%;
         text-align: left;
     }
     .cb-countable {
-        width: 330px;
+        min-width: 100%;
         margin-bottom: 10px;
     }
     .cb-c-box {
@@ -112,6 +139,24 @@
         vertical-align: top;
         max-width: 23px;
         max-height: 23px;
+    }
+    .cb-modalHolder {
+        position: absolute;
+        right: 8%;
+        top: 16%;
+    }
+    .cb-StoreCheck {
+        width: 400px;
+        height: 200px;
+        margin-left: 36%;
+        margin-top: 15%;
+        background-color: #1f1f1f;
+        border-radius: 6px;
+    }
+    .cb-sc-child {
+        height: 80px;
+        padding-top: 50px;
+        padding-left: 70px;
     }
 }
 
@@ -138,6 +183,12 @@
     border-bottom: black solid 2px;
     width: inherit;
     text-align: center;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.cb-listItem:hover {
+    background: #555555;
 }
 
 .cashbox-info {
@@ -203,8 +254,8 @@
     text-shadow: -1px 1px #160047;
 }
 .cb-c-b-input {
-    min-width: 20px;
-    max-width: 20px;
+    min-width: 40px;
+    max-width: 40px;
     background: #1f1f1f;
     color: #D5D9DE;
     border: #9c00b8 solid 2px;
@@ -216,4 +267,14 @@
 
 .cb-modal {
     background-color: #1f1f1f;
+    z-index: -2;
+}
+
+.cb-storeCheck {
+    height: 32px;
+    font-size: 16px;
+    padding: 5px 10px;
+    display: inline-block;
+    margin-left: 40px;
+    color: #D5D9DE;
 }

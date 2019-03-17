@@ -103,7 +103,6 @@ class ServiceMCFEditor extends Component{
     }
 
     componentDidMount() {
-        this.props.onLoadCargos();
         if(!this.props.addNew) {
             this.props.onSetConsumables([]);
         } else {

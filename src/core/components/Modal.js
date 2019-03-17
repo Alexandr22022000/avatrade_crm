@@ -14,13 +14,13 @@ class Modal extends Component {
                 <div className={this.props.windowClassName} onClick={e => e.stopPropagation()}>
                     <div id={'modalHeader'} style={{borderBottom:borderParams}}>
                         <div id={'headerName'}>{this.props.header? this.props.header: ''}</div>
-                        <img
+                        {this.props.withoutCross?'': <img
                             src={cross}
                             onClick={() => this.props.onClose()}
                             alt={"cross"}
                             style={{ cursor: "pointer", ...styles.cross}}
                             className={`${this.props.leftCross? 'left':'right'}`}
-                        />
+                        />}
                     </div>
 
                     <div className={this.props.childClassName}>{this.props.children}</div>

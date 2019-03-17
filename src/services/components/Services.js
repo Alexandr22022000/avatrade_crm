@@ -104,6 +104,7 @@ class Services extends Component{
                         this.props.onSetCurrentService(this.props.services[index]);
                         this.setState({showServiceEditor: true, addNew: false});
                     }}
+                    className={'sv-tb-line'}
                 >
                     <td className={'sv-tb-name'}>{value.name}</td>
                     <td className={'sv-tb-price'}>{value.price}</td>
@@ -133,6 +134,7 @@ class Services extends Component{
     componentDidMount() {
         this.props.onFilterChange('', null, false);
         this.props.onLoadServices();
+        this.props.onGetCargos();
     }
 }
 
