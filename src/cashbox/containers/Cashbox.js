@@ -8,6 +8,7 @@ import setServicesSearch from "../actions/setServicesSearch";
 import setStocksSearch from "../actions/setStocksSearch";
 import setSellingServs from "../actions/setSellingServs";
 import {getStores} from "../../warehouse/async-actions/getStores";
+import postFastServices from "../async-actions/postFastServices";
 
 
 export default connect (
@@ -26,5 +27,6 @@ export default connect (
         onChangeStockFilter: (search) => dispatch(setStocksSearch(search)),
         onServicesChange: (services) => dispatch(setSellingServs(services)),
         onGetStores: () => dispatch(getStores()),
+        onChangeFastServices: (fast_services) => dispatch(postFastServices(fast_services)),
 	})
 )(Cashbox);

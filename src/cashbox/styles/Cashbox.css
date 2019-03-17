@@ -80,7 +80,10 @@
     .cb-sc-child {
         height: 60px;
         padding-top: 25px;
-        padding-left: 20px;
+        padding-left: 35px;
+    }
+    .ccb-item{
+        margin-bottom: 15px;
     }
 }
 
@@ -101,11 +104,12 @@
     .cb-search-input-width {
         width: 410px;
     }
+    .controlCashbox {
+        width: 250px;
+    }
     .controlCashbox button {
-        display: block;
-        width: 150px;
-        margin-bottom: 20px;
-        font-size: 20px;
+        width: 190px;
+        margin: 0 0 0 0;
     }
     .cb-modal-sz {
         width: 450px;
@@ -143,7 +147,7 @@
     .cb-modalHolder {
         position: absolute;
         right: 8%;
-        top: 16%;
+        top: 15%;
     }
     .cb-StoreCheck {
         width: 400px;
@@ -156,7 +160,10 @@
     .cb-sc-child {
         height: 80px;
         padding-top: 50px;
-        padding-left: 70px;
+        padding-left: 80px;
+    }
+    .ccb-item{
+        margin-bottom: 20px;
     }
 }
 
