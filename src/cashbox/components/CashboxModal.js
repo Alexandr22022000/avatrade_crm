@@ -23,24 +23,33 @@ class CashboxModal extends Component{
                 </button>
             </div>
         );
+
+        let price = 0, salls = '';
+        if (this.props.sellServices) {
+            salls = this.props.sellServices.map((value, index)=> {
+                price += value.price * value.count;
+
+                return <CashboxCountable
+                    title={value.name}
+                    count={value.count}
+                    onClose={() => this.onDel(index)}
+                    key={index + ''}
+                    onChange={(v) => this.onChangeCount(v, index)}
+                />
+            });
+        }
+
         return (
             <Modal bgClassName={"cb-modalHolder"}
                    windowClassName={"cb-modal cb-modal-sz"}
-                   header={'Продажа'}
+                   header={'Стоимость: ' + price + ' ₽'}
                    childClassName={'cb-child'}
                    controls={controls}
                    onClose={()=>{}}
                    withoutCross={true}
                    borders={true}
             >
-                {this.props.sellServices? this.props.sellServices.map((value, index)=>
-                    <CashboxCountable title={value.name}
-                                      count={value.count}
-                                      onClose={() => this.onDel(index)}
-                                      key={index + ''}
-                                      onChange={(v) => this.onChangeCount(v, index)}
-                    />
-                ): ''}
+                {salls}
             </Modal>
         );
     }

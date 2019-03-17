@@ -46,7 +46,7 @@ class Services extends Component{
                                 Название
                             </td>
                             <td className={'st-middle st-header-cell'}>
-                                Стоимость
+                                Стоимость ₽
                             </td>
                             <td className={'st-right st-header-cell'}>
                                 Товар/Услуга

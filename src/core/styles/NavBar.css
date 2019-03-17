@@ -24,9 +24,9 @@
 }
 
 
-.MainPageHolder-d button:hover,
-.MainPageHolder-t button:hover,
-.MainPageHolder-d button.hover{
+.MainPageHolder-d button.fuck:hover,
+.MainPageHolder-t button.fuck:hover,
+.MainPageHolder-d button.fuck.hover{
     background-color: #424242;
 }
 

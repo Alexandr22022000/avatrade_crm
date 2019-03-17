@@ -14,7 +14,7 @@ class NavBar extends Component {
     const style = {
       holder: "",
       imgHolder: "imgHolder",
-      buttons: "btn-m"
+      buttons: "btn-m fuck"
     };
     style.holder =
       window.navigator.userAgent.toLocaleLowerCase().indexOf("android") === -1
@@ -80,8 +80,27 @@ class NavBar extends Component {
               clearCookies();
               document.location.href = getCleanUrl() + "/login";
             }}
+        >
+          Выйти
+        </button>
+          <button
+              className={"btn-m " + style.buttons}
+              id={"exitButton"}
+              style={{'cursor': 'default', 'font-size': '18px'}}
+              onClick={() => {
+                clearCookies();
+                document.location.href = getCleanUrl() + "/login";
+              }}
           >
-            Выйти
+            Сменить подразделение
+          </button>
+          <button
+              className={"btn-m "}
+              style={{'cursor': 'default', 'font-size': '17px'}}
+              id={"exitButton"}
+              onClick={() => {}}
+          >
+            Выйти Выйти Выйти Выйти Выйти
           </button>
         </div>
         <AlertBoxWrapper/>

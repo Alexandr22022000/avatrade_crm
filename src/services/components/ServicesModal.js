@@ -46,8 +46,8 @@ class ServicesModal extends Component{
                             style={{marginLeft: '6%'}}
                             alwaysActive={addNew}
                 />
-                <div style={{marginLeft:'6%',fontSize:'24px', marginTop:'20px'}}>Цена</div>
-                <StuffInput placeholder={'Название услуги'}
+                <div style={{marginLeft:'6%',fontSize:'24px', marginTop:'20px'}}>Цена ₽</div>
+                <StuffInput placeholder={'Цена услуги'}
                             onChange={v => {this.setState({price: +v})}}
                             value={this.state.price}
                             style={{marginLeft: '6%'}}
