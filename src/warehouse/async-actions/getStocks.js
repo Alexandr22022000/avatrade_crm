@@ -4,5 +4,16 @@ import {setStocks} from "../actions/setStocks";
 export const getStocks = () => (dispatch, getState) => {
     const filter = getState().warehouse.filter;
     HTTPS.get('/api/v0.1/stocks',{is_all: filter.is_all, store: filter.store, search: filter.search}, dispatch, getState)
-        .then(response => dispatch(setStocks(response.stocks)));
+        .then(response => {
+            const stocks = response.stocks;
+
+            stocks.forEach(item => item.stocks.sort((a, b) => {
+                if (+a.store_id < +b.store_id)
+                    return -1;
+                else
+                    return a.store_id === b.store_id ? 0 : 1;
+            }));
+
+            dispatch(setStocks(stocks))
+        });
 };

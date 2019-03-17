@@ -14,17 +14,19 @@ class WarehouseModal extends Component {
             </button>
         </div>);
 
-        this.list = this.list.map(item => {
-            for (let key in item.stocks) {
-                if (+item.stocks[key].store_id === +this.state.from) {
-                    item.max = item.stocks[key].count;
-                    return item;
+        if (this.props.stores[this.state.from]) {
+            this.list = this.list.map(item => {
+                for (let key in item.stocks) {
+                    if (+item.stocks[key].store_id === +this.props.stores[this.state.from].id) {
+                        item.max = item.stocks[key].count;
+                        return item;
+                    }
                 }
-            }
 
-            item.max = 0;
-            return item;
-        });
+                item.max = 0;
+                return item;
+            });
+        }
 
         const inputs = this.list.map((item, index) => (
             <CountableField

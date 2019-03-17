@@ -160,11 +160,6 @@ class Cashbox extends Component {
         this.props.onServicesChange([...sellServices, {...sellObj, count: 1}])
     }
 
-    shouldComponentUpdate(nextProps, nextState, nextContext) {
-        console.log(nextState.fastServices);
-        return true;
-    }
-
     componentDidMount() {
         this.props.onGetStores();
         this.props.onLoadFastServices();
