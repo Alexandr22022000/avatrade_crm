@@ -32,10 +32,11 @@ class AlertBox extends Component {
     }
 
     onShowDetails (index) {
-        const id = this.props.notifications[index].id;
-        this.props.onOpenDetails();
+        const id = this.props.notifications[index].id,
+            type = this.props.notifications[index].type;
+        this.props.onOpenDetails(type);
 
-        switch (index) {
+        switch (type) {
             case NOTIFICATIONS.MIGRATION:
                 this.props.getMigrate(id);
                 break;

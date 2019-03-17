@@ -7,13 +7,13 @@ class MigrateDetails extends Component {
     render() {
         if (!this.props.selectedObject) {
             return (
-                <Modal header={'Логистика'}
-                    bgClassName={"modalHolder"}
-                    windowClassName={"borders"}
-                    childClassName={"modal"}
-                    controlClassName={"saveButtonHolder"}
-                    controls={''}
-                    onClose={() => this.onClose(false)}
+                <Modal header={'Запрос на логистику'}
+                       bgClassName={"modalHolder"}
+                       windowClassName={"borders"}
+                       childClassName={"modal"}
+                       controlClassName={"saveButtonHolder"}
+                       controls={''}
+                       onClose={() => this.onClose(false)}
                 />
             );
         }
@@ -22,20 +22,20 @@ class MigrateDetails extends Component {
             <button className={"btn-m inline blue-button"}
                     onClick={() => {this.onClose(true)}}
             >
-                Подтвердить получение
+                Распечатать
             </button>
         </div>);
 
         const inputs = this.props.selectedObject.stocks.map((item, index) => (
             <StuffInput
                 onlyRead={true}
-                value={item.count}
+                value={item.ready + '/' + item.count}
                 title={item.name}
             />
         ));
 
         return (
-            <Modal header={'Логистика'}
+            <Modal header={'Запрос на логистику'}
                    bgClassName={"modalHolder"}
                    windowClassName={"borders"}
                    childClassName={"modal"}
@@ -45,12 +45,6 @@ class MigrateDetails extends Component {
             >
                 <StuffInput
                     onlyRead={true}
-                    value={this.props.selectedObject.from}
-                    title={'Со склада'}
-                />
-
-                <StuffInput
-                    onlyRead={true}
                     value={this.props.selectedObject.to}
                     title={'На склад'}
                 />
@@ -58,7 +52,7 @@ class MigrateDetails extends Component {
                 <StuffInput
                     onlyRead={true}
                     value={this.props.selectedObject.sender}
-                    title={'Отправитель'}
+                    title={'Запросил'}
                 />
 
                 <h3>Грузы:</h3>
@@ -70,7 +64,7 @@ class MigrateDetails extends Component {
 
     onClose (isSave) {
         if(isSave){
-            this.props.onApproveMigrate(this.props.selectedObject.id);
+            //this.props.onApproveMigrate(this.props.selectedObject.id);
             this.props.onClose();
         } else {
             this.props.onClose();

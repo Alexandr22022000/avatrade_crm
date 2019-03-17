@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import MigrateDetails from "../containers/MigrateDetails";
+import RequestDetails from "../containers/RequestDetails";
 import AlertBox from "../containers/AlertBox";
+import '../../core/styles/NavBar.css';
+import NOTIFICATIONS from '../constants/notificationsTypes';
 
 
 class AlertBoxWrapper extends Component {
@@ -17,15 +20,7 @@ class AlertBoxWrapper extends Component {
                     }}
                 />
                 <div className={"alert-box"}>{this.getAlertsBox()}</div>
-                {this.props.selectedObjectType === null ? (
-                    ""
-                ) : (
-                    <MigrateDetails
-                        onClose={() => {
-                            this.props.onCloseWindow();
-                        }}
-                    />
-                )}
+                {this.props.selectedObjectType === null ? '' : this.getDetails()}
             </div>
         );
     }
@@ -39,6 +34,16 @@ class AlertBoxWrapper extends Component {
                 closed={!this.state.showAlerts}
             />
         );
+    }
+
+    getDetails () {
+        switch (this.props.selectedObjectType) {
+            case NOTIFICATIONS.MIGRATION:
+                return <MigrateDetails onClose={() => this.props.onCloseWindow()}/>;
+
+            case NOTIFICATIONS.MIGRATION_REQUESTS:
+                return <RequestDetails onClose={() => this.props.onCloseWindow()}/>;
+        }
     }
 
     showAlertBox() {
