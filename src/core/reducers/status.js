@@ -5,7 +5,8 @@ import {
   TOKEN_FOUND,
   GOOD_LOGIN_ERROR,
   REQUEST_SUCCESS,
-    SET_ACTIVE_MIGRATION
+    SET_ACTIVE_MIGRATION,
+    SET_CURRENT_STORE_ID
 } from "../actions/types";
 import {SET_MIGRATES} from "../../personal/actions/types";
 
@@ -18,6 +19,7 @@ const defaultStatus = {
   requestSuccess: false,
   migrates: [],
   activeMigration: null,
+  storeId: null,
 };
 
 const status = (state = defaultStatus, action) => {
@@ -74,6 +76,13 @@ const status = (state = defaultStatus, action) => {
         ...state,
         migrates: action.migrates,
       };
+
+    case SET_CURRENT_STORE_ID:
+      return {
+        ...state,
+        storeId: action.storeId,
+      };
+
     default:
       return state;
   }

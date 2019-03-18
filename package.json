@@ -5,8 +5,10 @@
   "dependencies": {
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
+    "client-cookies": "^0.8.1",
     "express": "^4.16.4",
     "firebase-token-generator": "^2.0.0",
+    "html-pdf": "^2.2.0",
     "neuronex-login-backend": "^1.0.2",
     "neuronex-pg": "^1.0.0",
     "neuronex_mailer": "0.0.1",

@@ -11,15 +11,7 @@
     padding-top: 10px;
 }
 
-.imgHolder {
-    background-image: url("../../images/ava-logo-s.png");
-    width: 25px;
-    height: 30px;
-    display: inline-block;
-    position: absolute;
-    top: 1%;
-    left: 1%;
-}
+
 
 .MainPageHolder-t button,
 .MainPageHolder-d button {
@@ -29,13 +21,12 @@
     background-color: #1f1f1f;
     color: #D5D9DE;
     padding: 10px;
-    font-size: 16px;
 }
 
 
-.MainPageHolder-d button:hover,
-.MainPageHolder-t button:hover,
-.MainPageHolder-d button.hover{
+.MainPageHolder-d button.fuck:hover,
+.MainPageHolder-t button.fuck:hover,
+.MainPageHolder-d button.fuck.hover{
     background-color: #424242;
 }
 
@@ -49,7 +40,7 @@
 }
 
 #exitButton {
-    padding-top: 17px;
+    padding-top: 16px;
     padding-bottom: 16px;
     float: right;
     margin-right: 1%;
@@ -60,8 +51,20 @@
         position: absolute;
         bottom: 4%;
         right: 2%;
+        z-index: 9999;
     }
-
+    .imgHolder {
+        background: url("../../images/ava-logo-s.png") no-repeat;
+        background-size: 35px 40px;
+        width: 35px;
+        height: 40px;
+        position: absolute;
+        top: 1%;
+        left: 1%;
+    }
+    .MainPageHolder-d button {
+        font-size: 20px;
+    }
     #alerts .alert-icon {
         position: fixed;
         bottom: 2%;
@@ -73,16 +76,13 @@
         transition: 0.6s;
         cursor: pointer;
     }
-
     #alerts .alert-icon-hidden {
         bottom: -20%;
         transform: scale(0.5);
     }
-
     #alerts .alert-icon:hover {
         transform: scale(1.2);
     }
-
     #alerts .alertbox-bg {
         position: fixed;
         width: 100%;
@@ -90,12 +90,10 @@
         top: 0;
         left: 0;
     }
-
     #alerts .alertbox-bg-hidden {
         width: 0;
         height: 0;
     }
-
     #alerts .alertbox {
         width: 450px;
         position: fixed;
@@ -105,19 +103,17 @@
         border: #555555 solid 1px;
         box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);
         transition: 0.8s;
+        z-index: 9999;
     }
-
     #alerts .alertbox-hidden {
         right: -100%;
         transform: scale(0.2);
     }
-
     #alerts .alterbox-content {
         height: 700px;
         overflow: auto;
         overflow-y: scroll;
     }
-
     .migration-confirm {
         text-align: right;
         width: 225px;
@@ -130,7 +126,15 @@
         bottom: 4%;
         right: 2%;
     }
-
+    .imgHolder {
+        background: url("../../images/ava-logo-s.png") no-repeat;
+        background-size: 25px 30px;
+        width: 25px;
+        height: 30px;
+        position: absolute;
+        top: 2%;
+        left: 1%;
+    }
     #alerts .alert-icon {
         position: fixed;
         bottom: 2%;
@@ -142,16 +146,13 @@
         transition: 0.5s;
         cursor: pointer;
     }
-
     #alerts .alert-icon:hover {
         transform: scale(1.2);
     }
-
     #alerts .alert-icon-hidden {
         bottom: -20%;
         transform: scale(0.5);
     }
-
     #alerts .alertbox-bg {
         position: fixed;
         width: 100%;
@@ -159,12 +160,10 @@
         top: 0;
         left: 0;
     }
-
     #alerts .alertbox-bg-hidden {
         width: 0;
         height: 0;
     }
-
     #alerts .alertbox {
         width: 400px;
         position: fixed;
@@ -175,18 +174,15 @@
         box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);
         transition: 0.8s;
     }
-
     #alerts .alertbox-hidden {
         right: -100%;
         transform: scale(0.2);
     }
-
     #alerts .alterbox-content {
         height: 470px;
         overflow: auto;
         overflow-y: scroll;
     }
-
     .migration-confirm {
         text-align: right;
         width: 177px;

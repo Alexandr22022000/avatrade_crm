@@ -92,7 +92,7 @@ const warehouse = (state = defaultState, action) => {
         case CARGOS_UPDATE:
             return {
                 ...state,
-                cargos:action.cargos,
+                cargos: action.cargos,
             };
 
         default:

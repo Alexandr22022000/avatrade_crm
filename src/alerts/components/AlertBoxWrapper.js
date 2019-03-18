@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
-import MigrateDetails from "../../core/containers/MigrateDetails";
-import AlertBox from "./AlertBox";
+import MigrateDetails from "../containers/MigrateDetails";
+import RequestDetails from "../containers/RequestDetails";
+import AlertBox from "../containers/AlertBox";
+import '../../core/styles/NavBar.css';
+import NOTIFICATIONS from '../constants/notificationsTypes';
 
 
 class AlertBoxWrapper extends Component {
     state = {
         showAlerts: false,
-        showMigrateDetails: false
     };
     render() {
         return (
@@ -18,15 +20,7 @@ class AlertBoxWrapper extends Component {
                     }}
                 />
                 <div className={"alert-box"}>{this.getAlertsBox()}</div>
-                {!this.state.showMigrateDetails ? (
-                    ""
-                ) : (
-                    <MigrateDetails
-                        onClose={() => {
-                            this.setState({ showMigrateDetails: false });
-                        }}
-                    />
-                )}
+                {this.props.selectedObjectType === null ? '' : this.getDetails()}
             </div>
         );
     }
@@ -37,21 +31,24 @@ class AlertBoxWrapper extends Component {
                 onClose={() => {
                     this.setState({ showAlerts: false });
                 }}
-                onShowMigrate={index => {
-                    this.props.setActiveMigrate(this.props.migrates[index]);
-                    this.setState({ showMigrateDetails: true });
-                }}
-                migrates={this.props.migrates}
-                cargos={this.props.cargos}
                 closed={!this.state.showAlerts}
             />
         );
     }
 
+    getDetails () {
+        switch (this.props.selectedObjectType) {
+            case NOTIFICATIONS.MIGRATION:
+                return <MigrateDetails onClose={() => this.props.onCloseWindow()}/>;
+
+            case NOTIFICATIONS.MIGRATION_REQUESTS:
+                return <RequestDetails onClose={() => this.props.onCloseWindow()}/>;
+        }
+    }
+
     showAlertBox() {
         this.setState({ showAlerts: true });
-        this.props.onLoadCargos();
-        this.props.onLoadMigrates();
+        this.props.getNotifications();
     }
 }
 

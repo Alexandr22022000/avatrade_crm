@@ -6,6 +6,9 @@
 #idea
 /.idea
 
+#temp PDF
+/temp
+
 # dependencies
 /node_modules
 /.pnp

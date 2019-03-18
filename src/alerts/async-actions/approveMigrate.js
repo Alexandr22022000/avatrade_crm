@@ -1,7 +1,6 @@
-import HTTPS from "../HTTPS";
-import {getMigrates} from './getMigrates';
-import {getStocks} from '../../warehouse/async-actions/getStocks';
-import {SERVER_STATUS} from "../HTTPS/serverStatuses";
+import HTTPS from "../../core/HTTPS";
+import {SERVER_STATUS} from "../../core/HTTPS/serverStatuses";
+import getNotifications from './getNotifications';
 
 export const approveMigrate = (id) => (dispatch, getState) => {
     const errors = {
@@ -10,7 +9,6 @@ export const approveMigrate = (id) => (dispatch, getState) => {
 
     HTTPS.post('/api/v0.0/approve_migrate',{id}, dispatch, getState, errors)
         .then((response) => {
-            dispatch(getMigrates());
-            dispatch(getStocks());
+            dispatch(getNotifications());
         });
 };

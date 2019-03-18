@@ -1,0 +1,287 @@
+.controlCashbox{
+    margin-top: 4%;
+    margin-left: 2%;
+    vertical-align: top;
+    overflow: auto;
+    overflow-y: scroll;
+}
+
+.controlCashbox img {
+    background-size: 40px 40px;
+}
+
+@media screen and (max-height: 768px) and (min-height: 400px) {
+    .controlCashbox {
+        width: 205px;
+    }
+    .cb-width {
+        width: 700px;
+    }
+    .cb-height {
+        height: 500px;
+    }
+    .cashbox-search {
+        border-bottom: black solid 4px;
+        width: 349px;
+    }
+    .cb-search-input-width {
+        width: 310px;
+    }
+    .controlCashbox button {
+        width: 130px;
+        margin: 0 0 0 0;
+    }
+    .cb-modal-sz {
+        width: 300px;
+        height: 500px;
+        border-radius: 6px;
+    }
+    .cb-child{
+        overflow: auto;
+        overflow-y: scroll;
+        height: 430px;
+        margin-left: 8px;
+        z-index: -1;
+    }
+    .cb-btn-w {
+        width: 70px;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    .cb-c-title {
+        width: 60%;
+        text-align: left;
+    }
+    .cb-countable {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .cb-c-box {
+        display: inline-block;
+    }
+    .cb-c-cross {
+        vertical-align: top;
+        max-width: 25px;
+        max-height: 25px;
+    }
+    .cb-modalHolder {
+        position: absolute;
+        right: 8%;
+        top: 16%;
+    }
+    .cb-StoreCheck {
+        width: 300px;
+        height: 150px;
+        margin-left: 36%;
+        margin-top: 12%;
+        background-color: #1f1f1f;
+        border-radius: 6px;
+    }
+    .cb-sc-child {
+        height: 60px;
+        padding-top: 25px;
+        padding-left: 35px;
+    }
+    .ccb-item{
+        margin-bottom: 15px;
+    }
+}
+
+@media screen and (min-height: 720px) {
+    .controlCashbox {
+        width: 220px;
+    }
+    .cb-width {
+        width: 900px;
+    }
+    .cashbox-search {
+        border-bottom: black solid 4px;
+        width: 448px;
+    }
+    .cb-height {
+        height: 700px;
+    }
+    .cb-search-input-width {
+        width: 410px;
+    }
+    .controlCashbox {
+        width: 250px;
+    }
+    .controlCashbox button {
+        width: 190px;
+        margin: 0 0 0 0;
+    }
+    .cb-modal-sz {
+        width: 450px;
+        height: 700px;
+        border-radius: 6px;
+    }
+    .cb-child{
+        overflow: auto;
+        overflow-y: scroll;
+        height: 620px;
+        margin-left: 8px;
+        z-index: -1;
+    }
+    .cb-btn-w {
+        width: 105px;
+        margin-left: 12px;
+        margin-right: 12px;
+    }
+    .cb-c-title {
+        width: 74%;
+        text-align: left;
+    }
+    .cb-countable {
+        min-width: 100%;
+        margin-bottom: 10px;
+    }
+    .cb-c-box {
+        display: inline-block;
+    }
+    .cb-c-cross {
+        vertical-align: top;
+        max-width: 23px;
+        max-height: 23px;
+    }
+    .cb-modalHolder {
+        position: absolute;
+        right: 8%;
+        top: 15%;
+    }
+    .cb-StoreCheck {
+        width: 400px;
+        height: 200px;
+        margin-left: 36%;
+        margin-top: 15%;
+        background-color: #1f1f1f;
+        border-radius: 6px;
+    }
+    .cb-sc-child {
+        height: 80px;
+        padding-top: 50px;
+        padding-left: 80px;
+    }
+    .ccb-item{
+        margin-bottom: 20px;
+    }
+}
+
+.cashbox-services {
+    border-right: black solid 1px;
+    height: inherit;
+    vertical-align: top;
+}
+
+.cashbox-stocks {
+    border-left: black solid 1px;
+    height: inherit;
+    vertical-align: top;
+}
+
+.cashbox-list {
+    overflow: auto;
+    overflow-y: scroll;
+}
+
+.cb-listItem {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-bottom: black solid 2px;
+    width: inherit;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.cb-listItem:hover {
+    background: #555555;
+}
+
+.cashbox-info {
+    margin-top: 4%;
+    margin-left: 2%;
+    background-color: #1f1f1f;
+    border: #555555 solid 1px;
+    box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);
+    vertical-align: top;
+}
+
+.cashbox-search-input {
+    height: 30px;
+    font-size: 20px;
+    display: inline-block;
+    vertical-align: top;
+    background-color: #1f1f1f;
+    color: #D5D9DE;
+    border: none;
+    outline: none;
+}
+
+.cashbox-search-input:active {
+    outline: none;
+}
+
+.cashbox-services {
+    display: inline-block;
+}
+
+.cashbox-stocks {
+    display: inline-block;
+}
+
+.cb-c-btn {
+    text-decoration-color: #D5D9DE;
+    display: inline-block;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    cursor: pointer;
+    min-width: 10px;
+    min-height: 20px;
+    -webkit-border-radius: 3px;
+    border-radius: 15px;
+    font: normal 16px/normal "Calibri", "Calibri Light", serif;
+    -webkit-box-shadow: 0 0 9px 0 rgba(90,90,90,1) ;
+    box-shadow: 0 0 9px 0 rgba(90,90,90,1) ;
+    border: none;
+    color: black;
+    background-color: #41A7BB;
+    text-shadow: -1px 1px #376C80;
+    transition: 0.3s;
+}
+
+.cb-c-btn:hover {
+    background-color: #1E4964;
+    text-shadow: -1px 1px #44006d;
+}
+
+.cb-c-btn:active {
+    background-color: #05012E;
+    text-shadow: -1px 1px #160047;
+}
+.cb-c-b-input {
+    min-width: 40px;
+    max-width: 40px;
+    background: #1f1f1f;
+    color: #D5D9DE;
+    border: #9c00b8 solid 2px;
+}
+
+.cb-c-b-input:focus {
+    outline: none;
+}
+
+.cb-modal {
+    background-color: #1f1f1f;
+    z-index: -2;
+}
+
+.cb-storeCheck {
+    height: 32px;
+    font-size: 16px;
+    padding: 5px 10px;
+    display: inline-block;
+    margin-left: 40px;
+    color: #D5D9DE;
+}

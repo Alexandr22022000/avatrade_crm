@@ -1,28 +1,19 @@
 import {connect} from 'react-redux';
 import AlertBoxWrapper from "../components/AlertBoxWrapper";
-import setActiveMigration from "../../core/actions/setActiveMigration";
-import {getMigrates} from "../../core/async-actions/getMigrates";
-import {approveMigrate} from "../../core/async-actions/approveMigrate";
-import {getCargos} from "../../warehouse/async-actions/getCargos";
-
+import getNotifications from '../async-actions/getNotifications';
+import setSelectedObject from '../actions/setSelectedObject';
 
 export default connect(
     state=> ({
-        migrates: state.status.migrates,
-        cargos: state.warehouse.cargos,
+        notifications: state.alerts.notifications,
+        selectedObjectType: state.alerts.selectedObjectType,
     }),
     dispatch=>({
-        setActiveMigrate: migrate => {
-            dispatch(setActiveMigration(migrate));
+        getNotifications: () => {
+            dispatch(getNotifications())
         },
-        onLoadMigrates: () => {
-            dispatch(getMigrates())
-        },
-        onApproveMigrate: (id) => {
-            dispatch(approveMigrate(id));
-        },
-        onLoadCargos: () => {
-            dispatch(getCargos(''))
+        onCloseWindow: () => {
+            dispatch(setSelectedObject(null, null))
         }
     })
 )(AlertBoxWrapper);

@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import '../../core/styles/buttons.css'
 import '../styles/index.css'
-import DropDown from "../../personal/components/DropDown";
 import WarehouseInput from "./WarehouseInput";
 import WarehouseModal from "../containers/WarehouseModal";
 import MigrateEditor from "../containers/MigrateEditor";
@@ -10,6 +9,7 @@ class Warehouse extends Component {
     state = {
         showEditor: false,
         showMigrate: false,
+        isRequest: false,
         is_all: true,
         store: -1,
         searchStocks: '',
@@ -21,7 +21,7 @@ class Warehouse extends Component {
 
             </tr>
         );
-
+        const width = `${this.props.stores.length * 120 - 6}px`;
         return (
             <tr>
                 <td className={'table-cell chbox-cell'}>
@@ -33,19 +33,26 @@ class Warehouse extends Component {
 
                 <td className={'table-cell art-cell'}>{value.article}</td>
                 <td className={'table-cell name-cell'}>{value.name}</td>
-                <td className={'table-cell count-cell'}>{value.count}</td>
-                <td className={'table-cell warehouse-cell'}>{value.store}</td>
+                <td className={'table-cell warehouse-cell'} style={{width}}>
+                    {value.stocks.map((val,index) =>
+                        <div key={index}
+                             className={'wh-storeWrapper ' + (
+                                 index === 0? 'wh-first':
+                                     (index === value.stocks.length-1? 'wh-last':'wh-middle')
+                             )}
+                             style={{width: '115px'}}
+                        >
+                            <div className={'wh-storeName'}>{val.store}</div>
+                            <div className={'wh-count'}>{val.count}</div>
+                        </div>
+                    )}
+                </td>
             </tr>
         );
     }
 
     render() {
-        const stores = [];
-        if(this.props.stores !== null) {
-            for (let key in this.props.stores) {
-                stores.push(this.props.stores[key].name);
-            }
-        }
+        const widths = this.getWidths();
         return (
             <div>
                 <div className={'controlWarehouse'}>
@@ -58,20 +65,6 @@ class Warehouse extends Component {
                                     onChange={(v) => this.onSearchChange(v)}
                     />
 
-                    <DropDown className={'dropdownPlaceholder warehouse-control-dropdown'}
-                              options={['Все склады', ...stores]}
-                              holderStyle={{display: 'inline-block'}}
-                              onChange={v => {this.onStoreChange(v)}}
-                              value={this.getStoreValue()}
-                    />
-
-                    <DropDown className={'dropdownPlaceholder warehouse-control-dropdown'}
-                              options={['Все','В наличии']}
-                              holderStyle={{display: 'inline-block'}}
-                              value={this.state.is_all ? 0 : 1}
-                              onChange={(v) => {this.onIsAllChange(v)}}
-                    />
-
                     <button className={'btn-m blue-button inline'}
                             style={{fontSize: '18px', marginLeft: '40px'}}
                             onClick={()=> this.setState({showEditor: true})}
@@ -79,24 +72,34 @@ class Warehouse extends Component {
                         Добавить
                     </button>
 
-                    {this.getCheck(false) ? '' :
-                        <button className={'btn-m inline ' + (this.isOneStore() ? 'blue-button' : '')}
+                    {this.getCheck(false) ? '' : [
+                        <button className={'btn-m blue-button'}
                                 style={{fontSize: '18px', marginLeft: '40px'}}
-                                onClick={()=> this.onMigrate()}
+                                onClick={()=> this.onMigrate(false)}
                         >
                             Переместить
+                        </button>,
+
+                        <button className={'btn-m blue-button'}
+                        style={{fontSize: '18px', marginLeft: '40px'}}
+                        onClick={()=> this.onMigrate(true)}
+                        >
+                        Запросить
                         </button>
-                    }
+                    ]}
                 </div>
-                <div className={'dataTable'}>
+                <div className={'dataTable'} style={{width:widths.tableWidth}}>
                     <table className={'table-header'}>
                         <thead>
                         <tr>
                             <td className={'table-cell header-cell chbox-cell'}>{this.getCheckboxTool()}</td>
                             <td className={'table-cell header-cell art-cell'}>Артикул</td>
                             <td className={'table-cell header-cell name-cell'}>Наименование</td>
-                            <td className={'table-cell header-cell count-cell'}>Количество</td>
-                            <td className={'table-cell header-cell warehouse-cell'}>Склад</td>
+                            <td className={'table-cell header-cell warehouse-cell'}
+                                style={{width: widths.storesCellWidth, textAlign:'center'}}
+                            >
+                                Склады
+                            </td>
                         </tr>
                         </thead>
                     </table>
@@ -115,42 +118,23 @@ class Warehouse extends Component {
                     <WarehouseModal onClose={this.onCloseWindow.bind(this)}/>
                 }
                 {!this.state.showMigrate ? '' :
-                    <MigrateEditor onClose={() => this.setState({showMigrate: false})}/>
+                    <MigrateEditor onClose={() => this.setState({showMigrate: false})} isRequest={this.state.isRequest}/>
                 }
             </div>
         )
     }
 
+    getWidths() {
+        let storesCellWidth;
+        if (this.props.stocks[0]) {
+            storesCellWidth = this.props.stocks[0].stocks.length * 120;
+        }
+        let width = 370 + storesCellWidth;
+        return {tableWidth:`${width.toString(10)}px`, storesCellWidth}
+    }
+
     onCloseWindow () {
         this.setState({showEditor: false});
-        this.props.onGetStocks();
-    }
-
-    getStoreValue () {
-        if (!this.props.filter.store) return 0;
-
-        for (let key in this.props.stores) {
-            if (this.props.stores[key].id === this.props.filter.store)
-                return +key + 1;
-        }
-
-        return 0;
-    }
-
-
-    onStoreChange(index) {
-        if (index === 0) {
-            this.props.changeFilter(this.props.filter.search, null, this.props.filter.is_all);
-        }
-        else {
-            console.log('id',this.props.stores[index - 1].id);
-            this.props.changeFilter(this.props.filter.search, this.props.stores[index - 1].id, this.props.filter.is_all);
-        }
-        this.props.onGetStocks();
-    }
-
-    onIsAllChange(index){
-        this.props.changeFilter(this.props.filter.search, this.props.filter.store, index === 0);
         this.props.onGetStocks();
     }
 
@@ -161,7 +145,6 @@ class Warehouse extends Component {
 
     componentDidMount () {
         this.props.onGetStocks();
-        this.props.onGetStores();
     }
 
     getCheckboxTool () {
@@ -186,29 +169,8 @@ class Warehouse extends Component {
         return isOk;
     }
 
-    isOneStore () {
-        let store, isOk = true;
-
-        this.props.buffer.map(item => {
-            if (item.isChecked) {
-                if (!store) return store = item.store;
-                if (store !== item.store) isOk = false;
-            }
-        });
-        this.props.stocks.map(item => {
-            if (item.isChecked) {
-                if (!store) return store = item.store;
-                if (store !== item.store) isOk = false;
-            }
-        });
-
-        return !!store && isOk;
-    }
-
-    onMigrate () {
-        if (!this.isOneStore()) return;
-
-        this.setState({showMigrate: true});
+    onMigrate (isRequest) {
+        this.setState({showMigrate: true, isRequest});
     }
 }
 

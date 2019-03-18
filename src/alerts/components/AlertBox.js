@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Modal from '../../core/components/Modal';
 import '../../core/styles/NavBar.css';
+import NOTIFICATIONS from '../constants/notificationsTypes';
 
 
 class AlertBox extends Component {
@@ -14,26 +15,36 @@ class AlertBox extends Component {
                    borders={true}
                    header={'Уведомления'}
             >
-                {this.props.migrates? this.props.migrates.map((value, index) => {
+                {this.props.notifications.map((value, index) => {
                     return this.showMigrateMsg(value, index);
-                }) : ''}
+                })}
             </Modal>
         )
     }
 
     showMigrateMsg(migration, index) {
         return (
-            <div className={'migration-msg'} onClick={() => this.props.onShowMigrate(index)}>
-                <h1>Логистика</h1>
-                <p>{'Со склада: ' + migration.from}</p>
-                <p>{'На склад: ' + migration.to}</p>
-                <p>{'Отправитель: ' + migration.sender}</p>
-                <p>Грузы:</p>
-                <div>
-                    {migration.stocks.map(stock => <p>{stock.name + " - " + stock.count}</p>)}
-                </div>
+            <div className={'migration-msg'} onClick={() => this.onShowDetails(index)}>
+                <h1>{migration.title}</h1>
+                <plaintext>{migration.text}</plaintext>
             </div>
         )
+    }
+
+    onShowDetails (index) {
+        const id = this.props.notifications[index].id,
+            type = this.props.notifications[index].type;
+        this.props.onOpenDetails(type);
+
+        switch (type) {
+            case NOTIFICATIONS.MIGRATION:
+                this.props.getMigrate(id);
+                break;
+
+            case NOTIFICATIONS.MIGRATION_REQUESTS:
+                this.props.getRequest(id);
+                break;
+        }
     }
 }
 

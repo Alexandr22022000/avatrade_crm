@@ -1,5 +1,8 @@
+import cookies from 'client-cookies';
+
 const getToken = () => {
-  const cookie = document.cookie;
+  return cookies.get('token');
+  /*const cookie = document.cookie;
   const name = "token";
 
   if (cookie.indexOf(name, 0) === -1) {
@@ -17,7 +20,7 @@ const getToken = () => {
       return null;
     }
     return token;
-  }
+  }*/
 };
 
 export default getToken;

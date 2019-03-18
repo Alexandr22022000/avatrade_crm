@@ -3,6 +3,7 @@ import Modal from '../../core/components/Modal';
 import StuffInput from "../../personal/components/StuffInput";
 import SearchDropdown from "../../core/components/SearchDropdown";
 import '../../core/styles/buttons.css'
+import MultipleCountableField from "../../core/components/MultipleCountableField";
 
 class WarehouseModal extends Component{
     render() {

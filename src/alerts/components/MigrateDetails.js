@@ -5,6 +5,19 @@ import '../../core/styles/buttons.css'
 
 class MigrateDetails extends Component {
     render() {
+        if (!this.props.selectedObject) {
+            return (
+                <Modal header={'Логистика'}
+                    bgClassName={"modalHolder"}
+                    windowClassName={"borders"}
+                    childClassName={"modal"}
+                    controlClassName={"saveButtonHolder"}
+                    controls={''}
+                    onClose={() => this.onClose(false)}
+                />
+            );
+        }
+
         const addButton = (<div style={{textAlign:'right',paddingRight:'3%'}}>
             <button className={"btn-m inline blue-button"}
                     onClick={() => {this.onClose(true)}}
@@ -13,7 +26,7 @@ class MigrateDetails extends Component {
             </button>
         </div>);
 
-        const inputs = this.props.migrate.stocks.map((item, index) => (
+        const inputs = this.props.selectedObject.stocks.map((item, index) => (
             <StuffInput
                 onlyRead={true}
                 value={item.count}
@@ -32,19 +45,19 @@ class MigrateDetails extends Component {
             >
                 <StuffInput
                     onlyRead={true}
-                    value={this.props.migrate.from}
+                    value={this.props.selectedObject.from}
                     title={'Со склада'}
                 />
 
                 <StuffInput
                     onlyRead={true}
-                    value={this.props.migrate.to}
+                    value={this.props.selectedObject.to}
                     title={'На склад'}
                 />
 
                 <StuffInput
                     onlyRead={true}
-                    value={this.props.migrate.sender}
+                    value={this.props.selectedObject.sender}
                     title={'Отправитель'}
                 />
 
@@ -57,7 +70,7 @@ class MigrateDetails extends Component {
 
     onClose (isSave) {
         if(isSave){
-            this.props.onApproveMigrate(this.props.migrate.id);
+            this.props.onApproveMigrate(this.props.selectedObject.id);
             this.props.onClose();
         } else {
             this.props.onClose();

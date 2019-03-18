@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import getToken from "../cookie/getToken";
+import getStore from "../cookie/getStore";
 import PropTypes from "prop-types";
 import "../styles/NavBar.css";
 import "../styles/buttons.css";
@@ -7,14 +8,19 @@ import getCleanUrl from "../HTTPS/getCleanUrl";
 import getButtonsInfo from "../constants/getButtonsInfo";
 import AlertBoxWrapper from "../../alerts/containers/AlertBoxWrapper";
 import clearCookies from "../cookie/clearCookies";
+import CashboxStorePrompt from "../containers/CashboxStorePrompt";
 
 class NavBar extends Component {
+
+  state = {
+    showStorePrompt: false,
+  };
 
   render() {
     const style = {
       holder: "",
       imgHolder: "imgHolder",
-      buttons: "btn-m"
+      buttons: "btn-m fuck"
     };
     style.holder =
       window.navigator.userAgent.toLocaleLowerCase().indexOf("android") === -1
@@ -22,6 +28,17 @@ class NavBar extends Component {
         : "MainPageHolder-t";
 
     let buttons = getButtonsInfo(this.props.tokenInfo.permissions);
+
+    let store = 'Нет';
+    if (this.props.storeId !== null) {
+      for (let key in this.props.stores) {
+        if (+this.props.stores[key].id === +this.props.storeId) {
+          store = this.props.stores[key].name;
+          break;
+        }
+      }
+    }
+    store = "Подразделение: " + store;
 
     let buttonsArray = [];
     for (let key in buttons) {
@@ -80,8 +97,24 @@ class NavBar extends Component {
               clearCookies();
               document.location.href = getCleanUrl() + "/login";
             }}
+        >
+          Выйти
+        </button>
+          <button
+              className={"btn-m " + style.buttons}
+              id={"exitButton"}
+              style={{'font-size': '18px'}}
+              onClick={() => this.setState({showStorePrompt: true})}
           >
-            Выйти
+            Сменить подразделение
+          </button>
+          <button
+              className={"btn-m "}
+              style={{'cursor': 'default', 'font-size': '17px'}}
+              id={"exitButton"}
+              onClick={() => {}}
+          >
+            {store}
           </button>
         </div>
         <AlertBoxWrapper/>
@@ -91,6 +124,11 @@ class NavBar extends Component {
         ) : (
           <div id={"children"}>{this.props.children}</div>
         )}
+
+        {this.state.showStorePrompt?
+            <CashboxStorePrompt onClose={() => this.setState({showStorePrompt: false})}/>
+            :''
+        }
       </div>
     );
   }
@@ -98,11 +136,22 @@ class NavBar extends Component {
   componentDidMount() {
     if (this.props.tokenInfo.permissions === null) {
       let token = getToken();
-      if (token === null) {
+      if (token === '') {
         this.context.router.history.push("/login");
       }
       this.props.onTokenDispatch(token);
       this.props.onPermissionsGet(token);
+    }
+
+    this.props.onGetStores();
+    if (this.props.storeId === null) {
+      let storeId = getStore();
+      if (storeId === '') {
+        this.setState({showStorePrompt: true})
+      }
+      else {
+        this.props.onSetStoreId(+storeId);
+      }
     }
   }
 }

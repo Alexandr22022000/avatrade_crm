@@ -1,0 +1,11 @@
+.mcf-holder {
+    width: inherit;
+}
+
+.mcf-dropdown {
+    height: 32px;
+    font-size: 16px;
+    padding: 5px 10px;
+    display: inline-block;
+    color: #D5D9DE;
+}
