@@ -5,12 +5,14 @@ import StuffInput from "../../personal/components/StuffInput";
 import DropDown from "../../personal/components/DropDown";
 import ServiceMCFEditor from "../containers/ServiceMCFEditor";
 import '../../core/styles/buttons.css'
+import {PERMISSIONS} from "../../core/constants";
 
 class ServicesModal extends Component{
     state = {
         price: this.props.addNew? 0: this.props.currentService.price,
         name: this.props.addNew? '': this.props.currentService.name,
         is_product: this.props.addNew? true: this.props.currentService.is_product,
+        canEdit: this.canEdit()
     };
     render() {
         let controls = (
@@ -23,6 +25,8 @@ class ServicesModal extends Component{
                     {this.props.addNew? 'Добавить' : 'Сохранить'}
                 </button>
             </div>);
+
+        if (!this.state.canEdit) controls = '';
         return (
             <Modal bgClassName={"modalHolder"}
                    windowClassName={"sv-modal sv-modal-sz"}
@@ -37,6 +41,13 @@ class ServicesModal extends Component{
     }
 
     getEditor(addNew) {
+        let list = <ServiceMCFEditor/>;
+        if (!this.state.canEdit) {
+            list = this.props.currentConsumables.map(item => {
+                return <p style={{marginLeft: '30px', 'font-size': '30px'}}>{item.name + ' - ' + item.article + ': ' + item.count}</p>;
+            });
+        }
+
         return (
             <Fragment>
                 <div style={{marginLeft:'6%',fontSize:'24px'}}>Имя</div>
@@ -45,6 +56,7 @@ class ServicesModal extends Component{
                             value={this.state.name}
                             style={{marginLeft: '6%'}}
                             alwaysActive={addNew}
+                            onlyRead={!this.state.canEdit}
                 />
                 <div style={{marginLeft:'6%',fontSize:'24px', marginTop:'20px'}}>Цена ₽</div>
                 <StuffInput placeholder={'Цена услуги'}
@@ -53,6 +65,7 @@ class ServicesModal extends Component{
                             style={{marginLeft: '6%'}}
                             alwaysActive={addNew}
                             numbers={true}
+                            onlyRead={!this.state.canEdit}
                 />
                 <div style={{marginLeft:'6%',fontSize:'24px', marginTop:'20px'}}>Тип</div>
                 <DropDown className={'dropdownPlaceholder sv-ctrl-dp'}
@@ -60,21 +73,26 @@ class ServicesModal extends Component{
                           holderStyle={{display: 'inline-block'}}
                           onChange={v => {this.servTypeChange(v)}}
                           value={this.getServTypeValue()}
+                          onlyRead={!this.state.canEdit}
                 />
                 <div style={{marginLeft:'6%',fontSize:'24px', marginTop:'20px'}}>Расходные материалы</div>
-                <ServiceMCFEditor/>
+                {list}
             </Fragment>
         )
     }
 
     getChangeStatusBtn() {
+        if (!this.state.canEdit) return '';
+
         return (
             <div style={{float:'left'}}>
                 {this.props.addNew?
                     '':
                     (this.props.currentService?
-                        <div className={'link-decor'}
+                        <div className={'link-decor'} style={{cursor: 'pointer'}}
                              onClick={()=>{
+                                 if (!window.confirm("Вы уверены?")) return;
+
                                  this.props.onChangeServiceStatus(
                                      this.props.currentService.id,
                                      this.props.currentService.status === 1? 0: 1
@@ -162,6 +180,16 @@ class ServicesModal extends Component{
     shouldComponentUpdate(nextProps, nextState, nextContext) {
         console.log(nextProps);
         return true;
+    }
+
+    canEdit () {
+        let isCan = false;
+        this.props.permissions.forEach(permission => {
+            if (permission === PERMISSIONS.OWNER || permission === PERMISSIONS.TOP_MANAGER)
+                isCan = true;
+        });
+
+        return isCan;
     }
 }
 

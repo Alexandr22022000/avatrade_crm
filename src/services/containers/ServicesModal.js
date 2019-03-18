@@ -11,6 +11,7 @@ export default connect(
         currentService: state.services.currentService,
         currentConsumables: state.services.currentConsumables,
         cargos: state.warehouse.cargos,
+        permissions: state.status.permissions,
     }),
     dispatch => ({
         onAddNewService: (name, price, is_product, consumables) =>
