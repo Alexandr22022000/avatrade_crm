@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import CashboxStorePrompt from "../components/CashboxStorePrompt";
-import setCurrentStoreId from "../../core/actions/setCurrentStoreId";
+import setCurrentStoreId from "../actions/setCurrentStoreId";
 
 export default connect(
     state => ({

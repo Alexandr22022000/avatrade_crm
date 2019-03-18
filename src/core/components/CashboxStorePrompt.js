@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import Modal from "../../core/components/Modal";
+import Modal from "./Modal";
 import DropDown from "../../personal/components/DropDown";
+import setStore from '../cookie/setStore';
 
 class CashboxStorePrompt extends Component {
     state = {
@@ -48,6 +49,7 @@ class CashboxStorePrompt extends Component {
     }
 
     onClose() {
+        setStore(this.props.stores[this.state.storeIndex].id);
         this.props.onSetStoreId(this.props.stores[this.state.storeIndex].id);
         this.props.onClose();
     }

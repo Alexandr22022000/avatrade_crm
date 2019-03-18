@@ -3,12 +3,10 @@ import '../styles/Cashbox.css';
 import '../../core/styles/buttons.css';
 import WarehouseInput from "../../warehouse/components/WarehouseInput";
 import CashboxModal from "../containers/CashboxModal";
-import CashboxStorePrompt from "../containers/CashboxStorePrompt";
 import cross from "../../images/cross-icon.png";
 
 class Cashbox extends Component {
     state = {
-        showStorePrompt: this.props.storeId === null,
         isEditing:false,
         fastServices: [],
     };
@@ -84,10 +82,6 @@ class Cashbox extends Component {
 
                 </div>
                 <CashboxModal/>
-                {this.state.showStorePrompt?
-                    <CashboxStorePrompt onClose={() => this.setState({showStorePrompt: false})}/>
-                    :''
-                }
             </div>
         );
     }

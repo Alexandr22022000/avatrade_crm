@@ -17,7 +17,6 @@ export default connect (
         services: state.cashbox.services,
         stocks: state.cashbox.stocks,
         sellServices: state.cashbox.sellServices,
-        storeId: state.cashbox.currentStoreId,
 	}),
 	dispatch => ({
 		onLoadFastServices: () => dispatch(getFastServices()),
