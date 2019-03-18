@@ -7,7 +7,7 @@ module.exports = (login, password) => {
             .then(({rows}) => {
                 if (rows.length === 0 || rows[0].permissions.length === 0) return resolve({isUser: false});
 
-                resolve({isUser: true, data: {permissions: rows[0].permissions, id: rows[0].id}});
+                resolve({isUser: true, data: {permissions: rows[0].permissions, id: rows[0].id, name: rows[0].name}});
             });
     });
 };

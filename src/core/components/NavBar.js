@@ -91,7 +91,7 @@ class NavBar extends Component {
                     </div>
                     <div className={'navbar-curStore'}>
                         {store}<br/>
-                        {store}
+                        {'Пользователь: ' + this.props.username}
                     </div>
                     <button
                         className={"navbar-chngStore"}
@@ -144,14 +144,7 @@ class NavBar extends Component {
                 this.setState({showStorePrompt: true})
             }
             else {
-                for (let key in this.props.stores) {
-                    if (+this.props.stores[key].id === +storeId) {
-                        this.props.onSetStoreId(+storeId);
-                        break;
-                    }
-                }
-                this.props.onSetStoreId(-1);
-                this.setState({showStorePrompt: true})
+                this.props.onSetStoreId(+storeId);
             }
         }
     }
