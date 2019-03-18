@@ -21,7 +21,7 @@ class Warehouse extends Component {
 
             </tr>
         );
-        const width = `${this.props.stores.length * 120 - 6}px`;
+        const minWidth = `${value.stocks.length * 122 - 2}px`;
         return (
             <tr>
                 <td className={'table-cell chbox-cell'}>
@@ -33,14 +33,14 @@ class Warehouse extends Component {
 
                 <td className={'table-cell art-cell'}>{value.article}</td>
                 <td className={'table-cell name-cell'}>{value.name}</td>
-                <td className={'table-cell warehouse-cell'} style={{width}}>
+                <td className={'table-cell warehouse-cell'} style={{minWidth}}>
                     {value.stocks.map((val,index) =>
                         <div key={index}
                              className={'wh-storeWrapper ' + (
                                  index === 0? 'wh-first':
                                      (index === value.stocks.length-1? 'wh-last':'wh-middle')
                              )}
-                             style={{width: '115px'}}
+                             style={{width: '120px'}}
                         >
                             <div className={'wh-storeName'}>{val.store}</div>
                             <div className={'wh-count'}>{val.count}</div>
@@ -127,7 +127,7 @@ class Warehouse extends Component {
     getWidths() {
         let storesCellWidth;
         if (this.props.stocks[0]) {
-            storesCellWidth = this.props.stocks[0].stocks.length * 120;
+            storesCellWidth = this.props.stocks[0].stocks.length * 122 + 4;
         }
         let width = 370 + storesCellWidth;
         return {tableWidth:`${width.toString(10)}px`, storesCellWidth}
