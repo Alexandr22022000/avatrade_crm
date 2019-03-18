@@ -110,22 +110,6 @@ class NavBar extends Component {
                     >
                         Выйти
                     </button>
-                    {/*<button
-                        className={"btn-m " + style.buttons}
-                        id={"exitButton"}
-                        style={{'font-size': '18px'}}
-                        onClick={() => this.setState({showStorePrompt: true})}
-                    >
-                        Сменить подразделение
-                    </button>
-                    <button
-                        className={"btn-m "}
-                        style={{'cursor': 'default', 'font-size': '17px'}}
-                        id={"exitButton"}
-                        onClick={() => {}}
-                    >
-                        {store}
-                    </button>*/}
                 </div>
                 <AlertBoxWrapper/>
 

@@ -55,7 +55,7 @@
         top: 1%;
         left: 1%;
     }
-    .MainPageHolder-d button {
+    .MainPageHolder-d .navbar-btn {
         font-size: 20px;
     }
     #alerts .alert-icon {
@@ -118,11 +118,12 @@
         background-color: #1f1f1f;
         color: #D5D9DE;
         max-width: 160px;
-        padding-top: 8px;
-        padding-bottom: 8px;
+        padding-top: 12px;
+        padding-bottom: 12px;
         vertical-align: top;
         position: absolute;
         right: 90px;
+        font-size: 16px;
     }
     .navbar-chngStore:hover {
         background-color: #424242;
