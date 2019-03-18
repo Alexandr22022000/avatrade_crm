@@ -42,7 +42,10 @@ class Cashbox extends Component {
                                         inputClassName={'cashbox-search-input'}
                                         haveIcon={true}
                                         onClickIcon={() => this.props.onLoadStocksList()}
-                                        onChange={(v) => {this.props.onChangeStockFilter(v);this.props.onLoadStocksList()}}
+                                        onChange={(v) => {
+                                            this.props.onChangeStockFilter(v);
+                                            this.props.onLoadStocksList()
+                                        }}
                         />
                         {this.getList(false)}
                     </div>

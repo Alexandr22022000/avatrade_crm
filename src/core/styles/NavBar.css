@@ -7,31 +7,14 @@
     display: inline-block;
 }
 
-.MainPageHolder-d #buttons button {
-    padding-top: 10px;
-}
-
-
-
-.MainPageHolder-t button,
-.MainPageHolder-d button {
-    border-radius: 0;
-    border: none;
-    box-shadow: none;
-    background-color: #1f1f1f;
-    color: #D5D9DE;
-    padding: 10px;
-}
-
-
-.MainPageHolder-d button.fuck:hover,
-.MainPageHolder-t button.fuck:hover,
-.MainPageHolder-d button.fuck.hover{
+.MainPageHolder-d .navbar-btn:hover,
+.MainPageHolder-t .navbar-btn:hover,
+.MainPageHolder-d .navbar-btn.hover{
     background-color: #424242;
 }
 
-.MainPageHolder-t button.checked,
-.MainPageHolder-d button.checked {
+.MainPageHolder-t .navbar-btn.checked,
+.MainPageHolder-d .navbar-btn.checked {
 
 }
 
@@ -39,14 +22,24 @@
     text-align: center;
 }
 
-#exitButton {
-    padding-top: 16px;
-    padding-bottom: 16px;
-    float: right;
-    margin-right: 1%;
-}
+
 
 @media screen and (min-height: 720px) {
+    .MainPageHolder-t .navbar-btn,
+    .MainPageHolder-d .navbar-btn {
+        border-radius: 0;
+        border: none;
+        box-shadow: none;
+        background-color: #1f1f1f;
+        color: #D5D9DE;
+        padding: 17px 10px 20px;
+    }
+    #exitButton {
+        padding-top: 18px;
+        padding-bottom: 18px;
+        float: right;
+        margin-right: 1%;
+    }
     #alerts {
         position: absolute;
         bottom: 4%;
@@ -97,7 +90,7 @@
     #alerts .alertbox {
         width: 450px;
         position: fixed;
-        top:7%;
+        top:10%;
         right: 1%;
         background-color: #1f1f1f;
         border: #555555 solid 1px;
@@ -110,7 +103,7 @@
         transform: scale(0.2);
     }
     #alerts .alterbox-content {
-        height: 700px;
+        height: 650px;
         overflow: auto;
         overflow-y: scroll;
     }
@@ -118,9 +111,52 @@
         text-align: right;
         width: 225px;
     }
+    .navbar-chngStore {
+        border-radius: 0;
+        border: none;
+        box-shadow: none;
+        background-color: #1f1f1f;
+        color: #D5D9DE;
+        max-width: 160px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        vertical-align: top;
+        position: absolute;
+        right: 90px;
+    }
+    .navbar-chngStore:hover {
+        background-color: #424242;
+    }
+    .navbar-curStore{
+        box-shadow: none;
+        color: #D5D9DE;
+        max-width: 240px;
+        padding-top: 10px;
+        white-space: normal;
+        vertical-align: top;
+        display: inline-block;
+        font-size: 16px;
+        position: absolute;
+        right: 260px;
+    }
 }
 
 @media screen and (max-height: 768px) and (min-height: 400px) {
+    .MainPageHolder-t .navbar-btn,
+    .MainPageHolder-d .navbar-btn {
+        border-radius: 0;
+        border: none;
+        box-shadow: none;
+        background-color: #1f1f1f;
+        color: #D5D9DE;
+        padding: 15px 10px 17px;
+    }
+    #exitButton {
+        padding-top: 16px;
+        padding-bottom: 16px;
+        float: right;
+        margin-right: 1%;
+    }
     #alerts {
         position: absolute;
         bottom: 4%;
@@ -173,6 +209,7 @@
         border: #555555 solid 1px;
         box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);
         transition: 0.8s;
+        z-index: 9999;
     }
     #alerts .alertbox-hidden {
         right: -100%;
@@ -186,6 +223,34 @@
     .migration-confirm {
         text-align: right;
         width: 177px;
+    }
+    .navbar-chngStore {
+        border-radius: 0;
+        border: none;
+        box-shadow: none;
+        background-color: #1f1f1f;
+        color: #D5D9DE;
+        max-width: 110px;
+        padding-top: 10px;
+        padding-bottom: 11px;
+        vertical-align: top;
+        position: absolute;
+        right: 70px;
+    }
+    .navbar-chngStore:hover {
+        background-color: #424242;
+    }
+    .navbar-curStore{
+        box-shadow: none;
+        color: #D5D9DE;
+        max-width: 180px;
+        padding-top: 10px;
+        white-space: normal;
+        vertical-align: top;
+        display: inline-block;
+        font-size: 12px;
+        position: absolute;
+        right: 190px;
     }
 }
 
