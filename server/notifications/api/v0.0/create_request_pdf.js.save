@@ -35,8 +35,8 @@ module.exports = (app) => {
                         const filename = 'migration_request_' + Date.now() + '.pdf';
 
                         const options = {
-                            "height": "1485px",        // allowed units: mm, cm, in, px
-                            "width": "1050px",            // allowed units: mm, cm, in, px
+                            "height": "898911px",        // allowed units: mm, cm, in, px
+                            "width": "630px",            // allowed units: mm, cm, in, px
                             //"format": "A4",
                         };
 
