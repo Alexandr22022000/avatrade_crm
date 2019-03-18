@@ -17,6 +17,8 @@ class CashboxStorePrompt extends Component {
         for(let key in this.props.stores) {
             stores.push(this.props.stores[key].name);
         }
+        stores.push("Нет");
+
         return (
             <Modal bgClassName={"modalHolder"}
                    windowClassName={"cb-StoreCheck"}
@@ -49,8 +51,12 @@ class CashboxStorePrompt extends Component {
     }
 
     onClose() {
-        setStore(this.props.stores[this.state.storeIndex].id);
-        this.props.onSetStoreId(this.props.stores[this.state.storeIndex].id);
+        let id = this.props.stores[this.state.storeIndex];
+        if (id) id = id.id
+        else id = -1;
+
+        setStore(id);
+        this.props.onSetStoreId(id);
         this.props.onClose();
     }
 }

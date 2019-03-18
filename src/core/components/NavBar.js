@@ -160,7 +160,14 @@ class NavBar extends Component {
                 this.setState({showStorePrompt: true})
             }
             else {
-                this.props.onSetStoreId(+storeId);
+                for (let key in this.props.stores) {
+                    if (+this.props.stores[key].id === +storeId) {
+                        this.props.onSetStoreId(+storeId);
+                        break;
+                    }
+                }
+                this.props.onSetStoreId(-1);
+                this.setState({showStorePrompt: true})
             }
         }
     }
