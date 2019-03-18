@@ -10,6 +10,11 @@
     background-size: 40px 40px;
 }
 
+.cb-modal {
+    background-color: #1f1f1f;
+    z-index: -2;
+}
+
 @media screen and (max-height: 768px) and (min-height: 400px) {
     .controlCashbox {
         width: 205px;
@@ -34,14 +39,16 @@
     .cb-modal-sz {
         width: 300px;
         height: 500px;
-        border-radius: 6px;
+        border-radius: 0;
+        border: #555555 solid 1px;
+        box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);
     }
     .cb-child{
         overflow: auto;
         overflow-y: scroll;
         height: 430px;
         margin-left: 8px;
-        z-index: -1;
+        z-index: -3;
     }
     .cb-btn-w {
         width: 70px;
@@ -114,7 +121,9 @@
     .cb-modal-sz {
         width: 450px;
         height: 700px;
-        border-radius: 6px;
+        border-radius: 0;
+        border: #555555 solid 1px;
+        box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);
     }
     .cb-child{
         overflow: auto;
@@ -270,11 +279,6 @@
 
 .cb-c-b-input:focus {
     outline: none;
-}
-
-.cb-modal {
-    background-color: #1f1f1f;
-    z-index: -2;
 }
 
 .cb-storeCheck {

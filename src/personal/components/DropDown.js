@@ -4,6 +4,15 @@ import '../styles/dropdown.css'
 
 class DropDown extends Component {
     render() {
+        if (this.props.onlyRead)
+            return (
+                <div className={this.props.holderClassName} style={this.props.holderStyle}>
+                    <select disabled className={this.props.className} onChange={(e) => this.onChange(e.target.value)}>
+                        <option selected>{this.props.options[this.props.value]}</option>
+                    </select>
+                </div>
+            );
+
         let options = [];
         let disabled = this.props.disabled;
         if (!disabled) {

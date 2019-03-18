@@ -12,6 +12,7 @@ export default connect(
     cargos: state.warehouse.cargos,
       stores: state.warehouse.stores,
       storeId: state.status.storeId,
+      username: state.status.username,
   }),
   dispatch => ({
     onPermissionsGet: token => {

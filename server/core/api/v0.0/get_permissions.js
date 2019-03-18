@@ -6,6 +6,6 @@ module.exports = (app) => {
 
         if (!user) return res.status(401).end();
 
-        res.status(200).json({permissions: user.permissions});
+        res.status(200).json({permissions: user.permissions, name: user.name});
     });
 };

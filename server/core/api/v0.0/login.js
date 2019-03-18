@@ -8,7 +8,7 @@ module.exports = (app) => {
             .then((user) => {
                 if (!user) return res.status(401).end();
 
-                res.status(200).json({token: user.token, permissions: user.data.permissions});
+                res.status(200).json({token: user.token, permissions: user.data.permissions, name: user.data.name});
             });
     });
 };

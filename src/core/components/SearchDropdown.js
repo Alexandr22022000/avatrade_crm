@@ -4,21 +4,24 @@ import "../styles/searchdropdown.css";
 class SearchDropdown extends Component {
     state = {
         showOptions: false,
-        inputValue: this.props.value? this.props.value : '',
+        inputValue: '',
     };
 
     getOptions() {
-        console.log(this.props.disabled);
+        let disabled = [];
+        if(this.props.disabled) {
+            disabled = this.props.disabled;
+        }
         return (
             <div>
                 <div className={"options " + this.props.optionsClassName}>
                     {this.props.options
                         .filter((value, index) => {
-                            return this.state.inputValue && (this.props.withoutFirstCell? true : index !== 0)
-                                ? value
-                                .toLocaleLowerCase()
+                            console.log(value);
+                            return this.state.inputValue && (this.props.freeFirstOption? true: index !== 0)?
+                                value.toLocaleLowerCase()
                                 .indexOf(this.state.inputValue.toLocaleLowerCase()) !== -1
-                                || this.props.disabled.indexOf(index) !== -1
+                                || disabled.indexOf(index) !== -1
                                 : true;
                         })
                         .map((value, index) => (
@@ -85,8 +88,8 @@ class SearchDropdown extends Component {
 
         if (id === null) return this.props.onSelect(-1);
 
-        this.setState({ inputValue: this.props.options[id] });
         this.props.onSelect(id);
+        this.setState({ inputValue: this.props.options[id] });
     }
 
     onChange(value) {

@@ -4,14 +4,16 @@ import CashboxCountable from "./CashboxCountable";
 
 class CashboxModal extends Component{
     render() {
+        const canSell = this.props.store !== -1 && this.props.sellServices.length !== 0;
+
         const controls = (
             <div>
-                <button className={'btn-m blue-button cb-btn-w'}
+                <button className={'btn-m cb-btn-w' + (canSell ? ' blue-button' : '')}
                         onClick={() => this.onSell(false)}
                 >
                     Наличные
                 </button>
-                <button className={'btn-m blue-button cb-btn-w'}
+                <button className={'btn-m cb-btn-w' + (canSell ? ' blue-button' : '')}
                         onClick={() => this.onSell(true)}
                 >
                     Карта
@@ -55,9 +57,10 @@ class CashboxModal extends Component{
     }
 
     onSell(is_card) {
+        if (this.props.store === -1) return;
+
         if(this.props.sellServices.length !== 0) {
             this.props.onSell(is_card, this.props.sellServices.filter(value => value.count > 0));
-            this.props.onServicesChange([])
         }
     }
 

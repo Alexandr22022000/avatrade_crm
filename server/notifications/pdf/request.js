@@ -18,11 +18,11 @@ const generateDoc = (pages) => `
             display: block;
             border: 2px solid black;
             width: 100%;
-            height: 200px;
+            height: 400px;
         }
         
         .content {
-            height: 625px;
+            height: 850px;
             padding: 30px 30px;
         }
         

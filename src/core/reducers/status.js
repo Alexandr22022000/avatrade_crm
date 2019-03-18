@@ -20,6 +20,7 @@ const defaultStatus = {
   migrates: [],
   activeMigration: null,
   storeId: null,
+  username: 'Нет',
 };
 
 const status = (state = defaultStatus, action) => {
@@ -53,6 +54,7 @@ const status = (state = defaultStatus, action) => {
         ...state,
         token: action.payload.token,
         permissions: action.payload.permissions,
+        username: action.payload.name,
         requestSuccess: true,
       };
 
@@ -68,7 +70,8 @@ const status = (state = defaultStatus, action) => {
     case PERMISSIONS_SUCCESS:
       return {
         ...state,
-        permissions: action.payload
+        permissions: action.payload,
+        username: action.name
       };
 
     case SET_MIGRATES:
