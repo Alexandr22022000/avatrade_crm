@@ -35,9 +35,9 @@ module.exports = (app) => {
                         const filename = 'migration_request_' + Date.now() + '.pdf';
 
                         const options = {
-                            //"height": "2970px",        // allowed units: mm, cm, in, px
-                            //"width": "2100px",            // allowed units: mm, cm, in, px
-                            "format": "A4",
+                            "height": "891px",        // allowed units: mm, cm, in, px
+                            "width": "630px",            // allowed units: mm, cm, in, px
+                            //"format": "A4",
                         };
 
                         pdf.create(request, options).toFile('./temp/' + filename, (err, ress) => {
