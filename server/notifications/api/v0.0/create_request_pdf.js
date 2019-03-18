@@ -34,7 +34,13 @@ module.exports = (app) => {
                         request = generateHtml(request);
                         const filename = 'migration_request_' + Date.now() + '.pdf';
 
-                        pdf.create(request, { format: 'Letter' }).toFile('./temp/' + filename, (err, ress) => {
+                        const options = {
+                            //"height": "2970px",        // allowed units: mm, cm, in, px
+                            //"width": "2100px",            // allowed units: mm, cm, in, px
+                            "format": "A4",
+                        };
+
+                        pdf.create(request, options).toFile('./temp/' + filename, (err, ress) => {
                             if (err) return console.log(err);
 
                             res.status(200).json({link: '/api/v0.0/temp_pdf/' + filename});
