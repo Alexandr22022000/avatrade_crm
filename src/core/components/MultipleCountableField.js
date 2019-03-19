@@ -15,13 +15,13 @@ class MultipleCountableField extends  Component {
         if(this.props.needSearch) {
             dd = (
                 <SearchDropdown options={this.props.options}
-                    onSelect={(index)=>{this.selected(index)}}
-                    value={this.props.value}
-                    disabled={this.props.disabled}
-                    inputStyle={this.props.inputStyle}
-                    inputClassName={this.props.inputClassName}
-                    optionsClassName={this.props.optionsClassName}
-                    withoutFirstCell={this.props.withoutFirstCell}
+                                onSelect={(index)=>{this.selected(index)}}
+                                value={this.props.value}
+                                disabled={this.props.disabled}
+                                inputStyle={this.props.inputStyle}
+                                inputClassName={this.props.inputClassName}
+                                optionsClassName={this.props.optionsClassName}
+                                freeFirstOption={this.props.withoutFirstCell}
                 />
             )
         } else {
