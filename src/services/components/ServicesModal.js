@@ -50,7 +50,7 @@ class ServicesModal extends Component{
         return (
             <Fragment>
                 <div style={{marginLeft:'6%',fontSize:'24px'}}>Имя</div>
-                <StuffInput placeholder={'Название услуги'}
+                <StuffInput placeholder={'Название'}
                             onChange={v => {this.setState({name: v})}}
                             value={this.state.name}
                             style={{marginLeft: '6%'}}
@@ -58,7 +58,7 @@ class ServicesModal extends Component{
                             onlyRead={!this.state.canEdit}
                 />
                 <div style={{marginLeft:'6%',fontSize:'24px', marginTop:'20px'}}>Цена ₽</div>
-                <StuffInput placeholder={'Цена услуги'}
+                <StuffInput placeholder={'Цена'}
                             onChange={v => {this.setState({price: +v})}}
                             value={this.state.price}
                             style={{marginLeft: '6%'}}
