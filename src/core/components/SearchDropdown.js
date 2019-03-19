@@ -45,7 +45,7 @@ class SearchDropdown extends Component {
                     <input
                         style={this.props.inputStyle}
                         className={"search-input " + this.props.inputClassName}
-                        value={this.props.value === -1 ? '' : this.props.options[this.props.value]}
+                        value={this.props.value === -1 ? this.state.inputValue : this.props.options[this.props.value]}
                         onChange={event => this.onChange(event.target.value)}
                         onKeyDown={e => this.onKeyDown(e)}
                         ref={(i) => this.input = i}
