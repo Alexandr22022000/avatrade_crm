@@ -36,7 +36,7 @@ class ServiceMCFEditor extends Component{
                         amount={currentConsumables[key].count}
                         onSelected={(val) => this.selectedCargo(val, key)}
                         onCountChange={(val) => this.changedCargoCount(val, key)}
-                        value={this.getSearchValue(currentConsumables[key].cargoIndex)}
+                        value={currentConsumables[key].cargoIndex}
                         disabled={disabled}
                         withoutRange={true}
                         style={{marginLeft:'6%'}}

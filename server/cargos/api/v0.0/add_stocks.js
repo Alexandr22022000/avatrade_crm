@@ -29,15 +29,20 @@ module.exports = (app) => {
                     const id = Date.now();
                     query(STORES_QUERY.STORES_GET)
                         .then(({rows}) => {
+                            let i = 0;
                             rows.map((item) => {
                                 const count = +item.id === 0 ? req.body.count : 0;
                                 query(QUERY.ADD_STOCKS, [+item.id + id + 1, id, item.id, count])
-                                    .then(() => {});
+                                    .then(() => {
+                                        i++;
+
+                                        if (i === rows.length) {
+                                            query(CAGROS_QUERY.ADD_CARGOS, [id, name, article])
+                                                .then(() => res.status(200).end());
+                                        }
+                                    });
                             });
                         });
-
-                    query(CAGROS_QUERY.ADD_CARGOS, [id, name, article])
-                        .then(() => res.status(200).end());
                 });
         }
     });

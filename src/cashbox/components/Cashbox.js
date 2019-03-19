@@ -52,6 +52,7 @@ class Cashbox extends Component {
                 </div>
                 <div className={'controlCashbox inline'}>
                     {fastServices.map((value, index) =>
+                        value !== null ?
                         <div className={'ccb-item'}>
                             <button className={'btn-m blue-button inline'}
                                     key={index}
@@ -73,7 +74,7 @@ class Cashbox extends Component {
                                     }}
                                 /> :''
                             }
-                        </div>
+                        </div> : ''
                     )}
                     <div>
                         <button className={'btn-m action-button inline'}

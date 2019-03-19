@@ -8,10 +8,6 @@ class SearchDropdown extends Component {
     };
 
     getOptions() {
-        let disabled = [];
-        if(this.props.disabled) {
-            disabled = this.props.disabled;
-        }
         return (
             <div>
                 <div className={"options " + this.props.optionsClassName}>
@@ -21,7 +17,6 @@ class SearchDropdown extends Component {
                             return this.state.inputValue && (this.props.freeFirstOption? true: index !== 0)?
                                 value.toLocaleLowerCase()
                                 .indexOf(this.state.inputValue.toLocaleLowerCase()) !== -1
-                                || disabled.indexOf(index) !== -1
                                 : true;
                         })
                         .map((value, index) => (
@@ -50,7 +45,7 @@ class SearchDropdown extends Component {
                     <input
                         style={this.props.inputStyle}
                         className={"search-input " + this.props.inputClassName}
-                        value={this.state.inputValue}
+                        value={this.props.value === -1 ? this.state.inputValue : this.props.options[this.props.value]}
                         onChange={event => this.onChange(event.target.value)}
                         onKeyDown={e => this.onKeyDown(e)}
                         ref={(i) => this.input = i}
@@ -85,9 +80,12 @@ class SearchDropdown extends Component {
                 id = +key;
             }
         }
-
         if (id === null) return this.props.onSelect(-1);
-
+        let disabled = [];
+        if(this.props.disabled) {
+            disabled = this.props.disabled;
+        }
+        if(disabled.indexOf(id) !== -1) return this.props.onSelect(-1);
         this.props.onSelect(id);
         this.setState({ inputValue: this.props.options[id] });
     }

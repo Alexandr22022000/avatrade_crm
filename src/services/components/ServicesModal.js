@@ -1,6 +1,5 @@
 import React, {Component, Fragment} from 'react';
 import Modal from "../../core/components/Modal";
-import CountableField from "../../core/components/CountableField";
 import StuffInput from "../../personal/components/StuffInput";
 import DropDown from "../../personal/components/DropDown";
 import ServiceMCFEditor from "../containers/ServiceMCFEditor";
@@ -51,7 +50,7 @@ class ServicesModal extends Component{
         return (
             <Fragment>
                 <div style={{marginLeft:'6%',fontSize:'24px'}}>Имя</div>
-                <StuffInput placeholder={'Название услуги'}
+                <StuffInput placeholder={'Название'}
                             onChange={v => {this.setState({name: v})}}
                             value={this.state.name}
                             style={{marginLeft: '6%'}}
@@ -59,7 +58,7 @@ class ServicesModal extends Component{
                             onlyRead={!this.state.canEdit}
                 />
                 <div style={{marginLeft:'6%',fontSize:'24px', marginTop:'20px'}}>Цена ₽</div>
-                <StuffInput placeholder={'Цена услуги'}
+                <StuffInput placeholder={'Цена'}
                             onChange={v => {this.setState({price: +v})}}
                             value={this.state.price}
                             style={{marginLeft: '6%'}}
@@ -138,13 +137,9 @@ class ServicesModal extends Component{
 
     onClose(isSave) {
         this.setConsumablesIds();
-        console.log('1');
         if(isSave){
-            console.log('2');
             if(this.canSave()) {
-                console.log('3');
                 if(this.props.addNew) {
-                    console.log('4');
                     this.props.onAddNewService(
                         this.state.name,
                         this.state.price,
@@ -175,11 +170,6 @@ class ServicesModal extends Component{
         } else {
             this.props.onSetConsumables([]);
         }
-    }
-
-    shouldComponentUpdate(nextProps, nextState, nextContext) {
-        console.log(nextProps);
-        return true;
     }
 
     canEdit () {
