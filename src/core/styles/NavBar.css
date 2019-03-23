@@ -1,5 +1,9 @@
 .MainPageHolder-d {
     background-color: #1f1f1f;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
 }
 
 .MainPageHolder-d #buttons {
@@ -22,9 +26,16 @@
     text-align: center;
 }
 
-
+#children {
+    overflow: auto;
+}
 
 @media screen and (min-height: 720px) {
+    #children {
+        min-height: 780px;
+        max-height: 780px;
+
+    }
     .MainPageHolder-t .navbar-btn,
     .MainPageHolder-d .navbar-btn {
         border-radius: 0;
@@ -143,6 +154,10 @@
 }
 
 @media screen and (max-height: 768px) and (min-height: 400px) {
+    #children {
+        min-height: 580px;
+        max-height: 580px;
+    }
     .MainPageHolder-t .navbar-btn,
     .MainPageHolder-d .navbar-btn {
         border-radius: 0;
@@ -162,6 +177,7 @@
         position: absolute;
         bottom: 4%;
         right: 2%;
+        z-index: 1000;
     }
     .imgHolder {
         background: url("../../images/ava-logo-s.png") no-repeat;
@@ -245,7 +261,6 @@
         box-shadow: none;
         color: #D5D9DE;
         max-width: 180px;
-        padding-top: 10px;
         white-space: normal;
         vertical-align: top;
         display: inline-block;

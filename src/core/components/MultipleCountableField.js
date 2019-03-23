@@ -5,11 +5,6 @@ import CountableField from "./CountableField";
 import SearchDropdown from "./SearchDropdown";
 
 class MultipleCountableField extends  Component {
-    state = {
-        count: this.props.amount,
-        maxCount: this.props.maxCount,
-        selectedOption: this.props.selectedId,
-    };
     render() {
         let dd;
         if(this.props.needSearch) {
@@ -28,7 +23,7 @@ class MultipleCountableField extends  Component {
             dd = (
                 <DropDown className={'dropdownPlaceholder mcf-dropdown'}
                           options={this.props.options}
-                          value={this.state.selectedOption}
+                          value={this.props.selectedId}
                           onChange={(index)=>{this.selected(index)}}
                           disabled={this.props.disabled}
                 />
@@ -38,8 +33,8 @@ class MultipleCountableField extends  Component {
             <div className={'mcf-holder ' + this.props.className} key={this.props.key} style={this.props.style}>
                 {dd}
                 <CountableField
-                    value={this.state.count}
-                    maxValue={this.state.maxCount}
+                    value={this.props.amount}
+                    maxValue={this.props.maxCount}
                     onChange={v => {this.onCountChange(v)}}
                     withoutRange={this.props.withoutRange}
                 />
@@ -48,13 +43,11 @@ class MultipleCountableField extends  Component {
     }
 
     selected(index) {
-        this.setState({selectedOption: index});
         this.props.onSelected(index);
     }
 
     onCountChange(value) {
-        this.setState({count: value});
-        this.props.onCountChange(value, this.state.selectedOption);
+        this.props.onCountChange(value, this.props.selectedId);
     }
 }
 

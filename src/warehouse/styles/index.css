@@ -91,7 +91,7 @@
     .dataTable{
         margin-top: 2%;
         margin-left: 2%;
-        height: 700px;
+        max-height: 640px;
         background-color: #1f1f1f;
         border: #555555 solid 1px;
         box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);

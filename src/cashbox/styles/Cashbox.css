@@ -1,5 +1,5 @@
 .controlCashbox{
-    margin-top: 4%;
+    margin-top: 2%;
     margin-left: 2%;
     vertical-align: top;
     overflow: auto;
@@ -74,7 +74,7 @@
     .cb-modalHolder {
         position: absolute;
         right: 8%;
-        top: 16%;
+        top: 13%;
     }
     .cb-StoreCheck {
         width: 300px;
@@ -208,7 +208,7 @@
 }
 
 .cashbox-info {
-    margin-top: 4%;
+    margin-top: 2%;
     margin-left: 2%;
     background-color: #1f1f1f;
     border: #555555 solid 1px;

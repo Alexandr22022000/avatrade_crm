@@ -14,6 +14,7 @@
     "neuronex_mailer": "0.0.1",
     "npm": "^6.7.0",
     "prop-types": "latest",
+    "rc-table": "^6.4.3",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-redux": "latest",
