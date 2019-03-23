@@ -11,11 +11,12 @@ class ServicesModal extends Component{
         price: this.props.addNew? 0: this.props.currentService.price,
         name: this.props.addNew? '': this.props.currentService.name,
         is_product: this.props.addNew? true: this.props.currentService.is_product,
+        is_resell: this.props.addNew? false: this.props.currentService.is_resell,
         canEdit: this.canEdit()
     };
     render() {
         let controls = (
-            <div style={{textAlign: 'center', marginRight:'20px',marginLeft:'20px'}}>
+            <div style={{textAlign: 'center', marginRight:'20px', marginLeft:'20px'}}>
                 {this.getChangeStatusBtn()}
                 <button className={'btn-m ' + (this.canSave()? 'blue-button':'')}
                         onClick={()=>this.onClose(true)}
@@ -49,7 +50,7 @@ class ServicesModal extends Component{
 
         return (
             <Fragment>
-                <div style={{marginLeft:'6%',fontSize:'24px'}}>Имя</div>
+                <div style={{marginLeft:'6%', fontSize:'24px'}}>Имя</div>
                 <StuffInput placeholder={'Название'}
                             onChange={v => {this.setState({name: v})}}
                             value={this.state.name}
@@ -72,6 +73,13 @@ class ServicesModal extends Component{
                           holderStyle={{display: 'inline-block'}}
                           onChange={v => {this.servTypeChange(v)}}
                           value={this.getServTypeValue()}
+                          onlyRead={!this.state.canEdit}
+                />
+                <DropDown className={'dropdownPlaceholder sv-ctrl-dp'}
+                          options={['Прямая продажа','Перезаказ']}
+                          holderStyle={{display: 'inline-block'}}
+                          onChange={v => {this.servSellType(v)}}
+                          value={this.getServSellType()}
                           onlyRead={!this.state.canEdit}
                 />
                 <div style={{marginLeft:'6%',fontSize:'24px', marginTop:'20px'}}>Расходные материалы</div>
@@ -144,6 +152,7 @@ class ServicesModal extends Component{
                         this.state.name,
                         this.state.price,
                         this.state.is_product,
+                        this.state.is_resell,
                         this.props.currentConsumables
                     );
                     this.props.onClose();
@@ -153,6 +162,7 @@ class ServicesModal extends Component{
                         this.state.name,
                         this.state.price,
                         this.state.is_product,
+                        this.state.is_resell,
                         this.props.currentConsumables
                     );
                     this.props.onClose();
@@ -180,6 +190,14 @@ class ServicesModal extends Component{
         });
 
         return isCan;
+    }
+
+    servSellType(v) {
+        this.setState({is_resell: v !== 0});
+    }
+
+    getServSellType() {
+        return this.state.is_resell? 1: 0;
     }
 }
 
