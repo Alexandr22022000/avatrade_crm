@@ -16,11 +16,14 @@ module.exports = (app) => {
 
         query(QUERY_SERVICES.GET_SERVICES)
             .then(({rows}) => {
-                let price = 0;
+                let price = 0, price_resell = 0;
                 services = services.map(service => {
                     for (let key in rows) {
                         if (+rows[key].id === +service.id) {
-                            price += rows[key].price * service.count;
+                            if (service.is_resell)
+                                price_resell += rows[key].price * service.count;
+                            else
+                                price += rows[key].price * service.count;
                             return {
                                 id: service.id,
                                 count: service.count,
@@ -56,7 +59,7 @@ module.exports = (app) => {
                                 .then(() => {});
                         }
 
-                        query(QUERY_SALES.ADD_SALE, [Date.now(), user.id, store, {services}, price, is_card])
+                        query(QUERY_SALES.ADD_SALE, [Date.now(), user.id, store, {services}, price, price_resell, is_card])
                             .then(() => res.status(200).end());
                     });
             });
