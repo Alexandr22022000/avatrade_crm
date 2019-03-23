@@ -669,6 +669,7 @@ services: [
         price: number,
         is_product: bool,
         status: number,
+        is_resell: bool,
         consumables: [
             {
                 id: bigint,
@@ -681,7 +682,7 @@ services: [
 ]
 ```
 
-#### `POST: /api/v0.0/add_services` (in developing)
+#### `POST: /api/v0.0/add_services`
 
 Request params:
 
@@ -704,7 +705,31 @@ Response body:
 
 ```
 
-#### `POST: /api/v0.0/services` (in developing)
+#### `POST: /api/v0.1/add_services` (in developing)
+
+Request params:
+
+```$xslt
+token: text,
+name: text,
+price: number,
+is_product: bool,
+is_resell: bool,
+consumables: [
+    {
+        id: bigint,
+        count: num
+    }
+]
+```
+
+Response body:
+
+```$xslt
+
+```
+
+#### `POST: /api/v0.0/services`
 
 Request params:
 
@@ -728,7 +753,32 @@ Response body:
 
 ```
 
-#### `POST: /api/v0.0/services_status` (in developing)
+#### `POST: /api/v0.1/services` (in developing)
+
+Request params:
+
+```$xslt
+token: text,
+id: number,
+name: text,
+price: number,
+is_product: bool,
+is_resell: bool,
+consumables: [
+    {
+        id: bigint,
+        count: num
+    }
+]
+```
+
+Response body:
+
+```$xslt
+
+```
+
+#### `POST: /api/v0.0/services_status`
 
 Request params:
 
@@ -799,7 +849,7 @@ fast_services: [
 
 #### `POST: /api/v0.0/fast_services` (in developing)
 
-Request params:
+Request body:
 
 ```$xslt
 token: text
@@ -808,6 +858,119 @@ fast_services: [number]
 
 Response body:
 
+```$xslt
+
+```
+
+#### `POST: /api/v0.0/collection` (in developing)
+
+Request body:
+
+```$xslt
+token: text,
+value: number,
+```
+
+Response body:
+
+```$xslt
+
+```
+
+### Statistic
+
+#### `GET: /api/v0.0/statistic`
+
+Request params:
+
+```$xslt
+token: text
+date: number
+```
+
+Response body:
+
+```$xslt
+turnover: [
+    {
+        name: text,
+        startValue: number,
+        endValue: number,
+        turnoverValue: number,
+        values: [
+            {
+                pco: number,                
+                acquiring: number,                
+                account: number,                
+                rco: number,                
+            },
+        ],
+    },
+],
+workCalendars: [
+    title: text,
+    canEdit: bool,
+    managers: [
+        {
+            manager: text,
+            id: number,
+            values: [
+                {
+                    value: number,
+                    description: text,
+                },
+            ],
+        },
+    ],
+],
+payment: [
+    {
+        manager: text,
+        workDays: number,
+        salary: number,
+        salaryPay: number,
+        sells: number,
+        sellsPay: number,
+        reSells: number,
+        all: number,
+        reSellsPat: number,
+        premiums: number,
+        paid: number,
+        needPay: number,
+    },
+],
+```
+
+#### `POST: /api/v0.0/statistic/calendar`
+
+Request body:
+```$xslt
+token: text,
+index: number,
+id: number,
+values: [
+    {
+        value: number,
+        description: text,
+    }
+]
+```
+
+Response body:
+```$xslt
+
+```
+
+#### `POST: /api/v0.0/statistic/payment`
+
+Request body:
+```$xslt
+token: text,
+id: number,
+paid: number,
+```
+
+Response body:
 ```$xslt
 
 ```

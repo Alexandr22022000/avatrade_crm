@@ -30,7 +30,7 @@ module.exports = (app) => {
 
                 consumables = {consumables: consumables};
 
-                query(QUERY.SET_SERVICES, [id, name, is_product, price, consumables])
+                query(QUERY.SET_SERVICES, [id, name, is_product, price, consumables, false])
                     .then(() => res.status(200).end());
             });
 

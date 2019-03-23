@@ -1,23 +1,23 @@
-const {checkUser} = require('neuronex-login-backend'),
-    {query} = require('neuronex-pg'),
+const {query} = require('neuronex-pg'),
+    {checkUser} = require('neuronex-login-backend'),
     checkPermissions = require('../../../core/users/checkPermissions'),
-    PERMISSIONS = require('../../../core/constants/permissions'),
     QUERY = require('../../pSQL/services'),
+    PERMISSIONS = require('../../../core/constants/permissions'),
     QUERY_CARGOS = require('../../pSQL/cargos');
 
-
-
 module.exports = (app) => {
-    app.post('/api/v0.0/add_services', (req, res) => {
-        let name = req.body.name,
+    app.post('/api/v0.0/services', (req, res) => {
+        let id = req.body.id,
+            name = req.body.name,
             price = req.body.price,
             is_product = req.body.is_product,
+            is_resell = req.body.is_resell,
             consumables = req.body.consumables;
 
         const user = checkUser(req.body.token);
 
         if (!user) return res.status(401).end();
-        if (!checkPermissions(user, [PERMISSIONS.TOP_MANAGER, PERMISSIONS.OWNER])) return res.status(403).end();
+        if (!checkPermissions(user, [PERMISSIONS.OWNER, PERMISSIONS.TOP_MANAGER])) return res.status(403).end();
 
         query(QUERY_CARGOS.GET)
             .then(({rows}) => {
@@ -31,8 +31,10 @@ module.exports = (app) => {
 
                 consumables = {consumables: consumables};
 
-                query(QUERY.ADD_SERVICES, [Date.now(), name, is_product, price, consumables, false])
+                query(QUERY.SET_SERVICES, [id, name, is_product, price, consumables, is_resell])
                     .then(() => res.status(200).end());
             });
+
+
     });
 };
