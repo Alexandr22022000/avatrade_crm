@@ -8,10 +8,11 @@ const {checkUser} = require('neuronex-login-backend'),
 
 
 module.exports = (app) => {
-    app.post('/api/v0.0/add_services', (req, res) => {
+    app.post('/api/v0.1/add_services', (req, res) => {
         let name = req.body.name,
             price = req.body.price,
             is_product = req.body.is_product,
+            is_resell = req.body.is_resell,
             consumables = req.body.consumables;
 
         const user = checkUser(req.body.token);
@@ -31,7 +32,7 @@ module.exports = (app) => {
 
                 consumables = {consumables: consumables};
 
-                query(QUERY.ADD_SERVICES, [Date.now(), name, is_product, price, consumables, false])
+                query(QUERY.ADD_SERVICES, [Date.now(), name, is_product, price, consumables, is_resell])
                     .then(() => res.status(200).end());
             });
     });

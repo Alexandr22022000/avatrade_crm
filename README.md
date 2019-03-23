@@ -669,6 +669,7 @@ services: [
         price: number,
         is_product: bool,
         status: number,
+        is_resell: bool,
         consumables: [
             {
                 id: bigint,
@@ -681,7 +682,7 @@ services: [
 ]
 ```
 
-#### `POST: /api/v0.0/add_services` (in developing)
+#### `POST: /api/v0.0/add_services`
 
 Request params:
 
@@ -704,7 +705,31 @@ Response body:
 
 ```
 
-#### `POST: /api/v0.0/services` (in developing)
+#### `POST: /api/v0.1/add_services` (in developing)
+
+Request params:
+
+```$xslt
+token: text,
+name: text,
+price: number,
+is_product: bool,
+is_resell: bool,
+consumables: [
+    {
+        id: bigint,
+        count: num
+    }
+]
+```
+
+Response body:
+
+```$xslt
+
+```
+
+#### `POST: /api/v0.0/services`
 
 Request params:
 
@@ -728,7 +753,32 @@ Response body:
 
 ```
 
-#### `POST: /api/v0.0/services_status` (in developing)
+#### `POST: /api/v0.1/services` (in developing)
+
+Request params:
+
+```$xslt
+token: text,
+id: number,
+name: text,
+price: number,
+is_product: bool,
+is_resell: bool,
+consumables: [
+    {
+        id: bigint,
+        count: num
+    }
+]
+```
+
+Response body:
+
+```$xslt
+
+```
+
+#### `POST: /api/v0.0/services_status`
 
 Request params:
 
