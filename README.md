@@ -862,6 +862,21 @@ Response body:
 
 ```
 
+#### `POST: /api/v0.0/collection` (in developing)
+
+Request body:
+
+```$xslt
+token: text,
+value: number,
+```
+
+Response body:
+
+```$xslt
+
+```
+
 ### Statistic
 
 #### `GET: /api/v0.0/statistic`
@@ -932,15 +947,11 @@ Request body:
 ```$xslt
 token: text,
 index: number,
-managers: [
+id: number,
+values: [
     {
-        id: number,
-        values: [
-            {
-                value: number,
-                description: text,
-            }
-        ]
+        value: number,
+        description: text,
     }
 ]
 ```
@@ -955,12 +966,8 @@ Response body:
 Request body:
 ```$xslt
 token: text,
-managers: [
-    {
-        id: number,
-        paid: number,
-    }
-]
+id: number,
+paid: number,
 ```
 
 Response body:
