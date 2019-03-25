@@ -1,9 +1,124 @@
-.table {
+.table-holder {
     display: inline-block;
-    max-width: 400px;
+    vertical-align: top;
+}
+
+@media screen and (min-height: 720px) {
+    .table {
+        font-size: 16px !important;
+    }
+    .pco, .rco, .acquiring, .account, .date {
+        border: black solid 3px!important;
+    }
+    .wc-day, .wc-index, .wc-name {
+        border: black solid 3px!important;
+    }
+    .wc-table {
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (max-height: 768px) and (min-height: 400px) {
+    .table {
+        font-size: 12px !important;
+    }
+    .pco, .rco, .acquiring, .account, .date {
+        border: black solid 2px!important;
+    }
+    .wc-day, .wc-index, .wc-name {
+        border: black solid 2px!important;
+    }
+    .wc-table {
+        font-size: 12px !important;
+    }
+}
+
+.table {
+    display: inline-block !important;
+    background-color: #1f1f1f !important;
+    color: #D5D9DE !important;
+    margin-left: 40px !important;
+    border: #555555 solid 1px !important;
+    box-shadow: 0 0 6px rgba(148, 148, 148, 0.42) !important;
+}
+
+.table table {
+    border-collapse: collapse !important;
+    border: black solid 2px !important;
+}
+
+.pco, .rco, .account, .acquiring {
+    text-align: center !important;
+    background-color: #424242 !important;
+}
+
+.date {
+    text-align: right !important;
+    background-color: #424242 !important;
 }
 
 .statistics {
-    width: 2800px;
-    overflow: auto !important;
+    margin-top: 10px;
+    overflow: auto;
+}
+
+.turnover-row .pco, .turnover-row .rco,
+.turnover-row .acquiring, .turnover-row .account{
+    background-color: #1f1f1f !important;
+}
+
+.turnover-row .pco:hover, .turnover-row .rco:hover,
+.turnover-row .acquiring:hover, .turnover-row .account:hover {
+    background-color: #9c00b8 !important;
+    cursor: pointer!important;
+}
+
+.wc-table-holder {
+    margin-left: 40px;
+}
+
+.wc-table table {
+    border-collapse: collapse!important;
+}
+
+.wc-table {
+    margin-bottom: 40px;
+    background-color: #1f1f1f !important;
+    color: #D5D9DE !important;
+    border: #555555 solid 1px !important;
+    box-shadow: 0 0 6px rgba(148, 148, 148, 0.42) !important;
+}
+
+.wc-index {
+    min-width: 30px!important;
+    max-width: 30px!important;
+    text-align: right!important;
+    background-color: #424242!important;
+}
+
+.wc-day {
+    min-width: 25px!important;
+    max-width: 25px!important;
+    text-align: center!important;
+    background-color: #424242!important;
+}
+
+.wc-name {
+    min-width: 150px !important;
+    max-width: 150px !important;
+    background-color: #424242!important;
+}
+
+.wc-row .wc-name, .wc-row .wc-day {
+    background-color: #1f1f1f!important;
+}
+
+.wc-row .wc-day:hover {
+    background-color: #9c00b8 !important;
+    cursor: pointer!important;
+}
+
+.p-table-holder {
+    display: inline-block;
+    margin-left: 40px;
 }

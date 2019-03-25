@@ -18,7 +18,7 @@ class App extends Component {
     render() {
         return (
             <div className={"App"}>
-                <div style={{marginBottom:'3%'}}>a</div>
+                <div style={{marginBottom:'3%', minHeight:'10px'}}/>
                 <div>
                     <Switch>
                         <Route exact path={'/'} children={<NavBar/>}/>
