@@ -1,0 +1,9 @@
+.table {
+    display: inline-block;
+    max-width: 400px;
+}
+
+.statistics {
+    width: 2800px;
+    overflow: auto !important;
+}

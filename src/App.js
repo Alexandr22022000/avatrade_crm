@@ -11,6 +11,7 @@ import Warehouse from "./warehouse/containers/Warehouse";
 import StoresWrapper from "./storemanagement/containers/StoresWrapper";
 import Cashbox from "./cashbox/containers/Cashbox";
 import Services from "./services/containers/Services";
+import Statistics from "./statistics/containers/Statistics";
 
 
 class App extends Component {
@@ -28,7 +29,7 @@ class App extends Component {
                         <Route exact path={'/prices'} children={<NavBar><Services/></NavBar>}/>
                         <Route exact path={'/turnovers'} children={<NavBar><InDev/></NavBar>}/>
                         <Route exact path={'/events'} children={<NavBar><InDev/></NavBar>}/>
-                        <Route exact path={'/cabinet'} children={<NavBar><InDev/></NavBar>}/>
+                        <Route exact path={'/cabinet'} children={<NavBar><Statistics/></NavBar>}/>
                         <Route exact path={'/contacts'} children={<NavBar><InDev/></NavBar>}/>
                         <Route exact path={'/stores'} children={<NavBar><StoresWrapper/></NavBar>}/>
                         <Route exact path={'/recover_password'} children={<PassRecover/>}/>

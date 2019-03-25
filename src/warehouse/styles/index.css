@@ -219,3 +219,11 @@
     border-left: black solid 1px;
     border-right: black solid 1px;
 }
+
+.wh-table-row {
+    transition: 0.3s;
+}
+
+.wh-table-row:hover {
+    background-color: #555555;
+}

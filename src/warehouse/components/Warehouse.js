@@ -23,7 +23,7 @@ class Warehouse extends Component {
         );
         const minWidth = `${value.stocks.length * 122 - 2}px`;
         return (
-            <tr>
+            <tr className={'wh-table-row'}>
                 <td className={'table-cell chbox-cell'}>
                     <input checked={value.isChecked}
                            type={'checkbox'}
