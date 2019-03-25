@@ -796,7 +796,7 @@ Response body:
 
 ### CashBox:
 
-#### `POST: /api/v0.0/sell` (in developing)
+#### `POST: /api/v0.0/sale`
 
 Request params:
 
@@ -818,7 +818,7 @@ Response body:
 
 ```
 
-#### `GET: /api/v0.0/fast_services` (in developing)
+#### `GET: /api/v0.0/fast_services`
 
 Request params:
 
@@ -847,7 +847,7 @@ fast_services: [
 ]
 ```
 
-#### `POST: /api/v0.0/fast_services` (in developing)
+#### `POST: /api/v0.0/fast_services`
 
 Request body:
 
@@ -862,12 +862,13 @@ Response body:
 
 ```
 
-#### `POST: /api/v0.0/collection` (in developing)
+#### `POST: /api/v0.0/collection`
 
 Request body:
 
 ```$xslt
 token: text,
+store_id: number,
 value: number,
 ```
 
@@ -925,15 +926,16 @@ workCalendars: [
 ],
 payment: [
     {
+        id: bigint,
         manager: text,
         workDays: number,
         salary: number,
         salaryPay: number,
         sells: number,
         sellsPay: number,
-        reSells: number,
+        resells: number,
+        resellsPay: number,
         all: number,
-        reSellsPat: number,
         premiums: number,
         paid: number,
         needPay: number,
@@ -946,7 +948,6 @@ payment: [
 Request body:
 ```$xslt
 token: text,
-index: number,
 id: number,
 values: [
     {
