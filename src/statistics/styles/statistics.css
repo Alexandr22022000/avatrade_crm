@@ -3,9 +3,19 @@
     vertical-align: top;
 }
 
+.wc-input {
+    border: none;
+    background: #1f1f1f;
+    color: #d5d9de;
+}
+
+.wc-input:active, .wc-input:focus {
+    outline: none;
+}
+
 @media screen and (min-height: 720px) {
     .table {
-        font-size: 16px !important;
+        font-size: 13px !important;
     }
     .pco, .rco, .acquiring, .account, .date {
         border: black solid 3px!important;
@@ -15,12 +25,18 @@
     }
     .p-name, .p-salary, .p-salaryPay {
         border: black solid 3px!important;
+    }
+    .wc-input {
+        max-width: 38px;
+        margin: 0 auto;
+        font-size: 13px;
+        vertical-align: top;
     }
 }
 
 @media screen and (max-height: 768px) and (min-height: 400px) {
     .table {
-        font-size: 12px !important;
+        font-size: 9px !important;
     }
     .pco, .rco, .acquiring, .account, .date {
         border: black solid 2px!important;
@@ -30,6 +46,12 @@
     }
     .p-name, .p-salary, .p-salaryPay {
         border: black solid 2px!important;
+    }
+    .wc-input {
+        max-width: 38px;
+        margin: 0 auto;
+        font-size: 9px;
+        vertical-align: top;
     }
 }
 
@@ -50,11 +72,17 @@
 .pco, .rco, .account, .acquiring {
     text-align: center !important;
     background-color: #424242 !important;
+    padding: 0!important;
+    padding-left: 5px!important;
+    padding-right: 5px!important;
 }
 
 .date {
     text-align: right !important;
     background-color: #424242 !important;
+    padding: 0!important;
+    padding-left: 5px!important;
+    padding-right: 5px!important;
 }
 
 .statistics {
@@ -65,6 +93,7 @@
 .turnover-row .pco, .turnover-row .rco,
 .turnover-row .acquiring, .turnover-row .account{
     background-color: #1f1f1f !important;
+    padding: 0!important;
 }
 
 .turnover-row .pco:hover, .turnover-row .rco:hover,
@@ -73,40 +102,44 @@
     cursor: pointer!important;
 }
 
-.wc-table-holder {
-    margin-left: 40px;
-}
-
 .wc-table table {
     border-collapse: collapse!important;
 }
 
 .wc-table {
-    max-width: 1000px;
     display: block!important;
     margin-bottom: 40px;
 }
 
 .wc-index {
+    max-width: 30px!important;
     min-width: 30px!important;
     text-align: right!important;
     background-color: #424242!important;
-}
-
-.wc-day {
     padding: 0!important;
-    text-align: center!important;
-    background-color: #424242!important;
+    padding-left: 5px!important;
+    padding-right: 5px!important;
 }
 
 .wc-name {
     min-width: 150px !important;
     text-align: center!important;
     background-color: #424242!important;
+    padding: 0!important;
+    padding-left: 5px!important;
+    padding-right: 5px!important;
 }
 
 .wc-row .wc-name, .wc-row .wc-day {
     background-color: #1f1f1f!important;
+}
+
+.wc-day {
+    min-width: 30px!important;
+    max-width: 30px!important;
+    text-align: center!important;
+    background-color: #424242!important;
+    padding: 0!important;
 }
 
 .wc-row .wc-day:hover {
@@ -134,7 +167,16 @@
 
 .p-name {
     min-width: 150px!important;
+    max-width: 150px!important;
+    padding: 0!important;
 }
-
-.wc-input {
+.p-salary {
+    min-width: 80px!important;
+    max-width: 80px!important;
+    padding: 0!important;
+}
+.p-salaryPay {
+    min-width: 175px!important;
+    max-width: 175px!important;
+    padding: 0!important;
 }

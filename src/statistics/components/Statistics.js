@@ -1,10 +1,8 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import '../styles/statistics.css';
 import Table from 'rc-table';
 import 'rc-table/assets/index.css';
-import StuffInput from "../../personal/components/StuffInput";
 
-const turnoverCellWidth = 100;
 const workCalendarCellsWidths = {
     all: 46,
     name: 170,
@@ -17,10 +15,9 @@ const paymentWidths = {
 
 
 class Statistics extends Component {
-
     render() {
         return (
-            <div className={'statistics'} style={{width: `${this.getWidth()}px`}}>
+            <div className={'statistics'} style={{minWidth: `${this.getWidth()}px`}}>
                 <div className={'table-holder to-table-holder'}>
                     {this.getTurnoverTables()}
                 </div>
@@ -41,35 +38,30 @@ class Statistics extends Component {
                 dataIndex: 'date',
                 className: 'date',
                 key: 'date',
-                width: turnoverCellWidth,
             },
             {
                 title: 'ПКО',
                 dataIndex: 'pco',
                 className: 'pco',
                 key: 'pco',
-                width: turnoverCellWidth,
             },
             {
                 title: 'Эквайринг',
                 dataIndex: 'acquiring',
                 className: 'acquiring',
                 key: 'acquiring',
-                width: turnoverCellWidth,
             },
             {
                 title: 'По счету',
                 dataIndex: 'account',
                 className: 'account',
                 key: 'account',
-                width: turnoverCellWidth,
             },
             {
                 title: 'РКО',
                 dataIndex: 'rco',
                 className: 'rco',
                 key: 'rco',
-                width: turnoverCellWidth,
             },
         ];
         let data = [];
@@ -85,12 +77,12 @@ class Statistics extends Component {
                 })
             }
             data.push(
-                <Table
-                    columns={columns}
-                    rowClassName={() => `turnover-row`}
-                    data={tableData}
-                    className="table turnover"
-                />
+                    <Table
+                        columns={columns}
+                        rowClassName={() => `turnover-row`}
+                        data={tableData}
+                        className="table turnover"
+                    />
             );
         }
         return data;
@@ -131,15 +123,26 @@ class Statistics extends Component {
                 tmpObj.name = this.props.workCalendars[i].managers[+j].manager;
                 for(let k in this.props.workCalendars[i].managers[+j].values) {
                     tmpObj[k + ''] = (
-                        <StuffInput value={ this.props.workCalendars[i].managers[+j].values[+k].value}
-                                    numbers={true}
-                                    alwaysActive={true}
-                                    className={'wc-input'}
-                        />);
+                        <div style={{width: 'inherit', height: 'inherit'}}>
+                            {this.props.calendars && this.props.calendars[+i][+j][+k]?
+                                <input value={this.props.workCalendars[i].managers[+j].values[+k].value}
+                                       autoFocus={true}
+                                       onBlurCapture={() => this.changeCalendarStatus({i,j,k}, false)}
+                                       className={'wc-input'}
+                                       onChange={() => {}}
+                                />:
+                                <div onClick={() => this.changeCalendarStatus({i,j,k}, true)}
+                                     style={{width:'inherit'}}
+                                >
+                                    {this.props.workCalendars[i].managers[+j].values[+k].value}
+                                </div>
+                            }
+                        </div>
+                    );
+
                 }
                 tableData.push(tmpObj);
             }
-            console.log(tableData);
             data.push(
                 <Table
                     columns={columns}
@@ -150,6 +153,17 @@ class Statistics extends Component {
             )
         }
         return data;
+    }
+
+    onChangeCalendar(value) {
+
+    }
+
+    changeCalendarStatus(indexes, isEditing){
+        let calendars = [...this.props.calendars];
+        calendars[+indexes.i][+indexes.j][+indexes.k] = isEditing;
+        console.log(calendars);
+        this.props.onSetCalendarsState(calendars);
     }
 
     getPaymentTables() {
@@ -193,14 +207,35 @@ class Statistics extends Component {
 
     getWidth() {
         return (
-            (turnoverCellWidth + 40) * this.props.turnover.length * 4 +
+            400 * this.props.turnover.length +
                 workCalendarCellsWidths.name + workCalendarCellsWidths.all * 32 +
                 paymentWidths.name + paymentWidths.salary + paymentWidths.salaryPay + 40
         );
     }
 
+    componentDidUpdate(nextProps, nextState, nextContext) {
+        if(this.init && this.props.workCalendars.length !== 0) {
+            this.init = false;
+            let calendars = [];
+            for (let i in this.props.workCalendars) {
+                let tmpTable = [];
+                for(let j in this.props.workCalendars[i].managers) {
+                    let tmpRow = [];
+                    for (let k in this.props.workCalendars[i].managers[+j].values) {
+                        tmpRow.push(false);
+                    }
+                    tmpTable.push(tmpRow);
+                }
+                calendars.push(tmpTable);
+            }
+            console.log(calendars);
+            this.props.onSetCalendarsState(calendars);
+        }
+    }
+
     componentDidMount() {
         this.props.onLoadStatistics((new Date()).getMilliseconds());
+        this.init = true;
     }
 }
 
