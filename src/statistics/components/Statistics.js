@@ -2,11 +2,17 @@ import React, {Component} from 'react';
 import '../styles/statistics.css';
 import Table from 'rc-table';
 import 'rc-table/assets/index.css';
+import StuffInput from "../../personal/components/StuffInput";
 
 const turnoverCellWidth = 100;
 const workCalendarCellsWidths = {
     all: 46,
     name: 170,
+};
+const paymentWidths = {
+    name: 300,
+    salary: 100,
+    salaryPay: 200,
 };
 
 
@@ -22,7 +28,7 @@ class Statistics extends Component {
                     {this.getWorkCalendarsTables()}
                 </div>
                 <div className={'table-holder p-table-holder'}>
-                    {}
+                    {this.getPaymentTables()}
                 </div>
             </div>
         );
@@ -124,7 +130,12 @@ class Statistics extends Component {
                 tmpObj.index = +j + 1;
                 tmpObj.name = this.props.workCalendars[i].managers[+j].manager;
                 for(let k in this.props.workCalendars[i].managers[+j].values) {
-                    tmpObj[k + ''] = this.props.workCalendars[i].managers[+j].values[+k].value;
+                    tmpObj[k + ''] = (
+                        <StuffInput value={ this.props.workCalendars[i].managers[+j].values[+k].value}
+                                    numbers={true}
+                                    alwaysActive={true}
+                                    className={'wc-input'}
+                        />);
                 }
                 tableData.push(tmpObj);
             }
@@ -134,17 +145,57 @@ class Statistics extends Component {
                     columns={columns}
                     rowClassName={() => `wc-row`}
                     data={tableData}
-                    className="wc-table"
+                    className="table wc-table"
                 />
             )
         }
         return data;
     }
 
+    getPaymentTables() {
+        const columns = [
+            {
+                title: 'Менеджер',
+                dataIndex: 'name',
+                className: 'p-name',
+                key: 'name',
+            },
+            {
+                title: 'Зарплата',
+                dataIndex: 'salary',
+                className: 'p-salary',
+                key: 'salary',
+            },
+            {
+                title: 'Фактическая Зарплата',
+                dataIndex: 'salaryPay',
+                className: 'p-salaryPay',
+                key: 'salaryPay',
+            },
+        ];
+        let data = [];
+        for(let i in this.props.payment) {
+            data.push({
+                name: this.props.payment[i].manager,
+                salary: this.props.payment[i].salary,
+                salaryPay: this.props.payment[i].salaryPay,
+            })
+        }
+        return (
+            <Table
+                columns={columns}
+                rowClassName={() => `p-row`}
+                data={data}
+                className="table p-table"
+            />
+        )
+    }
+
     getWidth() {
         return (
             (turnoverCellWidth + 40) * this.props.turnover.length * 4 +
-                workCalendarCellsWidths.name + workCalendarCellsWidths.all * 32
+                workCalendarCellsWidths.name + workCalendarCellsWidths.all * 32 +
+                paymentWidths.name + paymentWidths.salary + paymentWidths.salaryPay + 40
         );
     }
 

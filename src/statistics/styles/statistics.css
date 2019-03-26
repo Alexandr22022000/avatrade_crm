@@ -13,8 +13,8 @@
     .wc-day, .wc-index, .wc-name {
         border: black solid 3px!important;
     }
-    .wc-table {
-        font-size: 16px !important;
+    .p-name, .p-salary, .p-salaryPay {
+        border: black solid 3px!important;
     }
 }
 
@@ -28,8 +28,8 @@
     .wc-day, .wc-index, .wc-name {
         border: black solid 2px!important;
     }
-    .wc-table {
-        font-size: 12px !important;
+    .p-name, .p-salary, .p-salaryPay {
+        border: black solid 2px!important;
     }
 }
 
@@ -82,30 +82,26 @@
 }
 
 .wc-table {
+    max-width: 1000px;
+    display: block!important;
     margin-bottom: 40px;
-    background-color: #1f1f1f !important;
-    color: #D5D9DE !important;
-    border: #555555 solid 1px !important;
-    box-shadow: 0 0 6px rgba(148, 148, 148, 0.42) !important;
 }
 
 .wc-index {
     min-width: 30px!important;
-    max-width: 30px!important;
     text-align: right!important;
     background-color: #424242!important;
 }
 
 .wc-day {
-    min-width: 25px!important;
-    max-width: 25px!important;
+    padding: 0!important;
     text-align: center!important;
     background-color: #424242!important;
 }
 
 .wc-name {
     min-width: 150px !important;
-    max-width: 150px !important;
+    text-align: center!important;
     background-color: #424242!important;
 }
 
@@ -121,4 +117,24 @@
 .p-table-holder {
     display: inline-block;
     margin-left: 40px;
+}
+
+.p-name, .p-salary, .p-salaryPay {
+    text-align: center!important;
+    background-color: #424242!important;
+}
+
+.p-row .p-salary, .p-row .p-salaryPay {
+    background-color: #1f1f1f!important;
+}
+
+.p-row .p-salary:hover, .p-row .p-salaryPay:hover {
+    background-color: #9c00b8!important;
+}
+
+.p-name {
+    min-width: 150px!important;
+}
+
+.wc-input {
 }

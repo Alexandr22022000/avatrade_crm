@@ -63,7 +63,7 @@
         width: 35px;
         height: 40px;
         position: absolute;
-        top: 1%;
+        top: 15%;
         left: 1%;
     }
     .MainPageHolder-d .navbar-btn {
@@ -185,7 +185,7 @@
         width: 25px;
         height: 30px;
         position: absolute;
-        top: 2%;
+        top: 15%;
         left: 1%;
     }
     #alerts .alert-icon {
