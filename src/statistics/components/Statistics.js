@@ -2,6 +2,7 @@ import React, {Component, Fragment} from 'react';
 import '../styles/statistics.css';
 import Table from 'rc-table';
 import 'rc-table/assets/index.css';
+import DropDown from "../../personal/components/DropDown";
 
 const workCalendarCellsWidths = {
     all: 46,
@@ -15,17 +16,47 @@ const paymentWidths = {
 
 
 class Statistics extends Component {
+    state = {
+        wcValue: null,
+    };
+
     render() {
+        const years = ['2016', '2017', '2018', '2019'];
+        const months = [
+            "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь",
+            "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"
+        ];
         return (
-            <div className={'statistics'} style={{minWidth: `${this.getWidth()}px`}}>
-                <div className={'table-holder to-table-holder'}>
-                    {this.getTurnoverTables()}
+            <div className={'adasdad'}>
+                <div className={'stats-controls'}>
+                    <DropDown
+                        className={'dropdownPlaceholder'}
+                        holderClassName={'stats-dp'}
+                        options={years}
+                        value={this.getYearIndex(years)}
+                        onChange={(v) => this.onChangeYear(years[v])}
+                    />
+                    <div className={'stats-months'}>
+                        {months.map((value, index) => (
+                            <button key={index}
+                                    className={`${index === this.props.date.month? 'active' : ''}`}
+                                    onClick={() => this.onChangeMonth(index)}
+                            >
+                                {value}
+                            </button>
+                        ))}
+                    </div>
                 </div>
-                <div className={'table-holder wc-table-holder'}>
-                    {this.getWorkCalendarsTables()}
-                </div>
-                <div className={'table-holder p-table-holder'}>
-                    {this.getPaymentTables()}
+                <div className={'statistics'} style={{minWidth: `${this.getWidth()}px`}}>
+                    <div className={'table-holder to-table-holder'}>
+                        {this.getTurnoverTables()}
+                    </div>
+                    <div className={'table-holder wc-table-holder'}>
+                        {this.getWorkCalendarsTables()}
+                    </div>
+                    <div className={'table-holder p-table-holder'}>
+                        {this.getPaymentTables()}
+                    </div>
                 </div>
             </div>
         );
@@ -68,13 +99,15 @@ class Statistics extends Component {
         for(let i in this.props.turnover) {
             let tableData = [];
             for(let j in this.props.turnover[i].values) {
-                tableData.push({
-                    date: `${+j + 1}.${+i+1}`,
-                    pco:this.props.turnover[i].values[+j].pco,
-                    acquiring: this.props.turnover[i].values[+j].acquiring,
-                    account: this.props.turnover[i].values[+j].account,
-                    rco: this.props.turnover[i].values[+j].rco,
-                })
+                if(+j !== 0) {
+                    tableData.push({
+                        date: `${+j}.${+i + 1}`,
+                        pco: this.props.turnover[i].values[+j].pco,
+                        acquiring: this.props.turnover[i].values[+j].acquiring,
+                        account: this.props.turnover[i].values[+j].account,
+                        rco: this.props.turnover[i].values[+j].rco,
+                    })
+                }
             }
             data.push(
                     <Table
@@ -125,11 +158,11 @@ class Statistics extends Component {
                     tmpObj[k + ''] = (
                         <div style={{width: 'inherit', height: 'inherit'}}>
                             {this.props.calendars && this.props.calendars[+i][+j][+k]?
-                                <input value={this.props.workCalendars[i].managers[+j].values[+k].value}
+                                <input value={this.state.wcValue}
                                        autoFocus={true}
                                        onBlurCapture={() => this.changeCalendarStatus({i,j,k}, false)}
                                        className={'wc-input'}
-                                       onChange={() => {}}
+                                       onChange={(e) => this.onChangeCalendar(e.target.value)}
                                 />:
                                 <div onClick={() => this.changeCalendarStatus({i,j,k}, true)}
                                      style={{width:'inherit'}}
@@ -156,14 +189,26 @@ class Statistics extends Component {
     }
 
     onChangeCalendar(value) {
-
+        let regexp = /^\d*\.*\d*$/;
+        if (regexp.test(value)) {
+            this.setState({wcValue: value});
+        }
     }
 
     changeCalendarStatus(indexes, isEditing){
         let calendars = [...this.props.calendars];
         calendars[+indexes.i][+indexes.j][+indexes.k] = isEditing;
-        console.log(calendars);
         this.props.onSetCalendarsState(calendars);
+        if(isEditing) {
+            const val = this.props.workCalendars[+indexes.i].managers[+indexes.j].values[+indexes.k].value;
+            this.setState({
+                wcValue: val === 0 ? '' : val,
+            });
+        } else {
+            let values = [...this.props.workCalendars[+indexes.i].managers[+indexes.j].values];
+            values[+indexes.k].value = this.state.wcValue === ''? 0: +this.state.wcValue;
+            this.props.onSetCalendar(this.props.workCalendars[+indexes.i].managers[+indexes.j].id,values)
+        }
     }
 
     getPaymentTables() {
@@ -228,14 +273,31 @@ class Statistics extends Component {
                 }
                 calendars.push(tmpTable);
             }
-            console.log(calendars);
             this.props.onSetCalendarsState(calendars);
         }
     }
 
     componentDidMount() {
-        this.props.onLoadStatistics((new Date()).getMilliseconds());
+        this.props.onLoadStatistics();
         this.init = true;
+    }
+
+    getYearIndex(years) {
+        for(let i in years) {
+            if(this.props.date.year === +years[i]) {
+                return +i;
+            }
+        }
+    }
+
+    onChangeYear(v) {
+        this.props.onSetDate({month: this.props.date.month, year: +v});
+        this.props.onLoadStatistics();
+    }
+
+    onChangeMonth(index) {
+        this.props.onSetDate({month: +index, year: this.props.date.year});
+        this.props.onLoadStatistics();
     }
 }
 

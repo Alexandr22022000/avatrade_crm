@@ -1,3 +1,4 @@
+
 .table-holder {
     display: inline-block;
     vertical-align: top;
@@ -27,10 +28,15 @@
         border: black solid 3px!important;
     }
     .wc-input {
-        max-width: 38px;
+        max-width: 30px;
         margin: 0 auto;
         font-size: 13px;
         vertical-align: top;
+        min-height: 17px;
+        min-width: 100%;
+    }
+    .stats-controls {
+        bottom: 20px;
     }
 }
 
@@ -48,10 +54,14 @@
         border: black solid 2px!important;
     }
     .wc-input {
-        max-width: 38px;
+        max-width: 30px;
         margin: 0 auto;
         font-size: 9px;
         vertical-align: top;
+        height: 11px;
+    }
+    .stats-controls {
+        bottom: 20px;
     }
 }
 
@@ -112,8 +122,8 @@
 }
 
 .wc-index {
-    max-width: 30px!important;
-    min-width: 30px!important;
+    max-width: 12px!important;
+    min-width: 12px!important;
     text-align: right!important;
     background-color: #424242!important;
     padding: 0!important;
@@ -132,6 +142,7 @@
 
 .wc-row .wc-name, .wc-row .wc-day {
     background-color: #1f1f1f!important;
+    overflow: hidden!important;
 }
 
 .wc-day {
@@ -170,13 +181,49 @@
     max-width: 150px!important;
     padding: 0!important;
 }
+
 .p-salary {
     min-width: 80px!important;
     max-width: 80px!important;
     padding: 0!important;
 }
+
 .p-salaryPay {
     min-width: 175px!important;
     max-width: 175px!important;
     padding: 0!important;
+}
+
+.stats-controls {
+    position: absolute;
+    width: 100%;
+}
+
+.stats-dp {
+    display: inline-block!important;
+}
+
+.stats-months {
+    display: inline-block;
+}
+
+.stats-controls button {
+    background-color: black;
+    color: #d5d9de;
+    border: none;
+    margin-left: 2px;
+    margin-right: 2px;
+    padding-top: 4px;
+    vertical-align: top;
+    transition: 0.3s;
+    padding-bottom: 4px;
+}
+
+.stats-controls button:hover {
+    background-color: #5a5a5a;
+}
+
+.stats-controls .active {
+    border-bottom: #9c00b8 solid 2px;
+    padding-bottom: 2px;
 }

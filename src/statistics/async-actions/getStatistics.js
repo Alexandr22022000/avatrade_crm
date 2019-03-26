@@ -1,8 +1,11 @@
 import HTTPS from "../../core/HTTPS";
 import setStatistics from "../actions/setStatistics";
 
-const getStatistics = (date) => (dispatch, getState) => {
-    HTTPS.get('/api/v0.0/statistic', {date}, dispatch, getState)
+const getStatistics = () => (dispatch, getState) => {
+    const state = getState().statistics.date;
+    let date = new Date();
+    date.setFullYear(state.year, state.month);
+    HTTPS.get('/api/v0.0/statistic', {date: date.getMilliseconds()}, dispatch, getState)
         .then(response => dispatch(setStatistics(response)))
 };
 
