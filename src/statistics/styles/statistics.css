@@ -24,7 +24,10 @@
     .wc-day, .wc-index, .wc-name {
         border: black solid 3px!important;
     }
-    .p-name, .p-salary, .p-salaryPay {
+    .s-name, .s-salary, .s-salaryPay, .s-sum {
+        border: black solid 3px!important;
+    }
+    .p-name, .p-paid, .p-remains {
         border: black solid 3px!important;
     }
     .wc-input {
@@ -36,7 +39,25 @@
         min-width: 100%;
     }
     .stats-controls {
-        bottom: 20px;
+        bottom: 0;
+    }
+    .statistics {
+        min-width: 3200px;
+        overflow-x: scroll;
+    }
+    .tmp-wrapper {
+        width: 100%;
+        overflow-x: scroll;
+        height: 787px;
+        overflow-y: scroll;
+    }
+    .stats-dp select {
+        padding-top: 2px;
+        padding-bottom: 5px;
+        vertical-align: bottom;
+    }
+    .stats-controls button {
+        vertical-align: top;
     }
 }
 
@@ -50,7 +71,10 @@
     .wc-day, .wc-index, .wc-name {
         border: black solid 2px!important;
     }
-    .p-name, .p-salary, .p-salaryPay {
+    .s-name, .s-salary, .s-salaryPay, .s-sum {
+        border: black solid 2px!important;
+    }
+    .p-name, .p-paid, .p-remains {
         border: black solid 2px!important;
     }
     .wc-input {
@@ -60,8 +84,22 @@
         vertical-align: top;
         height: 11px;
     }
+    .statistics {
+        min-width: 3000px;
+        overflow-x: scroll;
+    }
+    .tmp-wrapper {
+        width: 100%;
+        overflow-x: scroll;
+        height: 582px;
+        overflow-y: scroll;
+    }
     .stats-controls {
-        bottom: 20px;
+        bottom: 0;
+    }
+    .stats-dp select {
+        padding-top: 1px;
+        padding-bottom: 3px;
     }
 }
 
@@ -93,6 +131,8 @@
     padding: 0!important;
     padding-left: 5px!important;
     padding-right: 5px!important;
+    min-width: 50px!important;
+    max-width: 50px!important;
 }
 
 .statistics {
@@ -158,49 +198,94 @@
     cursor: pointer!important;
 }
 
-.p-table-holder {
+.s-table-holder {
     display: inline-block;
     margin-left: 40px;
 }
 
-.p-name, .p-salary, .p-salaryPay {
+.s-name, .s-salary, .s-salaryPay, .s-sum{
     text-align: center!important;
     background-color: #424242!important;
 }
 
-.p-row .p-salary, .p-row .p-salaryPay {
+.s-row .s-salary, .s-row .s-salaryPay, .s-row .s-sum {
     background-color: #1f1f1f!important;
 }
 
-.p-row .p-salary:hover, .p-row .p-salaryPay:hover {
+.s-row .s-salary:hover, .s-row .s-salaryPay:hover, .s-row .s-sum:hover{
     background-color: #9c00b8!important;
+    cursor: pointer!important;
 }
 
-.p-name {
+.s-name {
     min-width: 150px!important;
     max-width: 150px!important;
     padding: 0!important;
 }
 
-.p-salary {
+.s-salary {
     min-width: 80px!important;
     max-width: 80px!important;
     padding: 0!important;
 }
 
-.p-salaryPay {
-    min-width: 175px!important;
-    max-width: 175px!important;
+.s-salaryPay {
+    min-width: 100px!important;
+    max-width: 100px!important;
     padding: 0!important;
+}
+
+.s-sum {
+    padding: 0!important;
+    min-width: 80px!important;
+    max-width: 80px!important;
+}
+
+.p-name {
+    min-width: 150px!important;
+    max-width: 150px!important;
+}
+
+.p-paid {
+    min-width: 90px!important;
+    max-width: 90px!important;
+}
+
+.p-remains {
+    min-width: 80px!important;
+    max-width: 80px!important;
+}
+
+.p-name, .p-paid, .p-remains {
+    padding: 0!important;
+    text-align: center!important;
+    background-color: #424242!important;
+}
+
+.p-row .p-paid, .p-row .p-remains {
+    background-color: #1f1f1f!important;
+}
+
+.p-row .p-paid:hover, .p-row .p-remains:hover {
+    background-color: #9c00b8!important;
+    cursor: pointer!important;
 }
 
 .stats-controls {
     position: absolute;
     width: 100%;
+    z-index: 1000;
 }
 
 .stats-dp {
     display: inline-block!important;
+    vertical-align: top;
+}
+
+.stats-dp select {
+    font-size: 15px;
+    border-radius: 0!important;
+    background-color: #5a5a5a;
 }
 
 .stats-months {
@@ -208,13 +293,10 @@
 }
 
 .stats-controls button {
-    background-color: black;
+    background-color: #5a5a5a;
     color: #d5d9de;
     border: none;
-    margin-left: 2px;
-    margin-right: 2px;
     padding-top: 4px;
-    vertical-align: top;
     transition: 0.3s;
     padding-bottom: 4px;
 }

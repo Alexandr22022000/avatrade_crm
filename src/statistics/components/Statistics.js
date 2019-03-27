@@ -5,13 +5,13 @@ import 'rc-table/assets/index.css';
 import DropDown from "../../personal/components/DropDown";
 
 const workCalendarCellsWidths = {
-    all: 46,
+    all: 35,
     name: 170,
 };
 const paymentWidths = {
-    name: 300,
+    name: 250,
     salary: 100,
-    salaryPay: 200,
+    salaryPay: 100,
 };
 
 
@@ -27,7 +27,7 @@ class Statistics extends Component {
             "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"
         ];
         return (
-            <div className={'adasdad'}>
+            <div className={'statistics-holder'}>
                 <div className={'stats-controls'}>
                     <DropDown
                         className={'dropdownPlaceholder'}
@@ -47,17 +47,23 @@ class Statistics extends Component {
                         ))}
                     </div>
                 </div>
-                <div className={'statistics'} style={{minWidth: `${this.getWidth()}px`}}>
-                    <div className={'table-holder to-table-holder'}>
-                        {this.getTurnoverTables()}
-                    </div>
-                    <div className={'table-holder wc-table-holder'}>
-                        {this.getWorkCalendarsTables()}
-                    </div>
-                    <div className={'table-holder p-table-holder'}>
-                        {this.getPaymentTables()}
+                <div className={'tmp-wrapper'}>
+                    <div className={'statistics'}>
+                        <div className={'table-holder to-table-holder'}>
+                            {this.getTurnoverTables()}
+                        </div>
+                        <div className={'table-holder wc-table-holder'}>
+                            {this.getWorkCalendarsTables()}
+                        </div>
+                        <div className={'table-holder p-table-holder'}>
+                            {this.getSalaryTables()}
+                        </div>
+                        <div className={'table-holder p-table-holder'}>
+                            {this.getPaymentTables()}
+                        </div>
                     </div>
                 </div>
+
             </div>
         );
     }
@@ -101,7 +107,7 @@ class Statistics extends Component {
             for(let j in this.props.turnover[i].values) {
                 if(+j !== 0) {
                     tableData.push({
-                        date: `${+j}.${+i + 1}`,
+                        date: `${+j}.${this.props.date.month + 1}.${this.props.date.year}`,
                         pco: this.props.turnover[i].values[+j].pco,
                         acquiring: this.props.turnover[i].values[+j].acquiring,
                         account: this.props.turnover[i].values[+j].account,
@@ -211,6 +217,52 @@ class Statistics extends Component {
         }
     }
 
+    getSalaryTables() {
+        const columns = [
+            {
+                title: 'Менеджер',
+                dataIndex: 'name',
+                className: 's-name',
+                key: 'name',
+            },
+            {
+                title: 'Оклад',
+                dataIndex: 'salary',
+                className: 's-salary',
+                key: 'salary',
+            },
+            {
+                title: 'По окладу',
+                dataIndex: 'salaryPay',
+                className: 's-salaryPay',
+                key: 'salaryPay',
+            },
+            {
+                title: 'Итого',
+                dataIndex: 'sum',
+                className: 's-sum',
+                key: 'sum',
+            },
+        ];
+        let data = [];
+        for(let i in this.props.payment) {
+            data.push({
+                name: this.props.payment[i].manager,
+                salary: this.props.payment[i].salary,
+                salaryPay: this.props.payment[i].salaryPay,
+                sum: this.props.payment[i].all
+            })
+        }
+        return (
+            <Table
+                columns={columns}
+                rowClassName={() => `s-row`}
+                data={data}
+                className="table s-table"
+            />
+        )
+    }
+
     getPaymentTables() {
         const columns = [
             {
@@ -220,24 +272,24 @@ class Statistics extends Component {
                 key: 'name',
             },
             {
-                title: 'Зарплата',
-                dataIndex: 'salary',
-                className: 'p-salary',
-                key: 'salary',
+                title: 'Выплачено',
+                dataIndex: 'paid',
+                className: 'p-paid',
+                key: 'paid',
             },
             {
-                title: 'Фактическая Зарплата',
-                dataIndex: 'salaryPay',
-                className: 'p-salaryPay',
-                key: 'salaryPay',
+                title: 'Остаток',
+                dataIndex: 'remains',
+                className: 'p-remains',
+                key: 'remains',
             },
         ];
         let data = [];
         for(let i in this.props.payment) {
             data.push({
                 name: this.props.payment[i].manager,
-                salary: this.props.payment[i].salary,
-                salaryPay: this.props.payment[i].salaryPay,
+                paid: this.props.payment[i].paid,
+                remains: this.props.payment[i].needPay,
             })
         }
         return (
