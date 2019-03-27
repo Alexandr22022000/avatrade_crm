@@ -4,7 +4,11 @@ const defaultStatistics = {
     turnover: [],
     workCalendars: [],
     payment: [],
-    calendarsState: null,
+    calendarsState: {
+        i: null,
+        j: null,
+        k: null,
+    },
     date: {
         month: 0,
         year: (new Date()).getFullYear(),

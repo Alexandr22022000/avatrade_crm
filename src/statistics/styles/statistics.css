@@ -101,6 +101,9 @@
         padding-top: 1px;
         padding-bottom: 3px;
     }
+    .p-input {
+        min-width: 100% !important;
+    }
 }
 
 .table {
@@ -196,6 +199,12 @@
 .wc-row .wc-day:hover {
     background-color: #9c00b8 !important;
     cursor: pointer!important;
+}
+
+.rc-table-title {
+    padding: 0!important;
+    border: none!important;
+    text-align: center;
 }
 
 .s-table-holder {
@@ -303,6 +312,7 @@
 
 .stats-controls button:hover {
     background-color: #5a5a5a;
+    cursor: pointer;
 }
 
 .stats-controls .active {

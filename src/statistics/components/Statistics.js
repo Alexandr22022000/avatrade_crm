@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import '../styles/statistics.css';
 import Table from 'rc-table';
 import 'rc-table/assets/index.css';
@@ -8,6 +8,8 @@ import DropDown from "../../personal/components/DropDown";
 class Statistics extends Component {
     state = {
         wcValue: null,
+        pValue: null,
+        pIndex: null,
     };
 
     render() {
@@ -53,7 +55,6 @@ class Statistics extends Component {
                         </div>
                     </div>
                 </div>
-
             </div>
         );
     }
@@ -153,7 +154,10 @@ class Statistics extends Component {
                 for(let k in this.props.workCalendars[i].managers[+j].values) {
                     tmpObj[k + ''] = (
                         <div style={{width: 'inherit', height: 'inherit'}}>
-                            {this.props.calendars && this.props.calendars[+i][+j][+k]?
+                            {this.props.calendars.i === +i &&
+                                this.props.calendars.j === +j &&
+                                this.props.calendars.k === +k &&
+                                this.props.workCalendars[i].canEdit?
                                 <input value={this.state.wcValue}
                                        autoFocus={true}
                                        onBlurCapture={() => this.changeCalendarStatus({i,j,k}, false)}
@@ -178,6 +182,7 @@ class Statistics extends Component {
                     rowClassName={() => `wc-row`}
                     data={tableData}
                     className="table wc-table"
+                    title={() => this.props.workCalendars[i].title}
                 />
             )
         }
@@ -192,18 +197,17 @@ class Statistics extends Component {
     }
 
     changeCalendarStatus(indexes, isEditing){
-        let calendars = [...this.props.calendars];
-        calendars[+indexes.i][+indexes.j][+indexes.k] = isEditing;
-        this.props.onSetCalendarsState(calendars);
         if(isEditing) {
             const val = this.props.workCalendars[+indexes.i].managers[+indexes.j].values[+indexes.k].value;
             this.setState({
                 wcValue: val === 0 ? '' : val,
             });
+            this.props.onSetCalendarsState({i: +indexes.i, j: +indexes.j, k: +indexes.k});
         } else {
             let values = [...this.props.workCalendars[+indexes.i].managers[+indexes.j].values];
             values[+indexes.k].value = this.state.wcValue === ''? 0: +this.state.wcValue;
             this.props.onSetCalendar(this.props.workCalendars[+indexes.i].managers[+indexes.j].id,values)
+            this.props.onSetCalendarsState({i: null, j: null, k: null});
         }
     }
 
@@ -243,14 +247,17 @@ class Statistics extends Component {
                 sum: this.props.payment[i].all
             })
         }
-        return (
-            <Table
-                columns={columns}
-                rowClassName={() => `s-row`}
-                data={data}
-                className="table s-table"
-            />
-        )
+        if(data.length !== 0) {
+            return (
+                <Table
+                    columns={columns}
+                    rowClassName={() => `s-row`}
+                    data={data}
+                    className="table s-table"
+                />
+            )
+        }
+        return '';
     }
 
     getPaymentTables() {
@@ -276,44 +283,45 @@ class Statistics extends Component {
         ];
         let data = [];
         for(let i in this.props.payment) {
-            data.push({
+            let tmpObj = {
                 name: this.props.payment[i].manager,
-                paid: this.props.payment[i].paid,
                 remains: this.props.payment[i].needPay,
-            })
-        }
-        return (
-            <Table
-                columns={columns}
-                rowClassName={() => `p-row`}
-                data={data}
-                className="table p-table"
-            />
-        )
-    }
+            };
 
-    componentDidUpdate(nextProps, nextState, nextContext) {
-        if(this.init && this.props.workCalendars.length !== 0) {
-            this.init = false;
-            let calendars = [];
-            for (let i in this.props.workCalendars) {
-                let tmpTable = [];
-                for(let j in this.props.workCalendars[i].managers) {
-                    let tmpRow = [];
-                    for (let k in this.props.workCalendars[i].managers[+j].values) {
-                        tmpRow.push(false);
-                    }
-                    tmpTable.push(tmpRow);
-                }
-                calendars.push(tmpTable);
+            if(this.state.pIndex === i ) {
+                tmpObj.paid = (
+                    <input value={this.state.pValue}
+                           autoFocus={true}
+                           onBlurCapture={() => this.onChangePaidStatus(i, false)}
+                           className={'wc-input p-input'}
+                           onChange={(e) => this.onChangePaid(e.target.value)}
+                    />
+                )
+            } else {
+                tmpObj.paid = (
+                    <div onClick={() => this.onChangePaidStatus(i, true)}>
+                        {this.props.payment[i].paid}
+                    </div>
+                )
             }
-            this.props.onSetCalendarsState(calendars);
+
+            data.push(tmpObj)
         }
+        if(data.length !== 0) {
+            return (
+                <Table
+                    columns={columns}
+                    rowClassName={() => `p-row`}
+                    data={data}
+                    className="table p-table"
+                />
+            )
+        }
+        return ''
     }
 
     componentDidMount() {
         this.props.onLoadStatistics();
-        this.init = true;
     }
 
     getYearIndex(years) {
@@ -332,6 +340,22 @@ class Statistics extends Component {
     onChangeMonth(index) {
         this.props.onSetDate({month: +index, year: this.props.date.year});
         this.props.onLoadStatistics();
+    }
+
+    onChangePaidStatus(index, isEditing) {
+        if(isEditing) {
+            this.setState({pValue: this.props.payment[index].paid, pIndex: index})
+        } else {
+            this.props.onSetPayment(this.props.payment[index].id, this.state.pValue);
+            this.setState({pValue: null, pIndex: null});
+        }
+    }
+
+    onChangePaid(value) {
+        let regexp = /^\d*\.*\d*$/;
+        if (regexp.test(value)) {
+            this.setState({pValue: +value});
+        }
     }
 }
 
