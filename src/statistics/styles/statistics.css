@@ -48,12 +48,12 @@
     .tmp-wrapper {
         width: 100%;
         overflow-x: scroll;
-        height: 787px;
+        height: 877px;
         overflow-y: scroll;
     }
     .stats-dp select {
         padding-top: 2px;
-        padding-bottom: 5px;
+        padding-bottom: 2px;
         vertical-align: bottom;
     }
     .stats-controls button {
@@ -85,7 +85,7 @@
         height: 11px;
     }
     .statistics {
-        min-width: 3000px;
+        min-width: 2900px;
         overflow-x: scroll;
     }
     .tmp-wrapper {

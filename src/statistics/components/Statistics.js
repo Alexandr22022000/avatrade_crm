@@ -4,16 +4,6 @@ import Table from 'rc-table';
 import 'rc-table/assets/index.css';
 import DropDown from "../../personal/components/DropDown";
 
-const workCalendarCellsWidths = {
-    all: 35,
-    name: 170,
-};
-const paymentWidths = {
-    name: 250,
-    salary: 100,
-    salaryPay: 100,
-};
-
 
 class Statistics extends Component {
     state = {
@@ -302,14 +292,6 @@ class Statistics extends Component {
         )
     }
 
-    getWidth() {
-        return (
-            400 * this.props.turnover.length +
-                workCalendarCellsWidths.name + workCalendarCellsWidths.all * 32 +
-                paymentWidths.name + paymentWidths.salary + paymentWidths.salaryPay + 40
-        );
-    }
-
     componentDidUpdate(nextProps, nextState, nextContext) {
         if(this.init && this.props.workCalendars.length !== 0) {
             this.init = false;
@@ -336,7 +318,7 @@ class Statistics extends Component {
 
     getYearIndex(years) {
         for(let i in years) {
-            if(this.props.date.year === +years[i]) {
+            if(this.props.date.year === +years[+i]) {
                 return +i;
             }
         }

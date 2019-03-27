@@ -32,9 +32,8 @@
 
 @media screen and (min-height: 720px) {
     #children {
-        min-height: 810px;
-        max-height: 810px;
-
+        min-height: 900px;
+        max-height: 900px;
     }
     .MainPageHolder-t .navbar-btn,
     .MainPageHolder-d .navbar-btn {
