@@ -24,7 +24,7 @@ class CollectionModal extends Component {
                     controls={controls}
                     onClose={()=> this.onClose(false)}
             >
-                <StuffInput title={"Ранг:"}
+                <StuffInput title={"Сумма, ₽:"}
                             value={this.state.value}
                             onChange={v => {this.onChange(v)}}
                             alwaysActive={true}
