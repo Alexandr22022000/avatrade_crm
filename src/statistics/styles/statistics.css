@@ -42,7 +42,7 @@
         bottom: 0;
     }
     .statistics {
-        min-width: 3200px;
+        min-width: 3250px;
         overflow-x: scroll;
     }
     .tmp-wrapper {
@@ -52,12 +52,20 @@
         overflow-y: scroll;
     }
     .stats-dp select {
-        padding-top: 2px;
-        padding-bottom: 2px;
+        padding-top: 6px;
+        padding-bottom: 6px;
         vertical-align: bottom;
+        font-size: 20px!important;
     }
     .stats-controls button {
         vertical-align: top;
+        font-size: 20px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+    }
+    .stats-controls .active {
+        border-bottom: #9c00b8 solid 4px;
+        padding-bottom: 2px;
     }
 }
 
@@ -85,7 +93,7 @@
         height: 11px;
     }
     .statistics {
-        min-width: 2900px;
+        min-width: 2950px;
         overflow-x: scroll;
     }
     .tmp-wrapper {
@@ -97,12 +105,20 @@
     .stats-controls {
         bottom: 0;
     }
+    .stats-controls button {
+        padding-top: 4px;
+        padding-bottom: 4px;
+    }
     .stats-dp select {
         padding-top: 1px;
         padding-bottom: 3px;
     }
     .p-input {
         min-width: 100% !important;
+    }
+    .stats-controls .active {
+        border-bottom: #9c00b8 solid 2px;
+        padding-bottom: 2px;
     }
 }
 
@@ -134,8 +150,8 @@
     padding: 0!important;
     padding-left: 5px!important;
     padding-right: 5px!important;
-    min-width: 50px!important;
-    max-width: 50px!important;
+    min-width: 60px!important;
+    max-width: 60px!important;
 }
 
 .statistics {
@@ -205,6 +221,7 @@
     padding: 0!important;
     border: none!important;
     text-align: center;
+    font-size: 15px!important;
 }
 
 .s-table-holder {
@@ -294,7 +311,7 @@
 .stats-dp select {
     font-size: 15px;
     border-radius: 0!important;
-    background-color: #5a5a5a;
+    background-color: #1f1f1f;
 }
 
 .stats-months {
@@ -302,20 +319,13 @@
 }
 
 .stats-controls button {
-    background-color: #5a5a5a;
+    background-color: #1f1f1f;
     color: #d5d9de;
     border: none;
-    padding-top: 4px;
     transition: 0.3s;
-    padding-bottom: 4px;
 }
 
 .stats-controls button:hover {
-    background-color: #5a5a5a;
+    background-color: #555555;
     cursor: pointer;
-}
-
-.stats-controls .active {
-    border-bottom: #9c00b8 solid 2px;
-    padding-bottom: 2px;
 }

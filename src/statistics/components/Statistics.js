@@ -106,6 +106,27 @@ class Statistics extends Component {
                     })
                 }
             }
+            tableData.push({
+                date: 'Итог по статье:',
+                pco: this.props.turnover[i].values[0].pco,
+                acquiring: this.props.turnover[i].values[0].acquiring,
+                account: this.props.turnover[i].values[0].account,
+                rco: this.props.turnover[i].values[0].rco,
+            });
+            tableData.push({
+                date: 'Итого в кассе:',
+                pco: this.props.turnover[i].endValue,
+                acquiring: '',
+                account: '',
+                rco: '',
+            });
+            tableData.push({
+                date: 'Оборот точки:',
+                pco: this.props.turnover[i].turnoverValue,
+                acquiring: '',
+                account: '',
+                rco: '',
+            });
             data.push(
                     <Table
                         columns={columns}
