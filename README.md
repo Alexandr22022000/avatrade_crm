@@ -262,7 +262,7 @@ Response body:
 
 ```
 
-#### `GET: /api/v0.0/users/ranks` (id_developing)
+#### `GET: /api/v0.0/users/ranks`
 
 Request params:
 
