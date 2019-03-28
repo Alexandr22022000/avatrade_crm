@@ -133,6 +133,17 @@ class Statistics extends Component {
                         rowClassName={() => `turnover-row`}
                         data={tableData}
                         className="table turnover"
+                        title={() =>
+                            <div className={'turnTitle'}>
+                                <div className={'turnTitle-title'}>{this.props.turnover[i].name}</div>
+                                <div className={'turnTitle-name'}>
+                                    На начало месяца
+                                </div>
+                                <div className={'turnTitle-value'}>
+                                    {this.props.turnover[i].startValue}
+                                </div>
+                            </div>
+                        }
                     />
             );
         }

@@ -221,7 +221,7 @@
     padding: 0!important;
     border: none!important;
     text-align: center;
-    font-size: 15px!important;
+    font-size: 12px!important;
 }
 
 .s-table-holder {
@@ -328,4 +328,37 @@
 .stats-controls button:hover {
     background-color: #555555;
     cursor: pointer;
+}
+
+.turnTitle {
+    width: inherit;
+}
+
+.turnTitle-title {
+    border-left: black solid 2px;
+    border-right: black solid 2px;
+    border-top: black solid 2px;
+    border-bottom: black solid 1px;
+}
+
+.turnTitle-name {
+    display: inline-block;
+    border-left: black solid 2px;
+    border-right: black solid 1px;
+    border-top: black solid 1px;
+    border-bottom: black solid 2px;
+    margin: 0 auto;
+    width: 115px;
+    float: left;
+}
+
+.turnTitle-value {
+    display: inline-block;
+    border-left: black solid 1px;
+    border-right: black solid 2px;
+    border-top: black solid 1px;
+    border-bottom: black solid 2px;
+    margin: 0 auto;
+    float: left;
+    width: 125px;
 }
