@@ -262,6 +262,76 @@ Response body:
 
 ```
 
+#### `GET: /api/v0.0/users/ranks` (id_developing)
+
+Request params:
+
+```$xslt
+token: text
+```
+
+Response body:
+
+```$xslt
+ranks: [
+    {
+        id: bigint,
+        name: text,
+        payment: number,
+        status: number,
+    {
+]
+```
+
+#### `POST: /api/v0.0/users/rank`
+
+Request body:
+
+```$xslt
+token: text,
+id: number,
+name: text,
+payment: number,
+```
+
+Response body:
+
+```$xslt
+
+```
+
+#### `POST: /api/v0.0/users/add_rank`
+
+Request body:
+
+```$xslt
+token: text,
+name: text,
+payment: number,
+```
+
+Response body:
+
+```$xslt
+
+```
+
+#### `POST: /api/v0.0/users/rank/status`
+
+Request body:
+
+```$xslt
+token: text,
+id: number,
+status: number,
+```
+
+Response body:
+
+```$xslt
+
+```
+
 ### Cargos:
 
 #### `GET: /api/v0.0/stocks` (deprecated)
@@ -349,6 +419,23 @@ Request body:
 token: text,
 count: integer,
 cargo: integer
+```
+
+Response body:
+
+```$xslt
+
+```
+
+#### `POST: /api/v0.0/cargo`
+
+Request body:
+
+```$xslt
+token: text,
+id: nimber,
+name: text,
+article: text,
 ```
 
 Response body:
