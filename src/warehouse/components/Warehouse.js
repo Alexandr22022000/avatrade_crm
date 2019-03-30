@@ -9,6 +9,7 @@ class Warehouse extends Component {
     state = {
         showEditor: false,
         showMigrate: false,
+        showStockEditor: false,
         isRequest: false,
         is_all: true,
         store: -1,
@@ -119,6 +120,9 @@ class Warehouse extends Component {
                 }
                 {!this.state.showMigrate ? '' :
                     <MigrateEditor onClose={() => this.setState({showMigrate: false})} isRequest={this.state.isRequest}/>
+                }
+                {!this.state.showStockEditor ? '' :
+                    ''
                 }
             </div>
         )

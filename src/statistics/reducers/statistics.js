@@ -1,4 +1,4 @@
-import {SET_CALENDARS_STATES, SET_DATE, SET_STATISTICS} from "../actions/types";
+import {SET_CALENDARS_STATES, SET_DATE, SET_RANKS, SET_STATISTICS} from "../actions/types";
 
 const defaultStatistics = {
     turnover: [],
@@ -12,11 +12,17 @@ const defaultStatistics = {
     date: {
         month: 0,
         year: (new Date()).getFullYear(),
-    }
+    },
+    ranks: [],
 };
 
 const statistics = (state = defaultStatistics, action) => {
     switch (action.type) {
+        case SET_RANKS:
+            return {
+                ...state,
+                ranks: action.ranks,
+            };
         case SET_CALENDARS_STATES:
             return {
                 ...state,

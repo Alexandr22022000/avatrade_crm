@@ -10,14 +10,22 @@ class Statistics extends Component {
         wcValue: null,
         pValue: null,
         pIndex: null,
+        rankId: null,
+        rankNameValue: null,
+        rankPaymentValue: null,
+        rankChangeType: 0,
+        isFirst: null,
+        isSecond: null,
     };
 
     render() {
         const years = ['2016', '2017', '2018', '2019'];
+
         const months = [
             "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь",
             "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"
         ];
+        let widths = this.props.turnover.length * (440 + 40) + (1242 + 40) + (420 + 40) + (330 + 40) + (260 + 40);
         return (
             <div className={'statistics-holder'}>
                 <div className={'stats-controls'}>
@@ -40,7 +48,7 @@ class Statistics extends Component {
                     </div>
                 </div>
                 <div className={'tmp-wrapper'}>
-                    <div className={'statistics'}>
+                    <div className={'statistics'} style={{minWidth:widths}}>
                         <div className={'table-holder to-table-holder'}>
                             {this.getTurnoverTables()}
                         </div>
@@ -52,6 +60,9 @@ class Statistics extends Component {
                         </div>
                         <div className={'table-holder p-table-holder'}>
                             {this.getPaymentTables()}
+                        </div>
+                        <div className={'table-holder p-table-holder'}>
+                            {this.getRanksEditorTable()}
                         </div>
                     </div>
                 </div>
@@ -108,21 +119,21 @@ class Statistics extends Component {
             }
             tableData.push({
                 date: 'Итог по статье:',
-                pco: this.props.turnover[i].values[0].pco,
-                acquiring: this.props.turnover[i].values[0].acquiring,
-                account: this.props.turnover[i].values[0].account,
-                rco: this.props.turnover[i].values[0].rco,
+                pco: Math.round(this.props.turnover[i].values[0].pco * 100)/100,
+                acquiring: Math.round(this.props.turnover[i].values[0].acquiring * 100)/100,
+                account: Math.round(this.props.turnover[i].values[0].account * 100)/100,
+                rco: Math.round(this.props.turnover[i].values[0].rco * 100)/100,
             });
             tableData.push({
                 date: 'Итого в кассе:',
-                pco: this.props.turnover[i].endValue,
+                pco: Math.round(this.props.turnover[i].endValue * 100)/100,
                 acquiring: '',
                 account: '',
                 rco: '',
             });
             tableData.push({
                 date: 'Оборот точки:',
-                pco: this.props.turnover[i].turnoverValue,
+                pco: Math.round(this.props.turnover[i].turnoverValue * 100)/100,
                 acquiring: '',
                 account: '',
                 rco: '',
@@ -140,7 +151,7 @@ class Statistics extends Component {
                                     На начало месяца
                                 </div>
                                 <div className={'turnTitle-value'}>
-                                    {this.props.turnover[i].startValue}
+                                    {Math.round(this.props.turnover[i].startValue * 100)/100}
                                 </div>
                             </div>
                         }
@@ -274,9 +285,9 @@ class Statistics extends Component {
         for(let i in this.props.payment) {
             data.push({
                 name: this.props.payment[i].manager,
-                salary: this.props.payment[i].salary,
-                salaryPay: this.props.payment[i].salaryPay,
-                sum: this.props.payment[i].all
+                salary: Math.round(this.props.payment[i].salary * 100)/100,
+                salaryPay: Math.round(this.props.payment[i].salaryPay * 100)/100,
+                sum: Math.round(this.props.payment[i].all * 100)/100,
             })
         }
         if(data.length !== 0) {
@@ -317,7 +328,7 @@ class Statistics extends Component {
         for(let i in this.props.payment) {
             let tmpObj = {
                 name: this.props.payment[i].manager,
-                remains: this.props.payment[i].needPay,
+                remains: Math.round(this.props.payment[i].needPay * 100)/100,
             };
 
             if(this.state.pIndex === i ) {
@@ -332,7 +343,7 @@ class Statistics extends Component {
             } else {
                 tmpObj.paid = (
                     <div onClick={() => this.onChangePaidStatus(i, true)}>
-                        {this.props.payment[i].paid}
+                        {Math.round(this.props.payment[i].paid * 100)/100}
                     </div>
                 )
             }
@@ -352,8 +363,188 @@ class Statistics extends Component {
         return ''
     }
 
+    getRanksEditorTable() {
+        let columns = [
+            {
+                title: '№',
+                dataIndex: 'index',
+                className: 'r-index',
+                key: 'index',
+            },
+            {
+                title: 'Ранг',
+                dataIndex: 'rank',
+                className: 'r-rank',
+                key: 'rank',
+            },
+            {
+                title: 'Выплаты',
+                dataIndex: 'payment',
+                className: 'r-payment',
+                key: 'payment',
+            }
+        ];
+        let data = [];
+        this.props.ranks.sort((val1, val2) => val1.payment > val2.payment? 1: -1)
+            .forEach((value, index) => {
+                let obj = {
+                    index: index + 1,
+                    rank: (
+                        <div onClick={() => this.onSetRankIndex(index, 1)}>
+                            {value.name}
+                        </div>
+                    ),
+                    payment: (
+                        <div onClick={() => this.onSetRankIndex(index, 2)}>
+                            {value.payment}
+                        </div>
+                    )
+                };
+                if(this.state.rankId === value.id) {
+                    switch (this.state.rankChangeType) {
+                        case 1:
+                            obj.rank = (
+                                <input value={this.state.rankNameValue}
+                                       autoFocus={true}
+                                       onBlurCapture={() => this.onRankBlur()}
+                                       className={'wc-input p-input'}
+                                       onChange={(e) => this.onChangeRankName(e.target.value)}
+                                />
+                            );
+                            break;
+                        case 2:
+                            obj.payment = (
+                                <input value={this.state.rankPaymentValue}
+                                       autoFocus={true}
+                                       onBlurCapture={() => this.onRankBlur()}
+                                       className={'wc-input p-input'}
+                                       onChange={(e) => this.onChangeRankPayment(e.target.value)}
+                                />
+                            );
+                            break;
+                        case 0:
+                        default:
+                            break;
+                    }
+                }
+                data.push(obj);
+            });
+        if(this.state.rankChangeType === -1) {
+            data.push({
+                index: data.length + 1,
+                rank: (
+                    <input value={this.state.rankNameValue}
+                           autoFocus={true}
+                           onBlurCapture={() => this.onFirstBlur()}
+                           className={'wc-input p-input'}
+                           onChange={(e) => this.onChangeRankName(e.target.value)}
+                    />
+                ),
+                payment: (
+                    <input value={this.state.rankPaymentValue}
+                           onBlurCapture={() => this.onSecondBlur()}
+                           className={'wc-input p-input'}
+                           onChange={(e) => this.onChangeRankPayment(e.target.value)}
+                    />
+                ),
+            })
+        }
+        if(data.length !== 0) {
+            return (
+                <div>
+                    <Table
+                        columns={columns}
+                        rowClassName={() => 'r-row'}
+                        data={data}
+                        className={'table r-table'}
+                    />
+                    <button className={'btn-m blue-button r-btn'}
+                            onClick={() => this.onAddNewLine()}
+                    >
+                        Добавить
+                    </button>
+                </div>
+            )
+        }
+        return '';
+    }
+
+    onAddNewLine() {
+        this.setState({
+            rankNameValue: '',
+            rankPaymentValue: 0,
+            rankChangeType: -1,
+            isFirst: true,
+            isSecond: true,
+        })
+    }
+
+    onFirstBlur() {
+        if(!this.state.isSecond) {
+            this.props.onAddRank(this.state.rankNameValue, this.state.rankPaymentValue);
+            let state = {};
+            state.rankId = null;
+            state.rankNameValue = null;
+            state.rankPaymentValue = null;
+            state.rankChangeType = 0;
+            state.isFirst = null;
+            state.isSecond = null;
+            this.setState(state)
+        } else {
+            this.setState({isFirst: false});
+        }
+    }
+
+    onSecondBlur() {
+        if(!this.state.isFirst) {
+            this.props.onAddRank(this.state.rankNameValue, this.state.rankPaymentValue);
+            let state = {};
+            state.rankId = null;
+            state.rankNameValue = null;
+            state.rankPaymentValue = null;
+            state.rankChangeType = 0;
+            state.isFirst = null;
+            state.isSecond = null;
+            this.setState(state)
+        } else {
+            this.setState({isSecond: false});
+        }
+    }
+
+    onChangeRankName(v) {
+        this.setState({rankNameValue: v});
+    }
+
+    onChangeRankPayment(v) {
+        let regexp = /^\d*\.*\d*$/;
+        if (regexp.test(v)) {
+            this.setState({rankPaymentValue: +v});
+        }
+    }
+
+    onSetRankIndex(index, type) {
+        let state = {};
+        if(type === 0) {
+            state.rankId = null;
+            state.rankNameValue = null;
+            state.rankPaymentValue = null;
+        } else {
+            state.rankId = this.props.ranks[index].id;
+            state.rankPaymentValue = this.props.ranks[index].payment;
+            state.rankNameValue = this.props.ranks[index].name;
+        }
+        state.rankChangeType = type;
+        this.setState({...state});
+    }
+
+    onRankBlur() {
+        this.props.onSetRank(this.state.rankId, this.state.rankNameValue, this.state.rankPaymentValue);
+        this.setState({rankId: null, rankNameValue: null, rankPaymentValue: null});
+    }
+
     componentDidMount() {
         this.props.onLoadStatistics();
+        this.props.onLoadRanks();
     }
 
     getYearIndex(years) {

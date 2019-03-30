@@ -411,6 +411,14 @@ cargos: [
 ]
 ```
 
+#### `POST: /api/v0.0/set_cargo`
+Request params:
+```$xslt
+token: text,
+id: bigint,
+
+```
+
 #### `POST: /api/v0.0/add_stocks`
 
 Request body:

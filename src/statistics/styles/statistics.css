@@ -15,40 +15,16 @@
 }
 
 @media screen and (min-height: 720px) {
-    .table {
-        font-size: 13px !important;
-    }
-    .pco, .rco, .acquiring, .account, .date {
-        border: black solid 3px!important;
-    }
-    .wc-day, .wc-index, .wc-name {
-        border: black solid 3px!important;
-    }
-    .s-name, .s-salary, .s-salaryPay, .s-sum {
-        border: black solid 3px!important;
-    }
-    .p-name, .p-paid, .p-remains {
-        border: black solid 3px!important;
-    }
-    .wc-input {
-        max-width: 30px;
-        margin: 0 auto;
-        font-size: 13px;
-        vertical-align: top;
-        min-height: 17px;
-        min-width: 100%;
-    }
     .stats-controls {
         bottom: 0;
     }
     .statistics {
-        min-width: 3250px;
         overflow-x: scroll;
     }
     .tmp-wrapper {
         width: 100%;
         overflow-x: scroll;
-        height: 877px;
+        height: 864px;
         overflow-y: scroll;
     }
     .stats-dp select {
@@ -67,67 +43,10 @@
         border-bottom: #9c00b8 solid 4px;
         padding-bottom: 2px;
     }
-    .date {
-        min-width: 90px!important;
-        max-width: 90px!important;
-    }
-    .turnTitle-title {
-        border-left: black solid 3px;
-        border-right: black solid 3px;
-        border-top: black solid 3px;
-        border-bottom: black solid 2px;
-    }
-    .turnTitle-name {
-        display: inline-block;
-        border-left: black solid 3px;
-        border-right: black solid 1px;
-        border-top: black solid 1px;
-        border-bottom: black solid 1px;
-        margin: 0 auto;
-        width: 160px;
-        float: left;
-    }
-    .turnTitle-value {
-        display: inline-block;
-        border-left: black solid 2px;
-        border-right: black solid 3px;
-        border-top: black solid 1px;
-        border-bottom: black solid 1px;
-        margin: 0 auto;
-        float: left;
-        width: 168px;
-    }
-    .turnTitle {
-        width: inherit;
-        font-size: 15px;
-    }
 }
 
 @media screen and (max-height: 768px) and (min-height: 400px) {
-    .table {
-        font-size: 9px !important;
-    }
-    .pco, .rco, .acquiring, .account, .date {
-        border: black solid 2px!important;
-    }
-    .wc-day, .wc-index, .wc-name {
-        border: black solid 2px!important;
-    }
-    .s-name, .s-salary, .s-salaryPay, .s-sum {
-        border: black solid 2px!important;
-    }
-    .p-name, .p-paid, .p-remains {
-        border: black solid 2px!important;
-    }
-    .wc-input {
-        max-width: 30px;
-        margin: 0 auto;
-        font-size: 9px;
-        vertical-align: top;
-        height: 11px;
-    }
     .statistics {
-        min-width: 2950px;
         overflow-x: scroll;
     }
     .tmp-wrapper {
@@ -154,40 +73,83 @@
         border-bottom: #9c00b8 solid 2px;
         padding-bottom: 2px;
     }
-    .date {
-        min-width: 60px!important;
-        max-width: 60px!important;
-    }
-    .turnTitle-title {
-        border-left: black solid 2px;
-        border-right: black solid 2px;
-        border-top: black solid 2px;
-        border-bottom: black solid 1px;
-    }
-    .turnTitle-name {
-        display: inline-block;
-        border-left: black solid 2px;
-        border-right: black solid 1px;
-        border-top: black solid 1px;
-        border-bottom: black solid 1px;
-        margin: 0 auto;
-        width: 115px;
-        float: left;
-    }
-    .turnTitle-value {
-        display: inline-block;
-        border-left: black solid 1px;
-        border-right: black solid 2px;
-        border-top: black solid 1px;
-        border-bottom: black solid 1px;
-        margin: 0 auto;
-        float: left;
-        width: 125px;
-    }
-    .turnTitle {
-        width: inherit;
-        font-size: 12px;
-    }
+
+}
+
+.wc-input {
+    max-width: 30px;
+    margin: 0 auto;
+    font-size: 13px;
+    vertical-align: top;
+    min-height: 17px;
+    min-width: 100%;
+}
+
+.pco, .rco, .acquiring, .account, .date {
+    border: black solid 2px!important;
+}
+.wc-day, .wc-index, .wc-name {
+    border: black solid 2px!important;
+}
+.s-name, .s-salary, .s-salaryPay, .s-sum {
+    border: black solid 2px!important;
+}
+.p-name, .p-paid, .p-remains {
+    border: black solid 2px!important;
+}
+.r-index, .r-rank, .r-payment {
+    border: black solid 2px!important;
+}
+
+.turnTitle-title {
+    border-left: black solid 2px;
+    border-right: black solid 2px;
+    border-top: black solid 2px;
+    border-bottom: black solid 3px;
+}
+.turnTitle-name {
+    display: inline-block;
+    border-left: black solid 2px;
+    border-right: black solid 1px;
+    border-bottom: black solid 1px;
+    margin: 0 auto;
+    width: 115px;
+    float: left;
+}
+.turnTitle-value {
+    display: inline-block;
+    border-left: black solid 1px;
+    border-right: black solid 2px;
+    border-bottom: black solid 1px;
+    margin: 0 auto;
+    float: left;
+    width: 125px;
+}
+.turnTitle {
+    width: inherit;
+    font-size: 12px;
+}
+
+.table {
+    font-size: 13px !important;
+}
+
+.r-index {
+    min-width: 20px!important;
+    max-width: 20px!important;
+}
+.r-rank {
+    min-width: 150px!important;
+    max-width: 150px!important;
+}
+.r-payment {
+    min-width: 80px!important;
+    max-width: 80px!important;
+}
+
+.date {
+    min-width: 90px!important;
+    max-width: 90px!important;
 }
 
 .table {
@@ -210,6 +172,7 @@
     padding: 0!important;
     padding-left: 5px!important;
     padding-right: 5px!important;
+    min-width: 70px!important;
 }
 
 .date {
@@ -271,11 +234,11 @@
 }
 
 .wc-day {
-    min-width: 30px!important;
-    max-width: 30px!important;
     text-align: center!important;
     background-color: #424242!important;
     padding: 0!important;
+    min-width: 32px!important;
+    max-width: 32px!important;
 }
 
 .wc-row .wc-day:hover {
@@ -394,4 +357,31 @@
 .stats-controls button:hover {
     background-color: #555555;
     cursor: pointer;
+}
+
+.r-index, .r-rank, .r-payment {
+    background-color: #424242!important;
+    padding: 0!important;
+    text-align: center!important;
+}
+
+.r-row .r-rank, .r-row .r-payment {
+    background-color: #1f1f1f!important;
+}
+
+.r-row .r-rank:hover, .r-row .r-payment:hover {
+    background-color: #9c00b8!important;
+    cursor: pointer;
+}
+
+.r-payment, .r-rank {
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.r-btn {
+    font-size: 12px!important;
+    display: block!important;
+    margin-left: 40px;
+    padding: 3px 3px 3px 3px!important;
 }
