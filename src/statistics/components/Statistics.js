@@ -206,6 +206,12 @@ class Statistics extends Component {
                                        onBlurCapture={() => this.changeCalendarStatus({i,j,k}, false)}
                                        className={'wc-input'}
                                        onChange={(e) => this.onChangeCalendar(e.target.value)}
+                                       onKeyDown={(e) => {
+                                           this.onEnterKey(
+                                               e,
+                                               () => this.changeCalendarStatus({i,j,k}, false)
+                                           )
+                                       }}
                                 />:
                                 <div onClick={() => this.changeCalendarStatus({i,j,k}, true)}
                                      style={{width:'inherit'}}
@@ -338,6 +344,9 @@ class Statistics extends Component {
                            onBlurCapture={() => this.onChangePaidStatus(i, false)}
                            className={'wc-input p-input'}
                            onChange={(e) => this.onChangePaid(e.target.value)}
+                           onKeyDown={(e) => {
+                               this.onEnterKey(e, ()=>this.onChangePaidStatus(i, false))
+                           }}
                     />
                 )
             } else {
@@ -385,7 +394,7 @@ class Statistics extends Component {
             }
         ];
         let data = [];
-        this.props.ranks.sort((val1, val2) => val1.payment > val2.payment? 1: -1)
+        this.props.ranks
             .forEach((value, index) => {
                 let obj = {
                     index: index + 1,
@@ -409,6 +418,9 @@ class Statistics extends Component {
                                        onBlurCapture={() => this.onRankBlur()}
                                        className={'wc-input p-input'}
                                        onChange={(e) => this.onChangeRankName(e.target.value)}
+                                       onKeyDown={(e) => {
+                                           this.onEnterKey(e, this.onRankBlur())
+                                       }}
                                 />
                             );
                             break;
@@ -419,6 +431,7 @@ class Statistics extends Component {
                                        onBlurCapture={() => this.onRankBlur()}
                                        className={'wc-input p-input'}
                                        onChange={(e) => this.onChangeRankPayment(e.target.value)}
+
                                 />
                             );
                             break;
@@ -512,6 +525,7 @@ class Statistics extends Component {
     }
 
     onChangeRankName(v) {
+        console.log('onChangeName')
         this.setState({rankNameValue: v});
     }
 
@@ -538,6 +552,7 @@ class Statistics extends Component {
     }
 
     onRankBlur() {
+        console.log('onRankBlur');
         this.props.onSetRank(this.state.rankId, this.state.rankNameValue, this.state.rankPaymentValue);
         this.setState({rankId: null, rankNameValue: null, rankPaymentValue: null});
     }
@@ -578,6 +593,14 @@ class Statistics extends Component {
         let regexp = /^\d*\.*\d*$/;
         if (regexp.test(value)) {
             this.setState({pValue: +value});
+        }
+    }
+
+    onEnterKey(e, callback) {
+        if(e.keyCode === 13) {
+            console.log('onEnter');
+            console.log(e.keyCode);
+            callback();
         }
     }
 }

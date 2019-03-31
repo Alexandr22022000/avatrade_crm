@@ -14,7 +14,8 @@ module.exports = (app) => {
 
         query(QUERYES.GET_RANKS)
             .then(({rows}) => {
-               res.status(200).json({ranks: rows});
+                rows = rows.sort((val1, val2) => val1.payment > val2.payment? 1: -1);
+                res.status(200).json({ranks: rows});
             });
 
     });
