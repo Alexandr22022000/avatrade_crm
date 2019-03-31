@@ -9,8 +9,18 @@ class CargoEditor extends Component {
     };
     render() {
         const saveButton = (
-            <div style={{textAlign:'right',paddingRight:'3%'}}>
+            <div style={{paddingRight:'3%', paddingLeft:'3%'}}>
+                <div className={'link-decoration'}
+                     style={{float: 'left'}}
+                     onClick={() => {
+                         this.props.onChangeCargoStatus(this.props.cargo.id, this.getChangedStatus());
+                         this.props.onClose();
+                     }}
+                >
+                    {this.props.cargo.status === 1? 'Восстановить' : 'Уволить'}
+                </div>
                 <button className={"btn-m inline" + (this.canSave() ? " blue-button" : "")}
+                        style={{float: 'right'}}
                         onClick={() => {this.onClose(true)}}
                 >
                     Добавить
@@ -35,6 +45,10 @@ class CargoEditor extends Component {
                 />
             </Modal>
         );
+    }
+
+    getChangedStatus() {
+        return this.props.cargos.status === 1? 0 : 1;
     }
 
     onClose (isSave) {

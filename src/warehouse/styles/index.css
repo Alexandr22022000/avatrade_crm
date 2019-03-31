@@ -100,7 +100,6 @@
         border: #555555 solid 1px;
         box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);
     }
-
     .warehouse-modal {
         width: 450px;
         height: 420px;
@@ -109,14 +108,12 @@
         background-color: #1f1f1f;
         border-radius: 6px;
     }
-
     .stocks{
         margin-left: 4%;
         height: 330px;
         margin-top: 20px;
         overflow: hidden;
     }
-
     .table-body {
         overflow: auto;
         overflow-y: scroll;

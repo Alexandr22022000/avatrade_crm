@@ -426,6 +426,20 @@ Response body:
 
 ```
 
+#### `POST: /api/v0.0/cargo/status`
+Request params:
+```$xslt
+token: text,
+id: bigint,
+status: integer
+```
+
+Response body:
+
+```$xslt
+
+```
+
 #### `POST: /api/v0.0/add_stocks`
 
 Request body:
@@ -1106,3 +1120,8 @@ Response body:
 
 - Migration: 0
 - Migration request: 1
+
+### Cargos statuses
+
+- Active: 0
+- Deleted: 1

@@ -16,7 +16,7 @@ module.exports = (app) => {
 
         let store_id = !req.query.store || req.query.store === 'null' ? null : req.query.store,
             sows_all = req.query.is_all || true;
-
+        console.log('before query');
         query(QUERY.GET_STOCKS, [search, store_id, sows_all])
             .then(({rows}) => {
                 const cargos = [];
@@ -39,6 +39,7 @@ module.exports = (app) => {
                         cargos.push({
                             id: stock.cargo_id,
                             name: stock.name,
+                            status: stock.status,
                             article: stock.article,
                             stocks: [{
                                 count: stock.count,

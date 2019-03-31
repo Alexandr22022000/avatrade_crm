@@ -10,7 +10,8 @@ const add_stocks = require('./v0.0/add_stocks'),
     get_requests = require('./v0.0/get_requests'),
     get_migrate = require('./v0.0/get_migrate'),
     stocks_migrate = require('./v0.0/stocks_migrate'),
-    set_cargo = require('./v0.0/set_cargo');
+    set_cargo = require('./v0.0/set_cargo'),
+    set_cargo_status = require('./v0.0/set_cargo_status');
 
 module.exports = (app) => {
     add_stocks(app);
@@ -26,4 +27,5 @@ module.exports = (app) => {
     get_requests(app);
     get_migrate(app);
     set_cargo(app);
+    set_cargo_status(app);
 };
