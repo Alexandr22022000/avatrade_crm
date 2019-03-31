@@ -4,6 +4,7 @@ import '../styles/index.css'
 import WarehouseInput from "./WarehouseInput";
 import WarehouseModal from "../containers/WarehouseModal";
 import MigrateEditor from "../containers/MigrateEditor";
+import CargoEditor from "../containers/CargoEditor";
 
 class Warehouse extends Component {
     state = {
@@ -24,7 +25,12 @@ class Warehouse extends Component {
         );
         const minWidth = `${value.stocks.length * 122 - 2}px`;
         return (
-            <tr className={'wh-table-row'}>
+            <tr className={'wh-table-row'}
+                onClick={() => {
+                    this.props.onSetCurrentCargo(value);
+                    this.setState({showStockEditor: true});
+                }}
+            >
                 <td className={'table-cell chbox-cell'}>
                     <input checked={value.isChecked}
                            type={'checkbox'}
@@ -122,7 +128,7 @@ class Warehouse extends Component {
                     <MigrateEditor onClose={() => this.setState({showMigrate: false})} isRequest={this.state.isRequest}/>
                 }
                 {!this.state.showStockEditor ? '' :
-                    ''
+                    <CargoEditor onClose={() => this.setState({showStockEditor: false})}/>
                 }
             </div>
         )

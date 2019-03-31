@@ -416,6 +416,13 @@ Request params:
 ```$xslt
 token: text,
 id: bigint,
+name: text,
+article: text
+```
+
+Response body:
+
+```$xslt
 
 ```
 

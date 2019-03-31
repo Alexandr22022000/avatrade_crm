@@ -61,7 +61,6 @@
         border: #555555 solid 1px;
         box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);
     }
-
     .warehouse-modal {
         width: 450px;
         height: 400px;
@@ -70,20 +69,25 @@
         background-color: #1f1f1f;
         border-radius: 6px;
     }
-
     .stocks{
         margin-left: 4%;
         height: 320px;
         margin-top: 10px;
         overflow: hidden;
     }
-
     .table-body {
         overflow: auto;
         overflow-y: scroll;
         width: inherit;
         height: 417px;
         margin: 0 auto;
+    }
+    .cargo-edit-modal {
+        height: 250px!important;
+        margin-top: 15%!important;
+    }
+    .cargo-edit {
+        padding-left: 12px!important;
     }
 }
 
@@ -119,6 +123,14 @@
         width: inherit;
         height: 667px;
         margin: 0 auto;
+    }
+    .cargo-edit-modal {
+        height: 250px!important;
+        margin-top: 14%!important;
+        margin-left: 40%;
+    }
+    .cargo-edit {
+        padding-left: 12px!important;
     }
 }
 

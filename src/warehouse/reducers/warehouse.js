@@ -1,4 +1,12 @@
-import {CARGOS_UPDATE, STOCKS_UPDATE, STORES_UPDATE, CHANGE_FILTER, CHECK_STOCK, CHECK_ALL_STOCK} from "../actions/types";
+import {
+    CARGOS_UPDATE,
+    STOCKS_UPDATE,
+    STORES_UPDATE,
+    CHANGE_FILTER,
+    CHECK_STOCK,
+    CHECK_ALL_STOCK,
+    SET_CURRENT_CARGO
+} from "../actions/types";
 
 const defaultState = {
     stocks: [],
@@ -9,7 +17,8 @@ const defaultState = {
         search: '',
         store: null,
         is_all: true,
-    }
+    },
+    currentCargo: null,
 };
 
 const warehouse = (state = defaultState, action) => {
@@ -94,7 +103,11 @@ const warehouse = (state = defaultState, action) => {
                 ...state,
                 cargos: action.cargos,
             };
-
+        case SET_CURRENT_CARGO:
+            return {
+                ...state,
+                currentCargo: action.cargo,
+            };
         default:
             return state;
     }
