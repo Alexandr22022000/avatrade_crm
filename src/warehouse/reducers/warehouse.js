@@ -17,6 +17,7 @@ const defaultState = {
         search: '',
         store: null,
         is_all: true,
+        is_del: false,
     },
     currentCargo: null,
 };
@@ -95,6 +96,7 @@ const warehouse = (state = defaultState, action) => {
                     search: action.search,
                     store: action.store,
                     is_all: action.is_all,
+                    is_del: action.is_del,
                 }
             };
 

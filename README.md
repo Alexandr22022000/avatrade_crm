@@ -368,6 +368,7 @@ Request params:
 ```$xslt
 token: text,
 is_all: bool, (optional) 
+is_del: bool, (optional)
 search: text (optional)
 ```
 

@@ -5,6 +5,7 @@ import WarehouseInput from "./WarehouseInput";
 import WarehouseModal from "../containers/WarehouseModal";
 import MigrateEditor from "../containers/MigrateEditor";
 import CargoEditor from "../containers/CargoEditor";
+import DropDown from "../../personal/components/DropDown";
 
 class Warehouse extends Component {
     state = {
@@ -71,7 +72,12 @@ class Warehouse extends Component {
                                     onClickIcon={() => this.props.onGetStocks()}
                                     onChange={(v) => this.onSearchChange(v)}
                     />
-
+                    <DropDown options={['Активные','Удаленные']}
+                              value={this.getCargoStatValue()}
+                              onChange={v => this.onIsDelChange(v)}
+                              className={'dropdownPlaceholder wc-del-dp'}
+                              holderClassName={'wc-del-dp-bg'}
+                    />
                     <button className={'btn-m blue-button inline'}
                             style={{fontSize: '18px', marginLeft: '40px'}}
                             onClick={()=> this.setState({showEditor: true})}
@@ -134,6 +140,15 @@ class Warehouse extends Component {
         )
     }
 
+    onIsDelChange(v) {
+        this.props.changeFilter(this.props.filter.search, this.props.filter.store, this.props.filter.is_all, v === 1);
+        this.props.onGetStocks();
+    }
+
+    getCargoStatValue() {
+        return this.props.filter.is_del === true ? 1 : 0;
+    }
+
     getWidths() {
         let storesCellWidth;
         if (this.props.stocks[0]) {
@@ -149,7 +164,7 @@ class Warehouse extends Component {
     }
 
     onSearchChange (value) {
-        this.props.changeFilter(value, this.props.filter.store, this.props.filter.is_all);
+        this.props.changeFilter(value, this.props.filter.store, this.props.filter.is_all, this.props.filter.is_del);
         this.props.onGetStocks();
     }
 

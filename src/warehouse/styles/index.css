@@ -53,6 +53,19 @@
 }
 
 @media screen and (max-height: 768px) and (min-height: 400px) {
+    .wc-del-dp {
+        font-size: 20px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        color: #d5d9de;
+    }
+    .wc-del-dp-bg {
+        width: 100px;
+        display: inline-block;
+        margin-left: 40px;
+        margin-right: 40px;
+        vertical-align: bottom;
+    }
     .dataTable{
         margin-top: 2%;
         margin-left: 2%;
