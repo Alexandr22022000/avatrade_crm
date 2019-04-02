@@ -10,14 +10,14 @@ class CargoEditor extends Component {
     render() {
         const saveButton = (
             <div style={{paddingRight:'3%', paddingLeft:'3%'}}>
-                <div className={'link-decoration'}
-                     style={{float: 'left'}}
+                <div className={'link-decor'}
+                     style={{float: 'left', cursor: 'pointer'}}
                      onClick={() => {
                          this.props.onChangeCargoStatus(this.props.cargo.id, this.getChangedStatus());
                          this.props.onClose();
                      }}
                 >
-                    {this.props.cargo.status === 1? 'Восстановить' : 'Уволить'}
+                    {this.props.cargo.status === 1? 'Восстановить' : 'Удалить'}
                 </div>
                 <button className={"btn-m inline" + (this.canSave() ? " blue-button" : "")}
                         style={{float: 'right'}}
@@ -48,7 +48,7 @@ class CargoEditor extends Component {
     }
 
     getChangedStatus() {
-        return this.props.cargos.status === 1? 0 : 1;
+        return this.props.cargo.status === 1? 0 : 1;
     }
 
     onClose (isSave) {
@@ -69,7 +69,6 @@ class CargoEditor extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props.cargo);
         this.setState({
             name: this.props.cargo.name,
             article: this.props.cargo.article,

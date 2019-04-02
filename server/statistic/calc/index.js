@@ -7,7 +7,8 @@ const getData = require('./getData'),
 
 module.exports = (date) => {
     return new Promise((resolve, reject) => {
-        const {start, end, days} = getMonth(date);
+        console.log('getMonth parametres ', new Date(date));
+        const {start, end, days} = getMonth(+date);
         getData(start, end)
             .then((data) => {
                 let stores = calcStores(data, days);

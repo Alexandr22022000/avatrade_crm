@@ -10,7 +10,7 @@ module.exports = (app) => {
         if (!user) return res.status(401).end();
         if (!checkPermissions(user, [PERMISSIONS.TOP_MANAGER, PERMISSIONS.OWNER])) return res.status(403).end();
 
-        let date = req.body.date;
+        let date = req.query.date;
         if (!date) date = Date.now();
         calc(date)
             .then(result => res.status(200).json(result));
