@@ -25,8 +25,6 @@ const prepareStaticCalendar = key => item => {
 module.exports = (data) => {
     //prepare payments
     const payment = data.users.map((user, index) => {
-        let salary = 500;
-
         let workdays = 0,
             sells = 0,
             resells = 0,
@@ -37,7 +35,7 @@ module.exports = (data) => {
         user.values.forEach(v => sells += v.sell);
         user.values.forEach(v => resells += v.resell);
 
-        let salaryPay = salary * workdays,
+        let salaryPay = user.payment * workdays,
             sellsPay = sells * 0.1,
             resellsPay = resells * 0.02,
             all = premiums + salaryPay + sellsPay + resellsPay;
@@ -45,7 +43,7 @@ module.exports = (data) => {
             manager: user.name,
             id: data.payments[index].id,
             workdays,
-            salary,
+            salary: user.payment,
             salaryPay,
             sells,
             sellsPay,
