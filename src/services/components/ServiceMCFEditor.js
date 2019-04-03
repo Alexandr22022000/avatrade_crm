@@ -49,7 +49,7 @@ class ServiceMCFEditor extends Component{
                         amount={currentConsumables[key].count}
                         onSelected={(val) => this.selectedCargo(val, key)}
                         onCountChange={(val) => this.changedCargoCount(val, key)}
-                        value={''}
+                        value={this.getSelectedCargoId(key)}
                         disabled={disabled}
                         withoutRange={true}
                         style={{marginLeft:'6%'}}
@@ -68,24 +68,34 @@ class ServiceMCFEditor extends Component{
         return consums;
     }
 
-
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log(this.props.currentConsumables);
+    }
 
     getSearchValue(cargoIndex) {
         return this.props.cargos[cargoIndex] ? this.props.cargos[cargoIndex].name + ' - ' + this.props.cargos[cargoIndex].article : '';
     }
 
-    selectedCargo(cargoId, key) {
-
+    getSelectedCargoId(key) {
+        for(let i in this.props.cargos.filter(v => v.status === 0)) {
+            if(this.props.currentConsumables[key] === this.props.cargos[i]) {
+                return +i;
+            }
+        }
     }
 
-    componentDidMount() {
-        if(!this.props.addNew) {
-            this.props.onSetConsumables([]);
+    selectedCargo(cargoId, key) {
+        if(cargoId !== -1) {
+            let currentConsumables = [...this.props.currentConsumables];
+            currentConsumables[key].id = this.props.cargos.filter(v => v.status === 0)[cargoId].id;
+            this.props.onSetConsumables(currentConsumables);
         }
     }
 
     changedCargoCount(val, key) {
-        
+        let currentConsumables = [...this.props.currentConsumables];
+        currentConsumables[key].count = val;
+        this.props.onSetConsumables(currentConsumables);
     }
 
     addNewMFC() {

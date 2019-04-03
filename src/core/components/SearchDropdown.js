@@ -74,16 +74,19 @@ class SearchDropdown extends Component {
 
     onSelect(value) {
         let id = null;
+        console.log(1);
         for (let key in this.props.options) {
             if (this.props.options[key] === value) {
                 id = +key;
             }
         }
+        console.log(2, id);
         if (id === null) return this.props.onSelect(-1);
         let disabled = [];
         if(this.props.disabled) {
             disabled = this.props.disabled;
         }
+        console.log(3, disabled);
         if(disabled.indexOf(id) !== -1) return this.props.onSelect(-1);
         this.props.onSelect(id);
         this.setState({ inputValue: this.props.options[id] });
