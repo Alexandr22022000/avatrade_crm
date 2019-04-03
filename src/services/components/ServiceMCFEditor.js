@@ -82,30 +82,10 @@ class ServiceMCFEditor extends Component{
     }
 
 
-
-    setConsumablesCargoIndexes() {
-        let currentConsumables = Object.assign([], this.props.currentConsumables);
-        for(let key in currentConsumables) {
-            for(let cargoKey in this.props.cargos) {
-                if(this.props.cargos[cargoKey].id === currentConsumables[key].id){
-                    currentConsumables[key].cargoIndex = +cargoKey;
-                    break;
-                }
-            }
-        }
-        this.props.onSetConsumables(currentConsumables);
-    }
-
-    shouldComponentUpdate(nextProps, nextState, nextContext) {
-        console.log(nextProps.currentConsumables);
-        return true;
-    }
-
     componentDidMount() {
         if(!this.props.addNew) {
             this.props.onSetConsumables([]);
         } else {
-            this.setConsumablesCargoIndexes();
         }
     }
 }
