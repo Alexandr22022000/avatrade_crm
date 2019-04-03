@@ -52,7 +52,7 @@ class CashboxStorePrompt extends Component {
 
     onClose() {
         let id = this.props.stores[this.state.storeIndex];
-        if (id) id = id.id
+        if (id) id = id.id;
         else id = -1;
 
         setStore(id);
