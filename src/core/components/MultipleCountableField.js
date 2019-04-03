@@ -23,7 +23,7 @@ class MultipleCountableField extends  Component {
             dd = (
                 <DropDown className={'dropdownPlaceholder mcf-dropdown'}
                           options={this.props.options}
-                          value={this.props.selectedId}
+                          value={+this.props.selectedId}
                           onChange={(index)=>{this.selected(index)}}
                           disabled={this.props.disabled}
                 />

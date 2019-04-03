@@ -56,6 +56,7 @@ class ServiceMCFEditor extends Component{
                         inputClassName={'sv-mcf-input'}
                         optionsClassName={'sv-mcf-options'}
                         withoutFirstCell={true}
+                        maxCount={null}
                     />
                     <div style={{fontSize: '18px', textAlign: 'left',cursor:'pointer',marginLeft:'6%', width: 'fit-content'}}
                          onClick={()=> this.delMFC(key)}
@@ -77,19 +78,25 @@ class ServiceMCFEditor extends Component{
     }
 
     getSelectedCargoId(key) {
+        if(this.props.currentConsumables[key].id === null) return -1;
         for(let i in this.props.cargos.filter(v => v.status === 0)) {
-            if(this.props.currentConsumables[key] === this.props.cargos[i]) {
+            if(this.props.currentConsumables[key].id === this.props.cargos[i].id) {
                 return +i;
             }
         }
     }
 
     selectedCargo(cargoId, key) {
+        let currentConsumables = [...this.props.currentConsumables];
         if(cargoId !== -1) {
-            let currentConsumables = [...this.props.currentConsumables];
-            currentConsumables[key].id = this.props.cargos.filter(v => v.status === 0)[cargoId].id;
-            this.props.onSetConsumables(currentConsumables);
+            currentConsumables[key] = this.props.cargos.filter(v => v.status === 0)[cargoId];
+        } else {
+            currentConsumables[key].id = null;
+            currentConsumables[key].article = null;
+            currentConsumables[key].count = 0;
+            currentConsumables[key].name = null;
         }
+        this.props.onSetConsumables(currentConsumables);
     }
 
     changedCargoCount(val, key) {
@@ -99,11 +106,20 @@ class ServiceMCFEditor extends Component{
     }
 
     addNewMFC() {
-        
+        let currentConsumables = [...this.props.currentConsumables];
+        currentConsumables.push({
+            id: null,
+            article: null,
+            count: 0,
+            name: null,
+        });
+        this.props.onSetConsumables(currentConsumables);
     }
 
     delMFC(key) {
-        
+        let currentConsumables = [...this.props.currentConsumables];
+        currentConsumables.splice(key,1);
+        this.props.onSetConsumables(currentConsumables);
     }
 
 
