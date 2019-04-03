@@ -397,7 +397,6 @@ Request params:
 
 ```$xslt
 token: text,
-search: text (optional)
 ```
 
 Response body:
@@ -408,6 +407,7 @@ cargos: [
         id: bigint,
         name: text,
         article: text,
+        status: number
     }
 ]
 ```

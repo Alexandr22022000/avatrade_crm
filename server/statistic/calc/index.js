@@ -7,7 +7,6 @@ const getData = require('./getData'),
 
 module.exports = (date) => {
     return new Promise((resolve, reject) => {
-        console.log('getMonth parametres ', new Date(date));
         const {start, end, days} = getMonth(+date);
         getData(start, end)
             .then((data) => {

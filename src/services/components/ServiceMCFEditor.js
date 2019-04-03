@@ -18,7 +18,13 @@ class ServiceMCFEditor extends Component{
 
     showMCFs() {
         const currentConsumables = this.props.currentConsumables;
-        let cargos = this.props.cargos.map(item => {
+        let cargos = this.props.cargos.filter(v => v.status === 0).map(item => {
+            return item.name + ' - ' + item.article;
+        });
+
+        let deleted = this.props.cargos.map(item => {
+            if (item.status === 0) return false;
+
             return item.name + ' - ' + item.article;
         });
 
@@ -33,6 +39,7 @@ class ServiceMCFEditor extends Component{
                 <div key={key}>
                     <MultipleCountableField needSearch={true}
                         options={cargos}
+                        block={deleted}
                         amount={currentConsumables[key].count}
                         onSelected={(val) => this.selectedCargo(val, key)}
                         onCountChange={(val) => this.changedCargoCount(val, key)}
