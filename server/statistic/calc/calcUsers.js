@@ -14,6 +14,7 @@ const createUser = (days) => (value) => {
     return {
         id: value.user_id,
         name: value.name,
+        payment: value.payment,
         values,
     };
 };

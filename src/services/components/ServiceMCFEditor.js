@@ -18,25 +18,38 @@ class ServiceMCFEditor extends Component{
 
     showMCFs() {
         const currentConsumables = this.props.currentConsumables;
-        let cargos = this.props.cargos.map(item => {
+        let cargos = this.props.cargos.filter(v => v.status === 0).map(item => {
+            return item.name + ' - ' + item.article;
+        });
+
+        let deleted = this.props.cargos.map(item => {
+            if (item.status === 0) return false;
+
             return item.name + ' - ' + item.article;
         });
 
         let disabled = [];
-        for(let key in currentConsumables) {
-            disabled.push(currentConsumables[key].cargoIndex);
+        for(let i in currentConsumables) {
+            for(let j in this.props.cargos) {
+                if (currentConsumables[i].id === this.props.cargos[j].id) {
+                    disabled.push(j);
+                    break;
+                }
+            }
         }
 
         let consums = [];
         for(let key in currentConsumables) {
             consums.push(
                 <div key={key}>
-                    <MultipleCountableField needSearch={true}
+                    <MultipleCountableField
+                        needSearch={true}
                         options={cargos}
+                        block={deleted}
                         amount={currentConsumables[key].count}
                         onSelected={(val) => this.selectedCargo(val, key)}
                         onCountChange={(val) => this.changedCargoCount(val, key)}
-                        value={currentConsumables[key].cargoIndex}
+                        value={''}
                         disabled={disabled}
                         withoutRange={true}
                         style={{marginLeft:'6%'}}
@@ -55,59 +68,35 @@ class ServiceMCFEditor extends Component{
         return consums;
     }
 
+
+
     getSearchValue(cargoIndex) {
         return this.props.cargos[cargoIndex] ? this.props.cargos[cargoIndex].name + ' - ' + this.props.cargos[cargoIndex].article : '';
     }
 
-    changedCargoCount(val, MCFKey) {
-        let currentConsumables = Object.assign([], this.props.currentConsumables);
-        currentConsumables[MCFKey].count = val;
-        this.props.onSetConsumables(currentConsumables);
-    }
+    selectedCargo(cargoId, key) {
 
-    addNewMFC() {
-        this.props.onSetConsumables([...this.props.currentConsumables, {id: -1, count: 0, cargoIndex: -1}]);
-    }
-
-    delMFC(MCFKey) {
-        let currentConsumables = Object.assign([], this.props.currentConsumables);
-        currentConsumables.splice(MCFKey,1);
-        this.props.onSetConsumables(currentConsumables);
-    }
-
-    selectedCargo(val, MCFKey) {
-        let currentConsumables = Object.assign([], this.props.currentConsumables);
-        currentConsumables[MCFKey].cargoIndex = val;
-        this.props.onSetConsumables(currentConsumables);
-    }
-
-
-
-    setConsumablesCargoIndexes() {
-        let currentConsumables = Object.assign([], this.props.currentConsumables);
-        for(let key in currentConsumables) {
-            for(let cargoKey in this.props.cargos) {
-                if(this.props.cargos[cargoKey].id === currentConsumables[key].id){
-                    currentConsumables[key].cargoIndex = +cargoKey;
-                    break;
-                }
-            }
-        }
-        this.props.onSetConsumables(currentConsumables);
-    }
-
-    shouldComponentUpdate(nextProps, nextState, nextContext) {
-        console.log(nextProps.currentConsumables);
-        return true;
     }
 
     componentDidMount() {
         if(!this.props.addNew) {
             this.props.onSetConsumables([]);
-        } else {
-            this.setConsumablesCargoIndexes();
         }
     }
+
+    changedCargoCount(val, key) {
+        
+    }
+
+    addNewMFC() {
+        
+    }
+
+    delMFC(key) {
+        
+    }
+
+
 }
 
 export default ServiceMCFEditor;

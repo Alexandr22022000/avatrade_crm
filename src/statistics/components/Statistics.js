@@ -25,7 +25,7 @@ class Statistics extends Component {
             "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь",
             "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"
         ];
-        let widths = this.props.turnover.length * (440 + 40) + (1242 + 40) + (420 + 40) + (330 + 40) + (260 + 40);
+        let widths = this.props.turnover.length * (440 + 40) + (1255 + 40) + (420 + 40) + (330 + 40) + (260 + 40);
         return (
             <div className={'statistics-holder'}>
                 <div className={'stats-controls'}>
@@ -419,7 +419,7 @@ class Statistics extends Component {
                                        className={'wc-input p-input'}
                                        onChange={(e) => this.onChangeRankName(e.target.value)}
                                        onKeyDown={(e) => {
-                                           this.onEnterKey(e, this.onRankBlur())
+                                           this.onEnterKey(e, () => this.onRankBlur())
                                        }}
                                 />
                             );
@@ -431,7 +431,9 @@ class Statistics extends Component {
                                        onBlurCapture={() => this.onRankBlur()}
                                        className={'wc-input p-input'}
                                        onChange={(e) => this.onChangeRankPayment(e.target.value)}
-
+                                       onKeyDown={(e) => {
+                                           this.onEnterKey(e, () => this.onRankBlur())
+                                       }}
                                 />
                             );
                             break;
@@ -451,6 +453,9 @@ class Statistics extends Component {
                            onBlurCapture={() => this.onFirstBlur()}
                            className={'wc-input p-input'}
                            onChange={(e) => this.onChangeRankName(e.target.value)}
+                           onKeyDown={(e) => {
+                               this.onEnterKey(e, () => this.onFirstBlur())
+                           }}
                     />
                 ),
                 payment: (
@@ -458,9 +463,12 @@ class Statistics extends Component {
                            onBlurCapture={() => this.onSecondBlur()}
                            className={'wc-input p-input'}
                            onChange={(e) => this.onChangeRankPayment(e.target.value)}
+                           onKeyDown={(e) => {
+                               this.onEnterKey(e, () => this.onSecondBlur())
+                           }}
                     />
                 ),
-            })
+            });
         }
         if(data.length !== 0) {
             return (
@@ -525,7 +533,6 @@ class Statistics extends Component {
     }
 
     onChangeRankName(v) {
-        console.log('onChangeName')
         this.setState({rankNameValue: v});
     }
 
@@ -552,7 +559,6 @@ class Statistics extends Component {
     }
 
     onRankBlur() {
-        console.log('onRankBlur');
         this.props.onSetRank(this.state.rankId, this.state.rankNameValue, this.state.rankPaymentValue);
         this.setState({rankId: null, rankNameValue: null, rankPaymentValue: null});
     }
@@ -598,8 +604,6 @@ class Statistics extends Component {
 
     onEnterKey(e, callback) {
         if(e.keyCode === 13) {
-            console.log('onEnter');
-            console.log(e.keyCode);
             callback();
         }
     }

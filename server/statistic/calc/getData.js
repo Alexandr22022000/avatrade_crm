@@ -79,7 +79,7 @@ module.exports = (start, end) => {
                 data.oldCollections = rows;
             }));
 
-        query('SELECT id, name, status FROM users WHERE id < $1', [endD])
+        query('SELECT users.id, users.name, users.status, ranks.payment FROM users JOIN ranks ON users.rank = ranks.id WHERE users.id < $1 ', [endD])
             .then(callback(null, ({rows}) => {
                 data.users = rows.filter(item => item.status === 0);
                 data.inactiveUsers = rows.filter(item => item.status === 1);

@@ -16,7 +16,8 @@ class WarehouseModal extends Component{
         const cargos =[];
         if (this.props.cargos) {
             for (let key in this.props.cargos) {
-                cargos.push(this.props.cargos[key].name + ' - ' + this.props.cargos[key].article)
+                if (this.props.cargos[key].status === 0)
+                    cargos.push(this.props.cargos[key].name + ' - ' + this.props.cargos[key].article)
             }
         }
         return (

@@ -35,7 +35,10 @@ class Warehouse extends Component {
                 <td className={'table-cell chbox-cell'}>
                     <input checked={value.isChecked}
                            type={'checkbox'}
-                           onClick={() => this.props.checkStock(index, isBuffer)}
+                           onClick={(e) => {
+                               e.stopPropagation();
+                               this.props.checkStock(index, isBuffer);
+                           }}
                     />
                 </td>
 
@@ -152,7 +155,7 @@ class Warehouse extends Component {
     getWidths() {
         let storesCellWidth;
         if (this.props.stocks[0]) {
-            storesCellWidth = this.props.stocks[0].stocks.length * 122 + 4;
+            storesCellWidth = this.props.stocks[0].stocks.length * 122 + 2;
         }
         let width = 370 + storesCellWidth;
         return {tableWidth:`${width.toString(10)}px`, storesCellWidth}

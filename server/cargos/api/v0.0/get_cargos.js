@@ -8,13 +8,7 @@ module.exports = (app) => {
 
         if (!user) return res.status(401).end();
 
-        let search = req.query.search;
-        if (!search || search.trim() === '' || search === 'null')
-            search = null;
-        else
-            search = "%" + search.trim() + "%";
-
-        query(QUERY.GET_CARGOS, [search])
+        query(QUERY.GET_CARGOS_ALL)
             .then(({rows}) => {
                 res.status(200).json({cargos: rows});
             });
