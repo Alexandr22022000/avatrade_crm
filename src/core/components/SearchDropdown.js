@@ -13,7 +13,6 @@ class SearchDropdown extends Component {
                 <div className={"options " + this.props.optionsClassName}>
                     {this.props.options
                         .filter((value, index) => {
-                            console.log(value);
                             return this.state.inputValue && (this.props.freeFirstOption? true: index !== 0)?
                                 value.toLocaleLowerCase()
                                 .indexOf(this.state.inputValue.toLocaleLowerCase()) !== -1
