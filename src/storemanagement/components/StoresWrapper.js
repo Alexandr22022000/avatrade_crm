@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import '../styles/stores.css'
 import StoreEditor from "../containers/StoreEditor";
 import DropDown from "../../personal/components/DropDown";
-import StuffEditor from "../../personal/containers/StuffEditor";
 
 class StoresWrapper extends Component {
 	state = {
