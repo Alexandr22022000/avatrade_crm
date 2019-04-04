@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import '../styles/mult-count-field.css';
 import DropDown from "../../personal/components/DropDown";
 import CountableField from "./CountableField";
@@ -11,8 +11,7 @@ class MultipleCountableField extends  Component {
             dd = (
                 <SearchDropdown options={this.props.options}
                                 onSelect={(index)=>{this.selected(index)}}
-                                value={this.props.value}
-                                disabled={this.props.disabled}
+                                value={+this.props.selectedId}
                                 inputStyle={this.props.inputStyle}
                                 inputClassName={this.props.inputClassName}
                                 optionsClassName={this.props.optionsClassName}
@@ -31,13 +30,20 @@ class MultipleCountableField extends  Component {
         }
         return (
             <div className={'mcf-holder ' + this.props.className} key={this.props.key} style={this.props.style}>
-                {dd}
-                <CountableField
-                    value={this.props.amount}
-                    maxValue={this.props.maxCount}
-                    onChange={v => {this.onCountChange(v)}}
-                    withoutRange={this.props.withoutRange}
-                />
+                {this.props.readOnly? (
+                    this.props.readOnlyValue
+                ): (
+                    <Fragment>
+                        {dd}
+                        <CountableField
+                            value={this.props.amount}
+                            maxValue={this.props.maxCount}
+                            onChange={v => {this.onCountChange(v)}}
+                            withoutRange={this.props.withoutRange}
+                            style={this.props.styleCountable}
+                        />
+                    </Fragment>
+                )}
             </div>
         );
     }

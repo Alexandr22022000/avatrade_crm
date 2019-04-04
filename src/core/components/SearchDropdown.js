@@ -66,6 +66,10 @@ class SearchDropdown extends Component {
         }
     }
 
+    componentDidMount() {
+        let val = this.props.value !== -1? '': this.props.options[this.props.value];
+        this.setState({inputValue: val})
+    }
 
     onDel () {
         this.setState({inputValue: ''});

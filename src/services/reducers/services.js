@@ -1,4 +1,4 @@
-import {CHANGE_FILTER, SET_CONSUMABLES, SET_CURRENT_SERVICE, SET_SERVICES} from "../actions/types";
+import {CHANGE_FILTER_SERV, SET_CONSUMABLES, SET_CURRENT_SERVICE, SET_SERVICES} from "../actions/types";
 
 const defaultState = {
 	filter: {
@@ -23,7 +23,7 @@ const services = (state = defaultState, action) => {
 				...state,
 				services: action.services,
 			};
-		case CHANGE_FILTER:
+		case CHANGE_FILTER_SERV:
 			return {
 				...state,
 				filter: action.filter,

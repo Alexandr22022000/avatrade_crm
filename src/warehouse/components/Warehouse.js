@@ -155,9 +155,9 @@ class Warehouse extends Component {
     getWidths() {
         let storesCellWidth;
         if (this.props.stocks[0]) {
-            storesCellWidth = this.props.stocks[0].stocks.length * 122 + 2;
+            storesCellWidth = this.props.stocks[0].stocks.length * 122;
         }
-        let width = 370 + storesCellWidth;
+        let width = 375 + storesCellWidth;
         return {tableWidth:`${width.toString(10)}px`, storesCellWidth}
     }
 
