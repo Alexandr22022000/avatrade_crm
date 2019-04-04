@@ -104,7 +104,7 @@ class Warehouse extends Component {
                         </button>
                     ]}
                 </div>
-                <div className={'dataTable'} style={{width:widths.tableWidth}}>
+                <div className={'dataTable'} style={{minWidth:widths.tableWidth, maxWidth:widths.tableWidth}}>
                     <table className={'table-header'}>
                         <thead>
                         <tr>
@@ -112,7 +112,11 @@ class Warehouse extends Component {
                             <td className={'table-cell header-cell art-cell'}>Артикул</td>
                             <td className={'table-cell header-cell name-cell'}>Наименование</td>
                             <td className={'table-cell header-cell warehouse-cell'}
-                                style={{width: widths.storesCellWidth, textAlign:'center'}}
+                                style={{
+                                    minWidth: widths.storesCellWidth,
+                                    maxWidth: widths.storesCellWidth,
+                                    textAlign:'center'
+                                }}
                             >
                                 Склады
                             </td>
@@ -154,10 +158,16 @@ class Warehouse extends Component {
 
     getWidths() {
         let storesCellWidth;
+        let storesAmount = 0;
+        this.props.stores.forEach(value => {
+            if(value.status === 0) {
+                storesAmount++;
+            }
+        });
         if (this.props.stocks[0]) {
-            storesCellWidth = this.props.stocks[0].stocks.length * 122;
+            storesCellWidth = storesAmount * 122+1;
         }
-        let width = 375 + storesCellWidth;
+        let width = 375 + storesCellWidth - 1;
         return {tableWidth:`${width.toString(10)}px`, storesCellWidth}
     }
 

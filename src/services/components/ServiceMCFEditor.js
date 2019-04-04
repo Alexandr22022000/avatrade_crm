@@ -43,7 +43,11 @@ class ServiceMCFEditor extends Component{
                         withoutRange={true}
                         onCountChange={(val) => this.onCountChange(val, i)}
                         readOnly={isReadOnly}
-                        readOnlyValue={isReadOnly?<div><s>{cargo.name} - {currentConsumables[i].count}</s>(Удалено)</div>:''}
+                        readOnlyValue={isReadOnly?
+                            <div style={{marginBottom: '20px'}}>
+                                <s>{cargo.name} - {currentConsumables[i].count}</s>(Удалено)
+                            </div>:''
+                        }
                     />
                     <div onClick={() => {this.delMCF(i)}} style={{cursor: 'pointer'}}>
                         Убрать
