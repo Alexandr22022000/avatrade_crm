@@ -120,19 +120,6 @@ class ServicesModal extends Component{
         return this.state.is_product? 0: 1;
     }
 
-    setConsumablesIds() {
-        let currentConsumables = Object.assign([], this.props.currentConsumables);
-        for (let i = 0; i < currentConsumables.length;) {
-            if(currentConsumables[i].cargoIndex === -1) {
-                currentConsumables.splice(i,1);
-            } else {
-                currentConsumables[i].id = this.props.cargos[currentConsumables[i].cargoIndex].id;
-                ++i;
-            }
-        }
-        this.props.onSetConsumables(currentConsumables);
-    }
-
     servTypeChange(value) {
         this.setState({is_product: value === 0})
     }
@@ -144,7 +131,6 @@ class ServicesModal extends Component{
     }
 
     onClose(isSave) {
-        this.setConsumablesIds();
         if(isSave){
             if(this.canSave()) {
                 if(this.props.addNew) {

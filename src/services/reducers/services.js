@@ -24,7 +24,6 @@ const services = (state = defaultState, action) => {
 				services: action.services,
 			};
 		case CHANGE_FILTER:
-			console.log(action.filter);
 			return {
 				...state,
 				filter: action.filter,

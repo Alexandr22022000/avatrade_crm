@@ -29,27 +29,34 @@ class ServiceMCFEditor extends Component{
         });
 
         let disabled = [];
-        for(let key in currentConsumables) {
-            disabled.push(currentConsumables[key].cargoIndex);
+        for(let i in currentConsumables) {
+            for(let j in this.props.cargos) {
+                if (currentConsumables[i].id === this.props.cargos[j].id) {
+                    disabled.push(j);
+                    break;
+                }
+            }
         }
 
         let consums = [];
         for(let key in currentConsumables) {
             consums.push(
                 <div key={key}>
-                    <MultipleCountableField needSearch={true}
+                    <MultipleCountableField
+                        needSearch={true}
                         options={cargos}
                         block={deleted}
                         amount={currentConsumables[key].count}
                         onSelected={(val) => this.selectedCargo(val, key)}
                         onCountChange={(val) => this.changedCargoCount(val, key)}
-                        value={currentConsumables[key].cargoIndex}
+                        value={this.getSelectedCargoId(key)}
                         disabled={disabled}
                         withoutRange={true}
                         style={{marginLeft:'6%'}}
                         inputClassName={'sv-mcf-input'}
                         optionsClassName={'sv-mcf-options'}
                         withoutFirstCell={true}
+                        maxCount={null}
                     />
                     <div style={{fontSize: '18px', textAlign: 'left',cursor:'pointer',marginLeft:'6%', width: 'fit-content'}}
                          onClick={()=> this.delMFC(key)}
@@ -62,59 +69,60 @@ class ServiceMCFEditor extends Component{
         return consums;
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log(this.props.currentConsumables);
+    }
+
     getSearchValue(cargoIndex) {
         return this.props.cargos[cargoIndex] ? this.props.cargos[cargoIndex].name + ' - ' + this.props.cargos[cargoIndex].article : '';
     }
 
-    changedCargoCount(val, MCFKey) {
-        let currentConsumables = Object.assign([], this.props.currentConsumables);
-        currentConsumables[MCFKey].count = val;
+    getSelectedCargoId(key) {
+        if(this.props.currentConsumables[key].id === null) return -1;
+        for(let i in this.props.cargos.filter(v => v.status === 0)) {
+            if(this.props.currentConsumables[key].id === this.props.cargos[i].id) {
+                return +i;
+            }
+        }
+    }
+
+    selectedCargo(cargoId, key) {
+        let currentConsumables = [...this.props.currentConsumables];
+        if(cargoId !== -1) {
+            currentConsumables[key] = this.props.cargos.filter(v => v.status === 0)[cargoId];
+        } else {
+            currentConsumables[key].id = null;
+            currentConsumables[key].article = null;
+            currentConsumables[key].count = 0;
+            currentConsumables[key].name = null;
+        }
+        this.props.onSetConsumables(currentConsumables);
+    }
+
+    changedCargoCount(val, key) {
+        let currentConsumables = [...this.props.currentConsumables];
+        currentConsumables[key].count = val;
         this.props.onSetConsumables(currentConsumables);
     }
 
     addNewMFC() {
-        this.props.onSetConsumables([...this.props.currentConsumables, {id: -1, count: 0, cargoIndex: -1}]);
-    }
-
-    delMFC(MCFKey) {
-        let currentConsumables = Object.assign([], this.props.currentConsumables);
-        currentConsumables.splice(MCFKey,1);
+        let currentConsumables = [...this.props.currentConsumables];
+        currentConsumables.push({
+            id: null,
+            article: null,
+            count: 0,
+            name: null,
+        });
         this.props.onSetConsumables(currentConsumables);
     }
 
-    selectedCargo(val, MCFKey) {
-        let currentConsumables = Object.assign([], this.props.currentConsumables);
-        currentConsumables[MCFKey].cargoIndex = val;
+    delMFC(key) {
+        let currentConsumables = [...this.props.currentConsumables];
+        currentConsumables.splice(key,1);
         this.props.onSetConsumables(currentConsumables);
     }
 
 
-
-    setConsumablesCargoIndexes() {
-        let currentConsumables = Object.assign([], this.props.currentConsumables);
-        for(let key in currentConsumables) {
-            for(let cargoKey in this.props.cargos) {
-                if(this.props.cargos[cargoKey].id === currentConsumables[key].id){
-                    currentConsumables[key].cargoIndex = +cargoKey;
-                    break;
-                }
-            }
-        }
-        this.props.onSetConsumables(currentConsumables);
-    }
-
-    shouldComponentUpdate(nextProps, nextState, nextContext) {
-        console.log(nextProps.currentConsumables);
-        return true;
-    }
-
-    componentDidMount() {
-        if(!this.props.addNew) {
-            this.props.onSetConsumables([]);
-        } else {
-            this.setConsumablesCargoIndexes();
-        }
-    }
 }
 
 export default ServiceMCFEditor;
