@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import Modal from "../../core/components/Modal";
 import StuffInput from "../../personal/components/StuffInput";
-import setStoreStatus from "../async-actions/setStoreStatus";
 
 class StoreEditor extends Component {
 	state = {
@@ -13,7 +12,7 @@ class StoreEditor extends Component {
 	render() {
 		const confirm = (
 			<div style={{textAlign: 'right', marginRight: '10px'}}>
-				{!this.props.currentStore|| this.state.isNew || this.props.currentStore.id == 0 ? "" :
+				{!this.props.currentStore|| this.state.isNew || +this.props.currentStore.id === 0 ? "" :
 					<div className={"inline sackButton link-decor pointed"} onClick={() => this.onChangeStoreStatus()}>{this.props.currentStore.status === 0 ? "Закрыть" : "Открыть"}</div>
 				}
 
