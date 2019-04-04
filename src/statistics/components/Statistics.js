@@ -261,6 +261,7 @@ class Statistics extends Component {
     }
 
     getSalaryTables() {
+        console.log(this.props.payment);
         const columns = [
             {
                 title: 'Менеджер',

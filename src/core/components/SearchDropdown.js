@@ -9,27 +9,25 @@ class SearchDropdown extends Component {
 
     getOptions() {
         return (
-            <div>
-                <div className={"options " + this.props.optionsClassName}>
-                    {this.props.options
-                        .filter((value, index) => {
-                            return this.state.inputValue && (this.props.freeFirstOption? true: index !== 0)?
-                                value.toLocaleLowerCase()
-                                .indexOf(this.state.inputValue.toLocaleLowerCase()) !== -1
-                                : true;
-                        })
-                        .map((value, index) => (
-                            <div
-                                key={index}
-                                onClick={() => {
-                                    this.onSelect(value);
-                                    this.setState({ showOptions: false });
-                                }}
-                            >
-                                {value}
-                            </div>
-                        ))}
-                </div>
+            <div className={"options " + this.props.optionsClassName}>
+                {this.props.options
+                    .filter((value, index) => {
+                        return this.state.inputValue && (this.props.freeFirstOption? true: index !== 0)?
+                            value.toLocaleLowerCase()
+                            .indexOf(this.state.inputValue.toLocaleLowerCase()) !== -1
+                            : true;
+                    })
+                    .map((value, index) => (
+                        <div
+                            key={index}
+                            onClick={() => {
+                                this.onSelect(value);
+                                this.setState({ showOptions: false });
+                            }}
+                        >
+                            {value}
+                        </div>
+                    ))}
             </div>
         );
     }
@@ -37,10 +35,7 @@ class SearchDropdown extends Component {
     render() {
         return (
             <div>
-                {!this.state.showOptions ? '' :
-                    <div className={'dropdown-back'} onClick={() => this.setState({showOptions: false})}/>
-                }
-                <div>
+                <div style={{position: 'relative'}}>
                     <input
                         style={this.props.inputStyle}
                         className={"search-input " + this.props.inputClassName}
@@ -49,9 +44,10 @@ class SearchDropdown extends Component {
                         onKeyDown={e => this.onKeyDown(e)}
                         ref={(i) => this.input = i}
                         onClickCapture={() => this.setState({ showOptions: true })}
+                        onBlurCapture={() => setTimeout(() => this.setState({showOptions: false}),150)}
                     />
                     <button
-                        className={'cross-dropdown ' + (!this.state.inputValue ? '' : 'cross-dropdown-active')}
+                        className={'cross-dropdown ' + (this.state.inputValue === ''? '' : 'cross-dropdown-active')}
                         onClick={this.onDel.bind(this)}
                     />
                     {this.state.showOptions ? this.getOptions() : ""}
@@ -67,7 +63,7 @@ class SearchDropdown extends Component {
     }
 
     componentDidMount() {
-        let val = this.props.value !== -1? '': this.props.options[this.props.value];
+        let val = this.props.value === -1? '': this.props.options[+this.props.value];
         this.setState({inputValue: val})
     }
 

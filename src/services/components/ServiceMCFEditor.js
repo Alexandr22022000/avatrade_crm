@@ -89,7 +89,7 @@ class ServiceMCFEditor extends Component{
 
     onSelected(cargoIndex, consumIndex) {
         let cargos = this.props.cargos.filter(value => value.status === 0);
-        let consumables = [...this.props.currentConsumables];
+        let consumables = this.props.currentConsumables.map(value => {return {...value}});
         if(cargoIndex !== -1) {
             consumables[consumIndex].id = cargos[cargoIndex].id;
         } else {
@@ -100,13 +100,13 @@ class ServiceMCFEditor extends Component{
     }
 
     onCountChange(val, consumIndex) {
-        let consumables = [...this.props.currentConsumables];
+        let consumables = this.props.currentConsumables.map(value => {return {...value}});
         consumables[consumIndex].count = val;
         this.props.onSetConsumables(consumables);
     }
 
     addMCF() {
-        let consumables = [...this.props.currentConsumables];
+        let consumables = this.props.currentConsumables.map(value => {return {...value}});
         consumables.push({
             id: null,
             count: 0
@@ -115,13 +115,14 @@ class ServiceMCFEditor extends Component{
     }
 
     delMCF(consumIndex) {
-        let consumables = [...this.props.currentConsumables];
+        let consumables = this.props.currentConsumables.map(value => {return {...value}});
         consumables.splice(consumIndex,1);
         this.props.onSetConsumables(consumables);
     }
 
     componentDidMount() {
         let currentConsumables = [];
+
         for(let i in this.props.currentConsumables) {
             currentConsumables.push({
                 id: this.props.currentConsumables[i].id,

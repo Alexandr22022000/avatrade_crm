@@ -1,10 +1,14 @@
 .options {
-    position: relative;
+    position: absolute;
     display: block;
+    top: 49px;
+    left: 0;
+    right: 0;
+    z-index: 2000;
     background-color: black;
     color: #D5D9DE;
     width: 380px;
-    height: 300px;
+    height: 250px;
     overflow: auto;
     overflow-y: scroll;
 }
@@ -30,14 +34,6 @@
     padding: 10px 5px 10px 5px;
     width: 340px;
     position: relative;
-}
-
-.dropdown-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
 }
 
 .cross-dropdown-active {

@@ -69,9 +69,7 @@ class CountableField extends Component {
     }
 
     onIncrease() {
-
         if (this.props.value === this.props.maxValue && this.props.maxValue !== null) return;
-        console.log(this.props.maxValue);
         this.props.onChange(this.props.value + 1);
     }
 }

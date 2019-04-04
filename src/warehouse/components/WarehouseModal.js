@@ -13,13 +13,10 @@ class WarehouseModal extends Component{
                 Добавить
             </button>
         </div>);
-        const cargos =[];
-        if (this.props.cargos) {
-            for (let key in this.props.cargos) {
-                if (this.props.cargos[key].status === 0)
-                    cargos.push(this.props.cargos[key].name + ' - ' + this.props.cargos[key].article)
-            }
-        }
+        const cargos = this.props.cargos?
+            this.props.cargos.filter(value => value.status === 0)
+                .map(value => value.name + ' - ' + value.article)
+            : [];
         return (
             <Modal bgClassName={"modalHolder"}
                    windowClassName={"warehouse-modal"}
@@ -58,8 +55,13 @@ class WarehouseModal extends Component{
                             alwaysActive={true}
                             style={{marginTop: '20px'}}
                 />
+
             </Modal>
         )
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log()
     }
 
     componentWillMount () {
@@ -80,7 +82,7 @@ class WarehouseModal extends Component{
                     this.props.onAddNewStocks(this.state.name, this.state.article, this.state.count)
                 }
                 else {
-                    this.props.onAddStocks(parseInt(this.state.count), this.props.cargos[this.state.cargo].id);
+                    this.props.onAddStocks(parseInt(this.state.count), this.props.cargos.filter(value => value.status === 0)[this.state.cargo].id);
                 }
 
                 this.props.onClose();
