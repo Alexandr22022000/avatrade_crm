@@ -6,6 +6,7 @@ import DropDown from "../../personal/components/DropDown";
 
 
 class Statistics extends Component {
+
     state = {
         wcValue: null,
         pValue: null,
