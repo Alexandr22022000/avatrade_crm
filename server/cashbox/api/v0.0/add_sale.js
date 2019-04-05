@@ -59,6 +59,9 @@ module.exports = (app) => {
                                 .then(() => {});
                         }
 
+
+                        let date = new Date();
+
                         query(QUERY_SALES.ADD_SALE, [Date.now(), user.id, store, {services}, price, price_resell, is_card])
                             .then(() => res.status(200).end());
                     });
