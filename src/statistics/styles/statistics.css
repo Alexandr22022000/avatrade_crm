@@ -91,9 +91,6 @@
 .wc-day, .wc-index, .wc-name {
     border: black solid 2px!important;
 }
-.s-name, .s-salary, .s-salaryPay, .s-sum {
-    border: black solid 2px!important;
-}
 .p-name, .p-paid, .p-remains {
     border: black solid 2px!important;
 }
@@ -259,16 +256,18 @@
     margin-left: 40px;
 }
 
-.s-name, .s-salary, .s-salaryPay, .s-sum{
+.s-name, .s-workDays, .s-resells, .s-salary, .s-salaryPay, .s-sum{
     text-align: center!important;
     background-color: #424242!important;
+    border: black solid 2px!important;
+
 }
 
-.s-row .s-salary, .s-row .s-salaryPay, .s-row .s-sum {
+.s-row .s-salary, .s-row .s-workDays, .s-row .s-resells, .s-row .s-salaryPay, .s-row .s-sum {
     background-color: #1f1f1f!important;
 }
 
-.s-row .s-salary:hover, .s-row .s-salaryPay:hover, .s-row .s-sum:hover{
+.s-row .s-salary:hover, .s-row .s-salaryPay:hover, .s-row .s-workDays:hover, .s-row .s-resells:hover, .s-row .s-sum:hover{
     background-color: #9c00b8!important;
     cursor: pointer!important;
 }
@@ -296,6 +295,18 @@
     padding: 0!important;
     min-width: 80px!important;
     max-width: 80px!important;
+}
+
+.s-workDays {
+    padding: 0!important;
+    min-width: 160px!important;
+    max-width: 160px!important;
+}
+
+.s-resells {
+    padding: 0!important;
+    min-width: 160px!important;
+    max-width: 160px!important;
 }
 
 .p-name {
