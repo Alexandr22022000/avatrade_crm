@@ -10,7 +10,7 @@ const defaultStatistics = {
         k: null,
     },
     date: {
-        month: 0,
+        month: (new Date()).getMonth(),
         year: (new Date()).getFullYear(),
     },
     ranks: [],
