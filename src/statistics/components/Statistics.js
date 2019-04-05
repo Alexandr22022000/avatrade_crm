@@ -20,7 +20,10 @@ class Statistics extends Component {
     };
 
     render() {
-        const years = ['2016', '2017', '2018', '2019'];
+        let years = [];
+        for(let i = 15; i >= 0; --i) {
+            years.push((new Date()).getFullYear() - i);
+        }
 
         const months = [
             "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь",
@@ -262,7 +265,6 @@ class Statistics extends Component {
     }
 
     getSalaryTables() {
-        console.log(this.props.payment);
         const columns = [
             {
                 title: 'Менеджер',
