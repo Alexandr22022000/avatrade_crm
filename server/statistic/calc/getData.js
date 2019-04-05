@@ -1,5 +1,4 @@
-const {query, setConfig} = require('neuronex-pg');
-setConfig('postgres://postgres:0000@localhost:5432/avatrade_crm');
+const {query} = require('neuronex-pg');
 
 module.exports = (start, end) => {
     return new Promise((resolve, reject) => {

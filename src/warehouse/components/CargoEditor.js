@@ -13,6 +13,8 @@ class CargoEditor extends Component {
                 <div className={'link-decor'}
                      style={{float: 'left', cursor: 'pointer'}}
                      onClick={() => {
+                         if (!window.confirm("Вы уверены?")) return;
+
                          this.props.onChangeCargoStatus(this.props.cargo.id, this.getChangedStatus());
                          this.props.onClose();
                      }}

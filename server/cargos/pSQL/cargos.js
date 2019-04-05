@@ -1,5 +1,5 @@
 module.exports = {
-    ADD_CARGOS: 'INSERT INTO cargos(id, name, article) VALUES($1, $2, $3)',
+    ADD_CARGOS: 'INSERT INTO cargos(id, name, article, status) VALUES($1, $2, $3, 0)',
     GET_CARGOS: 'SELECT id, name, article, status FROM cargos WHERE status = 0',
     GET_CARGOS_ALL: 'SELECT id, name, article, status FROM cargos',
     CHECK_CARGOS: 'SELECT id FROM cargos WHERE name = $1 or article = $2',

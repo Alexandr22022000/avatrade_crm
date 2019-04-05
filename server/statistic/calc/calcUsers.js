@@ -85,6 +85,19 @@ const filter = (data, filterArray) => (user, index) => {
     return false;
 };
 
+const addPayment = (users, data) => {
+    users.forEach(user => {
+        if (!users.payment) {
+            for (let key in data.users) {
+                if (+data.users[key].user_id === +user.id) {
+                    user.payment = data.users[key].payment;
+                    break;
+                }
+            }
+        }
+    });
+};
+
 module.exports = (data, days, start) => {
     let users = [];
     idIndex = 0;
@@ -102,6 +115,8 @@ module.exports = (data, days, start) => {
     merge(users, data.increase_kpi, 'id', 'user_id', createUser(days));
     merge(users, data.decrease_kpi, 'id', 'user_id', createUser(days));
     merge(users, data.payments, 'id', 'user_id', createUser(days));
+
+    addPayment(users, data);
 
     //reverse merge
     merge(data.workdays, users, 'user_id', 'id', createWorkdays(0, days, start));

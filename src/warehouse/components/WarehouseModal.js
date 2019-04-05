@@ -60,10 +60,6 @@ class WarehouseModal extends Component{
         )
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        console.log()
-    }
-
     componentWillMount () {
         this.props.onGetCargos();
         this.setState({
