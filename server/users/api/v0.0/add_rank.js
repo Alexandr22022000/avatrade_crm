@@ -13,7 +13,7 @@ module.exports = (app) => {
         if (!checkPermissions(user, [PERMISSIONS.OWNER, PERMISSIONS.TOP_MANAGER])) return res.status(403).end();
 
         const id = Date.now();
-        query(QUERYES.ADD_RANK, [id, req.body.name, req.body.payment])
+        query(QUERYES.ADD_RANK, [id, req.body.name, req.body.payment, 0])
             .then(() => {
                 res.status(200).end();
             })
