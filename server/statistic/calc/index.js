@@ -11,7 +11,7 @@ module.exports = (date) => {
         getData(start, end)
             .then((data) => {
                 let stores = calcStores(data, days);
-                stores = prepareStore(stores, data);
+                stores = prepareStore(stores, data, days);
 
                 let statistic = calcUsers(data, days, start.getTime());
                 statistic = prepareUsers(statistic);
