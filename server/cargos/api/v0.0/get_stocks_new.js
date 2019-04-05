@@ -14,10 +14,9 @@ module.exports = (app) => {
         else
             search = "%" + search.trim() + "%";
 
-        let store_id = !req.query.store || req.query.store === 'null' ? null : req.query.store,
-            sows_all = req.query.is_all || true;
+        let is_del = !req.query.is_del || req.query.is_del === 'false' ? 0 : 1;
 
-        query(QUERY.GET_STOCKS, [search, store_id, sows_all])
+        query(QUERY.GET_STOCKS, [search, is_del])
             .then(({rows}) => {
                 const cargos = [];
 
@@ -39,6 +38,7 @@ module.exports = (app) => {
                         cargos.push({
                             id: stock.cargo_id,
                             name: stock.name,
+                            status: stock.status,
                             article: stock.article,
                             stocks: [{
                                 count: stock.count,

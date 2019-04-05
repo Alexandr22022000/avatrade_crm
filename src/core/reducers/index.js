@@ -6,6 +6,7 @@ import storemngmt from '../../storemanagement/reducers/storesmngmt';
 import cashbox from '../../cashbox/reducers/cashbox';
 import services from '../../services/reducers/services';
 import alerts from '../../alerts/reducers/alerts';
+import statistics from '../../statistics/reducers/statistics';
 
 export default combineReducers({
   status,
@@ -15,4 +16,5 @@ export default combineReducers({
   cashbox,
   services,
   alerts,
+  statistics,
 });

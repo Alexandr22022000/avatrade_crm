@@ -8,7 +8,7 @@ export const PERMISSIONS = {
 export const PERMISSIONS_TEXT = [
     {
         id: 0,
-        name: "Директор по развитию",
+        name: "Специалист по развитию",
     },
     {
         id: 1,

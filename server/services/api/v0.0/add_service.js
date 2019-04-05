@@ -31,7 +31,7 @@ module.exports = (app) => {
 
                 consumables = {consumables: consumables};
 
-                query(QUERY.ADD_SERVICES, [Date.now(), name, is_product, price, consumables])
+                query(QUERY.ADD_SERVICES, [Date.now(), name, is_product, price, consumables, false])
                     .then(() => res.status(200).end());
             });
     });

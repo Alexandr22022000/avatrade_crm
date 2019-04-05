@@ -5,6 +5,7 @@ import {getStores} from "../async-actions/getStores";
 import changeFilter from "../actions/changeFilter";
 import checkStock from "../actions/checkStock";
 import checkAllStocks from "../actions/checkAllStocks";
+import setCurrentCargo from "../actions/setCurrentCargo";
 
 export default connect(
     state=>({
@@ -19,6 +20,7 @@ export default connect(
         onGetStores: () => dispatch(getStores()),
         checkAllStocks: (check) => dispatch(checkAllStocks(check)),
         checkStock: (index, isBuffer) => dispatch(checkStock(index, isBuffer)),
-        changeFilter: (search, store, is_all) => dispatch(changeFilter(search, store, is_all)),
+        changeFilter: (search, store, is_all, is_del) => dispatch(changeFilter(search, store, is_all, is_del)),
+        onSetCurrentCargo: (cargo) => dispatch(setCurrentCargo(cargo)),
     })
 )(Warehouse);

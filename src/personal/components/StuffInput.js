@@ -44,7 +44,7 @@ class StuffInput extends Component {
 
         if (this.state.isActive || this.props.alwaysActive) {
             return (
-                <div style={this.props.style}>
+                <div style={this.props.style} className={this.props.className}>
                     <div className={"header-m"}>{this.props.title}</div>
                     <div
                         className={"body-m"}
@@ -57,7 +57,7 @@ class StuffInput extends Component {
             );
         } else {
             return (
-                <div style={this.props.style}>
+                <div style={this.props.style} className={this.props.className}>
                     <div className={"header-m"}>{this.props.title}</div>
                     <div
                         className={"body-m"}

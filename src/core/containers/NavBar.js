@@ -6,22 +6,22 @@ import {getStores} from "../../warehouse/async-actions/getStores";
 import setCurrentStoreId from "../actions/setCurrentStoreId";
 
 export default connect(
-  state => ({
-    tokenInfo: state.status,
-    migrates: state.status.migrates,
-    cargos: state.warehouse.cargos,
-      stores: state.warehouse.stores,
-      storeId: state.status.storeId,
-      username: state.status.username,
-  }),
-  dispatch => ({
-    onPermissionsGet: token => {
-      dispatch(permissionsGet(token));
-    },
-    onTokenDispatch: token => {
-      dispatch(tokenFound(token));
-    },
-      onGetStores: () => dispatch(getStores()),
-      onSetStoreId: (id) => dispatch(setCurrentStoreId(id)),
-  })
+    state => ({
+        tokenInfo: state.status,
+        migrates: state.status.migrates,
+        cargos: state.warehouse.cargos,
+        stores: state.warehouse.stores,
+        storeId: state.status.storeId,
+        username: state.status.username,
+    }),
+    dispatch => ({
+        onPermissionsGet: token => {
+            dispatch(permissionsGet(token));
+        },
+        onTokenDispatch: token => {
+            dispatch(tokenFound(token));
+        },
+        onGetStores: () => dispatch(getStores()),
+        onSetStoreId: (id) => dispatch(setCurrentStoreId(id)),
+    })
 )(NavBar);

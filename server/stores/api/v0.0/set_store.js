@@ -12,7 +12,7 @@ module.exports = (app) => {
 
         if (!checkPermissions(user, [PERMISSIONS.TOP_MANAGER, PERMISSIONS.OWNER])) return res.status(403).end();
 
-        query(STORES_QUERY.CHECK_STORE, [req.body.name, req.body.address, req.body.id])
+        query(STORES_QUERY.CHECK_STORE, [req.body.name, req.body.id])
             .then(({rows}) => {
                 if (rows.length !== 0) return res.status(409).end();
 

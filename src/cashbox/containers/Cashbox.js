@@ -1,7 +1,6 @@
 import {connect} from 'react-redux';
 import Cashbox from "../components/Cashbox";
 import getFastServices from "../async-actions/getFastServices";
-import getServices from "../../services/async-actions/getServices";
 import getStocksList from "../async-actions/getStocksList";
 import getServicesList from "../async-actions/getServicesList";
 import setServicesSearch from "../actions/setServicesSearch";

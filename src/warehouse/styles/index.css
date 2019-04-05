@@ -52,6 +52,20 @@
     cursor: pointer;
 }
 
+.wc-del-dp {
+    font-size: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: #d5d9de;
+}
+.wc-del-dp-bg {
+    width: 100px;
+    display: inline-block;
+    margin-left: 40px;
+    margin-right: 40px;
+    vertical-align: bottom;
+}
+
 @media screen and (max-height: 768px) and (min-height: 400px) {
     .dataTable{
         margin-top: 2%;
@@ -61,7 +75,6 @@
         border: #555555 solid 1px;
         box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);
     }
-
     .warehouse-modal {
         width: 450px;
         height: 400px;
@@ -70,20 +83,26 @@
         background-color: #1f1f1f;
         border-radius: 6px;
     }
-
     .stocks{
         margin-left: 4%;
         height: 320px;
         margin-top: 10px;
         overflow: hidden;
     }
-
     .table-body {
         overflow: auto;
         overflow-y: scroll;
         width: inherit;
         height: 417px;
         margin: 0 auto;
+        text-align: left;
+    }
+    .cargo-edit-modal {
+        height: 250px!important;
+        margin-top: 15%!important;
+    }
+    .cargo-edit {
+        padding-left: 12px!important;
     }
 }
 
@@ -91,12 +110,11 @@
     .dataTable{
         margin-top: 2%;
         margin-left: 2%;
-        height: 700px;
+        max-height: 640px;
         background-color: #1f1f1f;
         border: #555555 solid 1px;
         box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);
     }
-
     .warehouse-modal {
         width: 450px;
         height: 420px;
@@ -105,20 +123,26 @@
         background-color: #1f1f1f;
         border-radius: 6px;
     }
-
     .stocks{
         margin-left: 4%;
         height: 330px;
         margin-top: 20px;
         overflow: hidden;
     }
-
     .table-body {
         overflow: auto;
         overflow-y: scroll;
         width: inherit;
         height: 667px;
         margin: 0 auto;
+    }
+    .cargo-edit-modal {
+        height: 250px!important;
+        margin-top: 14%!important;
+        margin-left: 40%;
+    }
+    .cargo-edit {
+        padding-left: 12px!important;
     }
 }
 
@@ -129,7 +153,6 @@
 .table-header {
     border-spacing: unset;
     width: inherit;
-    margin: 0 auto;
 }
 
 .table-cell {
@@ -213,9 +236,18 @@
 
 .wh-last {
     border-left: black solid 1px;
+    border-right: black solid 1px;
 }
 
 .wh-middle {
     border-left: black solid 1px;
     border-right: black solid 1px;
+}
+
+.wh-table-row {
+    transition: 0.3s;
+}
+
+.wh-table-row:hover {
+    background-color: #555555;
 }

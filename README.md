@@ -262,6 +262,76 @@ Response body:
 
 ```
 
+#### `GET: /api/v0.0/users/ranks`
+
+Request params:
+
+```$xslt
+token: text
+```
+
+Response body:
+
+```$xslt
+ranks: [
+    {
+        id: bigint,
+        name: text,
+        payment: number,
+        status: number,
+    {
+]
+```
+
+#### `POST: /api/v0.0/users/rank`
+
+Request body:
+
+```$xslt
+token: text,
+id: number,
+name: text,
+payment: number,
+```
+
+Response body:
+
+```$xslt
+
+```
+
+#### `POST: /api/v0.0/users/add_rank`
+
+Request body:
+
+```$xslt
+token: text,
+name: text,
+payment: number,
+```
+
+Response body:
+
+```$xslt
+
+```
+
+#### `POST: /api/v0.0/users/rank/status`
+
+Request body:
+
+```$xslt
+token: text,
+id: number,
+status: number,
+```
+
+Response body:
+
+```$xslt
+
+```
+
 ### Cargos:
 
 #### `GET: /api/v0.0/stocks` (deprecated)
@@ -298,6 +368,7 @@ Request params:
 ```$xslt
 token: text,
 is_all: bool, (optional) 
+is_del: bool, (optional)
 search: text (optional)
 ```
 
@@ -326,7 +397,6 @@ Request params:
 
 ```$xslt
 token: text,
-search: text (optional)
 ```
 
 Response body:
@@ -337,8 +407,38 @@ cargos: [
         id: bigint,
         name: text,
         article: text,
+        status: number
     }
 ]
+```
+
+#### `POST: /api/v0.0/set_cargo`
+Request params:
+```$xslt
+token: text,
+id: bigint,
+name: text,
+article: text
+```
+
+Response body:
+
+```$xslt
+
+```
+
+#### `POST: /api/v0.0/cargo/status`
+Request params:
+```$xslt
+token: text,
+id: bigint,
+status: integer
+```
+
+Response body:
+
+```$xslt
+
 ```
 
 #### `POST: /api/v0.0/add_stocks`
@@ -349,6 +449,23 @@ Request body:
 token: text,
 count: integer,
 cargo: integer
+```
+
+Response body:
+
+```$xslt
+
+```
+
+#### `POST: /api/v0.0/cargo`
+
+Request body:
+
+```$xslt
+token: text,
+id: nimber,
+name: text,
+article: text,
 ```
 
 Response body:
@@ -669,6 +786,7 @@ services: [
         price: number,
         is_product: bool,
         status: number,
+        is_resell: bool,
         consumables: [
             {
                 id: bigint,
@@ -681,7 +799,7 @@ services: [
 ]
 ```
 
-#### `POST: /api/v0.0/add_services` (in developing)
+#### `POST: /api/v0.0/add_services`
 
 Request params:
 
@@ -704,7 +822,31 @@ Response body:
 
 ```
 
-#### `POST: /api/v0.0/services` (in developing)
+#### `POST: /api/v0.1/add_services` (in developing)
+
+Request params:
+
+```$xslt
+token: text,
+name: text,
+price: number,
+is_product: bool,
+is_resell: bool,
+consumables: [
+    {
+        id: bigint,
+        count: num
+    }
+]
+```
+
+Response body:
+
+```$xslt
+
+```
+
+#### `POST: /api/v0.0/services`
 
 Request params:
 
@@ -728,7 +870,32 @@ Response body:
 
 ```
 
-#### `POST: /api/v0.0/services_status` (in developing)
+#### `POST: /api/v0.1/services` (in developing)
+
+Request params:
+
+```$xslt
+token: text,
+id: number,
+name: text,
+price: number,
+is_product: bool,
+is_resell: bool,
+consumables: [
+    {
+        id: bigint,
+        count: num
+    }
+]
+```
+
+Response body:
+
+```$xslt
+
+```
+
+#### `POST: /api/v0.0/services_status`
 
 Request params:
 
@@ -746,7 +913,7 @@ Response body:
 
 ### CashBox:
 
-#### `POST: /api/v0.0/sell` (in developing)
+#### `POST: /api/v0.0/sale`
 
 Request params:
 
@@ -768,7 +935,7 @@ Response body:
 
 ```
 
-#### `GET: /api/v0.0/fast_services` (in developing)
+#### `GET: /api/v0.0/fast_services`
 
 Request params:
 
@@ -797,9 +964,9 @@ fast_services: [
 ]
 ```
 
-#### `POST: /api/v0.0/fast_services` (in developing)
+#### `POST: /api/v0.0/fast_services`
 
-Request params:
+Request body:
 
 ```$xslt
 token: text
@@ -808,6 +975,120 @@ fast_services: [number]
 
 Response body:
 
+```$xslt
+
+```
+
+#### `POST: /api/v0.0/collection`
+
+Request body:
+
+```$xslt
+token: text,
+store_id: number,
+value: number,
+```
+
+Response body:
+
+```$xslt
+
+```
+
+### Statistic
+
+#### `GET: /api/v0.0/statistic`
+
+Request params:
+
+```$xslt
+token: text
+date: number
+```
+
+Response body:
+
+```$xslt
+turnover: [
+    {
+        name: text,
+        startValue: number,
+        endValue: number,
+        turnoverValue: number,
+        values: [
+            {
+                pco: number,                
+                acquiring: number,                
+                account: number,                
+                rco: number,                
+            },
+        ],
+    },
+],
+workCalendars: [
+    title: text,
+    canEdit: bool,
+    managers: [
+        {
+            manager: text,
+            id: number,
+            values: [
+                {
+                    value: number,
+                    description: text,
+                },
+            ],
+        },
+    ],
+],
+payment: [
+    {
+        id: bigint,
+        manager: text,
+        workDays: number,
+        salary: number,
+        salaryPay: number,
+        sells: number,
+        sellsPay: number,
+        resells: number,
+        resellsPay: number,
+        all: number,
+        premiums: number,
+        paid: number,
+        needPay: number,
+    },
+],
+```
+
+#### `POST: /api/v0.0/statistic/calendar`
+
+Request body:
+```$xslt
+token: text,
+id: number,
+values: [
+    {
+        value: number,
+        description: text,
+    }
+]
+```
+
+Response body:
+```$xslt
+
+```
+
+#### `POST: /api/v0.0/statistic/payment`
+
+Request body:
+```$xslt
+token: text,
+id: number,
+paid: number,
+```
+
+Response body:
 ```$xslt
 
 ```
@@ -840,3 +1121,8 @@ Response body:
 
 - Migration: 0
 - Migration request: 1
+
+### Cargos statuses
+
+- Active: 0
+- Deleted: 1

@@ -144,26 +144,25 @@ class StuffEditor extends Component {
       this.props.changeCurrentUserStatus(this.props.currentUser.status === 0 ? 1 : 0 , this.props.currentUser.id);
   }
 
-    updateUserData (value, name) {
-        this.changed = true;
-        this.props.updateUserData(value, name);
-    }
+  updateUserData (value, name) {
+      this.changed = true;
+      this.props.updateUserData(value, name);
+  }
 
   onClose(isSave) {
-    if (this.changed && !isSave && !window.confirm("Вы уверены? Все не сохраненые изменения будут потеряны!")) return;
+      if (this.changed && !isSave && !window.confirm("Вы уверены? Все не сохраненые изменения будут потеряны!")) return;
 
-    if (isSave && this.props.currentUser) {
-      if (!this.canSave()) return;
+      if (isSave && this.props.currentUser) {
+          if (!this.canSave()) return;
 
-      if (this.props.currentUser.id) {
-        this.props.updateUser(this.props.currentUser);
-      } else {
-        this.props.onAddNewUser(this.props.currentUser);
+          if (this.props.currentUser.id) {
+              this.props.updateUser(this.props.currentUser);
+          } else {
+              this.props.onAddNewUser(this.props.currentUser);
+          }
       }
-    }
-
-    this.props.delCurrentUser();
-    this.props.onClose();
+      this.props.delCurrentUser();
+      this.props.onClose();
   }
 
   createPermissions() {

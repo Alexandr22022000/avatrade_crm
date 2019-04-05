@@ -1,0 +1,391 @@
+
+.table-holder {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.wc-input {
+    border: none;
+    background: #1f1f1f;
+    color: #d5d9de;
+}
+
+.wc-input:active, .wc-input:focus {
+    outline: none;
+}
+
+@media screen and (min-height: 720px) {
+    .stats-controls {
+        bottom: 0;
+    }
+    .statistics {
+        overflow-x: scroll;
+    }
+    .tmp-wrapper {
+        width: 100%;
+        overflow-x: scroll;
+        height: 864px;
+        overflow-y: scroll;
+    }
+    .stats-dp select {
+        padding-top: 6px;
+        padding-bottom: 6px;
+        vertical-align: bottom;
+        font-size: 20px!important;
+    }
+    .stats-controls button {
+        vertical-align: top;
+        font-size: 20px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+    }
+    .stats-controls .active {
+        border-bottom: #9c00b8 solid 4px;
+        padding-bottom: 2px;
+    }
+}
+
+@media screen and (max-height: 768px) and (min-height: 400px) {
+    .statistics {
+        overflow-x: scroll;
+    }
+    .tmp-wrapper {
+        width: 100%;
+        overflow-x: scroll;
+        height: 582px;
+        overflow-y: scroll;
+    }
+    .stats-controls {
+        bottom: 0;
+    }
+    .stats-controls button {
+        padding-top: 4px;
+        padding-bottom: 4px;
+    }
+    .stats-dp select {
+        padding-top: 1px;
+        padding-bottom: 3px;
+    }
+    .p-input {
+        min-width: 100% !important;
+    }
+    .stats-controls .active {
+        border-bottom: #9c00b8 solid 2px;
+        padding-bottom: 2px;
+    }
+
+}
+
+.wc-input {
+    max-width: 30px;
+    margin: 0 auto;
+    font-size: 13px;
+    vertical-align: top;
+    min-height: 17px;
+    min-width: 100%;
+}
+
+.pco, .rco, .acquiring, .account, .date {
+    border: black solid 2px!important;
+}
+.wc-day, .wc-index, .wc-name {
+    border: black solid 2px!important;
+}
+.s-name, .s-salary, .s-salaryPay, .s-sum {
+    border: black solid 2px!important;
+}
+.p-name, .p-paid, .p-remains {
+    border: black solid 2px!important;
+}
+.r-index, .r-rank, .r-payment {
+    border: black solid 2px!important;
+}
+
+.turnTitle-title {
+    border-left: black solid 2px;
+    border-right: black solid 2px;
+    border-top: black solid 2px;
+    border-bottom: black solid 3px;
+}
+.turnTitle-name {
+    display: inline-block;
+    border-left: black solid 2px;
+    border-right: black solid 1px;
+    border-bottom: black solid 1px;
+    margin: 0 auto;
+    width: 115px;
+    float: left;
+}
+.turnTitle-value {
+    display: inline-block;
+    border-left: black solid 1px;
+    border-right: black solid 2px;
+    border-bottom: black solid 1px;
+    margin: 0 auto;
+    float: left;
+    width: 125px;
+}
+.turnTitle {
+    width: inherit;
+    font-size: 12px;
+}
+
+.table {
+    font-size: 13px !important;
+}
+
+.r-index {
+    min-width: 20px!important;
+    max-width: 20px!important;
+}
+.r-rank {
+    min-width: 150px!important;
+    max-width: 150px!important;
+}
+.r-payment {
+    min-width: 80px!important;
+    max-width: 80px!important;
+}
+
+.date {
+    min-width: 90px!important;
+    max-width: 90px!important;
+}
+
+.table {
+    display: inline-block !important;
+    background-color: #1f1f1f !important;
+    color: #D5D9DE !important;
+    margin-left: 40px !important;
+    border: #555555 solid 1px !important;
+    box-shadow: 0 0 6px rgba(148, 148, 148, 0.42) !important;
+}
+
+.table table {
+    border-collapse: collapse !important;
+    border: black solid 2px !important;
+}
+
+.pco, .rco, .account, .acquiring {
+    text-align: center !important;
+    background-color: #424242 !important;
+    padding: 0!important;
+    padding-left: 5px!important;
+    padding-right: 5px!important;
+    min-width: 70px!important;
+}
+
+.date {
+    text-align: right !important;
+    background-color: #424242 !important;
+    padding: 0!important;
+    padding-left: 5px!important;
+    padding-right: 5px!important;
+}
+
+.statistics {
+    margin-top: 10px;
+    overflow: auto;
+}
+
+.turnover-row .pco, .turnover-row .rco,
+.turnover-row .acquiring, .turnover-row .account{
+    background-color: #1f1f1f !important;
+    padding: 0!important;
+}
+
+.turnover-row .pco:hover, .turnover-row .rco:hover,
+.turnover-row .acquiring:hover, .turnover-row .account:hover {
+    background-color: #9c00b8 !important;
+    cursor: pointer!important;
+}
+
+.wc-table table {
+    border-collapse: collapse!important;
+}
+
+.wc-table {
+    display: block!important;
+    margin-bottom: 40px;
+}
+
+.wc-index {
+    max-width: 12px!important;
+    min-width: 12px!important;
+    text-align: right!important;
+    background-color: #424242!important;
+    padding: 0!important;
+    padding-left: 5px!important;
+    padding-right: 5px!important;
+}
+
+.wc-name {
+    min-width: 150px !important;
+    max-width: 150px !important;
+    text-align: center!important;
+    background-color: #424242!important;
+    padding: 0!important;
+    padding-left: 5px!important;
+    padding-right: 5px!important;
+}
+
+.wc-row .wc-name, .wc-row .wc-day {
+    background-color: #1f1f1f!important;
+    overflow: hidden!important;
+}
+
+.wc-day {
+    text-align: center!important;
+    background-color: #424242!important;
+    padding: 0!important;
+    min-width: 32px!important;
+    max-width: 32px!important;
+}
+
+.wc-row .wc-day:hover {
+    background-color: #9c00b8 !important;
+    cursor: pointer!important;
+}
+
+.rc-table-title {
+    padding: 0!important;
+    border: none!important;
+    text-align: center;
+    font-size: 12px!important;
+}
+
+.s-table-holder {
+    display: inline-block;
+    margin-left: 40px;
+}
+
+.s-name, .s-salary, .s-salaryPay, .s-sum{
+    text-align: center!important;
+    background-color: #424242!important;
+}
+
+.s-row .s-salary, .s-row .s-salaryPay, .s-row .s-sum {
+    background-color: #1f1f1f!important;
+}
+
+.s-row .s-salary:hover, .s-row .s-salaryPay:hover, .s-row .s-sum:hover{
+    background-color: #9c00b8!important;
+    cursor: pointer!important;
+}
+
+.s-name {
+    min-width: 150px!important;
+    max-width: 150px!important;
+    overflow: hidden;
+    padding: 0!important;
+}
+
+.s-salary {
+    min-width: 80px!important;
+    max-width: 80px!important;
+    padding: 0!important;
+}
+
+.s-salaryPay {
+    min-width: 100px!important;
+    max-width: 100px!important;
+    padding: 0!important;
+}
+
+.s-sum {
+    padding: 0!important;
+    min-width: 80px!important;
+    max-width: 80px!important;
+}
+
+.p-name {
+    min-width: 150px!important;
+    max-width: 150px!important;
+    overflow: hidden;
+    padding: 0!important;
+}
+
+.p-paid {
+    min-width: 90px!important;
+    max-width: 90px!important;
+}
+
+.p-remains {
+    min-width: 80px!important;
+    max-width: 80px!important;
+}
+
+.p-name, .p-paid, .p-remains {
+    padding: 0!important;
+    text-align: center!important;
+    background-color: #424242!important;
+}
+
+.p-row .p-paid, .p-row .p-remains {
+    background-color: #1f1f1f!important;
+}
+
+.p-row .p-paid:hover, .p-row .p-remains:hover {
+    background-color: #9c00b8!important;
+    cursor: pointer!important;
+}
+
+.stats-controls {
+    position: absolute;
+    width: 100%;
+    z-index: 1000;
+}
+
+.stats-dp {
+    display: inline-block!important;
+    vertical-align: top;
+}
+
+.stats-dp select {
+    font-size: 15px;
+    border-radius: 0!important;
+    background-color: #1f1f1f;
+}
+
+.stats-months {
+    display: inline-block;
+}
+
+.stats-controls button {
+    background-color: #1f1f1f;
+    color: #d5d9de;
+    border: none;
+    transition: 0.3s;
+}
+
+.stats-controls button:hover {
+    background-color: #555555;
+    cursor: pointer;
+}
+
+.r-index, .r-rank, .r-payment {
+    background-color: #424242!important;
+    padding: 0!important;
+    text-align: center!important;
+}
+
+.r-row .r-rank, .r-row .r-payment {
+    background-color: #1f1f1f!important;
+}
+
+.r-row .r-rank:hover, .r-row .r-payment:hover {
+    background-color: #9c00b8!important;
+    cursor: pointer;
+}
+
+.r-payment, .r-rank {
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.r-btn {
+    font-size: 12px!important;
+    display: block!important;
+    margin-left: 40px;
+    padding: 3px 3px 3px 3px!important;
+}

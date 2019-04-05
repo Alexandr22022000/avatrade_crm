@@ -1,5 +1,5 @@
 .controlCashbox{
-    margin-top: 4%;
+    margin-top: 2%;
     margin-left: 2%;
     vertical-align: top;
     overflow: auto;
@@ -13,6 +13,16 @@
 .cb-modal {
     background-color: #1f1f1f;
     z-index: -2;
+}
+
+.col-modalHolder {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    left: 0;
+    top: 0;
+    z-index: 500;
 }
 
 @media screen and (max-height: 768px) and (min-height: 400px) {
@@ -74,7 +84,7 @@
     .cb-modalHolder {
         position: absolute;
         right: 8%;
-        top: 16%;
+        top: 12%;
     }
     .cb-StoreCheck {
         width: 300px;
@@ -91,6 +101,17 @@
     }
     .ccb-item{
         margin-bottom: 15px;
+    }
+    .col-sz {
+        width: 300px;
+        height: 200px;
+        margin-left: 38%;
+        margin-top: 15%;
+    }
+    .col-child {
+        height: 110px;
+        padding-left: 10px;
+        padding-top: 20px;
     }
 }
 
@@ -156,7 +177,7 @@
     .cb-modalHolder {
         position: absolute;
         right: 8%;
-        top: 15%;
+        top: 11%;
     }
     .cb-StoreCheck {
         width: 400px;
@@ -173,6 +194,17 @@
     }
     .ccb-item{
         margin-bottom: 20px;
+    }
+    .col-sz {
+        width: 350px;
+        height: 250px;
+        margin-left: 40%;
+        margin-top: 15%;
+    }
+    .col-child {
+        height: 160px;
+        padding-left: 10px;
+        padding-top: 20px;
     }
 }
 
@@ -208,7 +240,7 @@
 }
 
 .cashbox-info {
-    margin-top: 4%;
+    margin-top: 2%;
     margin-left: 2%;
     background-color: #1f1f1f;
     border: #555555 solid 1px;
@@ -288,4 +320,13 @@
     display: inline-block;
     margin-left: 40px;
     color: #D5D9DE;
+}
+
+.cb-collection {
+    margin-top: 2%;
+}
+
+.col-modal {
+    background-color: #1f1f1f;
+    border-radius: 6px;
 }

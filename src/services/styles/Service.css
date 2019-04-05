@@ -78,13 +78,13 @@
         overflow: hidden;
     }
     .sv-tb-name {
-        width: 340px;
+        width: 339px;
         border-right: black solid 3px;
         border-bottom: black solid 3px;
         border-top: black solid 3px;
     }
     .sv-tb-price {
-        width: 220px;
+        width: 217px;
         border: black solid 3px;
     }
     .sv-tb-st {
@@ -97,7 +97,7 @@
 @media screen and (max-height: 768px) and (min-height: 400px) {
     .st-sizes {
         width: 600px;
-        height: 500px;
+        height: 480px;
     }
     .sv-search-sz input {
         height: 30px;

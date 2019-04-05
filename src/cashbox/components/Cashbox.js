@@ -4,11 +4,13 @@ import '../../core/styles/buttons.css';
 import WarehouseInput from "../../warehouse/components/WarehouseInput";
 import CashboxModal from "../containers/CashboxModal";
 import cross from "../../images/cross-icon.png";
+import CollectionModal from "../containers/CollectionModal";
 
 class Cashbox extends Component {
     state = {
         isEditing:false,
         fastServices: [],
+        isCollecting: false,
     };
     render() {
         let fastServices = this.state.isEditing? this.state.fastServices: this.props.fastServices;
@@ -49,6 +51,17 @@ class Cashbox extends Component {
                         />
                         {this.getList(false)}
                     </div>
+                    <div className={'cb-collection'}>
+                        <button className={'btn-m blue-button'}
+                                onClick={() => this.setState({isCollecting:true})}
+                        >
+                            инкассация
+                        </button>
+                        {this.state.isCollecting?
+                            <CollectionModal onClose={() => this.setState({isCollecting: false})}/> :
+                            ''
+                        }
+                    </div>
                 </div>
                 <div className={'controlCashbox inline'}>
                     {fastServices.map((value, index) =>
@@ -83,8 +96,8 @@ class Cashbox extends Component {
                             {this.state.isEditing? 'Сохранить': 'Изменить'}
                         </button>
                     </div>
-
                 </div>
+
                 <CashboxModal/>
             </div>
         );
@@ -92,7 +105,7 @@ class Cashbox extends Component {
 
     changeEditorStatus() {
         if(this.state.isEditing){
-            let fastServices = this.state.fastServices.map(value => value.id);
+            let fastServices = this.state.fastServices.filter(value => value !== null).map(value => value.id);
             this.props.onChangeFastServices(fastServices);
             this.setState({isEditing: false, fastServices:[]});
         } else {

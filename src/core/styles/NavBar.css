@@ -1,5 +1,9 @@
 .MainPageHolder-d {
     background-color: #1f1f1f;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
 }
 
 .MainPageHolder-d #buttons {
@@ -22,9 +26,15 @@
     text-align: center;
 }
 
-
+#children {
+    overflow: auto;
+}
 
 @media screen and (min-height: 720px) {
+    #children {
+        min-height: 900px;
+        max-height: 900px;
+    }
     .MainPageHolder-t .navbar-btn,
     .MainPageHolder-d .navbar-btn {
         border-radius: 0;
@@ -52,7 +62,7 @@
         width: 35px;
         height: 40px;
         position: absolute;
-        top: 1%;
+        top: 15%;
         left: 1%;
     }
     .MainPageHolder-d .navbar-btn {
@@ -143,6 +153,10 @@
 }
 
 @media screen and (max-height: 768px) and (min-height: 400px) {
+    #children {
+        min-height: 605px;
+        max-height: 605px;
+    }
     .MainPageHolder-t .navbar-btn,
     .MainPageHolder-d .navbar-btn {
         border-radius: 0;
@@ -162,6 +176,7 @@
         position: absolute;
         bottom: 4%;
         right: 2%;
+        z-index: 1000;
     }
     .imgHolder {
         background: url("../../images/ava-logo-s.png") no-repeat;
@@ -169,7 +184,7 @@
         width: 25px;
         height: 30px;
         position: absolute;
-        top: 2%;
+        top: 15%;
         left: 1%;
     }
     #alerts .alert-icon {
@@ -245,7 +260,6 @@
         box-shadow: none;
         color: #D5D9DE;
         max-width: 180px;
-        padding-top: 10px;
         white-space: normal;
         vertical-align: top;
         display: inline-block;

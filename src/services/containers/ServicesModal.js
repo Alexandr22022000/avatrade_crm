@@ -14,10 +14,10 @@ export default connect(
         permissions: state.status.permissions,
     }),
     dispatch => ({
-        onAddNewService: (name, price, is_product, consumables) =>
-            dispatch(postAddServices(name, price, is_product, consumables)),
-        onChangeCurrentService: (id, name, price, is_product, consumables) =>
-            dispatch(postService(id, name, price, is_product, consumables)),
+        onAddNewService: (name, price, is_product, is_resell, consumables) =>
+            dispatch(postAddServices(name, price, is_product, is_resell, consumables)),
+        onChangeCurrentService: (id, name, price, is_product, is_resell, consumables) =>
+            dispatch(postService(id, name, price, is_product, is_resell, consumables)),
         onSetConsumables: (consumables) => dispatch(setConsumables(consumables)),
         onChangeServiceStatus: (id, status) => dispatch(postServiceStatus(id, status)),
         onGetCargos: () => dispatch(getCargos(null)),

@@ -39,7 +39,6 @@ class CashboxCountable extends Component {
 
     onChange(value) {
         let regexp = /^\d*$/;
-        console.log(value);
         if(regexp.test(value)){
             this.props.onChange(+value);
         }

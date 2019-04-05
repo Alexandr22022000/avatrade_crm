@@ -4,11 +4,14 @@ import '../styles/index.css'
 import WarehouseInput from "./WarehouseInput";
 import WarehouseModal from "../containers/WarehouseModal";
 import MigrateEditor from "../containers/MigrateEditor";
+import CargoEditor from "../containers/CargoEditor";
+import DropDown from "../../personal/components/DropDown";
 
 class Warehouse extends Component {
     state = {
         showEditor: false,
         showMigrate: false,
+        showStockEditor: false,
         isRequest: false,
         is_all: true,
         store: -1,
@@ -23,11 +26,19 @@ class Warehouse extends Component {
         );
         const minWidth = `${value.stocks.length * 122 - 2}px`;
         return (
-            <tr>
+            <tr className={'wh-table-row'}
+                onClick={() => {
+                    this.props.onSetCurrentCargo(value);
+                    this.setState({showStockEditor: true});
+                }}
+            >
                 <td className={'table-cell chbox-cell'}>
                     <input checked={value.isChecked}
                            type={'checkbox'}
-                           onClick={() => this.props.checkStock(index, isBuffer)}
+                           onClick={(e) => {
+                               e.stopPropagation();
+                               this.props.checkStock(index, isBuffer);
+                           }}
                     />
                 </td>
 
@@ -64,7 +75,12 @@ class Warehouse extends Component {
                                     onClickIcon={() => this.props.onGetStocks()}
                                     onChange={(v) => this.onSearchChange(v)}
                     />
-
+                    <DropDown options={['Активные','Удаленные']}
+                              value={this.getCargoStatValue()}
+                              onChange={v => this.onIsDelChange(v)}
+                              className={'dropdownPlaceholder wc-del-dp'}
+                              holderClassName={'wc-del-dp-bg'}
+                    />
                     <button className={'btn-m blue-button inline'}
                             style={{fontSize: '18px', marginLeft: '40px'}}
                             onClick={()=> this.setState({showEditor: true})}
@@ -88,7 +104,7 @@ class Warehouse extends Component {
                         </button>
                     ]}
                 </div>
-                <div className={'dataTable'} style={{width:widths.tableWidth}}>
+                <div className={'dataTable'} style={{minWidth:widths.tableWidth, maxWidth:widths.tableWidth}}>
                     <table className={'table-header'}>
                         <thead>
                         <tr>
@@ -96,7 +112,11 @@ class Warehouse extends Component {
                             <td className={'table-cell header-cell art-cell'}>Артикул</td>
                             <td className={'table-cell header-cell name-cell'}>Наименование</td>
                             <td className={'table-cell header-cell warehouse-cell'}
-                                style={{width: widths.storesCellWidth, textAlign:'center'}}
+                                style={{
+                                    minWidth: widths.storesCellWidth,
+                                    maxWidth: widths.storesCellWidth,
+                                    textAlign:'center'
+                                }}
                             >
                                 Склады
                             </td>
@@ -120,16 +140,34 @@ class Warehouse extends Component {
                 {!this.state.showMigrate ? '' :
                     <MigrateEditor onClose={() => this.setState({showMigrate: false})} isRequest={this.state.isRequest}/>
                 }
+                {!this.state.showStockEditor ? '' :
+                    <CargoEditor onClose={() => this.setState({showStockEditor: false})}/>
+                }
             </div>
         )
     }
 
+    onIsDelChange(v) {
+        this.props.changeFilter(this.props.filter.search, this.props.filter.store, this.props.filter.is_all, v === 1);
+        this.props.onGetStocks();
+    }
+
+    getCargoStatValue() {
+        return this.props.filter.is_del === true ? 1 : 0;
+    }
+
     getWidths() {
         let storesCellWidth;
+        let storesAmount = 0;
+        this.props.stores.forEach(value => {
+            if(value.status === 0) {
+                storesAmount++;
+            }
+        });
         if (this.props.stocks[0]) {
-            storesCellWidth = this.props.stocks[0].stocks.length * 122 + 4;
+            storesCellWidth = storesAmount * 122+1;
         }
-        let width = 370 + storesCellWidth;
+        let width = 375 + storesCellWidth - 1;
         return {tableWidth:`${width.toString(10)}px`, storesCellWidth}
     }
 
@@ -139,7 +177,7 @@ class Warehouse extends Component {
     }
 
     onSearchChange (value) {
-        this.props.changeFilter(value, this.props.filter.store, this.props.filter.is_all);
+        this.props.changeFilter(value, this.props.filter.store, this.props.filter.is_all, this.props.filter.is_del);
         this.props.onGetStocks();
     }
 
