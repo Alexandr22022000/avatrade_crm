@@ -6,6 +6,7 @@ import DropDown from "../../personal/components/DropDown";
 
 
 class Statistics extends Component {
+
     state = {
         wcValue: null,
         pValue: null,
@@ -261,6 +262,7 @@ class Statistics extends Component {
     }
 
     getSalaryTables() {
+        console.log(this.props.payment);
         const columns = [
             {
                 title: 'Менеджер',

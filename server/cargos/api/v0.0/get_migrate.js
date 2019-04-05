@@ -11,7 +11,7 @@ module.exports = (app) => {
 
         query(QUERY.GET_MIGRATE_ONE, [req.query.id])
             .then(({rows}) => {
-                query(QUERY_CARGOS.GET_CARGOS, [null])
+                query(QUERY_CARGOS.GET_CARGOS)
                     .then(cargos => {
                         if (rows.length === 0) return res.status(404).end();
 

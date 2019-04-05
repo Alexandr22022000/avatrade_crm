@@ -17,7 +17,7 @@ module.exports = (app) => {
                 if (rows.length === 0)
                     return res.status(404).end();
 
-                query(QUERY_CARGOS.GET_CARGOS, [null])
+                query(QUERY_CARGOS.GET_CARGOS)
                     .then(cargos => {
                         const row = rows[0];
 

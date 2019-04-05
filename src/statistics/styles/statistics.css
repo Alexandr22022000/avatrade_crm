@@ -221,6 +221,7 @@
 
 .wc-name {
     min-width: 150px !important;
+    max-width: 150px !important;
     text-align: center!important;
     background-color: #424242!important;
     padding: 0!important;
@@ -275,6 +276,7 @@
 .s-name {
     min-width: 150px!important;
     max-width: 150px!important;
+    overflow: hidden;
     padding: 0!important;
 }
 
@@ -299,6 +301,8 @@
 .p-name {
     min-width: 150px!important;
     max-width: 150px!important;
+    overflow: hidden;
+    padding: 0!important;
 }
 
 .p-paid {

@@ -95,6 +95,7 @@
         width: inherit;
         height: 417px;
         margin: 0 auto;
+        text-align: left;
     }
     .cargo-edit-modal {
         height: 250px!important;
@@ -152,7 +153,6 @@
 .table-header {
     border-spacing: unset;
     width: inherit;
-    margin: 0 auto;
 }
 
 .table-cell {
@@ -236,6 +236,7 @@
 
 .wh-last {
     border-left: black solid 1px;
+    border-right: black solid 1px;
 }
 
 .wh-middle {

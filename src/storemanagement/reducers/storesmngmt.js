@@ -3,7 +3,6 @@ import {CURRENT_STORE_UPDATE, SET_STORES_FOR_EDITOR, SET_IS_ALL_FOR_STORES} from
 const defaultStoresState = {
     currentStore: null,
     isAll: false,
-    stores: [],
 };
 
 const storemngmt = (state = defaultStoresState, action) => {
@@ -12,12 +11,6 @@ const storemngmt = (state = defaultStoresState, action) => {
             return {
                 ...state,
                 currentStore:action.store,
-            };
-
-        case SET_STORES_FOR_EDITOR:
-            return {
-                ...state,
-                stores: action.stores,
             };
 
         case SET_IS_ALL_FOR_STORES:
