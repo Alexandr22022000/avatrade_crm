@@ -29,7 +29,7 @@ class Statistics extends Component {
             "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь",
             "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"
         ];
-        let widths = this.props.turnover.length * (440 + 40) + (1255 + 40) + (420 + 40) + (330 + 40) + (260 + 40);
+        let widths = this.props.turnover.length * (440 + 40) + (1255 + 40) + (1074 + 40) + (330 + 40) + (260 + 40);
         return (
             <div className={'statistics-holder'}>
                 <div className={'stats-controls'}>
@@ -285,6 +285,42 @@ class Statistics extends Component {
                 key: 'salaryPay',
             },
             {
+                title: 'Отработано смен',
+                dataIndex: 'workDays',
+                className: 's-workDays',
+                key: 'workDays',
+            },
+            {
+                title: 'Доплаты',
+                dataIndex: 'premiums',
+                className: 's-sum',
+                key: 'premiums',
+            },
+            {
+                title: 'Оборот',
+                dataIndex: 'sells',
+                className: 's-sum',
+                key: 'sells',
+            },
+            {
+                title: '10%',
+                dataIndex: 'sellsPay',
+                className: 's-sum',
+                key: 'sellsPay',
+            },
+            {
+                title: 'Оборот перезаказов',
+                dataIndex: 'resells',
+                className: 's-resells',
+                key: 'resells',
+            },
+            {
+                title: '2%',
+                dataIndex: 'resellsPay',
+                className: 's-sum',
+                key: 'resellsPay',
+            },
+            {
                 title: 'Итого',
                 dataIndex: 'sum',
                 className: 's-sum',
@@ -292,11 +328,18 @@ class Statistics extends Component {
             },
         ];
         let data = [];
+        console.log(this.props.payment[0]);
         for(let i in this.props.payment) {
             data.push({
                 name: this.props.payment[i].manager,
                 salary: Math.round(this.props.payment[i].salary * 100)/100,
                 salaryPay: Math.round(this.props.payment[i].salaryPay * 100)/100,
+                workDays: this.props.payment[i].workdays,
+                premiums: Math.round(this.props.payment[i].premiums * 100)/100,
+                sells: Math.round(this.props.payment[i].sells * 100)/100,
+                sellsPay: Math.round(this.props.payment[i].sellsPay * 100)/100,
+                resells: Math.round(this.props.payment[i].resells * 100)/100,
+                resellsPay: Math.round(this.props.payment[i].resellsPay * 100)/100,
                 sum: Math.round(this.props.payment[i].all * 100)/100,
             })
         }
