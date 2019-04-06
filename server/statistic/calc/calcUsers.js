@@ -117,7 +117,6 @@ module.exports = (data, days, start) => {
     merge(users, data.payments, 'id', 'user_id', createUser(days));
 
     addPayment(users, data);
-
     //reverse merge
     merge(data.workdays, users, 'user_id', 'id', createWorkdays(0, days, start));
     merge(data.increase_kpi, users, 'user_id', 'id', createWorkdays(3, days, start));
