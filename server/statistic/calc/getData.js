@@ -28,14 +28,16 @@ module.exports = (start, end) => {
             }
         };
 
-        let startLoop = start.getTime(),
-            endLoop = start.getTime();
+        let startLoop = new Date(start.getTime()),
+            endLoop = new Date(start.getTime());
         endLoop.setDate(3);
 
         let i = 1;
         while (endLoop.getTime() <= end.getTime()) {
+            const startDay = startLoop.getTime(),
+                endDay = endLoop.getTime();
 
-            query('SELECT SUM(sales.price) AS price, SUM(sales.price_resell) AS price_resell, sales.store_id, sales.is_card, stores.name FROM sales JOIN stores ON sales.store_id = stores.id WHERE sales.id >= $1 AND sales.id < $2 GROUP BY sales.store_id, sales.is_card, stores.name', [startLoop, endLoop])
+            query('SELECT SUM(sales.price) AS price, SUM(sales.price_resell) AS price_resell, sales.store_id, sales.is_card, stores.name FROM sales JOIN stores ON sales.store_id = stores.id WHERE sales.id >= $1 AND sales.id < $2 GROUP BY sales.store_id, sales.is_card, stores.name', [startDay, endDay])
                 .then(callback(i, ({rows}, err, i) => {
                     data.sells.push({
                         day: i,
@@ -43,7 +45,7 @@ module.exports = (start, end) => {
                     });
                 }));
 
-            query('SELECT SUM(cashbox_collection.value) AS value, cashbox_collection.store_id, stores.name FROM cashbox_collection JOIN stores ON cashbox_collection.store_id = stores.id WHERE cashbox_collection.id >= $1 AND cashbox_collection.id < $2 GROUP BY cashbox_collection.store_id, stores.name', [startLoop, endLoop])
+            query('SELECT SUM(cashbox_collection.value) AS value, cashbox_collection.store_id, stores.name FROM cashbox_collection JOIN stores ON cashbox_collection.store_id = stores.id WHERE cashbox_collection.id >= $1 AND cashbox_collection.id < $2 GROUP BY cashbox_collection.store_id, stores.name', [startDay, endDay])
                 .then(callback(i, ({rows}, err, i) => {
                     data.collections.push({
                         day: i,
@@ -51,7 +53,7 @@ module.exports = (start, end) => {
                     });
                 }));
 
-            query('SELECT SUM(sales.price) AS price, SUM(sales.price_resell) AS price_resell, sales.user_id, users.name FROM sales JOIN users ON sales.user_id = users.id WHERE sales.id >= $1 AND sales.id < $2 GROUP BY sales.user_id, users.name', [startLoop, endLoop])
+            query('SELECT SUM(sales.price) AS price, SUM(sales.price_resell) AS price_resell, sales.user_id, users.name FROM sales JOIN users ON sales.user_id = users.id WHERE sales.id >= $1 AND sales.id < $2 GROUP BY sales.user_id, users.name', [startDay, endDay])
                 .then(callback(i, ({rows}, err, i) => {
                     data.user_sells.push({
                         day: i,
