@@ -1,4 +1,4 @@
-import {CURRENT_STORE_UPDATE, SET_STORES_FOR_EDITOR, SET_IS_ALL_FOR_STORES} from "../actions/types";
+import {CURRENT_STORE_UPDATE, SET_IS_ALL_FOR_STORES} from "../actions/types";
 
 const defaultStoresState = {
     currentStore: null,

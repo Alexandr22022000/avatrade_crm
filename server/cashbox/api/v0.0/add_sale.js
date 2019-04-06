@@ -4,6 +4,10 @@ const {checkUser} = require('neuronex-login-backend'),
     QUERY_SALES = require('../../pSQL/sales'),
     QUERY_STOCKS = require('../../pSQL/stocks');
 
+const changeTimezone = (date) => {
+    return new Date(date.getTime() - ((date.getTimezoneOffset() / 60) * 60 * 60 * 1000) + 7*60*60*1000);
+};
+
 module.exports = (app) => {
     app.post('/api/v0.0/sale', (req, res) => {
         const user = checkUser(req.body.token);
@@ -59,7 +63,7 @@ module.exports = (app) => {
                                 .then(() => {});
                         }
 
-                        query(QUERY_SALES.ADD_SALE, [Date.now(), user.id, store, {services}, price, price_resell, is_card])
+                        query(QUERY_SALES.ADD_SALE, [changeTimezone(new Date()).getTime(), user.id, store, {services}, price, price_resell, is_card])
                             .then(() => res.status(200).end());
                     });
             });
