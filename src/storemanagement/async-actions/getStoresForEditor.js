@@ -1,5 +1,4 @@
 import HTTPS from "../../core/HTTPS";
-import setStoresForEditor from "../actions/setStoresForEditor";
 import {setStores} from "../../warehouse/actions/setStores";
 
 const getStoresForEditor = () => (dispatch, getState) => {

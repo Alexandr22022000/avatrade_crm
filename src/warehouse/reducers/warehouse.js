@@ -24,6 +24,7 @@ const defaultState = {
 const warehouse = (state = defaultState, action) => {
     switch (action.type) {
         case STORES_UPDATE:
+
             return {
                 ...state,
                 stores: action.stores
