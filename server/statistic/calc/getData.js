@@ -28,8 +28,8 @@ module.exports = (start, end) => {
             }
         };
 
-        let startLoop = new Date(start.getTime()),
-            endLoop = new Date(start.getTime());
+        let startLoop = start.getTime(),
+            endLoop = start.getTime();
         endLoop.setDate(3);
 
         let i = 1;
@@ -63,6 +63,9 @@ module.exports = (start, end) => {
             endLoop.setDate(endLoop.getDate() + 1);
             i++;
         }
+
+        start = start.getTime();
+        end = end.getTime();
 
         query('SELECT SUM(price) AS price, SUM(price_resell) AS price_resell, store_id FROM sales WHERE id < $1 AND is_card = false GROUP BY store_id', [start])
             .then(callback(null, ({rows}) => {
