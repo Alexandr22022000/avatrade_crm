@@ -1,5 +1,4 @@
-const {query} = require('neuronex-pg'),
-    changeTimezone = require('./changeTimezone');
+const {query} = require('neuronex-pg');
 
 module.exports = (start, end) => {
     return new Promise((resolve, reject) => {
@@ -30,7 +29,7 @@ module.exports = (start, end) => {
 
         let startLoop = new Date(start.getTime()),
             endLoop = new Date(start.getTime());
-        endLoop.setDate(3);
+        endLoop.setDate(2);
 
         let i = 1;
         while (endLoop.getTime() <= end.getTime()) {
