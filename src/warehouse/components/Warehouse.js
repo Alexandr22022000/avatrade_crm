@@ -157,7 +157,7 @@ class Warehouse extends Component {
     }
 
     getWidths() {
-        let storesCellWidth;
+        let storesCellWidth = 0;
         let storesAmount = 0;
         this.props.stores.forEach(value => {
             if(value.status === 0) {
