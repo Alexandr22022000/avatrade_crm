@@ -157,7 +157,7 @@ class Warehouse extends Component {
     }
 
     getWidths() {
-        let storesCellWidth;
+        let storesCellWidth = 0;
         let storesAmount = 0;
         this.props.stores.forEach(value => {
             if(value.status === 0) {
@@ -168,6 +168,7 @@ class Warehouse extends Component {
             storesCellWidth = storesAmount * 122+1;
         }
         let width = 375 + storesCellWidth - 1;
+        console.log(width);
         return {tableWidth:`${width.toString(10)}px`, storesCellWidth}
     }
 
