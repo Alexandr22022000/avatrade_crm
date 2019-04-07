@@ -3,6 +3,8 @@
 #config
 /config.js
 
+#idea
+/.idea
 
 #temp PDF
 /temp
