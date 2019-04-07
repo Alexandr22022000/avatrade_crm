@@ -168,7 +168,6 @@ class Warehouse extends Component {
             storesCellWidth = storesAmount * 122+1;
         }
         let width = 375 + storesCellWidth - 1;
-        console.log(width);
         return {tableWidth:`${width.toString(10)}px`, storesCellWidth}
     }
 
