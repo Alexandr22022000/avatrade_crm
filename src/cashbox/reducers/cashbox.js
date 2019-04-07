@@ -4,7 +4,8 @@ import {
     SET_FAST_SERVICES,
     SET_SERVICES_LIST,
     SET_STOCKS_LIST,
-    STOCKS_SEARCH_CHANGE
+    STOCKS_SEARCH_CHANGE,
+    SET_CAN_SELL,
 } from "../actions/types";
 
 const defaultState = {
@@ -14,6 +15,7 @@ const defaultState = {
     servicesSearch: '',
     stocksSearch: '',
     sellServices:[],
+    canSell: true,
 };
 
 const cashbox = (state = defaultState, action) => {
@@ -47,6 +49,11 @@ const cashbox = (state = defaultState, action) => {
             return {
                 ...state,
                 sellServices:action.services,
+            };
+        case SET_CAN_SELL:
+            return {
+                ...state,
+                canSell: action.canSell,
             };
         default:
             return state;

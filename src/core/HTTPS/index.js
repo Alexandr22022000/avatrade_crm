@@ -71,7 +71,7 @@ const HTTPS = {
         return new Promise((resolve, reject) => {
             this.postRequest(url, {...body, token: getState().status.token}, dispatch)
                 .then((data) => resolve(data))
-                .catch((e) => this.catch(e, errors));
+                .catch((e) => {this.catch(e, errors); reject(e);});
         });
     },
 
@@ -80,7 +80,7 @@ const HTTPS = {
         return new Promise((resolve, reject) => {
             this.getRequest(url, {...params, token: getState().status.token}, dispatch, getState)
                 .then((data) => resolve(data))
-                .catch((e) => this.catch(e, errors));
+                .catch((e) => {this.catch(e, errors); reject(e);});
         });
     }
 };
