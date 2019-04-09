@@ -4,7 +4,8 @@ import CashboxCountable from "./CashboxCountable";
 
 class CashboxModal extends Component{
     render() {
-        const canSell = this.props.store !== -1 && this.props.sellServices.length !== 0;
+        let canSell = this.props.store !== -1 && this.props.sellServices.length !== 0;
+        if (+this.props.store === 0) canSell = false;
 
         const controls = (
             <div>
