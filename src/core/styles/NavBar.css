@@ -1,5 +1,5 @@
 .MainPageHolder-d {
-    background-color: #1f1f1f;
+    background-color: #4a76a8 ;
     position: fixed;
     top: 0;
     width: 100%;
@@ -14,7 +14,7 @@
 .MainPageHolder-d .navbar-btn:hover,
 .MainPageHolder-t .navbar-btn:hover,
 .MainPageHolder-d .navbar-btn.hover{
-    background-color: #424242;
+    background-color: #224b7a ;
 }
 
 .MainPageHolder-t .navbar-btn.checked,
@@ -40,8 +40,8 @@
         border-radius: 0;
         border: none;
         box-shadow: none;
-        background-color: #1f1f1f;
-        color: #D5D9DE;
+        background-color: #4a76a8 ;
+        color: #fff ;
         padding: 17px 10px 20px;
     }
     #exitButton {
@@ -102,7 +102,7 @@
         position: fixed;
         top:10%;
         right: 1%;
-        background-color: #1f1f1f;
+        background-color: #4a76a8 ;
         border: #555555 solid 1px;
         box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);
         transition: 0.8s;
@@ -113,6 +113,7 @@
         transform: scale(0.2);
     }
     #alerts .alterbox-content {
+        background: white;
         height: 650px;
         overflow: auto;
         overflow-y: scroll;
@@ -125,8 +126,8 @@
         border-radius: 0;
         border: none;
         box-shadow: none;
-        background-color: #1f1f1f;
-        color: #D5D9DE;
+        background-color: #4a76a8 ;
+        color: #fff ;
         max-width: 160px;
         padding-top: 12px;
         padding-bottom: 12px;
@@ -136,7 +137,7 @@
         font-size: 16px;
     }
     .navbar-chngStore:hover {
-        background-color: #424242;
+        background-color: #224b7a;
     }
     .navbar-curStore{
         box-shadow: none;
@@ -162,8 +163,8 @@
         border-radius: 0;
         border: none;
         box-shadow: none;
-        background-color: #1f1f1f;
-        color: #D5D9DE;
+        background-color: #4a76a8 ;
+        color: #fff ;
         padding: 15px 10px 17px;
     }
     #exitButton {
@@ -221,7 +222,7 @@
         position: fixed;
         top:10%;
         right: 1%;
-        background-color: #1f1f1f;
+        background-color: #4a76a8 ;
         border: #555555 solid 1px;
         box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);
         transition: 0.8s;
@@ -232,6 +233,7 @@
         transform: scale(0.2);
     }
     #alerts .alterbox-content {
+        background: white   ;
         height: 470px;
         overflow: auto;
         overflow-y: scroll;
@@ -244,8 +246,8 @@
         border-radius: 0;
         border: none;
         box-shadow: none;
-        background-color: #1f1f1f;
-        color: #D5D9DE;
+        background-color: #4a76a8 ;
+        color: #fff ;
         max-width: 110px;
         padding-top: 10px;
         padding-bottom: 11px;
@@ -254,11 +256,11 @@
         right: 70px;
     }
     .navbar-chngStore:hover {
-        background-color: #424242;
+        background-color: #224b7a;
     }
     .navbar-curStore{
         box-shadow: none;
-        color: #D5D9DE;
+        color: #fff ;
         max-width: 180px;
         white-space: normal;
         vertical-align: top;
@@ -274,12 +276,14 @@
     //background-color: #424242;
     padding-bottom: 10px;
     position: relative;
+    color: #939393  ;
     cursor: pointer;
-    border-bottom: 1px black solid;
+    box-shadow: 3px 1px 6px rgba(0, 0, 0, 0.47);
+    //border-bottom: 1px black solid;
 }
 
 .migration-msg:hover {
-    background-color: #424242;
+    background-color: #edeef0  ;
 }
 
 .migration-msg p {

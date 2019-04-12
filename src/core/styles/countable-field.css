@@ -45,7 +45,7 @@
     height: 10px;
     cursor: pointer;
     transition: 0.2s;
-    background: #3071a9;
+    background: #939393 ;
     border-radius: 2px;
 }
 .rng-input input::-webkit-slider-thumb {
@@ -54,13 +54,13 @@
     height: 25px;
     width: 16px;
     border-radius: 3px;
-    background: #44006d;
+    background: #5b88bd;
     cursor: pointer;
     -webkit-appearance: none;
     margin-top: -9px;
 }
 .rng-input input:focus::-webkit-slider-runnable-track {
-    background: #367ebd;
+    background: #939393 ;
 }
 .rng-input input::-moz-range-track {
     width: 100%;
@@ -68,7 +68,7 @@
     cursor: pointer;
     transition: 0.2s;
     box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-    background: #3071a9;
+    background: #939393 ;
     border-radius: 2px;
     border: 1px solid #010101;
 }

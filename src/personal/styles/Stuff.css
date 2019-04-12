@@ -73,20 +73,6 @@
   margin-right: 250px;
 }
 
-.action-button {
-  background-color: #9c00b8;
-  border-color: #7f0a85;
-  box-shadow: 0 0 9px 0 rgb(96, 0, 107);
-  transition: 0.2s;
-}
-
-.action-button:hover {
-  background-color: #7f0a85;
-}
-
-.action-button:checked {
-  background-color: #4b003d;
-}
 
 #controlButtons {
   margin-top: 2%;

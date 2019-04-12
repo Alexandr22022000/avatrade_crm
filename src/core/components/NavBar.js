@@ -83,7 +83,7 @@ class NavBar extends Component {
                                         style={{ paddingBottom: "0px", paddingTop: "15px" }}
                                     >
                                         {value.name}
-                                        <hr color={"#9c00b8"} />
+                                        <hr color={"#285473 "} />
                                     </button>
                                 );
                             }
