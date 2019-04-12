@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import Modal from "../../core/components/Modal";
 import StuffInput from "../../personal/components/StuffInput";
-import DropDown from "../../personal/components/DropDown";
+import DropDown from "../../core/components/DropDown";
 import ServiceMCFEditor from "../containers/ServiceMCFEditor";
 import '../../core/styles/buttons.css'
 import {PERMISSIONS} from "../../core/constants";

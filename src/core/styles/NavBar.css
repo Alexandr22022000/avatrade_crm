@@ -32,8 +32,8 @@
 
 @media screen and (min-height: 720px) {
     #children {
-        min-height: 900px;
-        max-height: 900px;
+        min-height: 877px;
+        max-height: 877px;
     }
     .MainPageHolder-t .navbar-btn,
     .MainPageHolder-d .navbar-btn {
@@ -50,12 +50,6 @@
         float: right;
         margin-right: 1%;
     }
-    #alerts {
-        position: absolute;
-        bottom: 4%;
-        right: 2%;
-        z-index: 9999;
-    }
     .imgHolder {
         background: url("../../images/ava-logo-s.png") no-repeat;
         background-size: 35px 40px;
@@ -68,60 +62,7 @@
     .MainPageHolder-d .navbar-btn {
         font-size: 20px;
     }
-    #alerts .alert-icon {
-        position: fixed;
-        bottom: 2%;
-        right: 2%;
-        background-image: url("../../images/message-icon.png");
-        width: 60px;
-        height: 60px;
-        background-size: 60px 60px;
-        transition: 0.6s;
-        cursor: pointer;
-    }
-    #alerts .alert-icon-hidden {
-        bottom: -20%;
-        transform: scale(0.5);
-    }
-    #alerts .alert-icon:hover {
-        transform: scale(1.2);
-    }
-    #alerts .alertbox-bg {
-        position: fixed;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-    }
-    #alerts .alertbox-bg-hidden {
-        width: 0;
-        height: 0;
-    }
-    #alerts .alertbox {
-        width: 450px;
-        position: fixed;
-        top:10%;
-        right: 1%;
-        background-color: #4a76a8 ;
-        border: #555555 solid 1px;
-        box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);
-        transition: 0.8s;
-        z-index: 9999;
-    }
-    #alerts .alertbox-hidden {
-        right: -100%;
-        transform: scale(0.2);
-    }
-    #alerts .alterbox-content {
-        background: white;
-        height: 650px;
-        overflow: auto;
-        overflow-y: scroll;
-    }
-    .migration-confirm {
-        text-align: right;
-        width: 225px;
-    }
+
     .navbar-chngStore {
         border-radius: 0;
         border: none;
@@ -155,8 +96,8 @@
 
 @media screen and (max-height: 768px) and (min-height: 400px) {
     #children {
-        min-height: 605px;
-        max-height: 605px;
+        min-height: 580px;
+        max-height: 580px;
     }
     .MainPageHolder-t .navbar-btn,
     .MainPageHolder-d .navbar-btn {
@@ -173,12 +114,6 @@
         float: right;
         margin-right: 1%;
     }
-    #alerts {
-        position: absolute;
-        bottom: 4%;
-        right: 2%;
-        z-index: 1000;
-    }
     .imgHolder {
         background: url("../../images/ava-logo-s.png") no-repeat;
         background-size: 25px 30px;
@@ -187,60 +122,6 @@
         position: absolute;
         top: 15%;
         left: 1%;
-    }
-    #alerts .alert-icon {
-        position: fixed;
-        bottom: 2%;
-        right: 2%;
-        background-image: url("../../images/message-icon.png");
-        width: 60px;
-        height: 60px;
-        background-size: 60px 60px;
-        transition: 0.5s;
-        cursor: pointer;
-    }
-    #alerts .alert-icon:hover {
-        transform: scale(1.2);
-    }
-    #alerts .alert-icon-hidden {
-        bottom: -20%;
-        transform: scale(0.5);
-    }
-    #alerts .alertbox-bg {
-        position: fixed;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-    }
-    #alerts .alertbox-bg-hidden {
-        width: 0;
-        height: 0;
-    }
-    #alerts .alertbox {
-        width: 400px;
-        position: fixed;
-        top:10%;
-        right: 1%;
-        background-color: #4a76a8 ;
-        border: #555555 solid 1px;
-        box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);
-        transition: 0.8s;
-        z-index: 9999;
-    }
-    #alerts .alertbox-hidden {
-        right: -100%;
-        transform: scale(0.2);
-    }
-    #alerts .alterbox-content {
-        background: white   ;
-        height: 470px;
-        overflow: auto;
-        overflow-y: scroll;
-    }
-    .migration-confirm {
-        text-align: right;
-        width: 177px;
     }
     .navbar-chngStore {
         border-radius: 0;
@@ -269,32 +150,4 @@
         position: absolute;
         right: 190px;
     }
-}
-
-.migration-msg {
-    padding-left: 20px;
-    //background-color: #424242;
-    padding-bottom: 10px;
-    position: relative;
-    color: #939393  ;
-    cursor: pointer;
-    box-shadow: 3px 1px 6px rgba(0, 0, 0, 0.47);
-    //border-bottom: 1px black solid;
-}
-
-.migration-msg:hover {
-    background-color: #edeef0  ;
-}
-
-.migration-msg p {
-    height: 7px;
-}
-
-.migration-msg h1 {
-    margin-top: 2px;
-    margin-bottom: -14px;
-}
-
-.migration-msg div {
-    margin-left: 20px;
 }

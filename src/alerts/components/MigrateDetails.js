@@ -8,7 +8,6 @@ class MigrateDetails extends Component {
         if (!this.props.selectedObject) {
             return (
                 <Modal header={'Логистика'}
-                    bgClassName={"modalHolder"}
                     windowClassName={"borders"}
                     childClassName={"modal"}
                     controlClassName={"saveButtonHolder"}
@@ -36,7 +35,6 @@ class MigrateDetails extends Component {
 
         return (
             <Modal header={'Логистика'}
-                   bgClassName={"modalHolder"}
                    windowClassName={"borders"}
                    childClassName={"modal"}
                    controlClassName={"saveButtonHolder"}

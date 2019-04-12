@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Modal from '../../core/components/Modal';
 import '../../core/styles/NavBar.css';
+import '../styles/alert-box.css';
 import NOTIFICATIONS from '../constants/notificationsTypes';
 
 

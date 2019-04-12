@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import '../styles/mult-count-field.css';
-import DropDown from "../../personal/components/DropDown";
+import DropDown from "./DropDown";
 import CountableField from "./CountableField";
 import SearchDropdown from "./SearchDropdown";
 

@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import Modal from "./Modal";
-import DropDown from "../../personal/components/DropDown";
+import DropDown from "./DropDown";
 import setStore from '../cookie/setStore';
+import '../styles/CashboxStorePrompt.css';
 
 class CashboxStorePrompt extends Component {
     state = {
@@ -20,8 +21,7 @@ class CashboxStorePrompt extends Component {
         stores.push("Нет");
 
         return (
-            <Modal bgClassName={"modalHolder"}
-                   windowClassName={"cb-StoreCheck"}
+            <Modal windowClassName={"cb-StoreCheck"}
                    header={'Выберите текущий магазин'}
                    childClassName={'cb-sc-child'}
                    controls={submitButton}
@@ -29,7 +29,7 @@ class CashboxStorePrompt extends Component {
                    withoutCross={true}
             >
                 <DropDown
-                    className={'dropdownPlaceholder cb-storeCheck'}
+                    className={'cb-storeCheck'}
                     options={stores}
                     holderStyle={{display: 'inline-block'}}
                     value={this.getStoreValue()}

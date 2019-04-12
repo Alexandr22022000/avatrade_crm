@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import MigrateDetails from "../containers/MigrateDetails";
 import RequestDetails from "../containers/RequestDetails";
 import AlertBox from "../containers/AlertBox";
-import '../../core/styles/NavBar.css';
+import '../styles/alert-box.css';
 import NOTIFICATIONS from '../constants/notificationsTypes';
 
 

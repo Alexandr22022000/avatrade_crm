@@ -1,0 +1,34 @@
+.modalHolder {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+#modalHeader {
+    text-align: center;
+}
+
+#headerName {
+    text-align: center;
+    display: inline-block;
+    vertical-align: top;
+    min-height: 30px;
+    max-height: 30px;
+    font-size: 20px;
+}
+
+#modalHeader img {
+    width: 30px;
+    height: 30px;
+}
+
+#modalHeader .left {
+    float: left;
+}
+
+#modalHeader .right {
+    float: right;
+}

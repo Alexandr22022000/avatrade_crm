@@ -1,0 +1,39 @@
+@media screen and (max-height: 768px) and (min-height: 400px) {
+    .cb-StoreCheck {
+        width: 300px;
+        height: 150px;
+        margin-left: 36%;
+        margin-top: 12%;
+        background-color: #fff ;
+        border-radius: 6px;
+    }
+    .cb-sc-child {
+        height: 60px;
+        padding-top: 25px;
+        padding-left: 35px;
+    }
+}
+
+@media screen and (min-height: 720px) {
+    .cb-StoreCheck {
+        width: 400px;
+        height: 200px;
+        margin-left: 36%;
+        margin-top: 15%;
+        background-color: #fff ;
+        border-radius: 6px;
+    }
+    .cb-sc-child {
+        height: 80px;
+        padding-top: 50px;
+        padding-left: 20px;
+    }
+}
+
+.cb-storeCheck {
+    height: 32px;
+    font-size: 16px;
+    padding: 5px 10px;
+    display: inline-block;
+    margin-left: 40px;
+}

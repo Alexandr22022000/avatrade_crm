@@ -7,7 +7,8 @@ class DropDown extends Component {
         if (this.props.onlyRead)
             return (
                 <div className={this.props.holderClassName} style={this.props.holderStyle}>
-                    <select disabled className={this.props.className} onChange={(e) => this.onChange(e.target.value)}>
+                    <select disabled className={'dropdownPlaceholder ' + this.props.className}
+                            onChange={(e) => this.onChange(e.target.value)}>
                         <option selected>{this.props.options[this.props.value]}</option>
                     </select>
                 </div>
@@ -31,8 +32,9 @@ class DropDown extends Component {
         }
 
         return(
-            <div className={this.props.holderClassName} style={this.props.holderStyle}>
-                <select className={this.props.className} onChange={(e) => this.onChange(e.target.value)}>
+            <div className={this.props.holderClassName}
+                 style={this.props.holderStyle}>
+                <select className={'dropdownPlaceholder ' + this.props.className} onChange={(e) => this.onChange(e.target.value)}>
                     {options}
                 </select>
             </div>

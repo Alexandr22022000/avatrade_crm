@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import DropDown from "./DropDown";
+import DropDown from "../../core/components/DropDown";
 import "../../core/styles/buttons.css";
 import "../styles/Stuff.css";
 

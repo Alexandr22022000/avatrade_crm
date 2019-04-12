@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "../../core/styles/buttons.css";
 import "../styles/Stuff.css";
 import StuffEditor from "../containers/StuffEditor";
-import DropDown from "./DropDown";
+import DropDown from "../../core/components/DropDown";
 
 class Stuff extends Component {
     render() {

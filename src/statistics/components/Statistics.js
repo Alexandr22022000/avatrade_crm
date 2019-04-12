@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import '../styles/statistics.css';
 import Table from 'rc-table';
 import 'rc-table/assets/index.css';
-import DropDown from "../../personal/components/DropDown";
+import DropDown from "../../core/components/DropDown";
 
 
 class Statistics extends Component {
