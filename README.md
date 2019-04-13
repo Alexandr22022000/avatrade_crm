@@ -545,7 +545,7 @@ migrate: [
 ]
 ```
 
-#### `GET: /api/v0.0/migrate` (in developing)
+#### `GET: /api/v0.0/migrate` 
 
 Request params:
 
@@ -591,7 +591,7 @@ Response body:
 
 ### Migrates request:
 
-#### `POST: /api/v0.0/add_migrate_request` (in developing)
+#### `POST: /api/v0.0/add_migrate_request` 
 
 Request params:
 
@@ -612,7 +612,7 @@ Response body:
 
 ```
 
-#### `GET: /api/v0.0/migrate_requests` (in developing)
+#### `GET: /api/v0.0/migrate_requests` 
 
 Request params:
 
@@ -642,7 +642,7 @@ migrate_requests: [
 ]
 ```
 
-#### `GET: /api/v0.0/migrate_request` (in developing)
+#### `GET: /api/v0.0/migrate_request` 
 
 Request params:
 
@@ -671,7 +671,7 @@ stocks: [
 
 ### Notifications
 
-#### `GET: /api/v0.0/notifications` (in developing)
+#### `GET: /api/v0.0/notifications` 
 
 Request params:
 
@@ -765,7 +765,7 @@ Response body:
 
 ### Services:
 
-#### `GET: /api/v0.0/services` (in developing)
+#### `GET: /api/v0.0/services` 
 
 Request params:
 
@@ -822,7 +822,7 @@ Response body:
 
 ```
 
-#### `POST: /api/v0.1/add_services` (in developing)
+#### `POST: /api/v0.1/add_services` 
 
 Request params:
 
@@ -870,7 +870,7 @@ Response body:
 
 ```
 
-#### `POST: /api/v0.1/services` (in developing)
+#### `POST: /api/v0.1/services` 
 
 Request params:
 
@@ -995,6 +995,42 @@ Response body:
 
 ```
 
+#### `GET: /api/v0.0/cashbox/sells` (in developing)
+
+Request params:
+
+```$xslt
+token: text,
+start: number,
+end: number,
+manager_id: number, (optional)
+store_id: number, (optional)
+search: text, (optional)
+```
+
+Response body:
+
+```$xslt
+sells: [
+    {
+        date: bigint,
+        store: text,
+        store_id: bigint,
+        manager: text,
+        manager_id: bigint,
+        price: number,
+        services: [
+            {
+                id: bigint,
+                name: text,
+                count: number,
+                re_sell: bool,
+            }
+        ]
+    }
+]
+```
+
 ### Statistic
 
 #### `GET: /api/v0.0/statistic`
@@ -1093,6 +1129,96 @@ Response body:
 
 ```
 
+### Planning
+
+#### `GET: /api/v0.0/planning/orders` (in developing)
+
+Request params:
+```$xslt
+token: text,
+start: number, (optional)
+end: number, (optional)
+manager_id: number, (optional)
+store_id: number, (optional)
+status: number, (optional)
+type: number, (optional)
+search: text, (optional)
+```
+
+Response body:
+```$xslt
+orders: [
+    {
+        date: bigint,
+        customer: text, 
+        contacts: text,
+        ready: bigint,
+        store: text,
+        store_id: bigint,
+        return_store: text,
+        return_store_id: bigint,
+        manager: text,
+        manager_id: bigint,
+        name: text,
+        description: text,
+        price: number,
+        paid: number,
+        note: text,
+        status: number,
+        type: number,
+    }
+]
+```
+
+#### `POST: /api/v0.0/planning/order` (in developing)
+
+Request params:
+```$xslt
+token: text,
+id: bigint,
+customer: text, 
+contacts: text,
+ready: bigint,
+store_id: bigint,
+return_store_id: bigint,
+manager_id: bigint,
+name: text,
+description: text,
+price: number,
+paid: number,
+note: text,
+status: number,
+type: number,
+```
+
+Response body:
+```$xslt
+
+```
+
+#### `POST: /api/v0.0/planning/add_order` (in developing)
+
+Request params:
+```$xslt
+token: text,
+customer: text, 
+contacts: text,
+ready: bigint,
+store_id: bigint,
+return_store_id: bigint,
+name: text,
+description: text,
+price: number,
+paid: number,
+note: text,
+type: number,
+```
+
+Response body:
+```$xslt
+
+```
+
 ## Constants
 
 ### Permissions list
@@ -1126,3 +1252,27 @@ Response body:
 
 - Active: 0
 - Deleted: 1
+
+### Orders statuses
+
+- Ready to work: 0
+- Working: 1
+- Ready on making: 2
+- Transporting: 3
+- Ready on store: 4
+- Done: 5
+- Cancel: 6
+- Disgusting: 7
+- On Yandex: 8
+- Calculating: 9
+- Calculating done: 10
+- Customer in notified: 11
+
+### Orders types
+
+- Yellow (Only making): 0
+- Dark blue (Only manager): 1
+- Orange (Calculating): 2
+- Blue (Reorder): 3
+- Purple (Part Reorder): 4
+- Pink (Design): 5
