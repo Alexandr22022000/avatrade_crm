@@ -50,7 +50,6 @@ class CashboxModal extends Component{
                    controls={controls}
                    onClose={()=>{}}
                    withoutCross={true}
-                   borders={true}
             >
                 {salls}
             </Modal>

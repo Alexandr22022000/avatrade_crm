@@ -13,7 +13,6 @@ class AlertBox extends Component {
                    childClassName={'alterbox-content'}
                    onClose={() => {this.props.onClose()}}
                    leftCross={true}
-                   borders={true}
                    header={'Уведомления'}
             >
                 {this.props.notifications.map((value, index) => {

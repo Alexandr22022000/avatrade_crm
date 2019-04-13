@@ -62,7 +62,7 @@ class StoresWrapper extends Component {
 					/>
 
 				</div>
-				<div className={"stuffHolder"}>
+				<div className={"stores-wrapper"}>
 					<div id={"stuffList-holder"}>
 						<div id={"stuffHolder"}>
 							<div style={{ minHeight: "4px" }} />

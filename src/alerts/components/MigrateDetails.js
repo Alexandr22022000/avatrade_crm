@@ -59,7 +59,7 @@ class MigrateDetails extends Component {
                     title={'Отправитель'}
                 />
 
-                <h3>Грузы:</h3>
+                <p className="header-m">Грузы:</p>
 
                 {inputs}
             </Modal>

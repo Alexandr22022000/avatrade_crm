@@ -40,8 +40,8 @@
         top:10%;
         right: 1%;
         background-color: #4a76a8 ;
-        border: #555555 solid 1px;
-        box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);
+
+        box-shadow: 0 0 6px rgba(0, 0, 0, 0.62);
         transition: 0.8s;
         z-index: 9999;
     }

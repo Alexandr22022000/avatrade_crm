@@ -6,8 +6,8 @@
 
 .wc-input {
     border: none;
-    background: #1f1f1f;
-    color: #d5d9de;
+    background: #fff;
+    color: #232323 ;
 }
 
 .wc-input:active, .wc-input:focus {
@@ -40,7 +40,7 @@
         padding-bottom: 6px;
     }
     .stats-controls .active {
-        border-bottom: #9c00b8 solid 4px;
+        border-bottom: #285473  solid 4px;
         padding-bottom: 2px;
     }
 }
@@ -70,7 +70,7 @@
         min-width: 100% !important;
     }
     .stats-controls .active {
-        border-bottom: #9c00b8 solid 2px;
+        border-bottom: #285473  solid 2px;
         padding-bottom: 2px;
     }
 
@@ -86,38 +86,37 @@
 }
 
 .pco, .rco, .acquiring, .account, .date {
-    border: black solid 2px!important;
+    border: #edeef0  solid 2px!important;
+    color: white!important;
 }
 .wc-day, .wc-index, .wc-name {
-    border: black solid 2px!important;
+    border: #edeef0  solid 2px!important;
 }
 .p-name, .p-paid, .p-remains {
-    border: black solid 2px!important;
+    border: #edeef0  solid 2px!important;
 }
 .r-index, .r-rank, .r-payment {
-    border: black solid 2px!important;
+    border: #edeef0  solid 2px!important;
 }
 
 .turnTitle-title {
-    border-left: black solid 2px;
-    border-right: black solid 2px;
-    border-top: black solid 2px;
-    border-bottom: black solid 3px;
+    border: 2px solid #edeef0 !important;
+    border-bottom-width: 3px !important;
 }
 .turnTitle-name {
     display: inline-block;
-    border-left: black solid 2px;
-    border-right: black solid 1px;
-    border-bottom: black solid 1px;
+    border-left:  #edeef0  solid 2px!important;
+    border-right:  #edeef0  solid 1px!important;
+    border-bottom:  #edeef0  solid 1px!important;
     margin: 0 auto;
     width: 115px;
     float: left;
 }
 .turnTitle-value {
     display: inline-block;
-    border-left: black solid 1px;
-    border-right: black solid 2px;
-    border-bottom: black solid 1px;
+    border-left:  #edeef0  solid 1px!important;
+    border-right:  #edeef0  solid 2px!important;
+    border-bottom:  #edeef0  solid 1px!important;
     margin: 0 auto;
     float: left;
     width: 125px;
@@ -151,21 +150,20 @@
 
 .table {
     display: inline-block !important;
-    background-color: #1f1f1f !important;
-    color: #D5D9DE !important;
+    background-color: #fff !important;
+    color: #232323  !important;
     margin-left: 40px !important;
-    border: #555555 solid 1px !important;
-    box-shadow: 0 0 6px rgba(148, 148, 148, 0.42) !important;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.83) !important;
 }
 
 .table table {
     border-collapse: collapse !important;
-    border: black solid 2px !important;
+    border:  #edeef0  solid 2px!important;
 }
 
 .pco, .rco, .account, .acquiring {
     text-align: center !important;
-    background-color: #424242 !important;
+    background-color: #4a76a8 !important;
     padding: 0!important;
     padding-left: 5px!important;
     padding-right: 5px!important;
@@ -174,7 +172,7 @@
 
 .date {
     text-align: right !important;
-    background-color: #424242 !important;
+    background-color: #4a76a8 !important;
     padding: 0!important;
     padding-left: 5px!important;
     padding-right: 5px!important;
@@ -187,14 +185,16 @@
 
 .turnover-row .pco, .turnover-row .rco,
 .turnover-row .acquiring, .turnover-row .account{
-    background-color: #1f1f1f !important;
+    background-color: #fff !important;
+    color: #232323!important;
     padding: 0!important;
 }
 
 .turnover-row .pco:hover, .turnover-row .rco:hover,
 .turnover-row .acquiring:hover, .turnover-row .account:hover {
-    background-color: #9c00b8 !important;
+    background-color: #edeef0  !important;
     cursor: pointer!important;
+    color: #232323!important;
 }
 
 .wc-table table {
@@ -210,8 +210,9 @@
     max-width: 12px!important;
     min-width: 12px!important;
     text-align: right!important;
-    background-color: #424242!important;
+    background-color: #4a76a8!important;
     padding: 0!important;
+    color: white!important;
     padding-left: 5px!important;
     padding-right: 5px!important;
 }
@@ -220,27 +221,30 @@
     min-width: 150px !important;
     max-width: 150px !important;
     text-align: center!important;
-    background-color: #424242!important;
+    background-color: #4a76a8!important;
     padding: 0!important;
+    color: white!important;
     padding-left: 5px!important;
     padding-right: 5px!important;
 }
 
 .wc-row .wc-name, .wc-row .wc-day {
-    background-color: #1f1f1f!important;
+    background-color: #fff!important;
+    color: #232323!important;
     overflow: hidden!important;
 }
 
 .wc-day {
     text-align: center!important;
-    background-color: #424242!important;
+    background-color: #4a76a8!important;
+    color: #fff!important;
     padding: 0!important;
     min-width: 32px!important;
     max-width: 32px!important;
 }
 
 .wc-row .wc-day:hover {
-    background-color: #9c00b8 !important;
+    background-color: #edeef0  !important;
     cursor: pointer!important;
 }
 
@@ -258,17 +262,20 @@
 
 .s-name, .s-workDays, .s-resells, .s-salary, .s-salaryPay, .s-sum{
     text-align: center!important;
-    background-color: #424242!important;
-    border: black solid 2px!important;
+    background-color: #4a76a8 !important;
+    border: #edeef0  solid 2px!important;
+    color: white;
 
 }
 
 .s-row .s-salary, .s-row .s-workDays, .s-row .s-resells, .s-row .s-salaryPay, .s-row .s-sum {
-    background-color: #1f1f1f!important;
+    background-color: #fff!important;
+    color: #232323!important;
 }
 
 .s-row .s-salary:hover, .s-row .s-salaryPay:hover, .s-row .s-workDays:hover, .s-row .s-resells:hover, .s-row .s-sum:hover{
-    background-color: #9c00b8!important;
+    background-color: #edeef0 !important;
+    color: #232323!important;
     cursor: pointer!important;
 }
 
@@ -329,15 +336,18 @@
 .p-name, .p-paid, .p-remains {
     padding: 0!important;
     text-align: center!important;
-    background-color: #424242!important;
+    color: white!important;
+    background-color: #4a76a8!important;
 }
 
 .p-row .p-paid, .p-row .p-remains {
-    background-color: #1f1f1f!important;
+    background-color: #fff!important;
+    color: #232323!important;
 }
 
 .p-row .p-paid:hover, .p-row .p-remains:hover {
-    background-color: #9c00b8!important;
+    background-color: #edeef0 !important;
+    color: #232323!important;
     cursor: pointer!important;
 }
 
@@ -355,37 +365,50 @@
 .stats-dp select {
     font-size: 15px;
     border-radius: 0!important;
-    background-color: #1f1f1f;
+
 }
+
+.dropdownPlaceholder {
+    background-color: #4a76a8 ;
+    color: white!important;
+}
+.dropdownPlaceholder option {
+    background-color: white;
+    color: #232323!important;
+}
+
 
 .stats-months {
     display: inline-block;
 }
 
 .stats-controls button {
-    background-color: #1f1f1f;
+    background-color: #4a76a8 ;
     color: #d5d9de;
     border: none;
     transition: 0.3s;
 }
 
 .stats-controls button:hover {
-    background-color: #555555;
+    background-color: #224b7a  ;
     cursor: pointer;
 }
 
 .r-index, .r-rank, .r-payment {
-    background-color: #424242!important;
+    background-color: #4a76a8!important;
     padding: 0!important;
+    color: white;
     text-align: center!important;
 }
 
 .r-row .r-rank, .r-row .r-payment {
-    background-color: #1f1f1f!important;
+    background-color: #fff!important;
+    color: #232323;
 }
 
 .r-row .r-rank:hover, .r-row .r-payment:hover {
-    background-color: #9c00b8!important;
+    background-color: #edeef0 !important;
+    color: #232323!important;
     cursor: pointer;
 }
 
