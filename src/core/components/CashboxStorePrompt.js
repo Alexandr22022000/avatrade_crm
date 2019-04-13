@@ -28,13 +28,15 @@ class CashboxStorePrompt extends Component {
                    onClose={()=>{}}
                    withoutCross={true}
             >
-                <DropDown
-                    className={'cb-storeCheck'}
-                    options={stores}
-                    holderStyle={{display: 'inline-block'}}
-                    value={this.getStoreValue()}
-                    onChange={(v) => {this.storeIndexChange(v)}}
-                />
+                <div className={'cb-storeCheck-wrap'}>
+                    <DropDown
+                        className={'cb-storeCheck'}
+                        options={stores}
+                        holderStyle={{display: 'inline-block'}}
+                        value={this.getStoreValue()}
+                        onChange={(v) => {this.storeIndexChange(v)}}
+                    />
+                </div>
             </Modal>
         );
     }

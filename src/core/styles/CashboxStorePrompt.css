@@ -10,7 +10,7 @@
     .cb-sc-child {
         height: 60px;
         padding-top: 25px;
-        padding-left: 35px;
+        padding-left: 0!important;
     }
 }
 
@@ -26,7 +26,7 @@
     .cb-sc-child {
         height: 80px;
         padding-top: 50px;
-        padding-left: 20px;
+        padding-left: 0!important;
     }
 }
 
@@ -35,5 +35,8 @@
     font-size: 16px;
     padding: 5px 10px;
     display: inline-block;
-    margin-left: 40px;
+}
+
+.cb-storeCheck-wrap {
+    text-align: center;
 }

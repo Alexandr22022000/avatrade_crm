@@ -57,7 +57,7 @@ class CashboxModal extends Component{
     }
 
     onSell(is_card) {
-        if (this.props.store === -1) return;
+        if (this.props.store <= 0) return;
 
         if(this.props.sellServices.length !== 0) {
             this.props.onSell(is_card, this.props.sellServices.filter(value => value.count > 0));
