@@ -25,7 +25,7 @@ class TextArea extends Component{
                     onBlurCapture={() => this.setActive(false)}
                     autoFocus={!this.props.alwaysActive}
                     rows={this.props.rows || 3}
-                    maxLength={this.props.maxlength}
+                    maxlength={this.props.maxlength}
                 >
 
                 </textarea>
