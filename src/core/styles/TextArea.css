@@ -1,0 +1,32 @@
+.text-area {
+}
+
+.text-area textarea {
+    resize: vertical;
+    min-width: 97%;
+    min-height: 130px;
+    max-width: 97%;
+    background: #edeef0;
+    font-size: 30px;
+    color: #232323;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.06);
+    outline: none;
+}
+
+.text-area div {
+    font-size: 18px;
+}
+
+.text-area div div {
+    font-size: 30px;
+    word-wrap: break-word;
+}
+
+
+
+.ta-body {
+    margin-bottom: 25px;
+}
+
