@@ -4,7 +4,8 @@
 }
 
 .sv-modal {
-    background-color: #1f1f1f;
+    background-color: #fff;
+    color: #232323;
 }
 
 .sv-child {
@@ -79,18 +80,18 @@
     }
     .sv-tb-name {
         width: 339px;
-        border-right: black solid 3px;
-        border-bottom: black solid 3px;
-        border-top: black solid 3px;
+        border-right: #edeef0 solid 3px;
+        border-bottom: #edeef0 solid 3px;
+        border-top: #edeef0 solid 3px;
     }
     .sv-tb-price {
         width: 217px;
-        border: black solid 3px;
+        border: #edeef0 solid 3px;
     }
     .sv-tb-st {
-        border-left: black solid 3px;
-        border-bottom: black solid 3px;
-        border-top: black solid 3px;
+        border-left: #edeef0 solid 3px;
+        border-bottom: #edeef0 solid 3px;
+        border-top: #edeef0 solid 3px;
     }
 }
 
@@ -161,26 +162,26 @@
     }
     .sv-tb-name {
         width: 200px;
-        border-right: black solid 2px;
-        border-bottom: black solid 2px;
-        border-top: black solid 2px;
+        border-right: #edeef0 solid 2px;
+        border-bottom: #edeef0 solid 2px;
+        border-top: #edeef0 solid 2px;
     }
     .sv-tb-price {
         width: 160px;
-        border: black solid 2px;
+        border: #edeef0 solid 2px;
     }
     .sv-tb-st {
-        border-left: black solid 2px;
-        border-bottom: black solid 2px;
-        border-top: black solid 2px;
+        border-left: #edeef0 solid 2px;
+        border-bottom: #edeef0 solid 2px;
+        border-top: #edeef0 solid 2px;
     }
 }
 
 .servicesTable {
+    color: #232323;
     margin-top: 2%;
-    background-color: #1f1f1f;
-    border: #555555 solid 1px;
-    box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);
+    background-color: #fff;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.42);
 }
 
 .serv-search {
@@ -190,8 +191,8 @@
 .serv-search input {
     display: inline-block;
     vertical-align: top;
-    background-color: #1f1f1f;
-    color: #D5D9DE;
+    background-color: white;
+    color: #232323 ;
     border: none;
     outline: none;
 }
@@ -199,7 +200,7 @@
 .sv-search-icon {
     display: inline-block;
     vertical-align: top;
-    background-color: #1f1f1f;
+    background-color: #ffffff;
     border: none;
     cursor: pointer;
 }
@@ -211,22 +212,23 @@
 }
 
 .st-left {
-    border-right: black solid 1px;
+    border-right: #edeef0 solid 1px;
 }
 
 .st-right {
-    border-left: black solid 1px;
+    border-left: #edeef0 solid 1px;
 }
 
 .st-middle {
-    border-left: black solid 1px;
-    border-right: black solid 1px;
+    border-left: #edeef0 solid 1px;
+    border-right: #edeef0 solid 1px;
 }
 
 .st-header-cell {
-    background-color: #424242;
-    border-bottom: black solid 2px;
+    background-color: #4a76a8 ;
+    border-bottom: #edeef0 solid 2px;
     padding-top: 6px;
+    color: white;
     padding-bottom: 6px;
 }
 
@@ -236,5 +238,5 @@
 }
 
 .sv-tb-line:hover {
-    background: #555555;
+    background: #edeef0;
 }

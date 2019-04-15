@@ -70,6 +70,7 @@ module.exports = (stores, data, daysCount) => {
         name: "Все подразделения",
     };
 
+    stores.splice(0, 1);
     stores = [allStores, ...stores];
 
     return stores;

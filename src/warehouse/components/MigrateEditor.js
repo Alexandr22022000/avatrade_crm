@@ -64,7 +64,7 @@ class WarehouseModal extends Component {
                     options={this.props.stores.map(v => v.name)}
                 />
 
-                <h3>Грузы:</h3>
+                <p className="header-m">Грузы:</p>
 
                 {inputs}
             </Modal>

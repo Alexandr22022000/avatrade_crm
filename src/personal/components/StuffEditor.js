@@ -6,6 +6,7 @@ import StuffInput from "./StuffInput";
 import MultiInput from "./MultiInput";
 import validator from 'validator';
 import Modal from "../../core/components/Modal";
+import TextArea from "../../core/components/TextArea";
 
 class StuffEditor extends Component {
   render() {
@@ -59,6 +60,15 @@ class StuffEditor extends Component {
             onChange={v => this.updateUserData(v, "address")}
             alwaysActive={isNew}
             onlyRead={onlyRead}
+          />
+
+
+          <TextArea
+              title="Контакты:"
+              value={this.props.currentUser.contacts}
+              onChange={v => this.updateUserData(v, "contacts")}
+              alwaysActive={isNew}
+              onlyRead={onlyRead}
           />
 
           <StuffInput

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import '../styles/stores.css'
 import StoreEditor from "../containers/StoreEditor";
-import DropDown from "../../personal/components/DropDown";
+import DropDown from "../../core/components/DropDown";
 
 class StoresWrapper extends Component {
 	state = {
@@ -62,7 +62,7 @@ class StoresWrapper extends Component {
 					/>
 
 				</div>
-				<div className={"stuffHolder"}>
+				<div className={"stores-wrapper"}>
 					<div id={"stuffList-holder"}>
 						<div id={"stuffHolder"}>
 							<div style={{ minHeight: "4px" }} />

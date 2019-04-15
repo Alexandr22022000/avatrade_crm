@@ -5,7 +5,7 @@ import WarehouseInput from "./WarehouseInput";
 import WarehouseModal from "../containers/WarehouseModal";
 import MigrateEditor from "../containers/MigrateEditor";
 import CargoEditor from "../containers/CargoEditor";
-import DropDown from "../../personal/components/DropDown";
+import DropDown from "../../core/components/DropDown";
 
 class Warehouse extends Component {
     state = {
@@ -78,7 +78,7 @@ class Warehouse extends Component {
                     <DropDown options={['Активные','Удаленные']}
                               value={this.getCargoStatValue()}
                               onChange={v => this.onIsDelChange(v)}
-                              className={'dropdownPlaceholder wc-del-dp'}
+                              className={'wc-del-dp'}
                               holderClassName={'wc-del-dp-bg'}
                     />
                     <button className={'btn-m blue-button inline'}

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import WarehouseInput from "../../warehouse/components/WarehouseInput";
 import '../styles/Service.css';
 import ServicesModal from "../containers/ServicesModal";
-import DropDown from "../../personal/components/DropDown";
+import DropDown from "../../core/components/DropDown";
 
 class Services extends Component{
     state = {

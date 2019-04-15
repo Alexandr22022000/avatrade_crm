@@ -18,7 +18,7 @@ class Cashbox extends Component {
             <div className={'Cashbox'}>
                 <div className={'cashbox-info cb-width cb-height inline'}>
                     <div className={'cashbox-services inline'}>
-                        <div style={{textAlign: 'center', borderBottom: 'black solid 2px', padding: '5px'}}>
+                        <div style={{textAlign: 'center', borderBottom: '#B1B2B4  solid 2px', padding: '5px'}}>
                             Услуги
                         </div>
                         <WarehouseInput className={'cashbox-search'}
@@ -35,7 +35,7 @@ class Cashbox extends Component {
                         {this.getList(true)}
                     </div>
                     <div className={'cashbox-stocks inline'}>
-                        <div style={{textAlign: 'center', borderBottom: 'black solid 2px', padding: '5px'}}>
+                        <div style={{textAlign: 'center', borderBottom: '#B1B2B4  solid 2px', padding: '5px'}}>
                             Товары
                         </div>
                         <WarehouseInput className={'cashbox-search'}

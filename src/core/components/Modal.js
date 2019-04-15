@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import cross from "../../images/cross-icon.png";
+import '../styles/Modal.css';
 
 class Modal extends Component {
 
@@ -10,7 +11,7 @@ class Modal extends Component {
             cross: crossBorders,
         };
         return(
-            <div className={this.props.bgClassName} onClick={() => this.props.onClose()}>
+            <div className={this.props.bgClassName? this.props.bgClassName : 'modalHolder'} onClick={() => this.props.onClose()}>
                 <div className={this.props.windowClassName} onClick={e => e.stopPropagation()}>
                     <div id={'modalHeader'} style={{borderBottom:borderParams}}>
                         <div id={'headerName'}>{this.props.header? this.props.header: ''}</div>

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Modal from '../../core/components/Modal';
 import '../../core/styles/NavBar.css';
+import '../styles/alert-box.css';
 import NOTIFICATIONS from '../constants/notificationsTypes';
 
 
@@ -12,7 +13,6 @@ class AlertBox extends Component {
                    childClassName={'alterbox-content'}
                    onClose={() => {this.props.onClose()}}
                    leftCross={true}
-                   borders={true}
                    header={'Уведомления'}
             >
                 {this.props.notifications.map((value, index) => {

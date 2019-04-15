@@ -12,10 +12,12 @@
     -webkit-box-shadow: 0 0 9px 0 rgba(90,90,90,1) ;
     box-shadow: 0 0 9px 0 rgba(90,90,90,1) ;
     border: none;
+    background: #939699;
+    color: #fff;
 }
 
 .link-decor {
-    color: #EC6B44;
+    color: #2a5885 ;
     text-decoration: none;
 }
 
@@ -41,21 +43,41 @@ button::-moz-focus-inner {
 }
 
 .blue-button {
-    color: #D5D9DE;
-    background-color: #41A7BB;
+    color: #fff;
+    background-color: #5b88bd ;
     text-shadow: -1px 1px #376C80;
     border: none;
     transition: 0.3s;
+
 }
 
 .blue-button:hover,
 .blue-button .hover {
-    background-color: #1E4964;
-    text-shadow: -1px 1px #44006d;
+    background-color: #5b88bd;
+    text-shadow: -1px 1px #5982b5;
+
 }
 
 .blue-button:active,
 .blue-button .active {
-    background-color: #05012E;
-    text-shadow: -1px 1px #160047;
+    background-color: #5181b8 ;
+    text-shadow: -1px 1px #4e78ad;
+
+}
+
+
+
+.action-button {
+    background-color: #5fb053;
+    border-color: #6ec256;
+    box-shadow: 0 0 9px 0 #499149;
+    transition: 0.2s;
+}
+
+.action-button:hover {
+    background-color: #6ec256;
+}
+
+.action-button:checked {
+    background-color: #499149;
 }

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import '../styles/dropdown.css'
-import DropDown from './DropDown';
+import '../../core/styles/dropdown.css'
+import DropDown from '../../core/components/DropDown';
 import MultiInputItem from './MultiInputItem';
 import {PERMISSIONS_TEXT, PERMISSIONS} from '../../core/constants';
 

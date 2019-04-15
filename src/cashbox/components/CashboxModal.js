@@ -4,7 +4,8 @@ import CashboxCountable from "./CashboxCountable";
 
 class CashboxModal extends Component{
     render() {
-        const canSell = this.props.store !== -1 && this.props.sellServices.length !== 0;
+        let canSell = this.props.store !== -1 && this.props.sellServices.length !== 0;
+        if (+this.props.store === 0) canSell = false;
 
         const controls = (
             <div>
@@ -49,7 +50,6 @@ class CashboxModal extends Component{
                    controls={controls}
                    onClose={()=>{}}
                    withoutCross={true}
-                   borders={true}
             >
                 {salls}
             </Modal>
@@ -57,7 +57,7 @@ class CashboxModal extends Component{
     }
 
     onSell(is_card) {
-        if (this.props.store === -1) return;
+        if (this.props.store <= 0) return;
 
         if(this.props.sellServices.length !== 0) {
             this.props.onSell(is_card, this.props.sellServices.filter(value => value.count > 0));

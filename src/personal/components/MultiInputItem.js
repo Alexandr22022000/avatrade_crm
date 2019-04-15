@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import '../styles/dropdown.css'
+import '../../core/styles/dropdown.css'
 import cross from "../../images/cross-icon.png";
 
 

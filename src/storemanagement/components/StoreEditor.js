@@ -61,7 +61,6 @@ class StoreEditor extends Component {
 	onClose (isSave) {
 		if(isSave){
 			if (this.canSave()) {
-				console.log({props:{...this.props.currentStore},state:{...this.state}});
 				if (this.props.currentStore === null) {
 					this.props.onAddNewStore({name: this.state.name, address: this.state.address})
 				}

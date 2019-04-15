@@ -6,7 +6,7 @@ const {query} = require('neuronex-pg'),
     QUERY_CARGOS = require('../../pSQL/cargos');
 
 module.exports = (app) => {
-    app.post('/api/v0.0/services', (req, res) => {
+    app.post('/api/v0.1/services', (req, res) => {
         let id = req.body.id,
             name = req.body.name,
             price = req.body.price,
