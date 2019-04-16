@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import '../styles/statistics.css';
 import Table from 'rc-table';
 import 'rc-table/assets/index.css';
-import DropDown from "../../core/components/DropDown";
+import DateFilter from "../../core/components/DateFilter";
 
 
 class Statistics extends Component {
@@ -20,37 +20,17 @@ class Statistics extends Component {
     };
 
     render() {
-        let years = [];
-        for(let i = 15; i >= 0; --i) {
-            years.push((new Date()).getFullYear() - i);
-        }
-
-        const months = [
-            "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь",
-            "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"
-        ];
         let widths = this.props.turnover.length * (440 + 40) + (1255 + 40) + (1074 + 40) + (330 + 40) + (260 + 40);
         return (
             <div className={'statistics-holder'}>
-                <div className={'stats-controls'}>
-                    <DropDown
-                        className={'dropdownPlaceholder'}
-                        holderClassName={'stats-dp'}
-                        options={years}
-                        value={this.getYearIndex(years)}
-                        onChange={(v) => this.onChangeYear(years[v])}
-                    />
-                    <div className={'stats-months'}>
-                        {months.map((value, index) => (
-                            <button key={index}
-                                    className={`${index === this.props.date.month? 'active' : ''}`}
-                                    onClick={() => this.onChangeMonth(index)}
-                            >
-                                {value}
-                            </button>
-                        ))}
-                    </div>
-                </div>
+                <DateFilter year={this.props.date.year}
+                            onChangeYear={(v) => this.onChangeYear(v)}
+                            month={this.props.date.month}
+                            onChangeMonth={(v) => this.onChangeMonth(v)}
+                            days
+                            day={this.props.date.day}
+                            onChangeDay={(v) => console.log(v)}
+                />
                 <div className={'tmp-wrapper'}>
                     <div className={'statistics'} style={{minWidth:widths}}>
                         <div className={'table-holder to-table-holder'}>
@@ -328,7 +308,6 @@ class Statistics extends Component {
             },
         ];
         let data = [];
-        console.log(this.props.payment[0]);
         for(let i in this.props.payment) {
             data.push({
                 name: this.props.payment[i].manager,
@@ -615,15 +594,8 @@ class Statistics extends Component {
         this.props.onLoadRanks();
     }
 
-    getYearIndex(years) {
-        for(let i in years) {
-            if(this.props.date.year === +years[+i]) {
-                return +i;
-            }
-        }
-    }
-
     onChangeYear(v) {
+        console.log(v);
         this.props.onSetDate({month: this.props.date.month, year: +v});
         this.props.onLoadStatistics();
     }

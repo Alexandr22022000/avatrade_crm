@@ -31,10 +31,10 @@
 }
 
 @media screen and (min-height: 720px) {
-    #children {
+    /*#children {
         min-height: 877px;
         max-height: 877px;
-    }
+    }*/
     .MainPageHolder-t .navbar-btn,
     .MainPageHolder-d .navbar-btn {
         border-radius: 0;
@@ -95,10 +95,10 @@
 }
 
 @media screen and (max-height: 768px) and (min-height: 400px) {
-    #children {
+    /*#children {
         min-height: 580px;
         max-height: 580px;
-    }
+    }*/
     .MainPageHolder-t .navbar-btn,
     .MainPageHolder-d .navbar-btn {
         border-radius: 0;
@@ -150,4 +150,9 @@
         position: absolute;
         right: 190px;
     }
+}
+
+#children {
+    min-height: 89vh;
+    max-height: 89vh;
 }

@@ -43,7 +43,7 @@ class DropDown extends Component {
 
     onChange (value) {
         for (let key in this.props.options) {
-            if (this.props.options[key] === value) {
+            if (this.props.options[+key] === value) {
                 this.props.onChange(+key);
                 break;
             }

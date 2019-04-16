@@ -1,0 +1,71 @@
+@media screen and (max-height: 768px) and (min-height: 400px) {
+    .df {
+        bottom: 0;
+    }
+    .df button {
+        padding-top: 4px;
+        padding-bottom: 4px;
+    }
+    .df .active {
+        border-bottom: #285473  solid 2px;
+        padding-bottom: 2px;
+    }
+    .df-dp select {
+        padding-top: 1px;
+        padding-bottom: 3px;
+    }
+}
+
+@media screen and (min-height: 720px) {
+    .df {
+        bottom: 0;
+    }
+    .df button {
+        vertical-align: top;
+        font-size: 20px;
+        padding-top: 7px;
+        padding-bottom: 6px;
+    }
+    .df .active {
+        border-bottom: #285473  solid 4px;
+        padding-bottom: 2px;
+    }
+    .df-dp select {
+        padding-top: 6px;
+        padding-bottom: 6px;
+        vertical-align: bottom;
+        font-size: 20px!important;
+    }
+}
+
+.df {
+    position: absolute;
+    width: 100%;
+    z-index: 1000;
+}
+
+.df button {
+    background-color: #4a76a8 ;
+    color: #d5d9de;
+    border: none;
+    transition: 0.3s;
+}
+
+.df button:hover {
+    background-color: #224b7a  ;
+    cursor: pointer;
+}
+
+.df-dp {
+    display: inline-block!important;
+    vertical-align: top;
+}
+
+.df-dp select {
+    font-size: 15px;
+    border-radius: 0!important;
+}
+
+.df-months {
+    display: inline-block;
+}

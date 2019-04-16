@@ -1,226 +1,226 @@
 @media screen and (max-height: 768px) and (min-height: 400px) {
-  .stuffHolder {
-    margin-left: 2%;
-    margin-top: 2%;
-    width: 400px;
-    text-align: center;
-    background-color: #fff;
-      color: #232323;
-      box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);
-  }
-  .stuffHolder #stuffHolder {
-    width: inherit;
-    height: 400px;
-    overflow: auto;
-    overflow-y: scroll;
-    border-radius: 10px;
-  }
-  .borders {
-    width: 450px;
-    height: 430px;
-    margin-left: 34%;
-    margin-top: 7%;
-    background-color: #fff;
-    border-radius: 6px;
-  }
-  .modal {
-    height: 340px;
-    overflow: auto;
-    overflow-y: scroll;
-    text-align: left;
-    padding-left: 2%;
-    padding-bottom: 10px;
-    color: #232323;
-  }
+    .stuffHolder {
+        margin-left: 2%;
+        margin-top: 2%;
+        width: 400px;
+        text-align: center;
+        background-color: #fff;
+        color: #232323;
+        box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);
+    }
+    .stuffHolder #stuffHolder {
+        width: inherit;
+        height: 400px;
+        overflow: auto;
+        overflow-y: scroll;
+        border-radius: 10px;
+    }
+    .borders {
+        width: 450px;
+        height: 430px;
+        margin-left: 34%;
+        margin-top: 7%;
+        background-color: #fff;
+        border-radius: 6px;
+    }
+    .modal {
+        height: 340px;
+        overflow: auto;
+        overflow-y: scroll;
+        text-align: left;
+        padding-left: 2%;
+        padding-bottom: 10px;
+        color: #232323;
+    }
 
 }
 
 @media screen and (min-height: 720px) {
-  .stuffHolder {
-    margin-left: 2%;
-    margin-top: 2%;
-    width: 450px;
-    text-align: center;
-      color: #232323;
-      background-color: #fff;
-    box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);
-  }
-  .stuffHolder #stuffHolder {
-    width: inherit;
-    height: 600px;
-    overflow: auto;
-    overflow-y: scroll;
-    border-radius: 10px;
-  }
-  .borders {
-    width: 450px;
-    height: 700px;
-    margin-left: 36%;
-    margin-top: 6%;
-    background-color: #fff;
-    border-radius: 6px;
-  }
-  .modal {
-    height: 610px;
-    overflow: auto;
-    overflow-y: scroll;
-    text-align: left;
-    padding-left: 2%;
-    padding-bottom: 10px;
-    color: #232323;
-  }
+    .stuffHolder {
+        margin-left: 2%;
+        margin-top: 2%;
+        width: 450px;
+        text-align: center;
+        color: #232323;
+        background-color: #fff;
+        box-shadow: 0 0 6px rgba(148, 148, 148, 0.42);
+    }
+    .stuffHolder #stuffHolder {
+        width: inherit;
+        height: 600px;
+        overflow: auto;
+        overflow-y: scroll;
+        border-radius: 10px;
+    }
+    .borders {
+        width: 450px;
+        height: 700px;
+        margin-left: 36%;
+        margin-top: 6%;
+        background-color: #fff;
+        border-radius: 6px;
+    }
+    .modal {
+        height: 610px;
+        overflow: auto;
+        overflow-y: scroll;
+        text-align: left;
+        padding-left: 2%;
+        padding-bottom: 10px;
+        color: #232323;
+    }
 }
 
 .sackButton {
-  margin-right: 250px;
+    margin-right: 250px;
 }
 
 
 #controlButtons {
-  margin-top: 2%;
-  margin-left: 2%;
+    margin-top: 2%;
+    margin-left: 2%;
 }
 
 #controlButtons .dropDown {
-  background-color: #424242;
-  color: #ffffff;
-  border-radius: 4px;
-  width: 60%;
-  cursor: pointer;
-  font-size: 16px;
-  padding: 6px 10px;
-  border: none;
+    background-color: #424242;
+    color: #ffffff;
+    border-radius: 4px;
+    width: 60%;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 6px 10px;
+    border: none;
 }
 
 ::-webkit-scrollbar {
-  z-index: 1000;
-  width: 6px;
-  background-color: rgba(0, 0, 0, 0);
+    z-index: 1000;
+    width: 6px;
+    background-color: rgba(0, 0, 0, 0);
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #bdbdbd;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.09);
-  border-radius: 4px;
+    background-color: #bdbdbd;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.09);
+    border-radius: 4px;
 }
 ::-webkit-scrollbar-corner {
-  border-radius: 10px;
+    border-radius: 10px;
 }
 
 
 
 .modal h2 {
-  margin-top: 10px;
-  margin-bottom: 3px;
-  font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 3px;
+    font-size: 20px;
 }
 
 .body-m div {
-  font-size: 30px;
+    font-size: 30px;
 }
 
 .body-m input {
-  font-size: 24px;
-  padding: 0;
-  background-color: #fff ;
-  color: #232323 ;
-  border: none;
-  outline: 0;
-  outline-offset: 0;
-  border-bottom: #285473 solid 2px;
+    font-size: 24px;
+    padding: 0;
+    background-color: #fff ;
+    color: #232323 ;
+    border: none;
+    outline: 0;
+    outline-offset: 0;
+    border-bottom: #285473 solid 2px;
 }
 .body-m input:focus,
 .body-m input:hover,
 .body-m input:active {
-  border: none;
-  border-bottom: #285473 solid 2px;
-  outline: 0;
-  outline-offset: 0;
+    border: none;
+    border-bottom: #285473 solid 2px;
+    outline: 0;
+    outline-offset: 0;
 }
 
 .header-m {
-  font-size: 18px;
+    font-size: 18px;
 }
 
 .body-m {
-  margin-bottom: 25px;
+    margin-bottom: 25px;
 }
 
 .iconHolder {
-  background-image: url("../../images/user-icon.png");
-  width: 60px;
-  height: 60px;
-  border-radius: 60px;
-  border: #55677d  solid 2px;
-  margin-right: 10px;
+    background-image: url("../../images/user-icon.png");
+    width: 60px;
+    height: 60px;
+    border-radius: 60px;
+    border: #55677d  solid 2px;
+    margin-right: 10px;
 }
 
 .write-icon {
-  width: 30px;
-  height: 30px;
-  background: url("../../images/write-icon.png") no-repeat;
-  background-size: 30px 30px;
-  margin-left: 20px;
-  cursor: pointer;
-  display: inline-block;
+    width: 30px;
+    height: 30px;
+    background: url("../../images/write-icon.png") no-repeat;
+    background-size: 30px 30px;
+    margin-left: 20px;
+    cursor: pointer;
+    display: inline-block;
 }
 
 .inline {
-  display: inline-block;
+    display: inline-block;
 }
 
 .fixed {
-  width: 85%;
+    width: 85%;
 }
 
 .docHolder {
-  background-color: #edeef0 ;
-  padding-left: 5px;
-  width: 95%;
-  border-radius: 6px;
-  padding-bottom: 6px;
+    background-color: #edeef0 ;
+    padding-left: 5px;
+    width: 95%;
+    border-radius: 6px;
+    padding-bottom: 6px;
 }
 
 .link {
-  color: #285473 ;
-  text-decoration: none;
+    color: #285473 ;
+    text-decoration: none;
 }
 
 .docHolder a:hover,
 .docHolder a.hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
 .docHolder a:active,
 .docHolder a.active {
-  color: #4a76a8 ;
+    color: #4a76a8 ;
 }
 
 .docHolder div {
-  font-size: 30px;
+    font-size: 30px;
 }
 
 .addDocButton {
-  background-color: #5181b8;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.34);
-  border: none;
-  box-shadow: none;
-  color: #fff;
-  border-radius: 6px;
-  font-size: 18px;
-  cursor: pointer;
-  position: relative;
-  top: -25px;
+    background-color: #5181b8;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.34);
+    border: none;
+    box-shadow: none;
+    color: #fff;
+    border-radius: 6px;
+    font-size: 18px;
+    cursor: pointer;
+    position: relative;
+    top: -25px;
 }
 
 .addDocButton:active,
 .addDocButton:checked,
 .addDocButton:focus {
-  border: none;
+    border: none;
 }
 
 .saveButtonHolder {
-  text-align: right;
-  padding-right: 4px;
-  padding-top: 4px;
+    text-align: right;
+    padding-right: 4px;
+    padding-top: 4px;
 }

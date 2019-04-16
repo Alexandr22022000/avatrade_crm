@@ -15,33 +15,14 @@
 }
 
 @media screen and (min-height: 720px) {
-    .stats-controls {
-        bottom: 0;
-    }
     .statistics {
         overflow-x: scroll;
     }
     .tmp-wrapper {
         width: 100%;
         overflow-x: scroll;
-        height: 864px;
+        height: 89vh;
         overflow-y: scroll;
-    }
-    .stats-dp select {
-        padding-top: 6px;
-        padding-bottom: 6px;
-        vertical-align: bottom;
-        font-size: 20px!important;
-    }
-    .stats-controls button {
-        vertical-align: top;
-        font-size: 20px;
-        padding-top: 6px;
-        padding-bottom: 6px;
-    }
-    .stats-controls .active {
-        border-bottom: #285473  solid 4px;
-        padding-bottom: 2px;
     }
 }
 
@@ -52,28 +33,12 @@
     .tmp-wrapper {
         width: 100%;
         overflow-x: scroll;
-        height: 558px;
+        height: 89vh;
         overflow-y: scroll;
-    }
-    .stats-controls {
-        bottom: 0;
-    }
-    .stats-controls button {
-        padding-top: 4px;
-        padding-bottom: 4px;
-    }
-    .stats-dp select {
-        padding-top: 1px;
-        padding-bottom: 3px;
     }
     .p-input {
         min-width: 100% !important;
     }
-    .stats-controls .active {
-        border-bottom: #285473  solid 2px;
-        padding-bottom: 2px;
-    }
-
 }
 
 .wc-input {
@@ -351,23 +316,6 @@
     cursor: pointer!important;
 }
 
-.stats-controls {
-    position: absolute;
-    width: 100%;
-    z-index: 1000;
-}
-
-.stats-dp {
-    display: inline-block!important;
-    vertical-align: top;
-}
-
-.stats-dp select {
-    font-size: 15px;
-    border-radius: 0!important;
-
-}
-
 .dropdownPlaceholder {
     background-color: #4a76a8 ;
     color: white!important;
@@ -375,23 +323,6 @@
 .dropdownPlaceholder option {
     background-color: white;
     color: #232323!important;
-}
-
-
-.stats-months {
-    display: inline-block;
-}
-
-.stats-controls button {
-    background-color: #4a76a8 ;
-    color: #d5d9de;
-    border: none;
-    transition: 0.3s;
-}
-
-.stats-controls button:hover {
-    background-color: #224b7a  ;
-    cursor: pointer;
 }
 
 .r-index, .r-rank, .r-payment {

@@ -98,7 +98,7 @@
 @media screen and (max-height: 768px) and (min-height: 400px) {
     .st-sizes {
         width: 600px;
-        height: 480px;
+        height: 74vh;
     }
     .sv-search-sz input {
         height: 30px;
