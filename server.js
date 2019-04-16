@@ -15,6 +15,7 @@ const express = require('express'),
     servicesApi = require('./server/services/api'),
     statisticApi = require('./server/statistic/api'),
     checkUser = require('./server/core/users/login'),
+    planningApi = require('./server/planning/api'),
     CONFIG = require('./server/core/config'),
 
     app = express();
@@ -41,6 +42,7 @@ notificationsApi(app);
 cashboxApi(app);
 servicesApi(app);
 statisticApi(app);
+planningApi(app);
 
 app.use(express.static('build'));
 
