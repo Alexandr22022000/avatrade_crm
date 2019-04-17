@@ -4,12 +4,12 @@ const {checkUser} = require('neuronex-login-backend'),
 
 module.exports = (app) => {
     app.post('/api/v0.0/planning/order', (req, res) => {
-        const user = checkUser(req.query.token);
+        const user = checkUser(req.body.token);
 
-        if (!user) return res.status(401).end();
+        //if (!user) return res.status(401).end();
 
         let id = req.body.id,
-            cutomer = req.body.customer,
+            customer = req.body.customer,
             contacts = req.body.contacts,
             ready = req.body.ready,
             store_id = req.body.store_id,
@@ -22,5 +22,10 @@ module.exports = (app) => {
             note = req.body.note,
             status = req.body.status,
             type = req.body.type;
+
+        query(QUERY.SET_ORDER, [id, manager_id, store_id, return_store_id, status, type, name, description, note, customer, contacts, ready, price, paid])
+            .then(() => {
+                res.status(200).end();
+            })
     });
 };

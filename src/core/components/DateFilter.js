@@ -8,20 +8,17 @@ class DateFilter extends Component {
         for(let i = 15; i >= 0; --i) {
             years.push((new Date()).getFullYear() - i + '');
         }
-
         const months = [
             "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь",
             "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"
         ];
-        const days = [
-            31, this.props.year % 4 ===0? 29 : 28, 31, 30, 31, 30,
-            31, 31, 30, 31, 30, 31
-        ];
+
         let currentDays = [];
-        for(let i = 0; i < days[this.props.month]; ++i) {
-            currentDays.push((i+1) + '');
+        if(this.props.days) {
+            for(let i = 0; i < this.getDaysAmount(this.props.month); ++i) {
+                currentDays.push((i+1) + '');
+            }
         }
-        console.log(this.props.day);
         return (
             <div className={'df'}>
                 <DropDown
@@ -58,6 +55,18 @@ class DateFilter extends Component {
             if(this.props.year === +years[+i]) {
                 return +i;
             }
+        }
+    }
+
+    getDaysAmount(month) {
+        if(this.props.daysCallback) {
+            return this.props.daysCallback(month);
+        } else {
+            let days = [
+                31, this.props.year % 4 ===0? 29 : 28, 31, 30, 31, 30,
+                31, 31, 30, 31, 30, 31
+            ];
+            return days[month];
         }
     }
 }
