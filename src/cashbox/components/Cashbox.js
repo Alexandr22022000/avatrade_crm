@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import '../styles/Cashbox.css';
 import '../../core/styles/buttons.css';
-import WarehouseInput from "../../warehouse/components/WarehouseInput";
+import SearchInput from "../../core/components/SearchInput";
 import CashboxModal from "../containers/CashboxModal";
 import cross from "../../images/cross-icon.png";
 import CollectionModal from "../containers/CollectionModal";
@@ -21,13 +21,13 @@ class Cashbox extends Component {
                         <div style={{textAlign: 'center', borderBottom: '#B1B2B4  solid 2px', padding: '5px'}}>
                             Услуги
                         </div>
-                        <WarehouseInput className={'cashbox-search'}
-                                        placeholder={'поиск'}
-                                        iconClassName={'warehouse-control-input-icon'}
-                                        inputClassName={'cashbox-search-input cb-search-input-width'}
-                                        haveIcon={true}
-                                        onClickIcon={() => {this.props.onLoadServicesList()}}
-                                        onChange={(v) => {
+                        <SearchInput className={'cashbox-search'}
+                                     placeholder={'поиск'}
+                                     iconClassName={'warehouse-control-input-icon'}
+                                     inputClassName={'cashbox-search-input cb-search-input-width'}
+                                     haveIcon={true}
+                                     onClickIcon={() => {this.props.onLoadServicesList()}}
+                                     onChange={(v) => {
                                             this.props.onChangeServiceFilter(v);
                                             this.props.onLoadServicesList()
                                         }}
@@ -38,13 +38,13 @@ class Cashbox extends Component {
                         <div style={{textAlign: 'center', borderBottom: '#B1B2B4  solid 2px', padding: '5px'}}>
                             Товары
                         </div>
-                        <WarehouseInput className={'cashbox-search'}
-                                        placeholder={'поиск'}
-                                        iconClassName={'warehouse-control-input-icon'}
-                                        inputClassName={'cashbox-search-input'}
-                                        haveIcon={true}
-                                        onClickIcon={() => this.props.onLoadStocksList()}
-                                        onChange={(v) => {
+                        <SearchInput className={'cashbox-search'}
+                                     placeholder={'поиск'}
+                                     iconClassName={'warehouse-control-input-icon'}
+                                     inputClassName={'cashbox-search-input'}
+                                     haveIcon={true}
+                                     onClickIcon={() => this.props.onLoadStocksList()}
+                                     onChange={(v) => {
                                             this.props.onChangeStockFilter(v);
                                             this.props.onLoadStocksList()
                                         }}

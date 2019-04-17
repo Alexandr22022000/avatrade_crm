@@ -39,10 +39,9 @@ module.exports = (app) => {
         if(type === undefined || type === null || type.trim() === '' || type === 'undefined' || type === 'null')
             type = undefined;
 
-        query(QUERY.GET_ORDERS, [/*start, end, manager_id, store_id, status, type, search*/])
+        query(QUERY.GET_ORDERS, [start, end, manager_id, store_id, status, type, search])
             .then(({rows}) => {
-                console.log(rows);
-                res.status(200).json({n: null});
+                res.status(200).json(rows);
             });
     })
 };

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-class WarehouseInput extends Component {
+class SearchInput extends Component {
     state = {
         placeholder: this.props.placeholder
     };
@@ -19,4 +19,4 @@ class WarehouseInput extends Component {
     }
 }
 
-export default WarehouseInput;
+export default SearchInput;

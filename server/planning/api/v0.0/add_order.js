@@ -8,7 +8,7 @@ module.exports = (app) => {
 
         if (!user) return res.status(401).end();
 
-        let cutomer = req.body.customer,
+        let customer = req.body.customer,
             contacts = req.body.contacts,
             ready = req.body.ready,
             store_id = req.body.store_id,
@@ -20,6 +20,15 @@ module.exports = (app) => {
             paid = req.body.paid,
             note = req.body.note,
             status = req.body.status,
-            type = req.body.type;
+            type = req.body.type,
+            id = Date.now();
+
+        console.log({id, manager_id, store_id, return_store_id, status, type, name, description, note, customer, contacts, ready, price, paid});
+
+
+        query(QUERY.ADD_ORDER, [id, manager_id, store_id, return_store_id, status, type, name, description, note, customer, contacts, ready, price, paid])
+            .then(() => {
+                res.status(200).end();
+            })
     })
 };
