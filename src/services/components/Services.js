@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import WarehouseInput from "../../warehouse/components/WarehouseInput";
+import SearchInput from "../../core/components/SearchInput";
 import '../styles/Service.css';
 import ServicesModal from "../containers/ServicesModal";
 import DropDown from "../../core/components/DropDown";
@@ -13,12 +13,12 @@ class Services extends Component{
         return (
             <div className={'services'}>
                 <div className={'controlServices'}>
-                    <WarehouseInput className={'serv-search sv-search-sz inline'}
-                                    placeholder={'поиск'}
-                                    iconClassName={'sv-search-icon sv-search-icon-sz'}
-                                    haveIcon={true}
-                                    onClickIcon={() => {this.props.onLoadServices();}}
-                                    onChange={(v) => {this.onSearchChange(v)}}
+                    <SearchInput className={'serv-search sv-search-sz inline'}
+                                 placeholder={'поиск'}
+                                 iconClassName={'sv-search-icon sv-search-icon-sz'}
+                                 haveIcon={true}
+                                 onClickIcon={() => {this.props.onLoadServices();}}
+                                 onChange={(v) => {this.onSearchChange(v)}}
                     />
                     <DropDown className={'dropdownPlaceholder sv-ctrl-dp'}
                               options={['Все', 'Товары','Услуги']}

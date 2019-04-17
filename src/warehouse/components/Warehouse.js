@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import '../../core/styles/buttons.css'
 import '../styles/index.css'
-import WarehouseInput from "./WarehouseInput";
+import SearchInput from "../../core/components/SearchInput";
 import WarehouseModal from "../containers/WarehouseModal";
 import MigrateEditor from "../containers/MigrateEditor";
 import CargoEditor from "../containers/CargoEditor";
@@ -67,13 +67,13 @@ class Warehouse extends Component {
         return (
             <div>
                 <div className={'controlWarehouse'}>
-                    <WarehouseInput className={'warehouse-control-input'}
-                                    placeholder={'поиск'}
-                                    value={this.props.filter.search}
-                                    iconClassName={'warehouse-control-input-icon'}
-                                    haveIcon={true}
-                                    onClickIcon={() => this.props.onGetStocks()}
-                                    onChange={(v) => this.onSearchChange(v)}
+                    <SearchInput className={'warehouse-control-input'}
+                                 placeholder={'поиск'}
+                                 value={this.props.filter.search}
+                                 iconClassName={'warehouse-control-input-icon'}
+                                 haveIcon={true}
+                                 onClickIcon={() => this.props.onGetStocks()}
+                                 onChange={(v) => this.onSearchChange(v)}
                     />
                     <DropDown options={['Активные','Удаленные']}
                               value={this.getCargoStatValue()}
