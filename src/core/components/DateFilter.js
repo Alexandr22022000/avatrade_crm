@@ -21,7 +21,6 @@ class DateFilter extends Component {
         for(let i = 0; i < days[this.props.month]; ++i) {
             currentDays.push((i+1) + '');
         }
-        console.log(this.props.day);
         return (
             <div className={'df'}>
                 <DropDown

@@ -8,15 +8,17 @@ import services from '../../services/reducers/services';
 import alerts from '../../alerts/reducers/alerts';
 import statistics from '../../statistics/reducers/statistics';
 import planning from '../../planning/reducers/planning';
+import sells from '../../sells/reducers/sells';
 
 export default combineReducers({
-  status,
-  stuff,
-  warehouse,
-  storemngmt,
-  cashbox,
-  services,
-  alerts,
-  statistics,
-  planning,
+    status,
+    stuff,
+    warehouse,
+    storemngmt,
+    cashbox,
+    services,
+    alerts,
+    statistics,
+    planning,
+    sells
 });

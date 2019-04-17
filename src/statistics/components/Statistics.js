@@ -3,6 +3,7 @@ import '../styles/statistics.css';
 import Table from 'rc-table';
 import 'rc-table/assets/index.css';
 import DateFilter from "../../core/components/DateFilter";
+import formatDate from "../../core/constants/formatDate";
 
 
 class Statistics extends Component {
@@ -92,8 +93,9 @@ class Statistics extends Component {
             let tableData = [];
             for(let j in this.props.turnover[i].values) {
                 if(+j !== 0) {
+                    let _date = new Date(this.props.date.year, this.props.date.month+1, j);
                     tableData.push({
-                        date: `${+j}.${this.props.date.month + 1}.${this.props.date.year}`,
+                        date: formatDate(_date),
                         pco: this.props.turnover[i].values[+j].pco,
                         acquiring: this.props.turnover[i].values[+j].acquiring,
                         account: this.props.turnover[i].values[+j].account,
