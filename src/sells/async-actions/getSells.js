@@ -11,7 +11,7 @@ const getSells = () => (dispatch, getState) => {
         end = new Date(start.getFullYear(), start.getMonth()+1 , 1);
     start = start.getTime();
     end = end.getTime();
-    HTTPS.get('/api/v0.0/cashbox/sells', {start:0, end:90000000000900, manager_id, store_id, search}, dispatch, getState)
+    HTTPS.get('/api/v0.0/cashbox/sells', {start, end, manager_id, store_id, search}, dispatch, getState)
         .then(res => (dispatch(set_sells(res))));
 };
 

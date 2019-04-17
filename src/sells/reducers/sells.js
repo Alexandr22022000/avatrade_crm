@@ -4,7 +4,7 @@ const defaultState = {
     date: {
         month: (new Date()).getMonth(),
         year: (new Date()).getFullYear(),
-        day: (new Date()).getDate(),
+        day: null,
     },
     sells: [],
     manager_id: null,
