@@ -67,10 +67,8 @@ class Warehouse extends Component {
         return (
             <div>
                 <div className={'controlWarehouse'}>
-                    <SearchInput className={'warehouse-control-input'}
-                                 placeholder={'поиск'}
+                    <SearchInput
                                  value={this.props.filter.search}
-                                 iconClassName={'warehouse-control-input-icon'}
                                  haveIcon={true}
                                  onClickIcon={() => this.props.onGetStocks()}
                                  onChange={(v) => this.onSearchChange(v)}

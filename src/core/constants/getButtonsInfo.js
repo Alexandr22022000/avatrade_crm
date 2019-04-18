@@ -47,6 +47,11 @@ const getButtonsInfo = (permission) => {
                         isActive: false,
                         route: "stores"
                     };
+                    buttons["sells"] = {
+                        name: "продажи",
+                        isActive: false,
+                        route: "sells"
+                    };
                     break;
                 case PERMISSIONS.STORE_MANAGER:
                     buttons["cash"] = {
@@ -78,6 +83,11 @@ const getButtonsInfo = (permission) => {
                         name: "прайс",
                         isActive: false,
                         route: "prices"
+                    };
+                    buttons["sells"] = {
+                        name: "продажи",
+                        isActive: false,
+                        route: "sells"
                     };
                     break;
                 case PERMISSIONS.WAREHOUSE_MANAGER:

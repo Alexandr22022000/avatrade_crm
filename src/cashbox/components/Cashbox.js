@@ -23,7 +23,6 @@ class Cashbox extends Component {
                         </div>
                         <SearchInput className={'cashbox-search'}
                                      placeholder={'поиск'}
-                                     iconClassName={'warehouse-control-input-icon'}
                                      inputClassName={'cashbox-search-input cb-search-input-width'}
                                      haveIcon={true}
                                      onClickIcon={() => {this.props.onLoadServicesList()}}
@@ -40,7 +39,6 @@ class Cashbox extends Component {
                         </div>
                         <SearchInput className={'cashbox-search'}
                                      placeholder={'поиск'}
-                                     iconClassName={'warehouse-control-input-icon'}
                                      inputClassName={'cashbox-search-input'}
                                      haveIcon={true}
                                      onClickIcon={() => this.props.onLoadStocksList()}

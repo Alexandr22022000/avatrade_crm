@@ -12,25 +12,6 @@
     color: #D5D9DE;
 }
 
-.warehouse-control-input {
-    display: inline-block;
-    vertical-align: middle;
-}
-
-.warehouse-control-input input{
-    height: 30px;
-    font-size: 20px;
-    display: inline-block;
-    vertical-align: top;
-    background-color: white;
-    color: #232323 ;
-    border: none;
-    outline: none;
-}
-.warehouse-control-input input:focus,
-.warehouse-control-input input:active {
-    outline: none;
-}
 
 .warehouse-control-dropdown-modal {
     width: 200px;
@@ -39,18 +20,6 @@
     margin-bottom: 20px;
 }
 
-.warehouse-control-input-icon {
-    width: 32px;
-    height: 32px;
-    display: inline-block;
-    vertical-align: top;
-    background: url("../../images/search-icon.png") no-repeat;
-    background-size: 20px 20px;
-    background-color: white;
-    background-position: 5px 6px;
-    border: none;
-    cursor: pointer;
-}
 
 .wc-del-dp {
     font-size: 20px;

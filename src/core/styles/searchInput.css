@@ -1,0 +1,38 @@
+.ssearch-input input{
+    height: 30px;
+    font-size: 20px;
+    display: inline-block;
+    vertical-align: top;
+    background-color: white;
+    color: #232323 ;
+    border: none;
+    outline: none;
+    border-radius: 0 4px 4px 0;
+}
+
+.ssearch-input {
+    display: inline-block;
+    vertical-align: middle;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+}
+
+
+.ssearch-input input:focus,
+.ssearch-input input:active {
+    outline: none;
+}
+
+
+.ssearch-input-icon {
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+    vertical-align: top;
+    background: url("../../images/search-icon.png") no-repeat;
+    background-size: 20px 20px;
+    background-color: white;
+    background-position: 5px 6px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px 0 0 4px;
+}
