@@ -7,8 +7,8 @@ class SearchInput extends Component {
     };
     render() {
         return(
-            <div className={`ssearch-input ${this.props.className}` }>
-                {this.props.haveIcon === true? <button className={`ssearch-input-icon ${this.props.iconClassName}`} onClick={this.props.onClickIcon}/> : ''}
+            <div className={`ssearch-input ${this.props.className || ''}` }>
+                {this.props.haveIcon === true? <button className={`ssearch-input-icon ${this.props.iconClassName || ''}`} onClick={this.props.onClickIcon}/> : ''}
                 <input value={this.props.value}
                        placeholder={this.state.placeholder}
                        className={this.props.inputClassName}

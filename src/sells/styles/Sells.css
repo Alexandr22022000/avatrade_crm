@@ -44,8 +44,11 @@
     width: fit-content!important;
 }
 
-.sells-index, .sells-date {
+.sells-index {
     min-width: 100px;
+}
+.sells-date {
+    min-width: 105px;
 }
 .sells-manager {
     min-width: 150px;
