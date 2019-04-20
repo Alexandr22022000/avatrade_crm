@@ -92,7 +92,6 @@ class Planning extends Component {
                             month={date.getMonth()}
                             onChangeMonth={(v) => this.onMonthChange(v)}
                 />
-                {console.log(this.state.isEditing)}
                 {this.state.showEditor?
                     <PlanningModal isEditing={this.state.isEditing}
                                    onClose={() => this.setState({showEditor: false})}
@@ -258,7 +257,8 @@ class Planning extends Component {
             data.push({
                 ...value,
                 index: index + 1,
-                date: formatDate(new Date(+value.date))
+                date: formatDate(new Date(+value.date)),
+                ready: formatDate(new Date(+value.ready)),
             })
         });
         return (

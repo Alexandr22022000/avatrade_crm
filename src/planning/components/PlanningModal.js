@@ -9,9 +9,9 @@ class PlanningModal extends Component {
     state = {
         customer: this.props.order? this.props.order.customer: '',
         contacts: this.props.order? this.props.order.contacts: '',
-        //ready: this.props.order !== null? this.props.order.ready: '',
-        store_id: this.props.order? this.props.order.store_id: 0,
-        return_store_id: this.props.order? this.props.order.return_store_id: 0,
+        ready: this.props.order? this.props.order.ready: Date.now(),
+        store_id: 0,
+        return_store_id: 0,
         manager_id: this.props.order? this.props.order.manager_id: 0,
         name: this.props.order? this.props.order.name: '',
         description: this.props.order? this.props.order.description: '',
@@ -57,7 +57,7 @@ class PlanningModal extends Component {
             if(this.canSave()) {
                 if(this.props.isEditing) {
                     this.props.onPostOrder({
-                        id: this.props.order.id,
+                        id: this.props.order.date,
                         customer: this.state.customer,
                         contacts: this.state.contacts,
                         ready: this.state.ready,
@@ -73,7 +73,6 @@ class PlanningModal extends Component {
                         type: this.state.type,
                     })
                 } else {
-
                     this.props.onPostNewOrder({
                         customer: this.state.customer,
                         contacts: this.state.contacts,
@@ -117,7 +116,6 @@ class PlanningModal extends Component {
                               value={this.state.contacts}
                               onChange={(v) => this.setState({contacts: v})}
                     />
-                    <DateInput/>
                     <StuffInput title={'Подразделение:'}
                                 value={this.state.store_id}
                                 options={this.props.stores.map(value => value.name)}
@@ -129,6 +127,10 @@ class PlanningModal extends Component {
                                 options={this.props.stores.map(value => value.name)}
                                 alwaysActive={!this.props.isEditing}
                                 onChange={v => this.setState({return_store_id: v})}
+                    />
+                    <h2>Дата выдачи</h2>
+                    <DateInput date={new Date(+this.state.ready)}
+                               onChange={date => this.setState({ready: date.getTime()})}
                     />
                     <StuffInput title={'Заказ принял:'}
                                 value={this.state.manager_id}
@@ -182,6 +184,28 @@ class PlanningModal extends Component {
     }
 
     componentDidMount() {
+        let store_id = 0,
+            return_store_id = 0,
+            manager_id = 0;
+
+        this.props.stores.forEach((value, index) => {
+            if(+this.props.order.store_id === +value.id) {
+                store_id = index;
+            } else if(+this.props.order.return_store_id === + value.id) {
+                return_store_id = index;
+            }
+        });
+        this.props.managers.forEach((value, index) => {
+            if(+this.props.order.manager_id === +value.id) {
+                manager_id = index;
+            }
+        });
+
+        this.setState({
+            store_id,
+            return_store_id,
+            manager_id,
+        })
     }
 }
 
