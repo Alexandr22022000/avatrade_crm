@@ -3,7 +3,7 @@ import Table from 'rc-table';
 import 'rc-table/assets/index.css';
 import '../styles/Sells.css';
 import DateFilter from "../../core/components/DateFilter";
-import formatDate from '../../core/constants/formatDate'
+import {formatDateTime}  from '../../core/constants/formatDate';
 import DropDown from "../../core/components/DropDown";
 import SearchInput from "../../core/components/SearchInput";
 
@@ -118,10 +118,10 @@ class Sells extends  Component {
         {
             let _date = new Date();
             _date.setTime(sell.date);
-
+            console.log(new Date(), _date);
             data.push({
                 index: 0,
-                date: formatDate(_date),
+                date: formatDateTime(_date),
                 manager: sell.manager,
                 store: sell.store,
                 price: sell.price,

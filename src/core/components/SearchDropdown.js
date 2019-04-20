@@ -35,7 +35,7 @@ class SearchDropdown extends Component {
     render() {
         return (
             <div>
-                <div style={{position: 'relative'}}>
+                <div className='search-dropdown'>
                     <input
                         style={this.props.inputStyle}
                         className={"search-input " + this.props.inputClassName}
