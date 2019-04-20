@@ -28,9 +28,6 @@ class Statistics extends Component {
                             onChangeYear={(v) => this.onChangeYear(v)}
                             month={this.props.date.month}
                             onChangeMonth={(v) => this.onChangeMonth(v)}
-                            days
-                            day={this.props.date.day}
-                            onChangeDay={(v) => console.log(v)}
                 />
                 <div className={'tmp-wrapper'}>
                     <div className={'statistics'} style={{minWidth:widths}}>

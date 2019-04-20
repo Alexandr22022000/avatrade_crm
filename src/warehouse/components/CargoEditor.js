@@ -25,7 +25,7 @@ class CargoEditor extends Component {
                         style={{float: 'right'}}
                         onClick={() => {this.onClose(true)}}
                 >
-                    Добавить
+                    Изменить
                 </button>
             </div>
         );

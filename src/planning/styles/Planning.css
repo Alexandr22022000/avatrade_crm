@@ -1,0 +1,186 @@
+.plan-controls {
+    margin-top: 2%;
+    margin-bottom: 2%;
+    padding-left: 30px;
+}
+
+.plan-search {
+    margin-right: 20px!important;
+}
+
+.plan-modal {
+    color: #285473 ;
+    width: 26vw;
+    height: 60vh;
+    margin-left: 37vw;
+    margin-top: 8%;
+    background-color: #fff;
+    border-radius: 6px;
+}
+
+.plan-chd {
+    height: 50vh;
+    padding-left: 10px;
+    overflow: auto;
+    overflow-x: scroll;
+}
+
+.input-date {
+    width: 200px;
+}
+
+::-webkit-inner-spin-button {
+    visibility: collapse;
+    width: 5px;
+    padding: 0;
+    margin: 0;
+}
+::-webkit-clear-button {
+    float: right;
+}
+
+
+@media screen and (min-height: 720px) {
+    .plan-chd {
+        height: 53vh;
+    }
+}
+
+@media screen and (max-height: 768px) and (min-height: 400px) {
+    .planning {
+        height: 88vh;
+        overflow-y: scroll;
+    }
+    .plan-tableHolder {
+        width: 140vw;
+    }
+}
+
+.plan-table {
+    font-size: 13px !important;
+    background-color: #fff !important;
+    color: #232323  !important;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.83) !important;
+    margin: 30px;
+    width: fit-content;
+}
+
+.plan-table table {
+    border-collapse: collapse;
+}
+
+.plan-index, .plan-customer, .plan-contacts, .plan-date,
+.plan-ready, .plan-rs, .plan-store, .plan-manager,
+.plan-name, .plan-description, .plan-price, .plan-paid,
+.plan-status, .plan-note {
+    background-color: #4a76a8!important;
+    padding: 2px 2px 0px 2px!important;
+    color: white;
+    border: #edeef0  solid 2px!important;
+    text-align: center!important;
+    width: fit-content!important;
+}
+
+.plan-rows .plan-customer, .plan-rows .plan-contacts, .plan-rows .plan-date,
+.plan-rows .plan-ready, .plan-rows .plan-rs, .plan-rows .plan-store, .plan-rows .plan-manager,
+.plan-rows .plan-name, .plan-rows .plan-description, .plan-rows .plan-price, .plan-rows .plan-paid,
+.plan-rows .plan-status, .plan-rows .plan-note {
+    padding: 0 0 0 5px!important;
+    text-align: left!important;
+    vertical-align: top!important;
+    background-color: #fff !important;
+    color: #232323!important;
+    margin: 0!important;
+    overflow: hidden;
+    transition: 0.3s!important;
+}
+
+.plan-customer, .plan-manager {
+    min-width: 150px;
+    max-width: 150px;
+}
+
+.plan-contacts {
+    min-width: 150px;
+    max-width: 150px;
+}
+
+.plan-date {
+    min-width: 100px;
+    max-width: 100px;
+}
+
+.plan-rows .plan-date {
+    text-align: right!important;
+    padding-right: 5px!important;
+}
+
+.plan-ready {
+    min-width: 90px!important;
+    max-width: 90px!important;
+}
+
+.plan-rows .plan-ready {
+    text-align: right!important;
+    padding-right: 5px!important;
+}
+
+.plan-rs, .plan-store{
+    min-width: 150px!important;
+    max-width: 150px!important;
+}
+
+.plan-rows .plan-rs, .plan-rows .plan-store {
+    text-align: center!important;
+}
+
+.plan-name {
+    min-width: 100px!important;
+    max-width: 100px!important;
+}
+
+.plan-rows .plan-name {
+    text-align: center!important;
+}
+
+.plan-description {
+    min-width: 150px!important;
+    max-width: 150px!important;
+}
+
+.plan-price, .plan-paid {
+    min-width: 95px;
+    max-width: 95px;
+}
+
+.plan-rows .plan-price, .plan-rows .plan-paid {
+    text-align: right!important;
+    padding-right: 5px!important;
+}
+
+.plan-status {
+    min-width: 80px;
+    max-width: 80px;
+}
+
+.plan-rows .plan-status {
+    text-align: right!important;
+    padding-right: 5px!important;
+}
+
+.plan-note {
+    min-width: 250px;
+    max-width: 250px;
+}
+
+.plan-rows {
+    cursor: pointer;
+}
+
+.plan-rows:hover > .plan-customer, .plan-rows:hover > .plan-contacts, .plan-rows:hover > .plan-date,
+.plan-rows:hover > .plan-ready, .plan-rows:hover > .plan-rs, .plan-rows:hover > .plan-store, .plan-rows:hover > .plan-manager,
+.plan-rows:hover > .plan-name, .plan-rows:hover > .plan-description, .plan-rows:hover > .plan-price, .plan-rows:hover > .plan-paid,
+.plan-rows:hover > .plan-status, .plan-rows:hover > .plan-note{
+    background-color: #4a76a8!important;
+    color: white!important;
+}

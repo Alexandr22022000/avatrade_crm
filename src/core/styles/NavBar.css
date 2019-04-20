@@ -92,6 +92,10 @@
         position: absolute;
         right: 260px;
     }
+    #children {
+        min-height: 92vh;
+        max-height: 92vh;
+    }
 }
 
 @media screen and (max-height: 768px) and (min-height: 400px) {
@@ -150,9 +154,9 @@
         position: absolute;
         right: 190px;
     }
+    #children {
+        min-height: 92vh;
+        max-height: 92vh;
+    }
 }
 
-#children {
-    min-height: 89vh;
-    max-height: 89vh;
-}

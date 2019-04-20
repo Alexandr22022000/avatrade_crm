@@ -25,7 +25,7 @@ class StuffInput extends Component {
                     placeholder={this.props.placeholder}
                     value={this.props.value}
                     onBlurCapture={() => this.setActive(false)}
-                    autoFocus
+                    /*autoFocus*/
                     className={"inline fixed"}
                     onKeyDown={this.onEnter.bind(this)}
                     style={this.props.inputStyle}

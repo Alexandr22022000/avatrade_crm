@@ -34,7 +34,7 @@ module.exports = (app) => {
             store_id = undefined;
 
         if(status === undefined || status === null || status.trim() === '' || status === 'undefined' || status === 'null')
-            store_id = undefined;
+            status = undefined;
 
         if(type === undefined || type === null || type.trim() === '' || type === 'undefined' || type === 'null')
             type = undefined;
