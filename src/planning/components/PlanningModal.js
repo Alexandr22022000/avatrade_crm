@@ -7,6 +7,7 @@ import DateInput from "../../core/components/DateInput";
 
 class PlanningModal extends Component {
     state = {
+        isChanged: false,
         customer: this.props.order? this.props.order.customer: '',
         contacts: this.props.order? this.props.order.contacts: '',
         ready: this.props.order? this.props.order.ready: Date.now(),
@@ -15,8 +16,8 @@ class PlanningModal extends Component {
         manager_id: this.props.order? this.props.order.manager_id: 0,
         name: this.props.order? this.props.order.name: '',
         description: this.props.order? this.props.order.description: '',
-        price: this.props.order? this.props.order.price: '',
-        paid: this.props.order? this.props.order.paid: '',
+        price: this.props.order? this.props.order.price: 0,
+        paid: this.props.order? this.props.order.paid: 0,
         note: this.props.order? this.props.order.note: '',
         status: this.props.order? this.props.order.status: 0,
         type: this.props.order? this.props.order.type: 0,
@@ -28,7 +29,7 @@ class PlanningModal extends Component {
                         style={{float: 'right'}}
                         onClick={() => {this.onClose(true)}}
                 >
-                    Изменить
+                    {this.props.isEditing? 'Изменить': 'Создать'}
                 </button>
             </div>
         );
@@ -48,7 +49,6 @@ class PlanningModal extends Component {
         if(this.state.customer.trim() === '') return false;
         if(this.state.name.trim() === '') return false;
         if(this.state.price <= 0) return false;
-        if(this.state.paid <= 0) return false;
         return true;
     }
 
@@ -89,9 +89,17 @@ class PlanningModal extends Component {
                         type: this.state.type,
                     })
                 }
+                this.props.onClose();
+            }
+        } else {
+            if(this.state.isChanged) {
+                if(window.confirm('Вы уверены? Все не сохраненые изменения будут потеряны!')){
+                    this.props.onClose();
+                }
+            } else {
+                this.props.onClose();
             }
         }
-        this.props.onClose();
     }
 
     getEditor() {
@@ -109,73 +117,73 @@ class PlanningModal extends Component {
                     <StuffInput title={'Покупатель:'}
                                 alwaysActive={!this.props.isEditing}
                                 value={this.state.customer}
-                                onChange={(v) => this.setState({customer: v})}
+                                onChange={(v) => this.setState({customer: v, isChanged: true})}
                     />
                     <TextArea title={'Контакты:'}
                               alwaysActive={!this.props.isEditing}
                               value={this.state.contacts}
-                              onChange={(v) => this.setState({contacts: v})}
+                              onChange={(v) => this.setState({contacts: v, isChanged: true})}
                     />
                     <StuffInput title={'Подразделение:'}
                                 value={this.state.store_id}
                                 options={this.props.stores.map(value => value.name)}
                                 alwaysActive={!this.props.isEditing}
-                                onChange={v => this.setState({store_id: v})}
+                                onChange={v => this.setState({store_id: v, isChanged: true})}
                     />
                     <StuffInput title={'Место выдачи:'}
                                 value={this.state.return_store_id}
                                 options={this.props.stores.map(value => value.name)}
                                 alwaysActive={!this.props.isEditing}
-                                onChange={v => this.setState({return_store_id: v})}
+                                onChange={v => this.setState({return_store_id: v, isChanged: true})}
                     />
                     <div className={'header-m'}>Дата выдачи</div>
                     <DateInput date={new Date(+this.state.ready)}
-                               onChange={date => this.setState({ready: date.getTime()})}
+                               onChange={date => this.setState({ready: date.getTime(), isChanged: true})}
                     />
                     <StuffInput title={'Заказ принял:'}
                                 value={this.state.manager_id}
                                 options={this.props.managers.map(value => value.name)}
                                 alwaysActive={!this.props.isEditing}
-                                onChange={v => this.setState({manager_id: v})}
+                                onChange={v => this.setState({manager_id: v, isChanged: true})}
                     />
                     <StuffInput title={'Наименование:'}
                                 alwaysActive={!this.props.isEditing}
                                 value={this.state.name}
-                                onChange={(v) => this.setState({name: v})}
+                                onChange={(v) => this.setState({name: v, isChanged: true})}
                     />
                     <TextArea title={'Описание:'}
                               alwaysActive={!this.props.isEditing}
                               value={this.state.description}
-                              onChange={(v) => this.setState({description: v})}
+                              onChange={(v) => this.setState({description: v, isChanged: true})}
                     />
                     <StuffInput title={'Стоимость:'}
                                 alwaysActive={!this.props.isEditing}
                                 value={this.state.price}
-                                onChange={(v) => this.setState({price: v})}
+                                onChange={(v) => this.setState({price: v === ''? 0 : +v, isChanged: true})}
                                 numbers={true}
                     />
                     <StuffInput title={'Оплачено:'}
                                 alwaysActive={!this.props.isEditing}
                                 value={this.state.paid}
-                                onChange={(v) => this.setState({paid: v})}
+                                onChange={(v) => this.setState({paid: v === ''? 0 : +v, isChanged: true})}
                                 numbers={true}
                     />
                     <TextArea title={'Примечание:'}
                               alwaysActive={!this.props.isEditing}
                               value={this.state.note}
-                              onChange={(v) => this.setState({note: v})}
+                              onChange={(v) => this.setState({note: v, isChanged: true})}
                     />
                     <StuffInput title={'Статус:'}
                                 value={this.state.status}
                                 options={statuses}
                                 alwaysActive={!this.props.isEditing}
-                                onChange={v => this.setState({status: v})}
+                                onChange={v => this.setState({status: v, isChanged: true})}
                     />
                     <StuffInput title={'Тип:'}
                                 value={this.state.type}
                                 options={types}
                                 alwaysActive={!this.props.isEditing}
-                                onChange={v => this.setState({type: v})}
+                                onChange={v => this.setState({type: v, isChanged: true})}
                     />
                 </Fragment>
             )
