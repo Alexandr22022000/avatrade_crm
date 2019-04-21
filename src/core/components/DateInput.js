@@ -59,7 +59,7 @@ class DateInput extends Component {
     }
 
     onYearChange(value) {
-        let regexp = /^\d*$/;
+        let regexp = /^\d{1,5}$/;
         if(regexp.test(value)){
             let date = this.props.date;
             date.setFullYear(+value);

@@ -23,9 +23,6 @@ module.exports = (app) => {
             type = req.body.type,
             id = Date.now();
 
-        if(paid === undefined || paid === null || paid.trim() === '' || paid === 'undefined' || paid === 'null')
-            paid = 0;
-
         query(QUERY.ADD_ORDER, [id, manager_id, store_id, return_store_id, status, type, name, description, note, customer, contacts, ready, price, paid])
             .then(() => {
                 res.status(200).end();

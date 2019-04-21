@@ -261,11 +261,14 @@ class Planning extends Component {
                 ready: formatDate(new Date(+value.ready)),
             })
         });
+        let scrollW = window.screen.availHeight < 1000? window.screen.availHeight * 0.5 : window.screen.availHeight * 0.6;
+        console.log(scrollW);
         return (
             <Table columns={columns}
                    rowClassName={()=>'plan-rows'}
                    emptyText={'Нету данных'}
                    className={'plan-table'}
+                   scroll={{y: scrollW}}
                    data={data}
                    onRow={(record, index) => ({
                        onClick: () => {

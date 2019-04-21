@@ -29,17 +29,6 @@
     width: 200px;
 }
 
-::-webkit-inner-spin-button {
-    visibility: collapse;
-    width: 5px;
-    padding: 0;
-    margin: 0;
-}
-::-webkit-clear-button {
-    float: right;
-}
-
-
 @media screen and (min-height: 720px) {
     .plan-chd {
         height: 53vh;
@@ -81,6 +70,11 @@
     width: fit-content!important;
 }
 
+.plan-index {
+    min-width: 15px;
+    max-width: 15px;
+}
+
 .plan-rows .plan-customer, .plan-rows .plan-contacts, .plan-rows .plan-date,
 .plan-rows .plan-ready, .plan-rows .plan-rs, .plan-rows .plan-store, .plan-rows .plan-manager,
 .plan-rows .plan-name, .plan-rows .plan-description, .plan-rows .plan-price, .plan-rows .plan-paid,
@@ -96,21 +90,24 @@
 }
 
 .plan-customer, .plan-manager {
-    min-width: 150px;
-    max-width: 150px;
+    min-width: 150px!important;
+    max-width: 150px!important;
 }
 
 .plan-contacts {
-    min-width: 150px;
-    max-width: 150px;
+    min-width: 150px!important;
+    max-width: 150px!important;
 }
 
 .plan-date {
-    min-width: 100px;
-    max-width: 100px;
+    min-width: 100px!important;
+    max-width: 100px!important;
+    padding-right: 5px!important;
 }
 
 .plan-rows .plan-date {
+    min-width: 98px!important;
+    max-width: 98px!important;
     text-align: right!important;
     padding-right: 5px!important;
 }
@@ -118,9 +115,12 @@
 .plan-ready {
     min-width: 90px!important;
     max-width: 90px!important;
+    padding-right: 5px!important;
 }
 
 .plan-rows .plan-ready {
+    min-width: 88px!important;
+    max-width: 88px!important;
     text-align: right!important;
     padding-right: 5px!important;
 }
@@ -149,28 +149,39 @@
 }
 
 .plan-price, .plan-paid {
-    min-width: 95px;
-    max-width: 95px;
+    min-width: 95px!important;
+    max-width: 95px!important;
+    padding-right: 5px!important;
 }
 
 .plan-rows .plan-price, .plan-rows .plan-paid {
+    min-width: 93px!important;
+    max-width: 93px!important;
     text-align: right!important;
     padding-right: 5px!important;
 }
 
 .plan-status {
-    min-width: 80px;
-    max-width: 80px;
+    min-width: 80px!important;
+    max-width: 80px!important;
+    padding-right: 5px!important;
 }
 
 .plan-rows .plan-status {
+    min-width: 78px!important;
+    max-width: 78px!important;
     text-align: right!important;
     padding-right: 5px!important;
 }
 
 .plan-note {
-    min-width: 250px;
-    max-width: 250px;
+    min-width: 250px!important;
+    max-width: 250px!important;
+}
+
+.plan-rows .plan-note {
+    min-width: 255px!important;
+    max-width: 255px!important;
 }
 
 .plan-rows {
