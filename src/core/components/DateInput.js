@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import DropDown from "./DropDown";
 import '../styles/DateInput.css';
 
@@ -17,7 +17,7 @@ class DateInput extends Component {
         let date = this.props.date;
 
         return (
-            <Fragment>
+            <div className={'date-input'}>
                 <DropDown
                     holderClassName={'sells-filters-holder inline'}
                     className={'sells-filters-input'}
@@ -42,7 +42,7 @@ class DateInput extends Component {
                         <button className={'di-arrow'} onClick={() => this.onDecrease(date.getFullYear())}>▼</button>
                     </div>
                 </div>
-            </Fragment>
+            </div>
         );
     }
 

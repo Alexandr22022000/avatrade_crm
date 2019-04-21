@@ -128,7 +128,7 @@ class PlanningModal extends Component {
                                 alwaysActive={!this.props.isEditing}
                                 onChange={v => this.setState({return_store_id: v})}
                     />
-                    <h2>Дата выдачи</h2>
+                    <div className={'header-m'}>Дата выдачи</div>
                     <DateInput date={new Date(+this.state.ready)}
                                onChange={date => this.setState({ready: date.getTime()})}
                     />
@@ -188,18 +188,20 @@ class PlanningModal extends Component {
             return_store_id = 0,
             manager_id = 0;
 
-        this.props.stores.forEach((value, index) => {
-            if(+this.props.order.store_id === +value.id) {
-                store_id = index;
-            } else if(+this.props.order.return_store_id === + value.id) {
-                return_store_id = index;
-            }
-        });
-        this.props.managers.forEach((value, index) => {
-            if(+this.props.order.manager_id === +value.id) {
-                manager_id = index;
-            }
-        });
+        if(this.props.order !== null) {
+            this.props.stores.forEach((value, index) => {
+                if(+this.props.order.store_id === +value.id) {
+                    store_id = index;
+                } else if(+this.props.order.return_store_id === + value.id) {
+                    return_store_id = index;
+                }
+            });
+            this.props.managers.forEach((value, index) => {
+                if(+this.props.order.manager_id === +value.id) {
+                    manager_id = index;
+                }
+            });
+        }
 
         this.setState({
             store_id,
