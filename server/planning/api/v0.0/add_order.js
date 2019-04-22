@@ -2,6 +2,10 @@ const {checkUser} = require('neuronex-login-backend'),
     {query} = require('neuronex-pg'),
     QUERY = require('../../pSQL/orders');
 
+const createNumber = (number, date) => {
+    return `${number > 9? (number>99? '': '0') : '00'}${number}.${date.getMonth()>9?'': '0'}${date.getMonth()}.${date.getFullYear()-2000}`;
+};
+
 module.exports = (app) => {
     app.post('/api/v0.0/planning/add_order', (req, res) => {
         const user = checkUser(req.body.token);
@@ -23,9 +27,27 @@ module.exports = (app) => {
             type = req.body.type,
             id = Date.now();
 
-        query(QUERY.ADD_ORDER, [id, manager_id, store_id, return_store_id, status, type, name, description, note, customer, contacts, ready, price, paid])
-            .then(() => {
-                res.status(200).end();
-            })
+        let start = new Date(id),
+            end = new Date(id);
+
+        start.setDate(1);
+        start.setHours(0);
+        start.setMinutes(0);
+        start.setSeconds(0);
+
+        end.setMonth(start.getMonth() + 1);
+        end.setDate(1);
+        end.setHours(0);
+        end.setMinutes(0);
+        end.setSeconds(0);
+
+        query(QUERY.GET_ORDERS, [start.getTime(), end.getTime(), null, null, null, null, null])
+            .then(({rows}) => {
+                let number = createNumber(rows.length + 1, new Date(id));
+                query(QUERY.ADD_ORDER, [id, manager_id, store_id, return_store_id, status, type, name, description, note, customer, contacts, ready, price, paid, number])
+                    .then(() => {
+                        res.status(200).end();
+                    })
+            });
     })
 };

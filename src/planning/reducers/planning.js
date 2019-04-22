@@ -4,6 +4,7 @@ const defaultSate = {
     orders: [],
     filter: {
         start: null,
+        end: null,
         manager_id: null,
         store_id: null,
         status: null,

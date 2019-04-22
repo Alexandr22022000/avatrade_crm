@@ -1,3 +1,31 @@
+.plan-number {
+    color: black;
+}
+
+.plan-yellow {
+    background-color: #fde910;
+}
+
+.plan-light-blue {
+    background-color: #42aaff;
+}
+
+.plan-orange {
+    background-color: #ffa500;
+}
+
+.plan-purple {
+    background-color: #8b00ff;
+}
+
+.plan-blue {
+    background-color: #00008b;
+}
+
+.plan-pink {
+    background-color: #ffc0cb;
+}
+
 .plan-controls {
     margin-top: 2%;
     margin-bottom: 2%;
@@ -32,6 +60,13 @@
 @media screen and (min-height: 720px) {
     .plan-chd {
         height: 53vh;
+    }
+    .planning {
+        height: 89vh;
+        overflow-y: scroll;
+    }
+    .plan-tableHolder {
+        width: 103vw;
     }
 }
 
@@ -71,8 +106,9 @@
 }
 
 .plan-index {
-    min-width: 15px;
-    max-width: 15px;
+    min-width: 100px;
+    max-width: 100px;
+    padding: 0!important;
 }
 
 .plan-rows .plan-customer, .plan-rows .plan-contacts, .plan-rows .plan-date,

@@ -13,7 +13,7 @@ class Planning extends Component {
         managerIndex: null,
         typeIndex: null,
         statusIndex: null,
-        day: null,
+        day: 0,
         isEditing: true,
         showEditor: false,
     };
@@ -26,7 +26,7 @@ class Planning extends Component {
                 'Отказ', 'Плохое качество', 'Статус на Диске',
                 'Вычисление', 'Вычисление завершено', 'Покупатель уведомлен'
             ],
-            types       = ['-', 'Желтый', 'Синий', 'Оранжевый', 'Голубой', 'Фиолетовый', 'Розовый'],
+            types       = ['-', 'Внутреннее производство', 'Работа менеджера', 'Расчет', 'Перезаказ', 'Частичный перезаказ', 'Работа дизайнера'],
             date        = new Date(this.props.filter.start),
             days        = this.setDays(date.getFullYear(), date.getMonth());
 
@@ -95,7 +95,7 @@ class Planning extends Component {
                 {this.state.showEditor?
                     <PlanningModal isEditing={this.state.isEditing}
                                    onClose={() => this.setState({showEditor: false})}
-                    />: ''
+                    /> : ''
                 }
             </div>
         );
@@ -114,28 +114,53 @@ class Planning extends Component {
     }
 
     onYearChange(value) {
-        let date = new Date(this.props.filter.start);
-        date.setFullYear(value);
-        this.props.onUpdateFilter({...this.props.filter, start: date.getTime()});
+        let start = new Date(this.props.filter.start),
+            end = new Date(this.props.filter.end);
+        start.setFullYear(value);
+        end.setFullYear(value);
+        this.props.onUpdateFilter({...this.props.filter, start: start.getTime(), end: end.getTime()});
         this.props.onLoadOrders();
-        this.setState({day: value});
     }
     onMonthChange(value) {
-        let date = new Date(this.props.filter.start);
-        date.setMonth(value);
-        this.props.onUpdateFilter({...this.props.filter, start: date.getTime()});
+        let start = new Date(this.props.filter.start),
+            end = new Date(this.props.filter.end);
+        start.setMonth(value);
+        if(this.state.day === 0) {
+            end.setMonth(start.getMonth() + 1);
+        } else {
+            end.setMonth(start.getMonth());
+        }
+        this.props.onUpdateFilter({...this.props.filter, start: start.getTime(), end: end.getTime()});
         this.props.onLoadOrders();
-        this.setState({day: value});
     }
 
     onDaysChange(value) {
-        let date = new Date(this.props.filter.start);
+        let start = new Date(this.props.filter.start),
+            end = new Date(this.props.filter.start);
+        console.log(end);
         if(value !== 0) {
-            date.setDate(value);
+            start.setDate(value);
+            start.setHours(0);
+            start.setMinutes(0);
+            start.setSeconds(0);
+
+            end.setDate(value + 1);
+            end.setHours(0);
+            end.setMinutes(0);
+            end.setSeconds(0);
         } else {
-            date.setDate(1);
+            start.setDate(1);
+            start.setHours(0);
+            start.setMinutes(0);
+            start.setSeconds(0);
+
+            end.setMonth(start.getMonth() + 1);
+            end.setDate(1);
+            end.setHours(0);
+            end.setMinutes(0);
+            end.setSeconds(0);
         }
-        this.props.onUpdateFilter({...this.props.filter, start: date.getTime()});
+        this.props.onUpdateFilter({...this.props.filter, start: start? start.getTime(): null, end: end? end.getTime(): null});
         this.props.onLoadOrders();
         this.setState({day: value});
     }
@@ -165,7 +190,7 @@ class Planning extends Component {
     }
 
     getPlanningTable() {
-        const columns = [
+        const columns   = [
             {
                 title: '№',
                 dataIndex: 'index',
@@ -251,12 +276,12 @@ class Planning extends Component {
                 key: 'note',
             },
         ];
-
-        let data = [];
-        this.props.orders.forEach((value, index) => {
+        let colors      = ['plan-yellow', 'plan-blue', 'plan-orange', 'plan-light-blue', 'plan-purple', 'plan-pink'];
+        let data        = [];
+        this.props.orders.forEach((value) => {
             data.push({
                 ...value,
-                index: index + 1,
+                index: (<div className={'plan-number ' + colors[+value.type]}>{value.number}</div>),
                 date: formatDate(new Date(+value.date)),
                 ready: formatDate(new Date(+value.ready)),
             })
@@ -280,9 +305,20 @@ class Planning extends Component {
     }
 
     componentDidMount() {
-        let date = new Date();
-        date.setDate(1);
-        this.props.onUpdateFilter({...this.props.filter, start: date.getTime()});
+        let start = new Date();
+        start.setDate(1);
+        start.setHours(0);
+        start.setMinutes(0);
+        start.setSeconds(0);
+
+        let end = new Date(start.getTime());
+        end.setMonth(start.getMonth() + 1);
+        end.setDate(1);
+        end.setHours(0);
+        end.setMinutes(0);
+        end.setSeconds(0);
+
+        this.props.onUpdateFilter({...this.props.filter, start: start.getTime(), end: end.getTime()});
         this.props.onLoadOrders();
         this.props.onGetStuff();
         this.props.onGetStores();
