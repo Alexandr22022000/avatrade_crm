@@ -129,10 +129,11 @@ class Sells extends  Component {
             });
         }
 
-
+        let scrollW = window.screen.availHeight < 1000? window.screen.availHeight * 0.5 : window.screen.availHeight * 0.6;
         return <Table
                     columns={columns}
                     data={data}
+                    scroll={{y: scrollW}}
                     rowClassName={()=>'sells-rows'}
                     className='sells-table'
                     emptyText='Нету данных'

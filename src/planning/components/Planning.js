@@ -262,7 +262,6 @@ class Planning extends Component {
             })
         });
         let scrollW = window.screen.availHeight < 1000? window.screen.availHeight * 0.5 : window.screen.availHeight * 0.6;
-        console.log(scrollW);
         return (
             <Table columns={columns}
                    rowClassName={()=>'plan-rows'}
