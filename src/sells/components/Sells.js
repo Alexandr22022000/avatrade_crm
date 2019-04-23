@@ -120,7 +120,7 @@ class Sells extends  Component {
             _date.setTime(sell.date);
             console.log(new Date(), _date);
             data.push({
-                index: 0,
+                index: sell.number,
                 date: formatDateTime(_date),
                 manager: sell.manager,
                 store: sell.store,
@@ -129,7 +129,7 @@ class Sells extends  Component {
             });
         }
 
-        let scrollW = window.screen.availHeight < 1000? window.screen.availHeight * 0.5 : window.screen.availHeight * 0.6;
+        let scrollW = window.screen.availHeight < 1000? window.screen.availHeight * 0.5 : window.screen.availHeight * 0.7;
         return <Table
                     columns={columns}
                     data={data}

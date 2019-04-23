@@ -35,6 +35,7 @@
     border-collapse: collapse!important;
 }
 
+
 .sells-index, .sells-date, .sells-manager, .sells-store, .sells-price, .sells-services {
     background-color: #4a76a8!important;
     padding: 2px 2px 0px 2px!important;
@@ -45,7 +46,7 @@
 }
 
 .sells-index {
-    min-width: 100px;
+    min-width: 70px;
 }
 .sells-date {
     min-width: 105px;

@@ -8,6 +8,11 @@ const changeTimezone = (date) => {
     return new Date(date.getTime() - ((date.getTimezoneOffset() / 60) * 60 * 60 * 1000) + 7*60*60*1000);
 };
 
+const createNumber = (number, date) => {
+    return `${number > 9? (number>99? '': '0') : '00'}${number}${date.getDate() > 9? '' : '0'}${date.getDate()}${date.getMonth()>9?'': '0'}${date.getMonth()}${date.getFullYear()-2000}`;
+};
+
+
 module.exports = (app) => {
     app.post('/api/v0.0/sale', (req, res) => {
         const user = checkUser(req.body.token);
@@ -63,8 +68,30 @@ module.exports = (app) => {
                                 .then(() => {});
                         }
 
-                        query(QUERY_SALES.ADD_SALE, [changeTimezone(new Date()).getTime(), user.id, store, {services}, price, price_resell, is_card])
-                            .then(() => res.status(200).end());
+                        let date = changeTimezone(new Date());
+                        let endMonth =  (new Date());
+                        let beginMonth = (new Date());
+                        beginMonth.setDate(1);
+                        beginMonth.setHours(0);
+                        beginMonth.setMinutes(0);
+                        beginMonth.setSeconds(0);
+                        beginMonth = changeTimezone(beginMonth);
+                        endMonth.setMonth(endMonth.getMonth()+1);
+                        endMonth.setDate(0);
+                        endMonth.setHours(23);
+                        endMonth.setMinutes(59);
+                        endMonth.setSeconds(59);
+                        endMonth = changeTimezone(endMonth);
+                        beginMonth = beginMonth.getTime();
+                        endMonth = endMonth.getTime();
+                        query(QUERY_SALES.COUNT_SALES_BY_MONTH,[beginMonth, endMonth])
+                            .then((count)=> {
+                                let number = createNumber(+count.rows[0].count+1, date);
+
+
+                                query(QUERY_SALES.ADD_SALE, [changeTimezone(new Date()).getTime(), user.id, store, {services}, price, price_resell, is_card, number])
+                                    .then(() => res.status(200).end());
+                            });
                     });
             });
     });
