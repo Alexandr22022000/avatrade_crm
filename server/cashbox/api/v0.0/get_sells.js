@@ -2,6 +2,7 @@ const   {checkUser} = require('neuronex-login-backend'),
         {query}     = require('neuronex-pg'),
         {GET_SELLS, GET_SERVICES} = require('../../pSQL/sales');
 
+
 module.exports = (app) => {
     app.get('/api/v0.0/cashbox/sells', (req, res) => {
         const user = checkUser(req.query.token);
