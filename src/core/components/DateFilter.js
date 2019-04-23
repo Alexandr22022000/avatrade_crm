@@ -13,12 +13,6 @@ class DateFilter extends Component {
             "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"
         ];
 
-        let currentDays = [];
-        if(this.props.days) {
-            for(let i = 0; i < this.getDaysAmount(this.props.month); ++i) {
-                currentDays.push((i+1) + '');
-            }
-        }
         return (
             <div className={'df'}>
                 <DropDown
@@ -38,14 +32,6 @@ class DateFilter extends Component {
                         </button>
                     ))}
                 </div>
-                {this.props.days?
-                    <DropDown className={'dropdownPlaceholder'}
-                              holderClassName={'df-dp'}
-                              options={currentDays}
-                              value={this.props.day - 1}
-                              onChange={(v) => this.props.onChangeDay(v)}
-                    />:''
-                }
             </div>
         );
     }
@@ -55,18 +41,6 @@ class DateFilter extends Component {
             if(this.props.year === +years[+i]) {
                 return +i;
             }
-        }
-    }
-
-    getDaysAmount(month) {
-        if(this.props.daysCallback) {
-            return this.props.daysCallback(month);
-        } else {
-            let days = [
-                31, this.props.year % 4 ===0? 29 : 28, 31, 30, 31, 30,
-                31, 31, 30, 31, 30, 31
-            ];
-            return days[month];
         }
     }
 }
