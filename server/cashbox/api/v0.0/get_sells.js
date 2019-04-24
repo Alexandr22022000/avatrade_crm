@@ -3,6 +3,12 @@ const   {checkUser} = require('neuronex-login-backend'),
         {GET_SELLS, GET_SERVICES} = require('../../pSQL/sales');
 
 
+const changeTimezone = (date) => {
+    const timeZone = new Date();
+    return +date + ((timeZone.getTimezoneOffset() / 60) * 60 * 60 * 1000) - 7*60*60*1000;
+};
+
+
 module.exports = (app) => {
     app.get('/api/v0.0/cashbox/sells', (req, res) => {
         const user = checkUser(req.query.token);
@@ -43,6 +49,8 @@ module.exports = (app) => {
                 query(GET_SERVICES)
                     .then(services => {
                         for (let key in rows) {
+                            rows[key].id = changeTimezone(rows[key].id);
+
                            let _services = [];
                            if (rows[key].services.services)
                                for (let service of rows[key].services.services) {
