@@ -26,7 +26,7 @@ class Planning extends Component {
                 'Отказ', 'На согласовании', 'На Яндекс диске',
                 'В расчет', 'Расчитанно', 'Клиент оповещщен'
             ],
-            types       = ['-', 'Внутреннее производство', 'Работа менеджера', 'Расчет', 'Перезаказ', 'Частичный перезаказ', 'Работа дизайнера'],
+            types       = ['-', 'Внутреннее производство (Желтый)', 'Работа менеджера (Синий)', 'Расчет (оранжевый)', 'Перезаказ (голубой)', 'Частичный перезаказ (Фиолетовый)', 'Работа дизайнера (Розовый)'],
             date        = new Date(this.props.filter.start),
             days        = this.setDays(date.getFullYear(), date.getMonth());
 
@@ -277,15 +277,20 @@ class Planning extends Component {
             },
         ];
         let colors      = ['plan-yellow', 'plan-blue', 'plan-orange', 'plan-light-blue', 'plan-purple', 'plan-pink'],
-            types       = ['Внутреннее производство', 'Работа менеджера', 'Расчет', 'Перезаказ', 'Частичный перезаказ', 'Работа дизайнера'];
-            let data        = [];
+            data        = [],
+            statuses    = [
+                'В работу', 'Принят в работу', 'Готов на производстве',
+                'В логистике', 'На подраздении', 'Выдан',
+                'Отказ', 'На согласовании', 'На Яндекс диске',
+                'В расчет', 'Расчитанно', 'Клиент оповещщен'
+            ];
         this.props.orders.forEach((value) => {
             data.push({
                 ...value,
                 index: (<div className={'plan-number ' + colors[+value.type]}>{value.number}</div>),
                 date: formatDate(new Date(+value.date)),
                 ready: formatDate(new Date(+value.ready)),
-                status: types[value.status],
+                status: statuses[value.status],
             })
         });
         let scrollW = window.screen.availHeight < 1000? window.screen.availHeight * 0.5 : window.screen.availHeight * 0.6;
