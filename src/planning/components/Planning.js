@@ -42,14 +42,14 @@ class Planning extends Component {
                     />
                     <DropDown
                         holderClassName={'sells-filters-holder inline'}
-                        className={'sells-filters-input'}
+                        className={'sells-filters-input plan-type-fil'}
                         options={managers}
                         value={this.state.managerIndex}
                         onChange={v => this.onManagerChange(v)}
                     />
                     <DropDown
                         holderClassName={'sells-filters-holder inline'}
-                        className={'sells-filters-input'}
+                        className={'sells-filters-input plan-type-fil'}
                         options={stores}
                         value={this.state.storeIndex}
                         onChange={v => this.onStoreChange(v)}
@@ -63,7 +63,7 @@ class Planning extends Component {
                     />
                     <DropDown
                         holderClassName={'sells-filters-holder inline'}
-                        className={'sells-filters-input'}
+                        className={'sells-filters-input plan-type-fil'}
                         options={statuses}
                         value={this.state.statusIndex}
                         onChange={v => this.onStatusChange(v)}
