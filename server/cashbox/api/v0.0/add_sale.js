@@ -69,8 +69,8 @@ module.exports = (app) => {
                         }
 
                         let date = changeTimezone(new Date());
-                        let endMonth =  (new Date());
-                        let beginMonth = (new Date());
+                        let endMonth =  new Date();
+                        let beginMonth = new Date();
                         beginMonth.setDate(1);
                         beginMonth.setHours(0);
                         beginMonth.setMinutes(0);

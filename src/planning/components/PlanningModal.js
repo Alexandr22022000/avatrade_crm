@@ -113,7 +113,7 @@ class PlanningModal extends Component {
         if(this.state) {
             return (
                 <Fragment>
-                    <StuffInput title={'Покупатель:'}
+                    <StuffInput title={'Клиент:'}
                                 alwaysActive={!this.props.isEditing}
                                 value={this.state.customer}
                                 onChange={(v) => this.setState({customer: v, isChanged: true})}
@@ -155,13 +155,13 @@ class PlanningModal extends Component {
                               value={this.state.description}
                               onChange={(v) => this.setState({description: v, isChanged: true})}
                     />
-                    <StuffInput title={'Стоимость:'}
+                    <StuffInput title={'Сумма ₽:'}
                                 alwaysActive={!this.props.isEditing}
                                 value={this.state.price}
                                 onChange={(v) => this.setState({price: v === ''? 0 : +v, isChanged: true})}
                                 numbers={true}
                     />
-                    <StuffInput title={'Оплачено:'}
+                    <StuffInput title={'Оплачено ₽:'}
                                 alwaysActive={!this.props.isEditing}
                                 value={this.state.paid}
                                 onChange={(v) => this.setState({paid: v === ''? 0 : +v, isChanged: true})}

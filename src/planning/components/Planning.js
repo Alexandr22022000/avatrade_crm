@@ -18,15 +18,15 @@ class Planning extends Component {
         showEditor: false,
     };
     render() {
-        let stores      = ['Все'],
-            managers    = ['Все'],
-            statuses    = [ '-',
+        let stores      = ['Все подразделения'],
+            managers    = ['Все менеджеры'],
+            statuses    = [ 'Все статусы',
                 'В работу', 'Принят в работу', 'Готов на производстве',
                 'В логистике', 'На подраздении', 'Выдан',
                 'Отказ', 'На согласовании', 'На Яндекс диске',
-                'В расчет', 'Расчитанно', 'Клиент оповещщен'
+                'В расчет', 'Расчитанно', 'Клиент оповещен'
             ],
-            types       = ['-', 'Внутреннее производство (Желтый)', 'Работа менеджера (Синий)', 'Расчет (оранжевый)', 'Перезаказ (голубой)', 'Частичный перезаказ (Фиолетовый)', 'Работа дизайнера (Розовый)'],
+            types       = ['Все типы', 'Внутреннее производство (Желтый)', 'Работа менеджера (Синий)', 'Расчет (Оранжевый)', 'Перезаказ (Голубой)', 'Частичный перезаказ (Фиолетовый)', 'Работа дизайнера (Розовый)'],
             date        = new Date(this.props.filter.start),
             days        = this.setDays(date.getFullYear(), date.getMonth());
 
@@ -198,7 +198,7 @@ class Planning extends Component {
                 key: 'index',
             },
             {
-                title: 'Ф.И.О.',
+                title: 'Клиент',
                 dataIndex: 'customer',
                 className: 'plan-customer',
                 key: 'customer',
@@ -252,13 +252,13 @@ class Planning extends Component {
                 key: 'description',
             },
             {
-                title: 'Сумма',
+                title: 'Сумма, ₽',
                 dataIndex: 'price',
                 className: 'plan-price',
                 key: 'price',
             },
             {
-                title: 'Оплата',
+                title: 'Оплачено, ₽',
                 dataIndex: 'paid',
                 className: 'plan-paid',
                 key: 'paid',
