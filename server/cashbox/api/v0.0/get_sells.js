@@ -5,7 +5,7 @@ const   {checkUser} = require('neuronex-login-backend'),
 
 const changeTimezone = (date) => {
     const timeZone = new Date();
-    return +date + ((timeZone.getTimezoneOffset() / 60) * 60 * 60 * 1000) - 7*60*60*1000;
+    return +date - ((timeZone.getTimezoneOffset() / 60) * 60 * 60 * 1000) + 7*60*60*1000;
 };
 
 
