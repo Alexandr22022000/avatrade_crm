@@ -12,7 +12,7 @@ class DateInput extends Component {
         let months = [];
 
         for(let i = 1; i <= 12; ++i) {
-            months.push(i)
+            months.push(i + '')
         }
         let date = this.props.date;
 

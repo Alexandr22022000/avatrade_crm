@@ -191,7 +191,6 @@ class PlanningModal extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props.order);
         let store_id = 0,
             return_store_id = 0,
             manager_id = 0;

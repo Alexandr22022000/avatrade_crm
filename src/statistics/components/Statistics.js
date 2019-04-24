@@ -90,7 +90,7 @@ class Statistics extends Component {
             let tableData = [];
             for(let j in this.props.turnover[i].values) {
                 if(+j !== 0) {
-                    let _date = new Date(this.props.date.year, this.props.date.month+1, j);
+                    let _date = new Date(this.props.date.year, this.props.date.month, j);
                     tableData.push({
                         date: formatDate(_date),
                         pco: this.props.turnover[i].values[+j].pco,
