@@ -78,6 +78,9 @@
     .plan-tableHolder {
         width: 140vw;
     }
+    .plan-type-fil {
+        width: 250px;
+    }
 }
 
 .plan-table {

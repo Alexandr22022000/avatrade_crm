@@ -70,7 +70,7 @@ class Planning extends Component {
                     />
                     <DropDown
                         holderClassName={'sells-filters-holder inline'}
-                        className={'sells-filters-input'}
+                        className={'sells-filters-input plan-type-fil'}
                         options={types}
                         value={this.state.typeIndex}
                         onChange={v => this.onTypeChange(v)}
