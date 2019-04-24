@@ -136,7 +136,7 @@ class Sells extends  Component {
                     scroll={{y: scrollW}}
                     rowClassName={()=>'sells-rows'}
                     className='sells-table'
-                    emptyText='Нету данных'
+                    emptyText='Нет данных'
                 />
 
     }

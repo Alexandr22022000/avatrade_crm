@@ -9,7 +9,7 @@ const changeTimezone = (date) => {
 };
 
 const createNumber = (number, date) => {
-    return `${number > 9? (number>99? '': '0') : '00'}${number}${date.getDate() > 9? '' : '0'}${date.getDate()}${date.getMonth()>9?'': '0'}${date.getMonth()}${date.getFullYear()-2000}`;
+    return `${number > 9? (number>99? '': '0') : '00'}${number}.${date.getDate() > 9? '' : '0'}${date.getDate()}.${date.getMonth()>9?'': '0'}${date.getMonth()}.${date.getFullYear()-2000}`;
 };
 
 

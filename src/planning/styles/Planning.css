@@ -198,14 +198,14 @@
 }
 
 .plan-status {
-    min-width: 80px!important;
-    max-width: 80px!important;
+    min-width: 120px!important;
+    max-width: 120px!important;
     padding-right: 5px!important;
 }
 
 .plan-rows .plan-status {
-    min-width: 78px!important;
-    max-width: 78px!important;
+    min-width: 118px!important;
+    max-width: 118px!important;
     text-align: right!important;
     padding-right: 5px!important;
 }

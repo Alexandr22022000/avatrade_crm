@@ -21,10 +21,10 @@ class Planning extends Component {
         let stores      = ['Все'],
             managers    = ['Все'],
             statuses    = [ '-',
-                'Готово к работе', 'Обрабатывается', 'Обработка завершена',
-                'Перевозится', 'Готово к выдаче', 'Выполнено',
-                'Отказ', 'Плохое качество', 'Статус на Диске',
-                'Вычисление', 'Вычисление завершено', 'Покупатель уведомлен'
+                'В работу', 'Принят в работу', 'Готов на производстве',
+                'В логистике', 'На подраздении', 'Выдан',
+                'Отказ', 'На согласовании', 'На Яндекс диске',
+                'В расчет', 'Расчитанно', 'Клиент оповещщен'
             ],
             types       = ['-', 'Внутреннее производство', 'Работа менеджера', 'Расчет', 'Перезаказ', 'Частичный перезаказ', 'Работа дизайнера'],
             date        = new Date(this.props.filter.start),
@@ -276,21 +276,23 @@ class Planning extends Component {
                 key: 'note',
             },
         ];
-        let colors      = ['plan-yellow', 'plan-blue', 'plan-orange', 'plan-light-blue', 'plan-purple', 'plan-pink'];
-        let data        = [];
+        let colors      = ['plan-yellow', 'plan-blue', 'plan-orange', 'plan-light-blue', 'plan-purple', 'plan-pink'],
+            types       = ['Внутреннее производство', 'Работа менеджера', 'Расчет', 'Перезаказ', 'Частичный перезаказ', 'Работа дизайнера'];
+            let data        = [];
         this.props.orders.forEach((value) => {
             data.push({
                 ...value,
                 index: (<div className={'plan-number ' + colors[+value.type]}>{value.number}</div>),
                 date: formatDate(new Date(+value.date)),
                 ready: formatDate(new Date(+value.ready)),
+                status: types[value.status],
             })
         });
         let scrollW = window.screen.availHeight < 1000? window.screen.availHeight * 0.5 : window.screen.availHeight * 0.6;
         return (
             <Table columns={columns}
                    rowClassName={()=>'plan-rows'}
-                   emptyText={'Нету данных'}
+                   emptyText={'Нет данных'}
                    className={'plan-table'}
                    scroll={{y: scrollW}}
                    data={data}

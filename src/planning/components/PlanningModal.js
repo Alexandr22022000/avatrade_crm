@@ -104,13 +104,12 @@ class PlanningModal extends Component {
 
     getEditor() {
         let statuses    = [
-            'В работу - после оплаты', 'Принят в работу', 'Готов на производстве',
+            'В работу', 'Принят в работу', 'Готов на производстве',
                 'В логистике', 'На подраздении', 'Выдан',
                 'Отказ', 'На согласовании', 'На Яндекс диске',
                 'В расчет', 'Расчитанно', 'Клиент оповещщен'
             ],
             types       = ['Внутреннее производство', 'Работа менеджера', 'Расчет', 'Перезаказ', 'Частичный перезаказ', 'Работа дизайнера'];
-        console.log(this.props.isEditing);
         if(this.state) {
             return (
                 <Fragment>
@@ -192,6 +191,7 @@ class PlanningModal extends Component {
     }
 
     componentDidMount() {
+        console.log(this.props.order);
         let store_id = 0,
             return_store_id = 0,
             manager_id = 0;
@@ -200,7 +200,8 @@ class PlanningModal extends Component {
             this.props.stores.forEach((value, index) => {
                 if(+this.props.order.store_id === +value.id) {
                     store_id = index;
-                } else if(+this.props.order.return_store_id === + value.id) {
+                }
+                if(+this.props.order.return_store_id === + value.id) {
                     return_store_id = index;
                 }
             });
