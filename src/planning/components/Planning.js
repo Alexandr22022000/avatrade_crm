@@ -198,7 +198,7 @@ class Planning extends Component {
                 key: 'index',
             },
             {
-                title: 'Ф.И.О.',
+                title: 'Клиент',
                 dataIndex: 'customer',
                 className: 'plan-customer',
                 key: 'customer',
@@ -252,13 +252,13 @@ class Planning extends Component {
                 key: 'description',
             },
             {
-                title: 'Сумма',
+                title: 'Сумма, ₽',
                 dataIndex: 'price',
                 className: 'plan-price',
                 key: 'price',
             },
             {
-                title: 'Оплата',
+                title: 'Оплачено, ₽',
                 dataIndex: 'paid',
                 className: 'plan-paid',
                 key: 'paid',

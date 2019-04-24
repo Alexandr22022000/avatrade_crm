@@ -100,7 +100,7 @@ class Sells extends  Component {
                 key: 'store'
             },
             {
-                title: 'Сумма',
+                title: 'Сумма, ₽',
                 dataIndex: 'price',
                 className: 'sells-price',
                 key: 'price'
