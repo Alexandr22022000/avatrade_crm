@@ -20,8 +20,8 @@ class Sells extends  Component {
         let stores = this.props.stores.map(v=>v.name);
         let managers = this.props.managers.map(v=>v.name);
         let days = this.setDays(this.props.date.year,this.props.date.month);
-        stores.unshift('Все');
-        managers.unshift('Все');
+        stores.unshift('Все подразделения');
+        managers.unshift('Все менеджеры');
         days.unshift('-');
         return(
             <div>
