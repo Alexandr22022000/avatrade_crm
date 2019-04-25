@@ -20,6 +20,7 @@ class Statistics extends Component {
         isSecond: null,
     };
 
+
     render() {
         let widths = this.props.turnover.length * (440 + 40) + (1255 + 40) + (1074 + 40) + (330 + 40) + (260 + 40);
         return (
