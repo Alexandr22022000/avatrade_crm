@@ -159,7 +159,7 @@ class Statistics extends Component {
                 key: 'name',
             },
         ];
-        for(let i = 0; i < 31; ++i) {
+        for(let i = 0; i < this.getDaysAmount(this.props.date.month, this.props.date.year); ++i) {
             columns.push(
                 {
                     title: i + 1,
@@ -219,6 +219,14 @@ class Statistics extends Component {
             )
         }
         return data;
+    }
+
+    getDaysAmount(month, year) {
+        const days = [
+            31, year % 4 ===0? 29 : 28, 31, 30, 31, 30,
+            31, 31, 30, 31, 30, 31
+        ];
+        return days[month];
     }
 
     onChangeCalendar(value) {
