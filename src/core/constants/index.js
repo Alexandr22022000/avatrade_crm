@@ -16,10 +16,19 @@ export const PERMISSIONS_TEXT = [
     },
     {
         id: 2,
-        name: "Кладовщик",
+        name: "Производственник-кладовщик",
     },
     {
         id: 3,
         name: "Управляющий",
     },
 ];
+
+export const checkPermissions = (currentPermissions, targetPermissions) => {
+    let isFound = false;
+    currentPermissions.forEach(value=> {
+        if (targetPermissions.indexOf(value)!==-1)
+            isFound = true;
+    });
+    return isFound;
+};

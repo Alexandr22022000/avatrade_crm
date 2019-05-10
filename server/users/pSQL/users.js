@@ -1,6 +1,7 @@
 module.exports = {
     GET_USERS_WORK: 'SELECT users.id, ranks.name AS rank, users.name, users.phone FROM users JOIN ranks ON users.rank = ranks.id WHERE users.status = 0',
     GET_USERS_ALL: 'SELECT users.id, ranks.name AS rank, users.name, users.phone FROM users JOIN ranks ON users.rank = ranks.id',
+    GET_USERS_NAME_ALL: 'SELECT users.id, users.name FROM users',
     GET_USER: 'SELECT id, name, phone, rank, permissions, address, email, docs, vk, status FROM users WHERE id = $1',
 
     ADD_USER: 'INSERT INTO users(id, email, password, permissions, name, phone, vk, address, rank, docs, status) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, 0)',

@@ -63,14 +63,6 @@ class StuffEditor extends Component {
           />
 
 
-          <TextArea
-              title="Контакты:"
-              value={this.props.currentUser.contacts}
-              onChange={v => this.updateUserData(v, "contacts")}
-              alwaysActive={isNew}
-              onlyRead={onlyRead}
-          />
-
           <StuffInput
             title={"Ранг:"}
             value={

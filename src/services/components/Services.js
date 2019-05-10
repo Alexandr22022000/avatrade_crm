@@ -3,6 +3,7 @@ import SearchInput from "../../core/components/SearchInput";
 import '../styles/Service.css';
 import ServicesModal from "../containers/ServicesModal";
 import DropDown from "../../core/components/DropDown";
+import {checkPermissions, PERMISSIONS} from "../../core/constants";
 
 class Services extends Component{
     state = {
@@ -32,11 +33,13 @@ class Services extends Component{
                               onChange={v => {this.setStatusChange(v)}}
                               value={this.getServStatus()}
                     />
-                    <button className={'btn-m blue-button sv-ctrl-btn'}
+                    {checkPermissions(this.props.permissions || [], [PERMISSIONS.OWNER, PERMISSIONS.TOP_MANAGER]) ?
+                        <button className={'btn-m blue-button sv-ctrl-btn'}
                             onClick={()=>{this.setState({showServiceEditor: true, addNew: true})}}
                     >
                         Добавить
-                    </button>
+                    </button> : ''
+                    }
                 </div>
                 <div className={'servicesTable st-sizes'}>
                     <table>

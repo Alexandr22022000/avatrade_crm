@@ -6,6 +6,7 @@ import WarehouseModal from "../containers/WarehouseModal";
 import MigrateEditor from "../containers/MigrateEditor";
 import CargoEditor from "../containers/CargoEditor";
 import DropDown from "../../core/components/DropDown";
+import {checkPermissions, PERMISSIONS} from "../../core/constants";
 
 class Warehouse extends Component {
     state = {
@@ -28,8 +29,11 @@ class Warehouse extends Component {
         return (
             <tr className={'wh-table-row'}
                 onClick={() => {
-                    this.props.onSetCurrentCargo(value);
-                    this.setState({showStockEditor: true});
+                    if (checkPermissions(this.props.permissions || [], [PERMISSIONS.OWNER, PERMISSIONS.TOP_MANAGER, PERMISSIONS.STORE_MANAGER])) {
+                        this.props.onSetCurrentCargo(value);
+                        this.setState({showStockEditor: true});
+
+                    }
                 }}
             >
                 <td className={'table-cell chbox-cell'}>
@@ -79,13 +83,15 @@ class Warehouse extends Component {
                               className={'wc-del-dp'}
                               holderClassName={'wc-del-dp-bg'}
                     />
-                    <button className={'btn-m blue-button inline'}
-                            style={{fontSize: '18px', marginLeft: '40px'}}
-                            onClick={()=> this.setState({showEditor: true})}
-                    >
-                        Добавить
-                    </button>
+                    {checkPermissions(this.props.permissions || [], [PERMISSIONS.OWNER, PERMISSIONS.TOP_MANAGER, PERMISSIONS.WAREHOUSE_MANAGER]) ?
+                        <button className={'btn-m blue-button inline'}
+                                style={{fontSize: '18px', marginLeft: '40px'}}
+                                onClick={() => this.setState({showEditor: true})}
+                        >
+                            Добавить
+                        </button> : ''
 
+                    }
                     {this.getCheck(false) ? '' : [
                         <button className={'btn-m blue-button'}
                                 style={{fontSize: '18px', marginLeft: '40px'}}

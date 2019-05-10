@@ -22,6 +22,7 @@ module.exports = (app) => {
             description = req.body.description,
             price = req.body.price,
             paid = req.body.paid,
+            isByBudget = req.body.isByBudget,
             note = req.body.note,
             status = req.body.status,
             type = req.body.type,
@@ -44,7 +45,7 @@ module.exports = (app) => {
         query(QUERY.GET_ORDERS, [start.getTime(), end.getTime(), null, null, null, null, null])
             .then(({rows}) => {
                 let number = createNumber(rows.length + 1, new Date(id));
-                query(QUERY.ADD_ORDER, [id, manager_id, store_id, return_store_id, status, type, name, description, note, customer, contacts, ready, price, paid, number])
+                query(QUERY.ADD_ORDER, [id, manager_id, store_id, return_store_id, status, type, name, description, note, customer, contacts, ready, price, paid, isByBudget, number])
                     .then(() => {
                         res.status(200).end();
                     })

@@ -6,7 +6,7 @@ module.exports = (app) => {
     app.post('/api/v0.0/planning/order', (req, res) => {
         const user = checkUser(req.body.token);
 
-        //if (!user) return res.status(401).end();
+        if (!user) return res.status(401).end();
 
         let id = req.body.id,
             customer = req.body.customer,
@@ -19,11 +19,12 @@ module.exports = (app) => {
             description = req.body.description,
             price = req.body.price,
             paid = req.body.paid,
+            isByBudget = req.body.isByBudget,
             note = req.body.note,
             status = req.body.status,
             type = req.body.type;
 
-        query(QUERY.SET_ORDER, [id, manager_id, store_id, return_store_id, status, type, name, description, note, customer, contacts, ready, price, paid])
+        query(QUERY.SET_ORDER, [id, manager_id, store_id, return_store_id, status, type, name, description, note, customer, contacts, ready, price, paid, isByBudget])
             .then(() => {
                 res.status(200).end();
             })

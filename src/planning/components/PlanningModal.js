@@ -3,6 +3,8 @@ import Modal from "../../core/components/Modal";
 import StuffInput from "../../personal/components/StuffInput";
 import TextArea from "../../core/components/TextArea";
 import DateInput from "../../core/components/DateInput";
+import {getStores} from "../../warehouse/async-actions/getStores";
+import CheckBox from "../../core/components/CheckBox";
 
 
 class PlanningModal extends Component {
@@ -13,6 +15,7 @@ class PlanningModal extends Component {
         ready: this.props.order? this.props.order.ready: Date.now(),
         store_id: 0,
         return_store_id: 0,
+        isByBudget: this.props.order? this.props.order.isbybudget : false,
         manager_id: this.props.order? this.props.order.manager_id: 0,
         name: this.props.order? this.props.order.name: '',
         description: this.props.order? this.props.order.description: '',
@@ -61,13 +64,14 @@ class PlanningModal extends Component {
                         customer: this.state.customer,
                         contacts: this.state.contacts,
                         ready: this.state.ready,
-                        store_id: this.props.stores[this.state.store_id].id,
-                        return_store_id: this.props.stores[this.state.return_store_id].id,
+                        store_id: this.getStores()[this.state.store_id].id,
+                        return_store_id: this.getStores()[this.state.return_store_id].id,
                         manager_id: this.props.managers[this.state.manager_id].id,
                         name: this.state.name,
                         description: this.state.description,
                         price: this.state.price,
                         paid: this.state.paid,
+                        isByBudget: this.state.isByBudget,
                         note: this.state.note,
                         status: this.state.status,
                         type: this.state.type,
@@ -77,13 +81,14 @@ class PlanningModal extends Component {
                         customer: this.state.customer,
                         contacts: this.state.contacts,
                         ready: this.state.ready,
-                        store_id: this.props.stores[this.state.store_id].id,
-                        return_store_id: this.props.stores[this.state.return_store_id].id,
+                        store_id: this.getStores()[this.state.store_id].id,
+                        return_store_id: this.getStores()[this.state.return_store_id].id,
                         manager_id: this.props.managers[this.state.manager_id].id,
                         name: this.state.name,
                         description: this.state.description,
                         price: this.state.price,
                         paid: this.state.paid,
+                        isByBudget: this.state.isByBudget,
                         note: this.state.note,
                         status: this.state.status,
                         type: this.state.type,
@@ -100,6 +105,12 @@ class PlanningModal extends Component {
                 this.props.onClose();
             }
         }
+    }
+
+    getStores() {
+        let stores = this.props.stores.map(value => ({id: value.id, name: value.name}));
+        stores.shift();
+        return stores;
     }
 
     getEditor() {
@@ -125,13 +136,13 @@ class PlanningModal extends Component {
                     />
                     <StuffInput title={'Подразделение:'}
                                 value={this.state.store_id}
-                                options={this.props.stores.map(value => value.name)}
+                                options={this.getStores().map(value =>  value.name)}
                                 alwaysActive={!this.props.isEditing}
                                 onChange={v => this.setState({store_id: v, isChanged: true})}
                     />
                     <StuffInput title={'Место выдачи:'}
                                 value={this.state.return_store_id}
-                                options={this.props.stores.map(value => value.name)}
+                                options={this.getStores().map(value =>  value.name)}
                                 alwaysActive={!this.props.isEditing}
                                 onChange={v => this.setState({return_store_id: v, isChanged: true})}
                     />
@@ -150,7 +161,7 @@ class PlanningModal extends Component {
                                 value={this.state.name}
                                 onChange={(v) => this.setState({name: v, isChanged: true})}
                     />
-                    <TextArea title={'Описание:'}
+                    <TextArea title={'ТЗ:'}
                               alwaysActive={!this.props.isEditing}
                               value={this.state.description}
                               onChange={(v) => this.setState({description: v, isChanged: true})}
@@ -161,12 +172,18 @@ class PlanningModal extends Component {
                                 onChange={(v) => this.setState({price: v === ''? 0 : +v, isChanged: true})}
                                 numbers={true}
                     />
-                    <StuffInput title={'Оплачено ₽:'}
+
+                    <CheckBox title={'Из бюджета'}
+                              value={this.state.isByBudget}
+                              onChange={(v) => this.setState({isByBudget: v===true})}
+                    />
+
+                    {this.state.isByBudget === false ? <StuffInput title={'Оплачено ₽:'}
                                 alwaysActive={!this.props.isEditing}
                                 value={this.state.paid}
                                 onChange={(v) => this.setState({paid: v === ''? 0 : +v, isChanged: true})}
                                 numbers={true}
-                    />
+                    /> : ''}
                     <TextArea title={'Примечание:'}
                               alwaysActive={!this.props.isEditing}
                               value={this.state.note}
@@ -196,7 +213,7 @@ class PlanningModal extends Component {
             manager_id = 0;
 
         if(this.props.order !== null) {
-            this.props.stores.forEach((value, index) => {
+            this.getStores().forEach((value, index) => {
                 if(+this.props.order.store_id === +value.id) {
                     store_id = index;
                 }

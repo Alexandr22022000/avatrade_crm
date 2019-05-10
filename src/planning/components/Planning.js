@@ -20,7 +20,7 @@ class Planning extends Component {
     render() {
         let stores      = ['Все подразделения'],
             managers    = ['Все менеджеры'],
-            statuses    = [ 'Все статусы',
+            statuses    = [ 'Все статусы', 'Активные',
                 'В работу', 'Принят в работу', 'Готов на производстве',
                 'В логистике', 'На подраздении', 'Выдан',
                 'Отказ', 'На согласовании', 'На Яндекс диске',
@@ -30,7 +30,7 @@ class Planning extends Component {
             date        = new Date(this.props.filter.start),
             days        = this.setDays(date.getFullYear(), date.getMonth());
 
-        this.props.stores.forEach(value => stores.push(value.name));
+        this.props.stores.forEach(value => {if (value.id!=0) stores.push(value.name)});
         this.props.managers.forEach(value => managers.push(value.name));
         return (
             <div className={'planning'}>
@@ -137,7 +137,6 @@ class Planning extends Component {
     onDaysChange(value) {
         let start = new Date(this.props.filter.start),
             end = new Date(this.props.filter.start);
-        console.log(end);
         if(value !== 0) {
             start.setDate(value);
             start.setHours(0);
@@ -166,7 +165,8 @@ class Planning extends Component {
     }
 
     onStoreChange(value) {
-        this.props.onUpdateFilter({...this.props.filter, store_id: value === 0? null: this.props.stores[value - 1].id});
+        let stores = this.props.stores.filter((value)=>value.id !=0);
+        this.props.onUpdateFilter({...this.props.filter, store_id: value === 0? null: stores[value - 1].id});
         this.props.onLoadOrders();
         this.setState({storeIndex: value});
     }
@@ -178,7 +178,7 @@ class Planning extends Component {
     }
 
     onStatusChange(value) {
-        this.props.onUpdateFilter({...this.props.filter, status: value === 0? null: value - 1});
+        this.props.onUpdateFilter({...this.props.filter, status: value === 0? null: value - 2});
         this.props.onLoadOrders();
         this.setState({statusIndex: value});
     }
@@ -240,13 +240,7 @@ class Planning extends Component {
                 key: 'manager',
             },
             {
-                title: 'Заказ',
-                dataIndex: 'name',
-                className: 'plan-name',
-                key: 'name',
-            },
-            {
-                title: 'Описание',
+                title: 'ТЗ',
                 dataIndex: 'description',
                 className: 'plan-description',
                 key: 'description',
@@ -287,7 +281,9 @@ class Planning extends Component {
         this.props.orders.forEach((value) => {
             data.push({
                 ...value,
-                index: (<div className={'plan-number ' + colors[+value.type]}>{value.number}</div>),
+                description: value.description.split('').map(char=>(char === '\n'?<br/>:char)),
+                paid: value.isbybudget===true ? <span>Бюджет</span> : (<span className={value.paid<value.price? 'plan-red-text': ''}>{value.paid}</span>),
+                index: value.number,
                 date: formatDate(new Date(+value.date)),
                 ready: formatDate(new Date(+value.ready)),
                 status: statuses[value.status],
@@ -296,7 +292,7 @@ class Planning extends Component {
         let scrollW = window.screen.availHeight < 1000? window.screen.availHeight * 0.5 : window.screen.availHeight * 0.6;
         return (
             <Table columns={columns}
-                   rowClassName={()=>'plan-rows'}
+                   rowClassName={(record)=>`plan-rows ${colors[+record.type]}`}
                    emptyText={'Нет данных'}
                    className={'plan-table'}
                    scroll={{y: scrollW}}

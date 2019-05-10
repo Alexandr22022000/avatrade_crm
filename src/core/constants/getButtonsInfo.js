@@ -84,10 +84,10 @@ const getButtonsInfo = (permission) => {
                         isActive: false,
                         route: "prices"
                     };
-                    buttons["sells"] = {
-                        name: "продажи",
+                    buttons["events"] = {
+                        name: "табель выходов",
                         isActive: false,
-                        route: "sells"
+                        route: "events"
                     };
                     break;
                 case PERMISSIONS.WAREHOUSE_MANAGER:
@@ -105,6 +105,11 @@ const getButtonsInfo = (permission) => {
                         name: "кабинет",
                         isActive: false,
                         route: "cabinet"
+                    };
+                    buttons["events"] = {
+                        name: "табель выходов",
+                        isActive: false,
+                        route: "events"
                     };
                     buttons["contacts"] = {
                         name: "контакты",

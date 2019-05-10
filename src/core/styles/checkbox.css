@@ -1,0 +1,16 @@
+.checkbox {
+    display: inline-block;
+    margin-bottom: 20px;
+    margin-left: 0;
+}
+
+.checkbox-input {
+    min-height: 20px;
+    margin: 0;
+    min-width: 20px;
+}
+.checkbox~.header-m {
+    display: inline;
+    margin-left: 5px;
+    vertical-align: center;
+}

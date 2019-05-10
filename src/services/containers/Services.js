@@ -9,6 +9,7 @@ export default connect(
 	state => ({
 		services: state.services.services,
 		filter: state.services.filter,
+		permissions: state.status.permissions,
 	}),
 	dispatch => ({
 		onLoadServices: () => dispatch(getServices()),

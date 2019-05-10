@@ -10,6 +10,7 @@ import setCurrentCargo from "../actions/setCurrentCargo";
 export default connect(
     state=>({
         stocks: state.warehouse.stocks,
+        permissions: state.status.permissions,
         cargos: state.warehouse.cargos,
         stores: state.warehouse.stores,
         filter: state.warehouse.filter,

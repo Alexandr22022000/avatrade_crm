@@ -2,28 +2,29 @@
     color: black;
 }
 
-.plan-yellow {
-    background-color: #fde910;
+.plan-yellow .plan-index {
+    background-color: #fde910!important;
 }
 
-.plan-light-blue {
-    background-color: #42aaff;
+.plan-light-blue .plan-index {
+    background-color: #42aaff!important;
 }
 
-.plan-orange {
-    background-color: #ffa500;
+.plan-orange .plan-index {
+    background-color: #ffa500!important;
 }
 
-.plan-purple {
-    background-color: #8b00ff;
+.plan-purple .plan-index {
+    background-color: #8b00ff!important;
+
 }
 
-.plan-blue {
-    background-color: #00008b;
+.plan-blue .plan-index {
+    background-color: #00008b!important;
 }
 
-.plan-pink {
-    background-color: #ffc0cb;
+.plan-pink .plan-index {
+    background-color: #ffc0cb!important;
 }
 
 .plan-controls {
@@ -114,6 +115,10 @@
     padding: 0!important;
 }
 
+.plan-rows .plan-index {
+    color: black!important;
+}
+
 .plan-rows .plan-customer, .plan-rows .plan-contacts, .plan-rows .plan-date,
 .plan-rows .plan-ready, .plan-rows .plan-rs, .plan-rows .plan-store, .plan-rows .plan-manager,
 .plan-rows .plan-name, .plan-rows .plan-description, .plan-rows .plan-price, .plan-rows .plan-paid,
@@ -201,14 +206,14 @@
 }
 
 .plan-status {
-    min-width: 120px!important;
-    max-width: 120px!important;
+    min-width: 90px!important;
+    max-width: 90px!important;
     padding-right: 5px!important;
 }
 
 .plan-rows .plan-status {
-    min-width: 118px!important;
-    max-width: 118px!important;
+    min-width: 88px!important;
+    max-width: 88px!important;
     text-align: right!important;
     padding-right: 5px!important;
 }
@@ -225,6 +230,13 @@
 
 .plan-rows {
     cursor: pointer;
+    width: fit-content!important;
+
+
+}
+
+.plan-red-text {
+    color: red;
 }
 
 .plan-rows:hover > .plan-customer, .plan-rows:hover > .plan-contacts, .plan-rows:hover > .plan-date,
