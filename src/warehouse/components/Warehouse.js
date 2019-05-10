@@ -29,7 +29,7 @@ class Warehouse extends Component {
         return (
             <tr className={'wh-table-row'}
                 onClick={() => {
-                    if (checkPermissions(this.props.permissions || [], [PERMISSIONS.OWNER, PERMISSIONS.TOP_MANAGER, PERMISSIONS.STORE_MANAGER])) {
+                    if (checkPermissions(this.props.permissions || [], [PERMISSIONS.OWNER, PERMISSIONS.TOP_MANAGER, PERMISSIONS.WAREHOUSE_MANAGER])) {
                         this.props.onSetCurrentCargo(value);
                         this.setState({showStockEditor: true});
 
@@ -92,7 +92,7 @@ class Warehouse extends Component {
                         </button> : ''
 
                     }
-                    {this.getCheck(false) ? '' : [
+                    {!this.getCheck(false) &&checkPermissions(this.props.permissions || [], [PERMISSIONS.OWNER, PERMISSIONS.TOP_MANAGER, PERMISSIONS.STORE_MANAGER])?[
                         <button className={'btn-m blue-button'}
                                 style={{fontSize: '18px', marginLeft: '40px'}}
                                 onClick={()=> this.onMigrate(false)}
@@ -106,7 +106,7 @@ class Warehouse extends Component {
                         >
                         Запросить
                         </button>
-                    ]}
+                    ] : ''}
                 </div>
                 <div className={'dataTable'} style={{minWidth:widths.tableWidth, maxWidth:widths.tableWidth}}>
                     <table className={'table-header'}>
