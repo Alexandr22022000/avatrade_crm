@@ -282,7 +282,7 @@ class Planning extends Component {
             data.push({
                 ...value,
                 description: value.description.split('').map(char=>(char === '\n'?<br/>:char)),
-                paid: value.isbybudget===true ? <span>Бюджет</span> : (<span className={value.paid<value.price? 'plan-red-text': ''}>{value.paid}</span>),
+                paid: value.isbybudget===true ? <span>Бюджет Avatrade</span> : (<span className={value.paid<value.price? 'plan-red-text': ''}>{value.paid}</span>),
                 index: value.number,
                 date: formatDate(new Date(+value.date)),
                 ready: formatDate(new Date(+value.ready)),

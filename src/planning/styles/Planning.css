@@ -193,27 +193,27 @@
 }
 
 .plan-price, .plan-paid {
-    min-width: 95px!important;
-    max-width: 95px!important;
+    min-width: 105px!important;
+    max-width: 105px!important;
     padding-right: 5px!important;
 }
 
 .plan-rows .plan-price, .plan-rows .plan-paid {
-    min-width: 93px!important;
-    max-width: 93px!important;
+    min-width: 103px!important;
+    max-width: 103px!important;
     text-align: right!important;
     padding-right: 5px!important;
 }
 
 .plan-status {
-    min-width: 90px!important;
-    max-width: 90px!important;
+    min-width: 100px!important;
+    max-width: 100px!important;
     padding-right: 5px!important;
 }
 
 .plan-rows .plan-status {
-    min-width: 88px!important;
-    max-width: 88px!important;
+    min-width: 98px!important;
+    max-width: 98px!important;
     text-align: right!important;
     padding-right: 5px!important;
 }

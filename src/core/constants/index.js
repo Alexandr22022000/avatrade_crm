@@ -24,11 +24,11 @@ export const PERMISSIONS_TEXT = [
     },
 ];
 
+
 export const checkPermissions = (currentPermissions, targetPermissions) => {
-    let isFound = false;
-    currentPermissions.forEach(value=> {
+    for (let value of currentPermissions) {
         if (targetPermissions.indexOf(value)!==-1)
-            isFound = true;
-    });
-    return isFound;
+            return true;
+        }
+    return false;
 };

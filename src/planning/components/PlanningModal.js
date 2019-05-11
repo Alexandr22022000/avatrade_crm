@@ -173,7 +173,7 @@ class PlanningModal extends Component {
                                 numbers={true}
                     />
 
-                    <CheckBox title={'Из бюджета'}
+                    <CheckBox title={'Бюджет Avatrade'}
                               value={this.state.isByBudget}
                               onChange={(v) => this.setState({isByBudget: v===true})}
                     />
