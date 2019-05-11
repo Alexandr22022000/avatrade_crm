@@ -36,6 +36,7 @@ class Warehouse extends Component {
                     }
                 }}
             >
+                {(checkPermissions(this.props.permissions || [], [PERMISSIONS.OWNER, PERMISSIONS.TOP_MANAGER, PERMISSIONS.STORE_MANAGER]))?
                 <td className={'table-cell chbox-cell'}>
                     <input checked={value.isChecked}
                            type={'checkbox'}
@@ -44,7 +45,8 @@ class Warehouse extends Component {
                                this.props.checkStock(index, isBuffer);
                            }}
                     />
-                </td>
+                </td>:''
+                }
 
                 <td className={'table-cell art-cell'}>{value.article}</td>
                 <td className={'table-cell name-cell'}>{value.name}</td>
@@ -112,7 +114,9 @@ class Warehouse extends Component {
                     <table className={'table-header'}>
                         <thead>
                         <tr>
-                            <td className={'table-cell header-cell chbox-cell'}>{this.getCheckboxTool()}</td>
+                            {(checkPermissions(this.props.permissions || [], [PERMISSIONS.OWNER, PERMISSIONS.TOP_MANAGER, PERMISSIONS.STORE_MANAGER]))?
+                                <td className={'table-cell header-cell chbox-cell'}>{this.getCheckboxTool()}</td> :''
+                            }
                             <td className={'table-cell header-cell art-cell'}>Артикул</td>
                             <td className={'table-cell header-cell name-cell'}>Наименование</td>
                             <td className={'table-cell header-cell warehouse-cell'}
@@ -171,7 +175,7 @@ class Warehouse extends Component {
         if (this.props.stocks[0]) {
             storesCellWidth = storesAmount * 122+1;
         }
-        let width = 375 + storesCellWidth - 1;
+        let width = (checkPermissions(this.props.permissions || [], [PERMISSIONS.OWNER, PERMISSIONS.TOP_MANAGER, PERMISSIONS.STORE_MANAGER])?375 : 333) + storesCellWidth - 1;
         return {tableWidth:`${width.toString(10)}px`, storesCellWidth}
     }
 
