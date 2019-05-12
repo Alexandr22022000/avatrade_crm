@@ -17,7 +17,6 @@ class PlanningModal extends Component {
         return_store_id: 0,
         isByBudget: this.props.order? this.props.order.isbybudget : false,
         manager_id: this.props.order? this.props.order.manager_id: 0,
-        name: this.props.order? this.props.order.name: '',
         description: this.props.order? this.props.order.description: '',
         price: this.props.order? this.props.order.price: 0,
         paid: this.props.order? this.props.order.paid: 0,
@@ -50,7 +49,6 @@ class PlanningModal extends Component {
 
     canSave() {
         if(this.state.customer.trim() === '') return false;
-        if(this.state.name.trim() === '') return false;
         if(this.state.price <= 0) return false;
         return true;
     }
@@ -67,7 +65,6 @@ class PlanningModal extends Component {
                         store_id: this.getStores()[this.state.store_id].id,
                         return_store_id: this.getStores()[this.state.return_store_id].id,
                         manager_id: this.props.managers[this.state.manager_id].id,
-                        name: this.state.name,
                         description: this.state.description,
                         price: this.state.price,
                         paid: this.state.paid,
@@ -84,7 +81,6 @@ class PlanningModal extends Component {
                         store_id: this.getStores()[this.state.store_id].id,
                         return_store_id: this.getStores()[this.state.return_store_id].id,
                         manager_id: this.props.managers[this.state.manager_id].id,
-                        name: this.state.name,
                         description: this.state.description,
                         price: this.state.price,
                         paid: this.state.paid,
@@ -155,11 +151,6 @@ class PlanningModal extends Component {
                                 options={this.props.managers.map(value => value.name)}
                                 alwaysActive={!this.props.isEditing}
                                 onChange={v => this.setState({manager_id: v, isChanged: true})}
-                    />
-                    <StuffInput title={'Наименование:'}
-                                alwaysActive={!this.props.isEditing}
-                                value={this.state.name}
-                                onChange={(v) => this.setState({name: v, isChanged: true})}
                     />
                     <TextArea title={'ТЗ:'}
                               alwaysActive={!this.props.isEditing}
